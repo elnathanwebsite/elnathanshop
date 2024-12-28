@@ -48,8 +48,149 @@
             width: 300px;
             height: 300px;
         }
+        
+        #drawer {
+            z-index: 50;
+        }
+        
+        #ads {
+            z-index: 10;
+        }
+        
+        .main-image-container {
+            width: 100%;
+            height: 300px;
+            /* Menyesuaikan dengan tinggi gambar */
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .main-image-container img {
+            width: auto;
+            height: 100%;
+            display: inline-block;
+            animation: scrollImages 30s linear infinite;
+        }
+        
+        @keyframes scrollImages {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        .nav-buttons {
+            position: fixed;
+            bottom: 20px;
+            /* Position at the bottom of the screen */
+            left: 50%;
+            transform: translateX(-50%);
+            /* Center the buttons horizontally */
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+            /* Ensures the buttons stay on top */
+        }
+        
+        .nav-button {
+            padding: 15px;
+            background-color: #000;
+            /* Black background */
+            color: #fff;
+            /* White icon color */
+            font-size: 24px;
+            /* Size of the icon */
+            border: none;
+            border-radius: 50%;
+            /* Round the button */
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .nav-button:hover {
+            background-color: #333;
+            /* Dark gray background on hover */
+            transform: translateY(-5px);
+        }
+        
+        .nav-button:active {
+            transform: translateY(0);
+        }
+        
+        .nav-button:focus {
+            outline: none;
+        }
+        
+        @media (max-width: 600px) {
+            .nav-button {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+        }
+        /* Style untuk pesan yang mengambang */
+        
+        .floating-message {
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: black;
+            color: white;
+            padding: 20px;
+            width: 80%;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 9999;
+            display: none;
+        }
+        /* Judul besar */
+        
+        .floating-message h1 {
+            font-size: 32px;
+            margin: 0;
+        }
+        /* Pesan teks kecil */
+        
+        .floating-message p {
+            font-size: 18px;
+            margin: 10px 0 0;
+        }
+        /* Ikon silang untuk menutup pesan */
+        
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
     </style>
+
 </head>
+<!-- Pesan Mengambang -->
+<div class="floating-message" id="floatingMessage">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <h1>EL NATHAN SHOP</h1>
+    <p>Terima kasih sudah mengunjungi El Nathan Shop! Kami sangat senang Anda meluangkan waktu untuk menjelajahi koleksi kami. Di sini, Anda akan menemukan berbagai pilihan produk berkualitas yang didesain dengan penuh kreativitas. Jangan ragu untuk berbelanja
+        dan temukan produk yang paling cocok dengan gaya Anda! Ingin informasi lebih lanjut? Jangan lupa untuk follow kami di sosial media atau hubungi kami langsung jika ada pertanyaan. Kami siap membantu Anda! Selamat berbelanja, dan semoga hari Anda
+        menyenankan! El Nathan Shop 💫
+    </p>
+</div>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="ETH" />
+<link rel="manifest" href="/site.webmanifest" />
 
 <body class="bg-gray-200">
     <!-- Header -->
@@ -94,6 +235,26 @@
     </div>
 
 
+    <div class="nav-buttons">
+        <a href="mailto:afansurifan@gmail.com" class="nav-button">
+            <i class="fas fa-envelope"></i>
+        </a>
+
+        <a href="tentangsaya.html" class="nav-button">
+            <i class="fas fa-info-circle"></i>
+        </a>
+        <!-- Using Font Awesome icons -->
+        <button class="nav-button" onclick="window.location.href='https://www.instagram.com/elnathanershop/profilecard/?igsh=bndlMzBxNzQ2ZzA';">
+            <i class="fab fa-instagram"></i>
+        </button>
+
+        <button class="nav-button" onclick="window.location.href='https://shopee.co.id/ethanelnathan1?categoryId=100011&entryPoint=ShopByPDP&itemId=25839296191';">
+            <i class="fas fa-shopping-cart"></i>
+        </button>
+        <button class="nav-button" onclick="window.location.href='https://wa.me/6283180667700';">
+            <i class="fas fa-phone-alt"></i>
+        </button>
+    </div>
     <!-- Product Section Header -->
     <div class="bg-black text-white text-center py-2">
         <h2 class="text-lg font-bold">PRODUK YANG KAMI TAWARKAN</h2>
@@ -383,6 +544,21 @@
         </div>
     </footer>
     <script>
+        // Menampilkan pesan setelah 1 detik
+        setTimeout(function() {
+            document.getElementById("floatingMessage").style.display = "block";
+        }, 100);
+
+        // Menutup pesan ketika klik ikon silang
+        document.getElementById("closeBtn").onclick = function() {
+            document.getElementById("floatingMessage").style.display = "none";
+        };
+
+        // Menyembunyikan pesan setelah 10 detik
+        setTimeout(function() {
+            document.getElementById("floatingMessage").style.display = "none";
+        }, 150000);
+
         function toggleDrawer() {
             const drawer = document.getElementById('drawer');
             drawer.classList.toggle('drawer-closed');
