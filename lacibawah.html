@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website dengan Laci</title>
+    <style>
+        /* Style untuk halaman utama */
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+        /* Tombol untuk mengeluarkan laci */
+        
+        #toggleButton {
+            padding: 15px 30px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        #toggleButton:hover {
+            background-color: #45a049;
+        }
+        /* Laci yang tersembunyi di bawah */
+        
+        #drawer {
+            position: fixed;
+            bottom: -100%;
+            /* Laci tersembunyi penuh di luar layar */
+            left: 0;
+            width: 100vw;
+            /* Menyesuaikan dengan lebar layar */
+            height: 40vh;
+            /* Tinggi laci 40% dari tinggi layar */
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.3);
+            /* Bayangan di bawah */
+            transition: bottom 0.3s ease-in-out;
+        }
+        
+        #drawer p {
+            margin: 20px 0;
+        }
+        /* Ikon untuk menutup laci di tengah bawah */
+        
+        #closeButton {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        #closeButton:hover {
+            color: #f44336;
+        }
+        /* Responsif: Menyesuaikan ukuran pada layar lebih kecil */
+        
+        @media (max-width: 600px) {
+            #drawer {
+                height: 50vh;
+                /* Lebih tinggi pada layar kecil */
+            }
+            #toggleButton {
+                font-size: 14px;
+                padding: 12px 20px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            #drawer {
+                height: 60vh;
+                /* Lebih tinggi lagi pada layar sangat kecil */
+            }
+            #toggleButton {
+                font-size: 12px;
+                padding: 10px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Tombol untuk mengeluarkan laci -->
+    <button id="toggleButton">Tampilkan Laci</button>
+
+    <!-- Laci yang akan muncul dari bawah -->
+    <div id="drawer">
+        <p>Ini adalah isi dari laci! Laci ini lebih panjang dan memiliki bayangan!</p>
+        <!-- Tombol ikon silang untuk menutup laci -->
+        <button id="closeButton">&times;</button>
+    </div>
+
+    <script>
+        // Mengambil elemen-elemen yang diperlukan
+        const toggleButton = document.getElementById("toggleButton");
+        const drawer = document.getElementById("drawer");
+        const closeButton = document.getElementById("closeButton");
+
+        // Menampilkan laci ketika tombol ditekan
+        toggleButton.addEventListener("click", () => {
+            drawer.style.bottom = "0"; // Laci muncul dari bawah
+        });
+
+        // Menutup laci ketika tombol tutup ditekan
+        closeButton.addEventListener("click", () => {
+            drawer.style.bottom = "-100%"; // Laci kembali tersembunyi
+        });
+    </script>
+
+</body>
+
+</html>

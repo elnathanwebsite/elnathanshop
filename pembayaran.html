@@ -1,0 +1,408 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>El Nathan Shop Desain Kaos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <style>
+        /* CSS */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background: #0066cc;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        header nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        header nav ul li {
+            margin: 0 1rem;
+        }
+        
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .hero button {
+            background: #ff9900;
+            border: none;
+            padding: 0.5rem 1rem;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        section {
+            padding: 2rem;
+        }
+        
+        #about,
+        #contact {
+            background: #f4f4f4;
+        }
+        
+        .gallery {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .gallery img {
+            width: 300px;
+            border-radius: 10px;
+        }
+        
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        form input,
+        form textarea,
+        form button {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            background: #0066cc;
+            color: #fff;
+            padding: 1rem 0;
+        }
+        
+        .btn-link {
+            background-color: #4CAF50;
+            /* Warna latar belakang tombol */
+            color: white;
+            /* Warna teks tombol */
+            padding: 4px 20px;
+            /* Jarak di dalam tombol */
+            text-align: center;
+            /* Posisi teks di tengah */
+            text-decoration: none;
+            /* Menghapus garis bawah pada link */
+            display: inline-block;
+            /* Membuat tombol dapat diatur secara inline */
+            border-radius: 5px;
+            /* Membuat sudut tombol menjadi melengkung */
+            font-size: 16px;
+            /* Ukuran teks */
+        }
+        /* Card Container */
+        
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+        /* Card Style */
+        
+        .card {
+            position: relative;
+            width: 300px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        /* Image Style */
+        
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        /* Card Content */
+        
+        .card-content {
+            padding: 15px;
+        }
+        
+        .card-title {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #333;
+        }
+        
+        .card-description {
+            font-size: 0.9em;
+            color: #666;
+        }
+        /* Responsive Design */
+        
+        @media screen and (max-width: 768px) {
+            .card {
+                width: 80%;
+                /* Mengisi sebagian besar layar pada perangkat lebih kecil */
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .card {
+                width: 100%;
+                /* Mengisi penuh layar pada perangkat sangat kecil */
+            }
+            .card-title {
+                font-size: 1em;
+                /* Mengurangi ukuran teks */
+            }
+            .card-description {
+                font-size: 0.8em;
+                /* Menyesuaikan teks deskripsi */
+            }
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        .arrow-left {
+            position: fixed;
+            top: 1px;
+            /* Jarak dari atas */
+            left: 5px;
+            /* Jarak dari kiri */
+            font-size: 40px;
+            /* Ukuran ikon */
+            color: #333;
+            /* Warna panah */
+            text-decoration: none;
+            /* Menghilangkan underline */
+            background-color: #f0f0f0;
+            /* Warna latar belakang */
+            padding: 1px 5px;
+            /* Jarak di sekitar panah */
+            border-radius: 30%;
+            /* Membuat bentuk lingkaran */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Bayangan untuk estetika */
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        
+        .arrow-left:hover {
+            transform: scale(1.1);
+            /* Efek zoom saat hover */
+            background-color: #ddd;
+            /* Warna latar belakang saat hover */
+            color: #000;
+            /* Warna panah saat hover */
+        }
+    </style>
+</head>
+
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="ETH" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<body class="bg-gray-200">
+
+    <body>
+        <a href="utama.html" class="arrow-left" title="Kembali">
+        &#8592;
+    </a>
+    </body>
+    <section id="gallery">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Pembayaran Lainnya</h2>
+        <div class="card-container">
+            <!-- Card 1 -->
+            <!-- Card 1 -->
+            <div class="card-container">
+                <!-- Card 1 -->
+                <div class="card">
+                    <a href="coomingshooon.html">
+                        <img src="https://i.pinimg.com/736x/cb/aa/03/cbaa0388892e0a154353c2a1cb8b3fee.jpg" alt="Gambar Air Terjun">
+                    </a>
+                    <div class="card-content">
+                        <h3 class="card-title">Dana</h3>
+                        <p class="card-description">Nikmati kemudahan transfer saldo dari Dana ke GoPay. Dengan langkah-langkah yang mudah dan cepat, Anda bisa langsung menikmati berbagai layanan yang disediakan oleh kedua aplikasi tersebut tanpa ribet.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card">
+                    <a href="coomingshooon.html">
+                        <img src="https://i.pinimg.com/736x/d0/8f/b8/d08fb85716fa01b473b1ba63623ffd20.jpg" alt="Gambar Kolam Alami">
+                    </a>
+                    <div class="card-content">
+                        <h3 class="card-title">Link Aja</h3>
+                        <p class="card-description">: "Gunakan LinkAja untuk semua kebutuhan pembayaran Anda. Dari pembayaran tagihan hingga transaksi di berbagai merchant, LinkAja memberikan kemudahan dan kecepatan dalam satu aplikasi. Nikmati berbagai promo menarik dan kemudahan
+                            transaksi non-tunai di berbagai tempat.""</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card">
+                    <a href="coomingshooon.html">
+                        <img src="https://i.pinimg.com/736x/f9/7c/a7/f97ca743618525f114232c77e5049e26.jpg" alt="Gopay">
+                    </a>
+                    <div class="card-content">
+                        <h3 class="card-title">Gopay</h3>
+                        <p class="card-description">"Nikmati kemudahan transfer saldo dari Dana ke GoPay. Dengan langkah-langkah yang mudah dan cepat, Anda bisa langsung menikmati berbagai layanan yang disediakan oleh kedua aplikasi tersebut tanpa ribet."</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="card">
+                    <a href="coomingshooon.html">
+                        <img src="https://i.pinimg.com/736x/d0/19/16/d019163d861908ed0046391ebfa42ce1.jpg" alt="">
+                    </a <div class="card-content">
+                    <h3 class="card-title">Shopee Pay</h3>
+                    <p class="card-description">"Gunakan ShopeePay untuk pengalaman berbelanja yang praktis dan cepat. Dengan ShopeePay, Anda bisa melakukan pembayaran dengan aman dan menikmati berbagai promo menarik yang ada di Shopee."</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="contact">
+        <h2>Kontak Kami</h2>
+        <form id="contactForm" onsubmit="sendEmail(event)">
+            <label for="name">Nama:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Pesan:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Kirim</button>
+        </form>
+    </section>
+
+    <script>
+        // JavaScript
+        document.getElementById('exploreBtn').addEventListener('click', function() {
+            window.scrollTo({
+                top: document.getElementById('about').offsetTop,
+                behavior: 'smooth'
+            });
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih telah menghubungi kami! Pesan Anda telah terkirim.');
+            this.reset();
+        });
+
+        function moveLocation() {
+            // Ambil elemen dengan kelas "location-icon"
+            const locationIcon = document.querySelector('.location-icon');
+
+            // Tentukan posisi baru secara acak di dalam layar
+            const maxWidth = window.innerWidth;
+            const maxHeight = window.innerHeight;
+
+            const randomX = Math.random() * maxWidth;
+            const randomY = Math.random() * maxHeight;
+
+            // Pindahkan lokasi ke posisi acak
+            locationIcon.style.left = `${randomX}px`;
+            locationIcon.style.top = `${randomY}px`;
+        }
+
+        function sendEmail(event) {
+            event.preventDefault(); // Mencegah form refresh halaman
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            const subject = `Pesan dari ${name}`;
+            const body = `Nama: ${name}\nEmail: ${email}\n\nPesan:\n${message}`;
+
+            // Gunakan mailto untuk mengirim email
+            window.location.href = `mailto:emailanda@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+    </script>
+</body>
+
+</html>
+<script>
+    // JavaScript
+    document.getElementById('exploreBtn').addEventListener('click', function() {
+        window.scrollTo({
+            top: document.getElementById('about').offsetTop,
+            behavior: 'smooth'
+        });
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Terima kasih telah menghubungi kami! Pesan Anda telah terkirim.');
+        this.reset();
+    });
+
+    function moveLocation() {
+        // Ambil elemen dengan kelas "location-icon"
+        const locationIcon = document.querySelector('.location-icon');
+
+        // Tentukan posisi baru secara acak di dalam layar
+        const maxWidth = window.innerWidth;
+        const maxHeight = window.innerHeight;
+
+        const randomX = Math.random() * maxWidth;
+        const randomY = Math.random() * maxHeight;
+
+        // Pindahkan lokasi ke posisi acak
+        locationIcon.style.left = `${randomX}px`;
+        locationIcon.style.top = `${randomY}px`;
+    }
+
+    function sendEmail(event) {
+        event.preventDefault(); // Mencegah form refresh halaman
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        const subject = `Pesan dari ${name}`;
+        const body = `Nama: ${name}\nEmail: ${email}\n\nPesan:\n${message}`;
+
+        // Gunakan mailto untuk mengirim email
+        window.location.href = `mailto:afansurifan@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+</script>
+</body>
+
+</html>

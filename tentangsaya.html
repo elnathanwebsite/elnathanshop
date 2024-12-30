@@ -133,96 +133,143 @@
                 font-size: 1rem;
             }
         }
+        
+        .arrow-left {
+            position: fixed;
+            top: 1px;
+            /* Jarak dari atas */
+            left: 5px;
+            /* Jarak dari kiri */
+            font-size: 40px;
+            /* Ukuran ikon */
+            color: #333;
+            /* Warna panah */
+            text-decoration: none;
+            /* Menghilangkan underline */
+            background-color: #f0f0f0;
+            /* Warna latar belakang */
+            padding: 1px 5px;
+            /* Jarak di sekitar panah */
+            border-radius: 30%;
+            /* Membuat bentuk lingkaran */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Bayangan untuk estetika */
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        
+        .arrow-left:hover {
+            transform: scale(1.1);
+            /* Efek zoom saat hover */
+            background-color: #ddd;
+            /* Warna latar belakang saat hover */
+            color: #000;
+            /* Warna panah saat hover */
+        }
     </style>
 </head>
 
-<body>
-    <div class="container">
-        <!-- Header Section -->
-        <header>
-            <h1> EL NATHAN SHOP</h1>
-        </header>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="ETH" />
+<link rel="manifest" href="/site.webmanifest" />
 
-        <!-- Logo Section -->
-        <section class="logo-section">
-            <img src="https://i.pinimg.com/736x/22/ce/99/22ce990742ddfb4a7eb85d99a86a2d34.jpg" alt="EL NATHAN Logo">
-            <div class="logo-text">
-                <h2>ETHAN EL NATHAN</h2>
-                <p>"LA TECNOLOGÍA ES EL MEJOR ASISTENTE"</p>
-            </div>
-            <div class="logo-meaning">
-                <p>Logo ini menggunakan warna teks hitam dan latar belakang putih yang permanen. Font yang digunakan adalah Times New Roman, memberikan kesan formal, profesional, dan tradisional. Logo ini mencerminkan analisis, wewenang, dan sifat kritis
-                    yang mendalam dari EL NATHAN.</p>
-            </div>
-        </section>
+<body class="bg-gray-200">
 
-        <!-- About EL NATHAN SHOP Section -->
-        <section class="about">
-            <h2>Tentang EL NATHAN SHOP</h2>
-            <p>EL NATHAN SHOP adalah platform e-commerce yang menyediakan berbagai produk berkualitas dengan fokus pada desain yang kreatif dan inovatif. Meskipun kami belum memiliki produk fisik yang dapat dibeli langsung di sini, kami terus berkomitmen
-                untuk menghadirkan pengalaman berbelanja yang menyenangkan dan efisien bagi pelanggan kami.</p>
-        </section>
+    <body>
+        <a href="utama.html" class="arrow-left" title="Kembali">
+        &#8592;
+    </a>
+    </body>
 
-        <!-- Contact Section -->
-        <section class="contact">
-            <h3>Hubungi Kami</h3>
-            <p>Untuk pertanyaan atau informasi lebih lanjut, silakan hubungi kami di email: <a href="mailto:elnathanshop@example.com" style="color: #000;">elnathanshop@example.com</a></p>
-        </section>
+    <body>
+        <div class="container">
+            <!-- Header Section -->
+            <header>
+                <h1> EL NATHAN SHOP</h1>
+            </header>
 
-        <!-- Footer Section -->
-        <footer>
-            <footer class="bg-black text-white">
-                <div class="container mx-auto py-10 px-5">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                        <div>
-                            <h1 class="text-xl font-bold mb-4">EL NATHAN SHOP</h1>
-                            <p class="mb-4">Sebagai pusat fashion online terpercaya, kami berkomitmen untuk menghadirkan produk berkualitas yang memenuhi kebutuhan gaya Anda. Mulai dari produk lokal hingga internasional, kami berfokus memberikan kenyamanan dan kepuasan
-                                berbelanja bagi Anda. <span class="font-bold">Bersama EL NATHAN SHOP, Anda tampil percaya diri.</span></p>
-                            <h2 class="font-bold mb-2">Layanan Pengaduan Konsumen</h2>
-                            <p class="mb-2 font-bold">EL NATHAN SHOP</p>
-                            <p class="mb-2">E-mail: elnathanshop@gmail.com</p>
-                            <p class="mb-2 font-bold">Direktorat Jenderal Perlindungan Konsumen dan Tertib Niaga Kementerian Perdagangan RI</p>
-                            <p class="mb-2">WhatsApp: +62 831 806 667 770</p>
+            <!-- Logo Section -->
+            <section class="logo-section">
+                <img src="https://i.pinimg.com/736x/22/ce/99/22ce990742ddfb4a7eb85d99a86a2d34.jpg" alt="EL NATHAN Logo">
+                <div class="logo-text">
+                    <h2>ETHAN EL NATHAN</h2>
+                    <p>"LA TECNOLOGÍA ES EL MEJOR ASISTENTE"</p>
+                </div>
+                <div class="logo-meaning">
+                    <p>Logo ini menggunakan warna teks hitam dan latar belakang putih yang permanen. Font yang digunakan adalah Times New Roman, memberikan kesan formal, profesional, dan tradisional. Logo ini mencerminkan analisis, wewenang, dan sifat kritis
+                        yang mendalam dari EL NATHAN.</p>
+                </div>
+            </section>
+
+            <!-- About EL NATHAN SHOP Section -->
+            <section class="about">
+                <h2>Tentang EL NATHAN SHOP</h2>
+                <p>EL NATHAN SHOP adalah platform e-commerce yang menyediakan berbagai produk berkualitas dengan fokus pada desain yang kreatif dan inovatif. Meskipun kami belum memiliki produk fisik yang dapat dibeli langsung di sini, kami terus berkomitmen
+                    untuk menghadirkan pengalaman berbelanja yang menyenangkan dan efisien bagi pelanggan kami.</p>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="contact">
+                <h3>Hubungi Kami</h3>
+                <p>Untuk pertanyaan atau informasi lebih lanjut, silakan hubungi kami di email: <a href="mailto:elnathanshop@example.com" style="color: #000;">elnathanshop@example.com</a></p>
+            </section>
+
+            <!-- Footer Section -->
+            <footer>
+                <footer class="bg-black text-white">
+                    <div class="container mx-auto py-10 px-5">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                            <div>
+                                <h1 class="text-xl font-bold mb-4">EL NATHAN SHOP</h1>
+                                <p class="mb-4">Sebagai pusat fashion online terpercaya, kami berkomitmen untuk menghadirkan produk berkualitas yang memenuhi kebutuhan gaya Anda. Mulai dari produk lokal hingga internasional, kami berfokus memberikan kenyamanan dan kepuasan
+                                    berbelanja bagi Anda. <span class="font-bold">Bersama EL NATHAN SHOP, Anda tampil percaya diri.</span></p>
+                                <h2 class="font-bold mb-2">Layanan Pengaduan Konsumen</h2>
+                                <p class="mb-2 font-bold">EL NATHAN SHOP</p>
+                                <p class="mb-2">E-mail: elnathanshop@gmail.com</p>
+                                <p class="mb-2 font-bold">Direktorat Jenderal Perlindungan Konsumen dan Tertib Niaga Kementerian Perdagangan RI</p>
+                                <p class="mb-2">WhatsApp: +62 831 806 667 770</p>
+                            </div>
+                            <div>
+                                <h2 class="font-bold mb-4">LAYANAN</h2>
+                                <ul>
+                                    <li class="mb-2">Bantuan</li>
+                                    <li class="mb-2">Cara Pengembalian</li>
+                                    <li class="mb-2">Product Index</li>
+                                    <li class="mb-2">Promo Partner Kami</li>
+                                    <li class="mb-2">Konfirmasi Transfer</li>
+                                    <li class="mb-2">Hubungi Kami</li>
+                                    <li class="mb-2">Cara Berjualan</li>
+                                    <li class="mb-2">Pengembalian Ongkir</li>
+                                    <li class="mb-2">Status Order</li>
+                                    <li class="mb-2">Brand di EL NATHAN SHOP</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2 class="font-bold mb-4">TENTANG KAMI</h2>
+                                <ul>
+                                    <li class="mb-2">About Us</li>
+                                    <li class="mb-2">Promosikan Brand Anda</li>
+                                    <li class="mb-2">Pers/Media</li>
+                                    <li class="mb-2">Karir</li>
+                                    <li class="mb-2">Persyaratan & Ketentuan</li>
+                                    <li class="mb-2">Kebijakan Privasi</li>
+                                    <li class="mb-2">Responsible Disclosure</li>
+                                    <li class="mb-2">Influencer Program</li>
+                                    <li class="mb-2">EL NATHAN THREAD</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div>
-                            <h2 class="font-bold mb-4">LAYANAN</h2>
-                            <ul>
-                                <li class="mb-2">Bantuan</li>
-                                <li class="mb-2">Cara Pengembalian</li>
-                                <li class="mb-2">Product Index</li>
-                                <li class="mb-2">Promo Partner Kami</li>
-                                <li class="mb-2">Konfirmasi Transfer</li>
-                                <li class="mb-2">Hubungi Kami</li>
-                                <li class="mb-2">Cara Berjualan</li>
-                                <li class="mb-2">Pengembalian Ongkir</li>
-                                <li class="mb-2">Status Order</li>
-                                <li class="mb-2">Brand di EL NATHAN SHOP</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h2 class="font-bold mb-4">TENTANG KAMI</h2>
-                            <ul>
-                                <li class="mb-2">About Us</li>
-                                <li class="mb-2">Promosikan Brand Anda</li>
-                                <li class="mb-2">Pers/Media</li>
-                                <li class="mb-2">Karir</li>
-                                <li class="mb-2">Persyaratan & Ketentuan</li>
-                                <li class="mb-2">Kebijakan Privasi</li>
-                                <li class="mb-2">Responsible Disclosure</li>
-                                <li class="mb-2">Influencer Program</li>
-                                <li class="mb-2">EL NATHAN THREAD</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="mt-10">
-                        <h2 class="font-bold mb-4">TEMUKAN KAMI</h2>
-                        <div class="flex space-x-4 mb-4">
-                            <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-facebook fa-2x"></i></a>
-                            <a href="https://www.instagram.com/elnathanershop/profilecard/?igsh=bndlMzBxNzQ2ZzA3"><i class="fab fa-instagram fa-2x"></i></a>
-                            <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-twitter fa-2x"></i></a>
-                            <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-pinterest fa-2x"></i></a>
-                            <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fas fa-rss fa-2x"></i></a>
-                            <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-youtube fa-2x"></a>
+                        <div class="mt-10">
+                            <h2 class="font-bold mb-4">TEMUKAN KAMI</h2>
+                            <div class="flex space-x-4 mb-4">
+                                <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-facebook fa-2x"></i></a>
+                                <a href="https://www.instagram.com/elnathanershop/profilecard/?igsh=bndlMzBxNzQ2ZzA3"><i class="fab fa-instagram fa-2x"></i></a>
+                                <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-twitter fa-2x"></i></a>
+                                <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-pinterest fa-2x"></i></a>
+                                <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fas fa-rss fa-2x"></i></a>
+                                <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-youtube fa-2x"></a>
                             <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-tiktok fa-2x"></a>
                             <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-linkedin fa-2x"></a>
                         </div>
