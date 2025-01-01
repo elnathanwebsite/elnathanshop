@@ -10,15 +10,18 @@
         /* Custom styles for the drawer */
         
         .drawer {
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease;
+            opacity: 0;
         }
         
         .drawer-closed {
             transform: translateX(-100%);
+            opacity: 0;
         }
         
         .drawer-open {
             transform: translateX(0);
+            opacity: 1;
         }
         /* Custom styles for the main image */
         
@@ -27,27 +30,40 @@
             justify-content: center;
             margin: 1rem 0;
             overflow-x: auto;
+            animation: fadeIn 1s ease-out;
         }
         
-        .main-image {
-            width: 100%;
-            max-width: 1024px;
-            height: auto;
-            margin-right: 1rem;
-        }
-        
+        .main-image,
         .additional-image {
             width: 100%;
             max-width: 1024px;
             height: auto;
             margin-right: 1rem;
+            animation: scaleUp 0.6s ease-in-out;
+        }
+        
+        @keyframes scaleUp {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
         /* Custom styles for product images */
         
         .product-image {
             width: 300px;
             height: 300px;
+            transition: transform 0.3s ease-in-out;
         }
+        
+        .product-image:hover {
+            transform: scale(1.1);
+        }
+        /* General body styling */
         
         body {
             font-family: Arial, sans-serif;
@@ -57,12 +73,23 @@
             color: #fff;
             height: 100%;
             overflow: hidden;
+            animation: fadeInBody 1s ease-out;
         }
+        
+        @keyframes fadeInBody {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        /* Form container with animations */
         
         .form-container {
             background-color: #111;
             padding: 20px;
-            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
             width: 100%;
             max-width: 400px;
             position: fixed;
@@ -71,12 +98,35 @@
             transform: translate(-50%, -50%);
             border-radius: 8px;
             z-index: 9999;
+            animation: slideIn 0.5s ease-out;
         }
+        
+        @keyframes slideIn {
+            0% {
+                transform: translate(-50%, -60%);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+        }
+        /* Header and form input styling */
         
         h2 {
             text-align: center;
             font-size: 24px;
             margin-bottom: 20px;
+            animation: fadeInHeader 1s ease-out;
+        }
+        
+        @keyframes fadeInHeader {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
         
         input {
@@ -87,6 +137,12 @@
             border: 1px solid #444;
             border-radius: 4px;
             color: #fff;
+            transition: background-color 0.3s ease;
+        }
+        
+        input:focus {
+            background-color: #333;
+            border-color: #666;
         }
         
         button {
@@ -97,26 +153,50 @@
             border: none;
             border-radius: 4px;
             font-size: 16px;
+            transition: background-color 0.3s ease;
+            animation: pulseButton 1s infinite alternate;
+        }
+        
+        @keyframes pulseButton {
+            0% {
+                background-color: #555;
+            }
+            100% {
+                background-color: #777;
+            }
         }
         
         button:hover {
             background-color: #777;
         }
+        /* Message styling */
         
         .message {
             text-align: center;
             color: #ccc;
             font-size: 14px;
+            animation: fadeInMessage 1s ease-out;
+        }
+        
+        @keyframes fadeInMessage {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
         
         a {
             color: #aaa;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         
         a:hover {
             color: #fff;
         }
+        /* Responsive adjustments */
         
         @media (max-width: 600px) {
             .form-container {
@@ -130,17 +210,43 @@
     <input type="text" id="signup-username" placeholder="Username" required>
     <input type="email" id="signup-email" placeholder="Email" required>
     <input type="password" id="signup-password" placeholder="Password" required>
+
+    <!-- Tambahkan input untuk usia -->
+    <input type="number" id="signup-age" placeholder="Usia" required>
+
+    <!-- Tambahkan input untuk aktivitas -->
+    <select id="signup-activity" required>
+        <option value="" disabled selected>Pilih Aktivitas</option>
+        <option value="Pengangguran">Pengangguran</option>
+        <option value="Pelajar">Pelajar</option>
+        <option value="Mahasiswa">Mahasiswa</option>
+    </select>
+
+    <!-- Tambahkan input untuk jenis kelamin -->
+    <select id="signup-gender" required>
+        <option value="" disabled selected>Pilih Jenis Kelamin</option>
+        <option value="Pria">Pria</option>
+        <option value="Wanita">Wanita</option>
+        <option value="Transgender">Transgender</option>
+    </select>
+
     <button onclick="signUp()">Sign Up</button>
     <div class="message" id="signup-message"></div>
     <p class="message">Already have an account? <a href="index.html">Login here</a></p>
+
+
 
     <div class="stored-data">
         <h3>Stored Data:</h3>
         <p id="stored-username">Username: </p>
         <p id="stored-email">Email: </p>
         <p id="stored-password">Password: </p>
+        <p id="stored-age">Age: </p>
+        <p id="stored-activity">Activity: </p>
+        <p id="stored-gender">Gender: </p>
     </div>
 </div>
+
 
 <body class="bg-gray-200">
     <!-- Header -->
@@ -477,12 +583,18 @@
             const username = document.getElementById('signup-username').value;
             const email = document.getElementById('signup-email').value;
             const password = document.getElementById('signup-password').value;
+            const age = document.getElementById('signup-age').value;
+            const activity = document.getElementById('signup-activity').value;
+            const gender = document.getElementById('signup-gender').value;
 
-            if (username && email && password) {
+            if (username && email && password && age && activity && gender) {
                 // Simpan data di localStorage
                 localStorage.setItem('username', username);
                 localStorage.setItem('email', email);
                 localStorage.setItem('password', password);
+                localStorage.setItem('age', age);
+                localStorage.setItem('activity', activity);
+                localStorage.setItem('gender', gender);
 
                 // Menampilkan pesan sukses
                 document.getElementById('signup-message').textContent = 'Sign up successful! Please login.';
@@ -499,23 +611,22 @@
             const storedUsername = localStorage.getItem('username');
             const storedEmail = localStorage.getItem('email');
             const storedPassword = localStorage.getItem('password');
+            const storedAge = localStorage.getItem('age');
+            const storedActivity = localStorage.getItem('activity');
+            const storedGender = localStorage.getItem('gender');
 
             // Menampilkan data di bagian bawah form
             document.getElementById('stored-username').textContent = 'Username: ' + storedUsername;
             document.getElementById('stored-email').textContent = 'Email: ' + storedEmail;
             document.getElementById('stored-password').textContent = 'Password: ' + storedPassword;
+            document.getElementById('stored-age').textContent = 'Usia: ' + storedAge;
+            document.getElementById('stored-activity').textContent = 'Aktivitas: ' + storedActivity;
+            document.getElementById('stored-gender').textContent = 'Jenis Kelamin: ' + storedGender;
         }
 
         // Memanggil function displayStoredData jika data sudah ada di localStorage saat halaman pertama dimuat
-        if (localStorage.getItem('username') && localStorage.getItem('email') && localStorage.getItem('password')) {
+        if (localStorage.getItem('username') && localStorage.getItem('email') && localStorage.getItem('password') && localStorage.getItem('age') && localStorage.getItem('activity') && localStorage.getItem('gender')) {
             displayStoredData();
-        }
-
-
-        function toggleDrawer() {
-            const drawer = document.getElementById('drawer');
-            drawer.classList.toggle('drawer-closed');
-            drawer.classList.toggle('drawer-open');
         }
 
         function searchProducts() {

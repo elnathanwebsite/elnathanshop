@@ -482,9 +482,17 @@
             <img alt="Shop logo" class="h-8 w-8" height="32" src="https://i.pinimg.com/736x/d5/db/ca/d5dbca067f5868f800f2f7483a308080.jpg" width="32" />
             <h1 class="text-lg font-bold">EL NATHAN SHOP DESAIN KAOS</h1>
         </div>
-        <button class="text-white text-2xl" onclick="toggleDrawer()">
-            <i class="fas fa-bars"></i>
-        </button>
+
+        <!-- Nama Pengguna dengan Link -->
+        <div class="flex items-center space-x-4">
+            <a id="user-name-link" href="profile.html" class="font-semibold text-lg animate-blink" onclick="redirectToProfile(event)">
+                <span id="user-name"></span>
+            </a>
+            <button class="text-white text-2xl" onclick="toggleDrawer()">
+        <i class="fas fa-bars"></i>
+    </button>
+        </div>
+    </header>
     </header>
     <!-- Drawer -->
 
@@ -526,6 +534,10 @@
 
 
     <div class="nav-buttons">
+        <a href="profile.html" class="nav-button">
+            <i class="fas fa-user-circle"></i>
+        </a>
+
         <a href="mailto:afansurifan@gmail.com" class="nav-button">
             <i class="fas fa-envelope"></i>
         </a>
@@ -1046,6 +1058,32 @@
                 newMessage.style.display = 'none';
                 newMessage.remove(); // Menghapus elemen pesan dari DOM
             };
+        }
+        // Ambil nama pengguna dari localStorage
+        const storedUserName = localStorage.getItem('username');
+
+        // Pastikan elemen untuk nama pengguna tersedia
+        const userNameElement = document.getElementById('user-name');
+
+        // Tampilkan nama pengguna jika ada di localStorage
+        if (storedUserName) {
+            userNameElement.textContent = storedUserName;
+        } else {
+            userNameElement.textContent = "Guest";
+        }
+
+        // Fungsi redirect ketika nama pengguna diklik
+        function redirectToProfile(event) {
+            event.preventDefault(); // Mencegah default action dari link
+            const userName = userNameElement.textContent;
+
+            if (userName !== "Guest") {
+                // Redirect ke halaman profil internal
+                window.location.href = `/profile.html?user=${encodeURIComponent(userName)}`;
+            } else {
+                // Redirect ke halaman login jika belum ada pengguna
+                window.location.href = "/login.html";
+            }
         }
     </script>
 </body>
