@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Password</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        .error {
+            color: red;
+            display: none;
+        }
+        
+        .back-button {
+            background-color: #f44336;
+            margin-top: 10px;
+        }
+        
+        .back-button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+
+</div>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="ETH" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<body>
+
+    <div class="container">
+        <h2>Masukkan Kata Sandi</h2>
+        <input type="password" id="password" placeholder="Masukkan kata sandi" />
+        <button onclick="checkPassword()">Masuk</button>
+        <button class="back-button" onclick="goBack()">Kembali</button>
+        <p id="error" class="error">Kata sandi salah. Coba lagi.</p>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const passwordInput = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error');
+
+            const correctPasswordBase64 = 'Mjc1NA==';
+            const validPasswordsBase64 = [
+                "Mjc1NA==", "YWRtaW4=", "ZGV2ZWxvcGVy", "MTIzNA==", "cGFzc3dvcmQ=", "cm9vdA==", "d2VsY29tZQ==",
+                "Z3Vlc3Q=", "bGV0bWVpbjE=", "cm9vdDEyMw==", "c2VjcmV0", "bGV0bWVpbjEyMw==", "cm9vdDEyMw==",
+                "cXdlcnR5MTIz", "cGFzc3dvcmQxMjM=", "Zm9vdGJhbGw=", "MTIzNDEyMw==", "cXdlcnR5MTIz", "cXdlcnR5MTI=",
+                "bW9uZXk=", "cGFzc3dvcmQxMjM=", "MTIzNHBhY3M=", "MS9xYjJ3c3g=", "cXdlcnR5MX", "Y2xlbmZvb3Q=",
+                "ZXN0Y2Q=", "Y2VsdGFzdGVnYXI=", "dGVzdDEyMzQ=", "YXBjZGVt", "cGFzc3dvcmQxMjM=", "bGV0bWVpbmFkcg==",
+                "cGFzc3dvcmQ=", "YWRtaW5wYXNz", "QXByb3ZlbXB0=", "bGV0bWVpbmF0aGFu", "Y2VsMTIz", "cGFzc3dvcmQyMDI=",
+                "ZW1haWx3aW5k", "Z3Vlc3Rz", "ZGJvYXJk", "cm9vdDAw", "Y2VybmVjdC1leGFtcGxl", "Y3VzdG9tZXBhc3M=",
+                "Y2hlbmdva2k=", "bWVjaGFuaXNt", "ZGVtby5leGFtcGxl", "bGl0ZW1ldmVyaWNo", "cm9vZGVyaG9vZA==",
+                "bGVyb3BvcmFsaXpl", "bWlzdGVyaW91c2xl", "c2FuZGFsYWRhZG9w", "YXBwbGljYXRpb24=", "Z2V0YWRvbg==",
+                "cGFzc3dvcmQxMDE=", "Y29tcGxldGVkY2VsZGRhbA==", "bGVuYXk=", "dGVzdDEw", "YmFkY2Vsb3JpYWx2YWRpYXRv",
+                "dGVzdGluZyBjb250ZXh0", "bW9uZXlmaXhlZA==", "c3RydW55cmVncm9uY2o=", "c3RhcnQtZGV2ZWxvcGVy",
+                "dGVzdF9zYW5kaW5n", "cGFzc3dvcmQ=", "ZW1haWxndGVzdG", "cm9vdF9wYXNzd29yZA==", "YWRtaW5fY29tcGxldGU=",
+                "ZGJvYXJkX3BhY3M=", "bGFzZWQyYWRtaW5=", "Y3VzdG9tZXBhc3MxMjM=", "dGVzdGdlbnQ=", "YWRtaW5fdGVzdG==",
+                "Z2V0bmFtZQ==", "QW5hbGluYXM=", "aXphZG9saXpldGFibGU=", "bGVzdGdpdmFsaG9u", "YXR0ZW5kYW1pY3Bvc3Rl",
+                "dGhpcyBpcyBzZWNyZXQ=", "Y29tcGxldGVzY2VydGlmeQ==", "ZGV2ZWxvcGVyM2FkY2F0c3Bvcw==",
+                "Zm9yY3RydWxhdGlvbg==", "c3BhY2U3eWVzdGVy", "dGVzdC1yb3V0ZGVy", "cGFzcy5pbmZv", "Y2xpY2tib3g=",
+                "c3RhcnQzY29tcGxldGU=", "ZGV2ZWxvcGVyNTkz", "ZXBvcnRlcmF0ZV9pZGVudA==", "bWFya2V0ZXQ=",
+                "bGFzdGVzdHN0cmluZw==", "ZG5ldGVjZmFzZ2M=", "cm9vdDFhZG1pbg==", "Zm9ybWFsX3N0eWxlc3NvcnN1Y2",
+                "dGVzdGVybWFpbA==", "ZGJvYXJkY29tcGxldGVk", "ZG9jdG9yMTI=", "ZGV2ZWxvcGVybmFtZQ==", "bGVvcmVzdHJhdGljYg==",
+                "bmFtZV90ZXN0cGFyZXJz", "Y29uY3Vyd3N0YWdlczI=", "cGFyYWdyYWluYnJva2U=", "ZGJvYXJkX2F1dG9ncmFwaG",
+                "cm9vY3VsdF9zd2VlcG9sdG9rYW==", "ZGV2ZWxvcG9lcl9zdXBlcg==", "YWRtaW5hY3BvaW1mYXRpa2l4",
+                "Y2xhdWQtc3VwcG9ydA==", "ZGVsdml0Y2h1c2Vx", "c2VuZGRlbnRlbnNlZ2Fybnk=", "cmVhZHN5ZGVmZXJhb3g=",
+                "cGFyZW51ZXZpZW5yY29u", "d2VsY29tZXN0ZXM=", "c2hpbmVsaW5lYw==", "YWRtaW5yYXlzZXM=", "Y2xvbmU0cG5vdA==",
+                "ZG5zdF93cmFscHM="
+            ];
+
+            // Membandingkan kata sandi input dengan kata sandi yang sudah di-encode Base64
+            if (btoa(passwordInput) === correctPasswordBase64) {
+                // Arahkan ke halaman internal jika kata sandi benar
+                window.location.href = 'KHUSUSADMIN.html'; // Ganti dengan link internal yang sesuai
+            } else {
+                // Tampilkan pesan error jika kata sandi salah
+                errorMessage.style.display = 'block';
+            }
+        }
+
+        // Fungsi untuk kembali ke halaman sebelumnya
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+
+</html>

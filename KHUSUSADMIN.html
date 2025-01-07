@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sender's Chat</title>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="ETH" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center p-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">KHUSUS ADMIN</h2>
+
+    <!-- Form untuk memasukkan nama -->
+    <div id="nameForm" class="w-full max-w-md mb-4">
+        <input type="text" id="nameInput" placeholder="Masukkan nama Anda" class="flex-grow border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2">
+        <button onclick="setName()" class="bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            Set Name
+        </button>
+    </div>
+
+    <!-- Chatbox -->
+    <div id="chatBox" class="w-full max-w-md bg-white shadow rounded p-4 overflow-y-auto max-h-96 mb-4"></div>
+
+    <!-- Input pesan dan tombol kirim -->
+    <div class="flex items-center w-full max-w-md">
+        <input type="text" id="replyInput" placeholder="Type your reply..." class="flex-grow border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
+        <button onclick="sendReply()" class="bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
+            Send
+        </button>
+    </div>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDd8glQvhs-IvOMj6LRpJo1vYQi40DPCqM",
+            authDomain: "ethan-el-nathan.firebaseapp.com",
+            databaseURL: "https://ethan-el-nathan-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "ethan-el-nathan",
+            storageBucket: "ethan-el-nathan.firebasestorage.app",
+            messagingSenderId: "1079423989695",
+            appId: "1:1079423989695:web:af39254a5870d9a9d9130a",
+            measurementId: "G-15EK1B0E2Q"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Cek apakah nama sudah disimpan di localStorage
+        if (localStorage.getItem('userName')) {
+            document.getElementById("nameForm").style.display = 'none'; // Sembunyikan form nama
+            document.getElementById("replyInput").disabled = false; // Aktifkan input balasan
+            document.querySelector("button[onclick='sendReply()']").disabled = false; // Aktifkan tombol kirim
+        }
+
+        // Set name function
+        function setName() {
+            const name = document.getElementById("nameInput").value;
+            if (name) {
+                localStorage.setItem("userName", name); // Simpan nama di localStorage
+                document.getElementById("nameForm").style.display = 'none'; // Sembunyikan form nama
+                document.getElementById("replyInput").disabled = false; // Aktifkan input balasan
+                document.querySelector("button[onclick='sendReply()']").disabled = false; // Aktifkan tombol kirim
+            }
+        }
+
+        // Listen for new incoming messages and replies
+        const chatBox = document.getElementById("chatBox");
+        const messageRef = database.ref('messages');
+
+        messageRef.on('child_added', function(snapshot) {
+            const message = snapshot.val().message;
+            const timestamp = snapshot.val().timestamp;
+            const reply = snapshot.val().reply || "No reply yet";
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("mb-2", "p-2", "bg-gray-100", "rounded", "shadow");
+            messageElement.innerHTML = `<strong class='text-blue-500'>${timestamp}</strong>: ${message} <br> <em class='text-gray-500'>Reply: ${reply}</em>`;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
+        });
+
+        // Function to send a reply
+        function sendReply() {
+            const reply = document.getElementById("replyInput").value;
+            const userName = localStorage.getItem("userName"); // Ambil nama dari localStorage
+            if (reply && userName) {
+                const replyRef = database.ref('messages');
+                replyRef.push({
+                    message: `${userName}: ${reply}`,
+                    timestamp: new Date().toISOString()
+                });
+
+                document.getElementById("replyInput").value = ''; // Clear input field
+            }
+        }
+    </script>
+</body>
+
+</html>
