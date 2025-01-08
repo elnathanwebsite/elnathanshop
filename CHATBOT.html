@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL NATHAN SHOP Chatbot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            background-color: #3b8fc2;
+            color: #fff;
+            font-size: 20px;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .chat-container {
+            background-color: #fff;
+            width: 400px;
+            height: 500px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .chat-box {
+            flex-grow: 1;
+            overflow-y: scroll;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .system-message {
+            background-color: #e9f7fc;
+            color: #333;
+        }
+        
+        .user-message {
+            background-color: #d9f9c4;
+            align-self: flex-end;
+        }
+        
+        input[type="text"] {
+            width: calc(100% - 50px);
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        
+        button {
+            padding: 10px;
+            background-color: #3b8fc2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        button:hover {
+            background-color: #3578a4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chat-header">
+        Chat Bot EL NATHAN SHOP
+    </div>
+
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <div class="message system-message">Halo! Selamat datang di EL NATHAN SHOP. Apa yang bisa saya bantu hari ini?</div>
+        </div>
+        <input type="text" id="user-input" placeholder="Ketik pertanyaan Anda..." autocomplete="off">
+        <button id="send-btn">Kirim</button>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        // Daftar pertanyaan dan jawaban yang berhubungan
+        const responses = {
+            "info toko": "EL NATHAN SHOP adalah toko online yang menyediakan berbagai produk clothing berkualitas dengan desain yang unik dan modis. Kami menjual kaos, pakaian, serta merchandise lainnya dengan merek ETHAN EL NATHAN.",
+            "produk": "Kami menyediakan kaos dan produk clothing lainnya dengan merek ETHAN EL NATHAN.",
+            "brand": "Brand kami adalah ETHAN EL NATHAN. Kami fokus pada desain yang stylish dan kualitas terbaik.",
+            "sosial media": "Instagram kami: @elnathan1_",
+            "logo": "Logo ETHAN EL NATHAN dengan teks 'LA TECNOLOGÍA ES EL MEJOR ASISTENTE' menggunakan font Times New Roman dengan teks hitam dan latar belakang putih.",
+            "payment": "Kami menggunakan sistem pembayaran Dana.",
+            "contact": "Anda dapat menghubungi kami melalui email di support@elnathanshop.com atau melalui direct message di Instagram.",
+            "warranty": "Kami menawarkan garansi untuk produk kami dalam 7 hari setelah pembelian untuk kerusakan atau cacat produk.",
+            "shipping": "Pengiriman dilakukan melalui jasa pengiriman pilihan Anda. Kami menyediakan pengiriman ke seluruh Indonesia.",
+            "return policy": "Kami menerima pengembalian barang dalam 14 hari setelah pembelian jika barang dalam kondisi tidak terpakai dan masih memiliki label.",
+            "customer support": "Layanan pelanggan kami siap membantu Anda. Silakan hubungi kami melalui email atau Instagram untuk bantuan lebih lanjut.",
+            "store hours": "Kami tersedia 24/7 melalui website dan Instagram. Layanan pelanggan kami dapat dihubungi pada jam kerja Senin hingga Jumat, pukul 09:00 - 17:00 WIB.",
+            "discount": "Ikuti kami di Instagram untuk mendapatkan informasi tentang promo dan diskon terbaru.",
+            "reviews": "Kami memiliki berbagai ulasan positif dari pelanggan yang puas. Cek testimoni di halaman produk atau di Instagram kami.",
+            "delivery": "Pengiriman biasanya memakan waktu 3-7 hari kerja, tergantung pada lokasi Anda.",
+            "new arrival": "Kami sering merilis produk baru. Pastikan untuk mengikuti akun Instagram kami agar tidak ketinggalan.",
+            "faq": "Kunjungi halaman FAQ di website kami untuk informasi lebih lanjut tentang produk, pengiriman, dan kebijakan lainnya.",
+            "thank you": "Terima kasih telah menghubungi EL NATHAN SHOP! Kami siap membantu Anda.",
+            "help": "Jika Anda membutuhkan bantuan lebih lanjut, beri tahu kami dan kami akan segera merespons.",
+            "default": "Maaf, saya tidak mengerti pertanyaan Anda. Bisa bantu dengan pertanyaan lain?"
+        };
+
+
+
+        // Fungsi untuk mengirim pesan ke chatbox
+        function sendMessage(message, isUser = false) {
+            const msgElement = document.createElement('div');
+            msgElement.classList.add('message');
+            msgElement.classList.add(isUser ? 'user-message' : 'system-message');
+            msgElement.textContent = message;
+            chatBox.appendChild(msgElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Fungsi untuk mendapatkan jawaban berdasarkan input
+        function getResponse(userMessage) {
+            const normalizedMessage = userMessage.toLowerCase();
+
+            // Periksa apakah pesan pengguna mengandung kata kunci yang relevan
+            for (let question in responses) {
+                if (normalizedMessage.includes(question)) {
+                    return responses[question];
+                }
+            }
+
+            // Jika tidak ada jawaban yang cocok
+            return responses['default'];
+        }
+
+        // Mengirim pesan saat tombol kirim diklik
+        sendBtn.addEventListener('click', () => {
+            const userMessage = userInput.value.trim();
+            if (userMessage) {
+                sendMessage(userMessage, true);
+                const botResponse = getResponse(userMessage);
+                sendMessage(botResponse);
+                userInput.value = '';
+            }
+        });
+
+        // Menangani pengiriman pesan dengan menekan tombol Enter
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendBtn.click();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

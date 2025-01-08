@@ -573,6 +573,43 @@
             scroll-behavior: smooth;
             box-sizing: border-box;
         }
+        /* Mengatur hanya gambar dalam container dengan kelas 'sertifikat' */
+        
+        .sertifikat {
+            display: flex;
+            flex-direction: column;
+            /* Menyusun judul dan gambar secara vertikal */
+            align-items: center;
+            /* Menyusun gambar dan teks di tengah */
+            text-align: center;
+            /* Memastikan teks berada di tengah */
+        }
+        /* Gaya untuk judul 'Sertifikat Developer' */
+        
+        .judul {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0;
+        }
+        /* Container untuk gambar agar disusun secara horizontal */
+        
+        .gambar-container {
+            display: flex;
+            /* Menyusun gambar secara horizontal */
+            gap: 15px;
+            /* Memberikan jarak antar gambar */
+        }
+        /* Mengatur gambar */
+        
+        .gambar-container img {
+            width: 33.33%;
+            /* Membuat gambar 3 kali lebih kecil dari ukuran aslinya */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        /* Mengatur hanya gambar dalam container dengan kelas 'sertifikat' */
     </style>
 
 </head>
@@ -654,14 +691,48 @@
         <img alt="Another advertisement image" class="additional-image" src="https://i.pinimg.com/736x/5c/15/a1/5c15a16f60321663c6db71c1bf4ff50e.jpg" />
     </div>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>EL NATHAN WEBSITE GROUP Chat</title>
-        <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
+    <body>
+        <div class="sertifikat">
+            <h2 class="judul">Sertifikat Developer</h2>
+            <div class="gambar-container">
+                <img src="Cuplikan layar_8-1-2025_222431_www.freecodecamp.org.jpeg" alt="Gambar 1">
+                <img src="9dfbf88a3a883a299d42824b95aa5018 (1).jpg" alt="Gambar 2">
+            </div>
+        </div>
+
+    </body>
+    <!-- Garis Pemisah dengan kelas 'garis-pemisah' -->
+    <hr class="garis-pemisah">
+
+    <body>
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>EL NATHAN WEBSITE GROUP Chat</title>
+            <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+            <script src="https://cdn.tailwindcss.com"></script>
+            <style>
+                /* Styling untuk garis pemisah */
+                
+                .garis-pemisah {
+                    border: 0;
+                    height: 2px;
+                    background-color: #000000;
+                    /* Garis berwarna hijau */
+                    margin: 20px 0;
+                    /* Memberikan jarak atas dan bawah */
+                    width: 80%;
+                    /* Lebar garis 80% dari lebar layar */
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            </style>
+        </head>
+    </body>
+
+
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -671,7 +742,7 @@
 
     <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
         <div class="flex flex-col items-center justify-center space-y-4">
-            <h2 class="text-2xl font-bold text-gray-800">Live Chat Admin</h2>
+            <h2 class="text-2xl font-bold text-gray-800">Live Chat WEB</h2>
 
             <!-- Chat Box -->
             <div id="chatBox" class="w-full max-w-4xl bg-white shadow rounded p-4 overflow-y-auto max-h-96 mb-4">
