@@ -7,7 +7,7 @@
     <title>Profil Pengguna</title>
     <style>
         /* Styling untuk halaman profil */
-        
+
         body {
             font-family: Arial, sans-serif;
             background-color: #000;
@@ -20,8 +20,9 @@
             height: 100vh;
             overflow: hidden;
         }
+
         /* Styling untuk header dan menu ikon tiga titik */
-        
+
         .header {
             position: fixed;
             top: 20px;
@@ -31,7 +32,7 @@
             align-items: center;
             z-index: 10;
         }
-        
+
         .menu-icon {
             font-size: 24px;
             /* Ukuran ikon yang lebih kecil */
@@ -40,8 +41,27 @@
             background: none;
             border: none;
         }
+
+        /* Styling untuk tombol kembali */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .back-button:hover {
+            background-color: #333;
+        }
+
         /* Styling untuk laci menu */
-        
+
         .drawer {
             position: fixed;
             top: 0;
@@ -53,12 +73,12 @@
             transition: transform 0.3s ease-in-out;
             box-shadow: 2px 0 10px rgba(255, 255, 255, 0.1);
         }
-        
+
         .drawer-open {
             transform: translateX(250px);
             /* Ketika dibuka, laci bergerak ke kanan */
         }
-        
+
         .drawer a {
             color: #fff;
             padding: 15px;
@@ -67,12 +87,13 @@
             font-size: 18px;
             border-bottom: 1px solid #444;
         }
-        
+
         .drawer a:hover {
             background-color: #555;
         }
+
         /* Card flip styling */
-        
+
         .card {
             width: 300px;
             height: 400px;
@@ -80,7 +101,7 @@
             /* Membuat efek 3D */
             margin-top: 100px;
         }
-        
+
         .card-inner {
             width: 100%;
             height: 100%;
@@ -88,11 +109,11 @@
             transition: transform 0.6s;
             position: relative;
         }
-        
+
         .card:hover .card-inner {
             transform: rotateY(180deg);
         }
-        
+
         .card-front,
         .card-back {
             position: absolute;
@@ -102,12 +123,12 @@
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
         }
-        
+
         .card-front {
             background-color: #111;
             padding: 20px;
         }
-        
+
         .card-back {
             background-image: url('https://via.placeholder.com/300x400');
             /* Gambar belakang (bisa diubah) */
@@ -115,9 +136,10 @@
             background-position: center;
             transform: rotateY(180deg);
         }
+
         /* Animasi kelap-kelip nama pengguna */
         /* Animasi kedap-kedip warna-warni untuk nama pengguna */
-        
+
         .username {
             font-size: 24px;
             text-align: center;
@@ -126,40 +148,44 @@
             color: white;
             animation: blinkColor 1s infinite;
         }
-        
+
         @keyframes blinkColor {
             0% {
                 color: red;
                 visibility: visible;
             }
+
             25% {
                 color: yellow;
                 visibility: hidden;
             }
+
             50% {
                 color: green;
                 visibility: visible;
             }
+
             75% {
                 color: blue;
                 visibility: hidden;
             }
+
             100% {
                 color: purple;
                 visibility: visible;
             }
         }
-        
+
         #profile-data {
             color: #ccc;
             font-size: 16px;
             margin-bottom: 20px;
         }
-        
+
         p {
             margin: 10px 0;
         }
-        
+
         button {
             width: 100%;
             padding: 12px;
@@ -170,15 +196,15 @@
             font-size: 16px;
             cursor: pointer;
         }
-        
+
         button:hover {
             background-color: #777;
         }
-        
+
         input[type="file"] {
             display: none;
         }
-        
+
         label {
             display: block;
             margin-top: 10px;
@@ -189,15 +215,11 @@
         }
     </style>
 </head>
-</div>
-<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="shortcut icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-title" content="ETH" />
-<link rel="manifest" href="/site.webmanifest" />
 
 <body>
+
+    <!-- Tombol kembali ke halaman utama -->
+    <button class="back-button" onclick="window.location.href='utama.html'">← Kembali</button>
 
     <!-- Ikon tiga titik untuk membuka laci menu -->
     <div class="header">
@@ -233,7 +255,8 @@
             <!-- Card Back (gambar belakang) -->
             <div class="card-back">
                 <!-- Foto Profil yang di-upload akan muncul di sini -->
-                <img id="profile-image" src="" alt="Foto Profil" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
+                <img id="profile-image" src="" alt="Foto Profil"
+                    style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
             </div>
         </div>
     </div>
@@ -275,11 +298,11 @@
             inputFile.type = 'file';
             inputFile.accept = 'image/*';
 
-            inputFile.onchange = function(event) {
+            inputFile.onchange = function (event) {
                 const file = event.target.files[0];
                 if (file) {
                     const reader = new FileReader();
-                    reader.onload = function(e) {
+                    reader.onload = function (e) {
                         const profileImage = document.getElementById('profile-image');
                         profileImage.src = e.target.result;
 
@@ -294,7 +317,7 @@
         }
 
         // Memuat foto profil jika ada yang disimpan di localStorage
-        window.onload = function() {
+        window.onload = function () {
             const savedImage = localStorage.getItem('profileImage');
             if (savedImage) {
                 document.getElementById('profile-image').src = savedImage;
