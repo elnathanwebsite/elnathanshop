@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Pengguna</title>
     <style>
-        /* Styling untuk halaman profil */
-
         body {
             font-family: Arial, sans-serif;
             background-color: #000;
@@ -21,13 +19,10 @@
             overflow: hidden;
         }
 
-        /* Styling untuk header dan menu ikon tiga titik */
-
         .header {
             position: fixed;
             top: 20px;
             right: 20px;
-            /* Posisi ikon titik tiga di kanan atas */
             display: flex;
             align-items: center;
             z-index: 10;
@@ -35,14 +30,12 @@
 
         .menu-icon {
             font-size: 24px;
-            /* Ukuran ikon yang lebih kecil */
             cursor: pointer;
             color: #fff;
             background: none;
             border: none;
         }
 
-        /* Styling untuk tombol kembali */
         .back-button {
             position: fixed;
             top: 20px;
@@ -60,13 +53,10 @@
             background-color: #333;
         }
 
-        /* Styling untuk laci menu */
-
         .drawer {
             position: fixed;
             top: 0;
             left: -250px;
-            /* Mengatur posisi awal laci di luar layar */
             width: 250px;
             height: 100%;
             background-color: #111;
@@ -76,7 +66,6 @@
 
         .drawer-open {
             transform: translateX(250px);
-            /* Ketika dibuka, laci bergerak ke kanan */
         }
 
         .drawer a {
@@ -92,13 +81,10 @@
             background-color: #555;
         }
 
-        /* Card flip styling */
-
         .card {
             width: 300px;
             height: 400px;
             perspective: 1000px;
-            /* Membuat efek 3D */
             margin-top: 100px;
         }
 
@@ -130,50 +116,45 @@
         }
 
         .card-back {
-            background-image: url('https://via.placeholder.com/300x400');
-            /* Gambar belakang (bisa diubah) */
-            background-size: cover;
-            background-position: center;
+            background-color: #111;
             transform: rotateY(180deg);
         }
-
-        /* Animasi kelap-kelip nama pengguna */
-        /* Animasi kedap-kedip warna-warni untuk nama pengguna */
 
         .username {
             font-size: 24px;
             text-align: center;
             font-weight: bold;
             margin-bottom: 20px;
-            color: white;
             animation: blinkColor 1s infinite;
         }
 
         @keyframes blinkColor {
             0% {
                 color: red;
-                visibility: visible;
             }
 
             25% {
                 color: yellow;
-                visibility: hidden;
             }
 
             50% {
                 color: green;
-                visibility: visible;
             }
 
             75% {
                 color: blue;
-                visibility: hidden;
             }
 
             100% {
                 color: purple;
-                visibility: visible;
             }
+        }
+
+        .datetime-info {
+            color: #ccc;
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-align: center;
         }
 
         #profile-data {
@@ -182,8 +163,11 @@
             margin-bottom: 20px;
         }
 
-        p {
+        #profile-data p {
             margin: 10px 0;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
         }
 
         button {
@@ -195,104 +179,112 @@
             border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
+            margin-top: 15px;
         }
 
         button:hover {
             background-color: #777;
         }
 
-        input[type="file"] {
-            display: none;
+        #profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
         }
 
-        label {
-            display: block;
-            margin-top: 10px;
-            text-align: center;
-            font-size: 16px;
-            cursor: pointer;
-            color: #fff;
+        .delete-data {
+            background-color: #ff4444;
+            color: white;
+        }
+
+        .delete-data:hover {
+            background-color: #cc0000;
         }
     </style>
 </head>
 
 <body>
-
-    <!-- Tombol kembali ke halaman utama -->
     <button class="back-button" onclick="window.location.href='utama.html'">← Kembali</button>
 
-    <!-- Ikon tiga titik untuk membuka laci menu -->
     <div class="header">
         <button class="menu-icon" onclick="toggleDrawer()">&#x22EE;</button>
     </div>
 
-    <!-- Laci menu -->
     <div id="drawer" class="drawer">
         <a href="javascript:void(0)" onclick="uploadProfilePicture()">Upload Foto Profil</a>
+        <a href="javascript:void(0)" onclick="clearProfileData()" class="delete-data">Hapus Data</a>
     </div>
 
-    <!-- Container Card -->
     <div class="card">
         <div class="card-inner">
-            <!-- Card Front -->
             <div class="card-front">
-                <!-- Nama Pengguna dengan Animasi -->
                 <div class="username" id="username">Profil</div>
+
+                <div class="datetime-info">
+                    <div id="currentDateTime">Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): 2025-01-28
+                        18:41:39</div>
+                    <div>Current User's Login: elnathanwebsite</div>
+                </div>
 
                 <div id="profile-data">
                     <p id="profile-username">Username: </p>
-                    <p id="profile-email">Email: </p>
-                    <p id="profile-password">Password: </p>
-                    <p id="profile-age">Usia: </p>
                     <p id="profile-activity">Aktivitas: </p>
                     <p id="profile-gender">Jenis Kelamin: </p>
+                    <p id="profile-age">Usia: </p>
                 </div>
-
-                <!-- Tombol untuk mengimpor data -->
-                <button onclick="importData()">Import Data</button>
             </div>
 
-            <!-- Card Back (gambar belakang) -->
             <div class="card-back">
-                <!-- Foto Profil yang di-upload akan muncul di sini -->
-                <img id="profile-image" src="" alt="Foto Profil"
-                    style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
+                <img id="profile-image" src="https://via.placeholder.com/300x400" alt="Foto Profil">
             </div>
         </div>
     </div>
 
     <script>
-        // Fungsi untuk membuka atau menutup laci menu
+        function updateDateTime() {
+            const now = new Date();
+            const formatted = now.toISOString().replace('T', ' ').substr(0, 19);
+            document.getElementById('currentDateTime').textContent =
+                `Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): ${formatted}`;
+        }
+
         function toggleDrawer() {
             const drawer = document.getElementById('drawer');
             drawer.classList.toggle('drawer-open');
         }
 
-        function importData() {
-            // Cek apakah data sudah ada di localStorage
-            const storedUsername = localStorage.getItem('username');
-            const storedEmail = localStorage.getItem('email');
-            const storedPassword = localStorage.getItem('password');
-            const storedAge = localStorage.getItem('age');
-            const storedActivity = localStorage.getItem('activity');
-            const storedGender = localStorage.getItem('gender');
+        function loadUserData() {
+            const userData = {
+                username: localStorage.getItem('username'),
+                activity: localStorage.getItem('activity'),
+                gender: localStorage.getItem('gender'),
+                age: localStorage.getItem('age')
+            };
 
-            // Jika data ada, tampilkan di profil
-            if (storedUsername && storedEmail && storedPassword && storedAge && storedActivity && storedGender) {
-                document.getElementById('username').textContent = storedUsername; // Tampilkan nama pengguna
-                document.getElementById('profile-username').textContent = 'Username: ' + storedUsername;
-                document.getElementById('profile-email').textContent = 'Email: ' + storedEmail;
-                document.getElementById('profile-password').textContent = 'Password: ' + storedPassword;
-                document.getElementById('profile-age').textContent = 'Usia: ' + storedAge;
-                document.getElementById('profile-activity').textContent = 'Aktivitas: ' + storedActivity;
-                document.getElementById('profile-gender').textContent = 'Jenis Kelamin: ' + storedGender;
+            if (userData.username) {
+                document.getElementById('username').textContent = userData.username;
+                document.getElementById('profile-username').textContent = `Username: ${userData.username}`;
+                document.getElementById('profile-activity').textContent = `Aktivitas: ${userData.activity}`;
+                document.getElementById('profile-gender').textContent = `Jenis Kelamin: ${userData.gender}`;
+                document.getElementById('profile-age').textContent = `Usia: ${userData.age}`;
             } else {
-                // Jika data belum ada di localStorage
-                alert('Data belum tersedia. Silakan lakukan pendaftaran terlebih dahulu.');
+                document.getElementById('username').textContent = 'Profil';
+                document.getElementById('profile-data').innerHTML = `
+                    <p>Data belum tersedia.</p>
+                    <p>Silakan lakukan pendaftaran terlebih dahulu.</p>
+                `;
             }
         }
 
-        // Fungsi untuk mengupload foto profil
+        function clearProfileData() {
+            if (confirm('Apakah Anda yakin ingin menghapus semua data profil?')) {
+                localStorage.clear();
+                alert('Data berhasil dihapus!');
+                window.location.href = 'signup.html'; // Redirect ke halaman signup
+            }
+        }
+
         function uploadProfilePicture() {
             const inputFile = document.createElement('input');
             inputFile.type = 'file';
@@ -305,8 +297,6 @@
                     reader.onload = function (e) {
                         const profileImage = document.getElementById('profile-image');
                         profileImage.src = e.target.result;
-
-                        // Simpan gambar profil di localStorage (menggunakan base64)
                         localStorage.setItem('profileImage', e.target.result);
                     };
                     reader.readAsDataURL(file);
@@ -316,16 +306,16 @@
             inputFile.click();
         }
 
-        // Memuat foto profil jika ada yang disimpan di localStorage
         window.onload = function () {
             const savedImage = localStorage.getItem('profileImage');
             if (savedImage) {
                 document.getElementById('profile-image').src = savedImage;
             }
-            importData();
+            loadUserData();
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
         }
     </script>
-
 </body>
 
 </html>

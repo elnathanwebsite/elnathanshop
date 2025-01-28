@@ -1,690 +1,395 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>El Nathan Shop Desain Kaos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Elnathan</title>
     <style>
-        /* Custom styles for the drawer */
-        
-        .drawer {
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease;
-            opacity: 0;
-        }
-        
-        .drawer-closed {
-            transform: translateX(-100%);
-            opacity: 0;
-        }
-        
-        .drawer-open {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        /* Custom styles for the main image */
-        
-        .main-image-container {
-            display: flex;
-            justify-content: center;
-            margin: 1rem 0;
-            overflow-x: auto;
-            animation: fadeIn 1s ease-out;
-        }
-        
-        .main-image,
-        .additional-image {
-            width: 100%;
-            max-width: 1024px;
-            height: auto;
-            margin-right: 1rem;
-            animation: scaleUp 0.6s ease-in-out;
-        }
-        
-        @keyframes scaleUp {
-            0% {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        /* Custom styles for product images */
-        
-        .product-image {
-            width: 300px;
-            height: 300px;
-            transition: transform 0.3s ease-in-out;
-        }
-        
-        .product-image:hover {
-            transform: scale(1.1);
-        }
-        /* General body styling */
-        
-        body {
-            font-family: Arial, sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #000;
-            color: #fff;
-            height: 100%;
-            overflow: hidden;
-            animation: fadeInBody 1s ease-out;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
-        
-        @keyframes fadeInBody {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-        /* Form container with animations */
-        
-        .form-container {
-            background-color: #111;
+
+        body {
+            background: #000;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
             width: 100%;
-            max-width: 400px;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 8px;
-            z-index: 9999;
-            animation: slideIn 0.5s ease-out;
+            max-width: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: glowingBorder 2s infinite alternate;
         }
-        
-        @keyframes slideIn {
-            0% {
-                transform: translate(-50%, -60%);
-                opacity: 0;
+
+        @keyframes glowingBorder {
+            from {
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.2),
+                    0 0 20px rgba(255, 255, 255, 0.2),
+                    0 0 30px rgba(255, 255, 255, 0.2);
             }
-            100% {
-                transform: translate(-50%, -50%);
-                opacity: 1;
+
+            to {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.4),
+                    0 0 40px rgba(255, 255, 255, 0.4),
+                    0 0 60px rgba(255, 255, 255, 0.4);
             }
         }
-        /* Header and form input styling */
-        
-        h2 {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-            animation: fadeInHeader 1s ease-out;
-        }
-        
-        @keyframes fadeInHeader {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-        
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            background-color: #222;
-            border: 1px solid #444;
-            border-radius: 4px;
+
+        .datetime-info {
             color: #fff;
-            transition: background-color 0.3s ease;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            opacity: 0.8;
         }
-        
-        input:focus {
-            background-color: #333;
-            border-color: #666;
+
+        h2 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
-        
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #fff;
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px;
+        }
+
+        select option {
+            background: #000;
+            color: #fff;
+        }
+
         button {
             width: 100%;
-            padding: 12px;
-            background-color: #555;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
             color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-            animation: pulseButton 1s infinite alternate;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
         }
-        
-        @keyframes pulseButton {
-            0% {
-                background-color: #555;
-            }
-            100% {
-                background-color: #777;
-            }
-        }
-        
+
         button:hover {
-            background-color: #777;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
         }
-        /* Message styling */
-        
+
         .message {
+            display: none;
             text-align: center;
-            color: #ccc;
-            font-size: 14px;
-            animation: fadeInMessage 1s ease-out;
-        }
-        
-        @keyframes fadeInMessage {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-        
-        a {
-            color: #aaa;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        a:hover {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
             color: #fff;
         }
-        /* Responsive adjustments */
-        
-        @media (max-width: 600px) {
-            .form-container {
-                width: 90%;
-            }
+
+        .success-message {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+
+        .error-message {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+
+        .account-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .account-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .account-links a:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
         }
     </style>
 </head>
-<div class="form-container">
-    <h2>Sign Up</h2>
-    <input type="text" id="signup-username" placeholder="Username" required>
-    <input type="email" id="signup-email" placeholder="Email" required>
-    <input type="password" id="signup-password" placeholder="Password" required>
 
-    <!-- Tambahkan input untuk usia -->
-    <input type="number" id="signup-age" placeholder="Usia" required>
-
-    <!-- Tambahkan input untuk aktivitas -->
-    <select id="signup-activity" required>
-        <option value="" disabled selected>Pilih Aktivitas</option>
-        <option value="Pengangguran">Pengangguran</option>
-        <option value="Pelajar">Pelajar</option>
-        <option value="Mahasiswa">Mahasiswa</option>
-    </select>
-
-    <!-- Tambahkan input untuk jenis kelamin -->
-    <select id="signup-gender" required>
-        <option value="" disabled selected>Pilih Jenis Kelamin</option>
-        <option value="Pria">Pria</option>
-        <option value="Wanita">Wanita</option>
-        <option value="Transgender">Transgender</option>
-    </select>
-
-    <button onclick="signUp()">Sign Up</button>
-    <div class="message" id="signup-message"></div>
-    <p class="message">Already have an account? <a href="index.html">Login here</a></p>
-
-
-
-    <div class="stored-data">
-        <h3>Stored Data:</h3>
-        <p id="stored-username">Username: </p>
-        <p id="stored-email">Email: </p>
-        <p id="stored-password">Password: </p>
-        <p id="stored-age">Age: </p>
-        <p id="stored-activity">Activity: </p>
-        <p id="stored-gender">Gender: </p>
-    </div>
-</div>
-
-
-<body class="bg-gray-200">
-    <!-- Header -->
-    <header class="bg-black text-white flex items-center justify-between py-2 px-4">
-        <div class="flex items-center space-x-4">
-            <img alt="Shop logo" class="h-8 w-8" height="32" src="https://i.pinimg.com/736x/d5/db/ca/d5dbca067f5868f800f2f7483a308080.jpg" width="32" />
-            <h1 class="text-lg font-bold">EL NATHAN SHOP DESAIN KAOS</h1>
+<body>
+    <div class="container">
+        <div class="datetime-info" id="currentDateTime">
+            Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): 2025-01-28 18:06:23
         </div>
-        <button class="text-white text-2xl" onclick="toggleDrawer()">
-            <i class="fas fa-bars"></i>
-        </button>
-    </header>
-    <!-- Drawer -->
-    <div id="drawer" class="fixed top-0 left-0 h-full w-64 bg-gray-800 text-white drawer drawer-closed">
-        <div class="p-4">
-            <h2 class="text-lg font-bold">Menu</h2>
-            <ul class="mt-4 space-y-2">
-                <li><a href="WEB UTAMA SHOP1.html" class="block py-2 px-4 hover:bg-gray-700">Home</a></li>
-                <li><a href="#" class="block py-2 px-4 hover:bg-gray-700">Products</a></li>
-                <li><a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"
-                        class="block py-2 px-4 hover:bg-gray-700">About Us</a></li>
-                <li><a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"
-                        class="block py-2 px-4 hover:bg-gray-700">Contact</a></li>
-                <li><a href="" class="block py-2 px-4 hover:bg-gray-700">Products lainya</a></li>
-                <li>
-                    <a href="index.html" class="block py-2 px-4 hover:bg-gray-700">Keluar</a>
-                </li>
-                <li>
-                    <h2 class="text-lg font-bold mt-4">Keranjang</h2>
-                    <ul id="cart-items" class="mt-4 space-y-2">
-                        <!-- Cart items will be added here -->
-                    </ul>
+        <div class="datetime-info">
+            Current User's Login: elnathanwebsite
+        </div>
+
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" required placeholder="Enter your username">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required placeholder="Enter your password">
+            </div>
+
+            <div class="form-group">
+                <label for="activity">Activity Status</label>
+                <select id="activity" required>
+                    <option value="">Select your activity</option>
+                    <option value="student">Pelajar</option>
+                    <option value="unemployed">Pengangguran</option>
+                    <option value="college">Mahasiswa</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" required>
+                    <option value="">Select your gender</option>
+                    <option value="male">Pria</option>
+                    <option value="female">Wanita</option>
+                    <option value="transgender">Transgender</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" required min="1" max="150" placeholder="Enter your age">
+            </div>
+
+            <button type="submit">Sign Up</button>
+            <div id="message" class="message"></div>
+        </form>
+
+        <div class="account-links">
+            <a href="index.html">I Have Account</a>
         </div>
     </div>
-    <!-- Main Image -->
-    <div class="main-image-container">
-        <img alt="Colorful t-shirts hanging on a rack" class="main-image" src="https://i.pinimg.com/736x/db/ea/d4/dbead4c3398f08d2520f7c74d4caa337.jpg" />
-        <img alt="Additional advertisement image" class="additional-image" src="https://i.pinimg.com/736x/d1/d9/1c/d1d91cad29fbb077a93d4e2d440c2cd4.jpg" />
-        <img alt="Another advertisement image" class="additional-image" src="https://i.pinimg.com/736x/f4/93/3f/f4933f345acc353406c959d4b3148c0e.jpg" />
-        <img alt="Another advertisement image" class="additional-image" src="https://i.pinimg.com/736x/49/3a/b3/493ab3c24d748389c78389bba51e4905.jpg" />
-        <img alt="Another advertisement image" class="additional-image" src="https://i.pinimg.com/736x/0b/cb/a2/0bcba25a97d5f247c77c333ac71ab5f3.jpg" />
-        <img alt="Another advertisement image" class="additional-image" src="https://i.pinimg.com/736x/5c/15/a1/5c15a16f60321663c6db71c1bf4ff50e.jpg" />
-    </div>
-    <!-- Product Section Header -->
-    <div class="bg-black text-white text-center py-2">
-        <h2 class="text-lg font-bold">PRODUK YANG KAMI TAWARKAN</h2>
-    </div>
-    <!-- Product Listings -->
-    <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Product 1 -->
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <div class="flex justify-between items-center mb-2">
-                    <div class="flex items-center">
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <span class="ml-1 text-sm">5.0</span>
-                    </div>
-                    <span class="text-xs text-gray-500">AD</span>
-                </div>
-                <a href="">
-                    <img alt="Looney Tunes T-Shirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/d4/98/91/d49891d73edbdd204c37e00f14130c47.jpg" />
-                </a>
-                <div class="bg-black text-white text-center py-1 mb-2">30% off</div>
-                <p class="text-xs text-gray-500 mb-2">Min. pembelian Rp500.000, maks. potongan Rp150.000</p>
-                <h3 class="text-lg font-semibold mb-1">LEMBUT, ADEM, DAN SUPER NYAMAN – PAS BUAT PECINTA KOPI & KUCING <span class="text-blue-500">VIP</span></h3>
-                <p class="text-sm text-gray-700 mb-2">KAOS COTTON COMBED 30S PREMIUM</p>
-                <p class="text-red-500 text-lg font-bold">Dari Rp 149.999 <span class="line-through text-gray-500">Rp 299.000</span> -27%</p>
-                <div class="flex justify-between items-center mt-2">
-                    <div></div>
-                    <button onclick="toggleFavorite(this, 'MANGO KIDS VIP', 'Rp 219.000')">
-                        <i class="far fa-heart text-gray-500"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- Product 2 -->
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <div class="flex justify-between items-center mb-2">
-                    <div class="flex items-center">
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <span class="ml-1 text-sm">5.0</span>
-                    </div>
-                    <span class="text-xs text-gray-500">AD</span>
-                </div>
-                <a href="http://127.0.0.1:3000/c:/Users/Asus/OneDrive/Documents/CODING GEME SEMENTARA/TYPE SHOOOPPPPPPEEEEE.html">
-                    <img alt="Oversize Limited Bundle" class="w-full h-64 object-cover mb-4" src="https://storage.googleapis.com/a1aa/image/wMR5yOAKfi1qSKQCPpf9yZzZVj4sMlRsdHXefcdExum3pawPB.jpg" />
-                </a>
-                <div class="bg-black text-white text-center py-1 mb-2">10% off</div>
-                <p class="text-xs text-gray-500 mb-2">Min. pembelian Rp200.000, maks. potongan Rp20.000</p>
-                <h3 class="text-lg font-semibold mb-1">KAOS POLOS TERBUAT DARI COTTON COMBED 30S, LEMBUT, NYAMAN, DAN TAHAN LAMA<span class="text-blue-500">VIP</span></h3>
-                <p class="text-sm text-gray-700 mb-2">KAOS MEREK Estylo.Co</p>
-                <p class="text-red-500 text-lg font-bold">Rp 50.000 <span class="line-through text-gray-500">Rp 100.000</span> -73%</p>
-                <div class="flex justify-between items-center mt-2">
-                    <div></div>
-                    <button onclick="toggleFavorite(this, 'Third Day VIP', 'Rp 240.000')">
-                        <i class="far fa-heart text-gray-500"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- Product 3 -->
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <div class="flex justify-between items-center mb-2">
-                    <div class="flex items-center">
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <span class="ml-1 text-sm">4.9</span>
-                    </div>
-                    <span class="text-xs text-gray-500">AD</span>
-                </div>
-                <a href="https://shopee.co.id/Kaos-Cotton-Combed-30s-Super-Nyaman-dengan-Desain-Be-Kind-%E2%80%93-Tunjukkan-Gayamu-dan-Sebarkan-Energi-Positif!-i.1119999704.27920750533?sp_atk=ec42f227-b010-4be0-87c7-287efd105363">
-                    <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/0a/24/92/0a2492990c3ef6d5af4115979d1a2346.jpg" />
-                </a>
-                <div class="bg-black text-white text-center py-1 mb-2">3% Cashback</div>
-                <p class="text-xs text-gray-500 mb-2">Tanpa min. pembelian.</p>
-                <h3 class="text-lg font-semibold mb-1">KAOS COTTON COMBED 30S SUPER NYAMAN DENGAN DESAIN "BE KIND" – TUNJUKKAN GAYAMU DAN SEBARKAN ENERGI POSITIF! <span class="text-blue-500">VIP</span></h3>
-                <p class="text-sm text-gray-700 mb-2">KAOS MEREK Estylo.Co</p>
-                <p class="text-red-500 text-lg font-bold">Dari Rp 99.999 <span class="line-through text-gray-500">Rp 119.000</span> -56%</p>
-                <div class="flex justify-between items-center mt-2">
-                    <div></div>
-                    <button onclick="toggleFavorite(this, 'Hush Puppies VIP', 'Rp 219.000')">
-                        <i class="far fa-heart text-gray-500"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- Product 3 -->
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <div class="flex justify-between items-center mb-2">
-                    <div class="flex items-center">
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <span class="ml-1 text-sm">4.9</span>
-                    </div>
-                    <span class="text-xs text-gray-500">AD</span>
-                </div>
-                <a href="https://shopee.co.id/Born-to-Play-Baseball-Tunjukkan-Semangat-Olahragamu-i.1119999704.27670249054?sp_atk=e1c80e8a-cfd5-4afc-80d5-f48e486e7de8">
-                    <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/c9/e6/b2/c9e6b2d8f1eeff16744b6a621ba810e8.jpg" />
-                </a>
-                <div class="bg-black text-white text-center py-1 mb-2">3% Cashback</div>
-                <p class="text-xs text-gray-500 mb-2">Tanpa min. pembelian.</p>
-                <h3 class="text-lg font-semibold mb-1">BORN TO PLAY BASEBALL - TUNJUKKAN SEMANGAT OLAHRAGAMU <span class="text-blue-500">VIP</span></h3>
-                <p class="text-sm text-gray-700 mb-2">KAOS MEREK Estylo.Co</p>
-                <p class="text-red-500 text-lg font-bold">Dari Rp 79.999 <span class="line-through text-gray-500">Rp 189.000</span> -56%</p>
-                <div class="flex justify-between items-center mt-2">
-                    <div></div>
-                    <button onclick="toggleFavorite(this, 'Hush Puppies VIP', 'Rp 219.000')">
-                        <i class="far fa-heart text-gray-500"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- Product 3 -->
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <div class="flex justify-between items-center mb-2">
-                    <div class="flex items-center">
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <span class="ml-1 text-sm">4.9</span>
-                    </div>
-                    <span class="text-xs text-gray-500">AD</span>
-                </div>
-                <a href="https://shopee.co.id/Desain-Eksklusif-'Kaguya-Tenji'-Tampilkan-Sisi-Artistikmu-i.1119999704.27470253131">
-                    <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/32/a7/02/32a7029af833af0a4be3585715028ec0.jpg" />
-                </a>
-                <div class="bg-black text-white text-center py-1 mb-2">3% Cashback</div>
-                <p class="text-xs text-gray-500 mb-2">Tanpa min. pembelian.</p>
-                <h3 class="text-lg font-semibold mb-1">DESAIN EKSKLUSIF 'KAGUYA & TENJI' - TAMPILKAN SISI ARTISTIKMU <span class="text-blue-500">VIP</span></h3>
-                <p class="text-sm text-gray-700 mb-2">KAOS MEREK Estylo.Co</p>
-                <p class="text-red-500 text-lg font-bold">Dari Rp 79.999 <span class="line-through text-gray-500">Rp 189.000</span> -56%</p>
-                <div class="flex justify-between items-center mt-2">
-                    <div></div>
-                    <button onclick="toggleFavorite(this, 'Hush Puppies VIP', 'Rp 219.000')">
-            <i class="far fa-heart text-gray-500"></i>
-        </button>
-                </div>
-            </div>
-            <!-- Product 3 -->
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <div class="flex justify-between items-center mb-2">
-                    <div class="flex items-center">
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <span class="ml-1 text-sm">4.9</span>
-                    </div>
-                    <span class="text-xs text-gray-500">AD</span>
-                </div>
-                <a href="https://shopee.co.id/Be-Kind-Pesan-Positif-dalam-Gaya-Fashionmu-i.1119999704.25839296191?sp_atk=5d5d3494-46b4-47ea-bc7a-6d1587b6042d">
-                    <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/0a/7d/7f/0a7d7f681a6c103aac7174243b2ed4d4.jpg" />
-                </a>
-                <div class="bg-black text-white text-center py-1 mb-2">3% Cashback</div>
-                <p class="text-xs text-gray-500 mb-2">Tanpa min. pembelian.</p>
-                <h3 class="text-lg font-semibold mb-1">BE KIND - PESAN POSITIF DALAM GAYA FASHIONMU <span class="text-blue-500">VIP</span></h3>
-                <p class="text-sm text-gray-700 mb-2">KAOS MEREK Estylo.Co</p>
-                <p class="text-red-500 text-lg font-bold">Dari Rp 79.999 <span class="line-through text-gray-500">Rp 189.000</span> -56%</p>
-                <div class="flex justify-between items-center mt-2">
-                    <div></div>
-                    <button onclick="toggleFavorite(this, 'Hush Puppies VIP', 'Rp 219.000')">
-            <i class="far fa-heart text-gray-500"></i>
-        </button>
-                </div>
-            </div>
-            <!-- Product 3 -->
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <div class="flex justify-between items-center mb-2">
-                    <div class="flex items-center">
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <span class="ml-1 text-sm">4.9</span>
-                    </div>
-                    <span class="text-xs text-gray-500">AD</span>
-                </div>
-                <a href="https://shopee.co.id/ethanelnathan1?categoryId=100011&entryPoint=ShopByPDP&itemId=25839296191">
-                    <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/a4/9b/c2/a49bc299fd0b99317348a533ddc352d4.jpg" />
-                </a>
-                <div class="bg-black text-white text-center py-1 mb-2">3% Cashback</div>
-                <p class="text-xs text-gray-500 mb-2">Tanpa min. pembelian.</p>
-                <h3 class="text-lg font-semibold mb-1">SILAHKAN CHECK SHOPEE UNTUK PRODUK LAINNYA ATAU MENGHUBUNGI CONTACT KAMI<span class="text-blue-500">EL NATHAN SHOP DESAIN KAOS</span></h3>
-                <p class="text-sm text-gray-700 mb-2">EL NATHAN SHOPDESAIN KAOS</p>
-                <p class="text-red-500 text-lg font-bold">SENIN SAMPAI JUM'AT<span class="line-through text-gray-500">SABTU - AHAD </span></p>
-                <div class="flex justify-between items-center mt-2">
-                    <div></div>
-                    <button onclick="toggleFavorite(this, 'Hush Puppies VIP', 'Rp 219.000')">
-            <i class="far fa-heart text-gray-500"></i>
-        </button>
-                </div>
-            </div>
-            <!-- Product 3 -->
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <div class="flex justify-between items-center mb-2">
-                    <div class="flex items-center">
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <span class="ml-1 text-sm">4.9</span>
-                    </div>
-                    <span class="text-xs text-gray-500">AD</span>
-                </div>
-                <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp">
-                    <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/22/f1/6b/22f16b6174f6bb94558303be1af7d384.jpg" />
-                </a>
-                <div class="bg-black text-white text-center py-1 mb-2">3% Cashback</div>
-                <p class="text-xs text-gray-500 mb-2">Tanpa min. pembelian.</p>
-                <h3 class="text-lg font-semibold mb-1">SILAHKAN CHECK SHOPEE UNTUK PRODUK LAINNYA ATAU MENGHUBUNGI CONTACT KAMI<span class="text-blue-500">EL NATHAN SHOP DESAIN KAOS</span></h3>
-                <p class="text-sm text-gray-700 mb-2">EL NATHAN SHOPDESAIN KAOS</p>
-                <p class="text-red-500 text-lg font-bold">SENIN SAMPAI JUM'AT<span class="line-through text-gray-500">SABTU - AHAD </span></p>
-                <div class="flex justify-between items-center mt-2">
-                    <div></div>
-                    <button onclick="toggleFavorite(this, 'Hush Puppies VIP', 'Rp 219.000')">
-<i class="far fa-heart text-gray-500"></i>
-</button>
-                </div>
-            </div>
-            <!-- Product 3 -->
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <div class="flex justify-between items-center mb-2">
-                    <div class="flex items-center">
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <span class="ml-1 text-sm">4.9</span>
-                    </div>
-                    <span class="text-xs text-gray-500">AD</span>
-                </div>
-                <a href="https://www.instagram.com/elnathanershop/profilecard/?igsh=bndlMzBxNzQ2ZzA3">
-                    <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/81/01/f6/8101f6bf86e8d9be7458fa47060cf820.jpg" />
-                </a>
-                <div class="bg-black text-white text-center py-1 mb-2">3% Cashback</div>
-                <p class="text-xs text-gray-500 mb-2">Tanpa min. pembelian.</p>
-                <h3 class="text-lg font-semibold mb-1">SILAHKAN CHECK SHOPEE UNTUK PRODUK LAINNYA ATAU MENGHUBUNGI CONTACT KAMI<span class="text-blue-500">EL NATHAN SHOP DESAIN KAOS</span></h3>
-                <p class="text-sm text-gray-700 mb-2">EL NATHAN SHOPDESAIN KAOS</p>
-                <p class="text-red-500 text-lg font-bold">SENIN SAMPAI JUM'AT<span class="line-through text-gray-500">SABTU - AHAD </span></p>
-                <div class="flex justify-between items-center mt-2">
-                    <div></div>
-                    <button onclick="toggleFavorite(this, 'Hush Puppies VIP', 'Rp 219.000')">
-            <i class="far fa-heart text-gray-500"></i>
-        </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer -->
-    <footer class="bg-black text-white">
-        <div class="container mx-auto py-10 px-5">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div>
-                    <h1 class="text-xl font-bold mb-4">EL NATHAN SHOP</h1>
-                    <p class="mb-4">Sebagai pusat fashion online terpercaya, kami berkomitmen untuk menghadirkan produk berkualitas yang memenuhi kebutuhan gaya Anda. Mulai dari produk lokal hingga internasional, kami berfokus memberikan kenyamanan dan kepuasan berbelanja
-                        bagi Anda. <span class="font-bold">Bersama EL NATHAN SHOP, Anda tampil percaya diri.</span></p>
-                    <h2 class="font-bold mb-2">Layanan Pengaduan Konsumen</h2>
-                    <p class="mb-2 font-bold">EL NATHAN SHOP</p>
-                    <p class="mb-2">E-mail: elnathanshop@gmail.com</p>
-                    <p class="mb-2 font-bold">Direktorat Jenderal Perlindungan Konsumen dan Tertib Niaga Kementerian Perdagangan RI</p>
-                    <p class="mb-2">WhatsApp: +62 831 806 667 770</p>
-                </div>
-                <div>
-                    <h2 class="font-bold mb-4">LAYANAN</h2>
-                    <ul>
-                        <li class="mb-2">Bantuan</li>
-                        <li class="mb-2">Cara Pengembalian</li>
-                        <li class="mb-2">Product Index</li>
-                        <li class="mb-2">Promo Partner Kami</li>
-                        <li class="mb-2">Konfirmasi Transfer</li>
-                        <li class="mb-2">Hubungi Kami</li>
-                        <li class="mb-2">Cara Berjualan</li>
-                        <li class="mb-2">Pengembalian Ongkir</li>
-                        <li class="mb-2">Status Order</li>
-                        <li class="mb-2">Brand di EL NATHAN SHOP</li>
-                    </ul>
-                </div>
-                <div>
-                    <h2 class="font-bold mb-4">TENTANG KAMI</h2>
-                    <ul>
-                        <li class="mb-2">About Us</li>
-                        <li class="mb-2">Promosikan Brand Anda</li>
-                        <li class="mb-2">Pers/Media</li>
-                        <li class="mb-2">Karir</li>
-                        <li class="mb-2">Persyaratan & Ketentuan</li>
-                        <li class="mb-2">Kebijakan Privasi</li>
-                        <li class="mb-2">Responsible Disclosure</li>
-                        <li class="mb-2">Influencer Program</li>
-                        <li class="mb-2">EL NATHAN THREAD</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-10">
-                <h2 class="font-bold mb-4">TEMUKAN KAMI</h2>
-                <div class="flex space-x-4 mb-4">
-                    <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-facebook fa-2x"></i></a>
-                    <a href="https://www.instagram.com/elnathanershop/profilecard/?igsh=bndlMzBxNzQ2ZzA3"><i class="fab fa-instagram fa-2x"></i></a>
-                    <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-twitter fa-2x"></i></a>
-                    <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-pinterest fa-2x"></i></a>
-                    <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fas fa-rss fa-2x"></i></a>
-                    <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-youtube fa-2x"></i></a>
-                    <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-tiktok fa-2x"></i></a>
-                    <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-linkedin fa-2x"></i></a>
-                </div>
-                <p>Anda punya pertanyaan? Kami siap membantu.</p>
-                <p><a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"
-                        class="underline font-bold">Kontak</a> | <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"
-                        class="underline font-bold">Bantuan</a></p>
-            </div>
-        </div>
-    </footer>
-    <script>
-        function signUp() {
-            const username = document.getElementById('signup-username').value;
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-            const age = document.getElementById('signup-age').value;
-            const activity = document.getElementById('signup-activity').value;
-            const gender = document.getElementById('signup-gender').value;
 
-            if (username && email && password && age && activity && gender) {
-                // Simpan data di localStorage
-                localStorage.setItem('username', username);
-                localStorage.setItem('email', email);
-                localStorage.setItem('password', password);
-                localStorage.setItem('age', age);
-                localStorage.setItem('activity', activity);
-                localStorage.setItem('gender', gender);
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-                // Menampilkan pesan sukses
-                document.getElementById('signup-message').textContent = 'Sign up successful! Please login.';
+        const firebaseConfig = {
+            apiKey: "AIzaSyDd8glQvhs-IvOMj6LRpJo1vYQi40DPCqM",
+            authDomain: "ethan-el-nathan.firebaseapp.com",
+            databaseURL: "https://ethan-el-nathan-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "ethan-el-nathan",
+            storageBucket: "ethan-el-nathan.firebasestorage.app",
+            messagingSenderId: "1079423989695",
+            appId: "1:1079423989695:web:9d94b8aaf4b8b692d9130a",
+            measurementId: "G-ED78MWFGRP"
+        };
 
-                // Menampilkan data yang telah disimpan di bagian bawah form
-                displayStoredData();
-            } else {
-                document.getElementById('signup-message').textContent = 'Please fill in all fields.';
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+
+        function updateDateTime() {
+            const now = new Date();
+            const formatted = now.toISOString().replace('T', ' ').substr(0, 19);
+            document.getElementById('currentDateTime').textContent =
+                `Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): ${formatted}`;
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const userData = {
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                activity: document.getElementById('activity').value,
+                gender: document.getElementById('gender').value,
+                age: parseInt(document.getElementById('age').value),
+                registrationDate: new Date().toISOString().replace('T', ' ').substr(0, 19),
+                createdBy: 'elnathanwebsite'
+            };
+
+            const password = document.getElementById('password').value;
+            const messageElement = document.getElementById('message');
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, userData.email, password);
+                userData.uid = userCredential.user.uid;
+
+                await set(ref(database, 'users/' + userData.uid), userData);
+
+                messageElement.textContent = 'Registration successful!';
+                messageElement.className = 'message success-message';
+                messageElement.style.display = 'block';
+
+                document.getElementById('signupForm').reset();
+                setTimeout(() => {
+                    window.location.href = `index.html?username=${encodeURIComponent(userData.username)}`;
+                }, 2000);
+
+            } catch (error) {
+                console.error("Error: ", error);
+                messageElement.textContent = error.message;
+                messageElement.className = 'message error-message';
+                messageElement.style.display = 'block';
             }
-        }
+        });
+        // Tambahkan fungsi untuk menyimpan di localStorage
+            function saveToLocalStorage(userData, password) {
+                localStorage.setItem('username', userData.username);
+                localStorage.setItem('email', userData.email);
+                localStorage.setItem('password', password); // Perhatian: menyimpan password di localStorage tidak aman
+                localStorage.setItem('activity', userData.activity);
+                localStorage.setItem('gender', userData.gender);
+                localStorage.setItem('age', userData.age);
+                localStorage.setItem('registrationDate', userData.registrationDate);
+                localStorage.setItem('uid', userData.uid);
+            }
 
-        function displayStoredData() {
-            // Ambil data dari localStorage
-            const storedUsername = localStorage.getItem('username');
-            const storedEmail = localStorage.getItem('email');
-            const storedPassword = localStorage.getItem('password');
-            const storedAge = localStorage.getItem('age');
-            const storedActivity = localStorage.getItem('activity');
-            const storedGender = localStorage.getItem('gender');
+            // Modifikasi event listener form submission
+            document.getElementById('signupForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
 
-            // Menampilkan data di bagian bawah form
-            document.getElementById('stored-username').textContent = 'Username: ' + storedUsername;
-            document.getElementById('stored-email').textContent = 'Email: ' + storedEmail;
-            document.getElementById('stored-password').textContent = 'Password: ' + storedPassword;
-            document.getElementById('stored-age').textContent = 'Usia: ' + storedAge;
-            document.getElementById('stored-activity').textContent = 'Aktivitas: ' + storedActivity;
-            document.getElementById('stored-gender').textContent = 'Jenis Kelamin: ' + storedGender;
-        }
+                const userData = {
+                    username: document.getElementById('username').value,
+                    email: document.getElementById('email').value,
+                    activity: document.getElementById('activity').value,
+                    gender: document.getElementById('gender').value,
+                    age: parseInt(document.getElementById('age').value),
+                    registrationDate: new Date().toISOString().replace('T', ' ').substr(0, 19),
+                    createdBy: 'elnathanwebsite'
+                };
 
-        // Memanggil function displayStoredData jika data sudah ada di localStorage saat halaman pertama dimuat
-        if (localStorage.getItem('username') && localStorage.getItem('email') && localStorage.getItem('password') && localStorage.getItem('age') && localStorage.getItem('activity') && localStorage.getItem('gender')) {
-            displayStoredData();
-        }
+                const password = document.getElementById('password').value;
+                const messageElement = document.getElementById('message');
 
-        function searchProducts() {
-            const input = document.getElementById('search-input').value.toLowerCase();
-            const productList = document.getElementById('product-list');
-            const additionalProducts = document.getElementById('additional-products');
-            const products = productList.querySelectorAll('div');
-            const additionalProductItems = additionalProducts.querySelectorAll('div');
-            let found = false;
-            products.forEach(product => {
-                const productName = product.querySelector('p').textContent.toLowerCase();
-                if (productName.includes(input)) {
-                    product.style.display = 'block';
-                    found = true;
-                } else {
-                    product.style.display = 'none';
+                try {
+                    // Create user in Firebase Authentication
+                    const userCredential = await createUserWithEmailAndPassword(auth, userData.email, password);
+                    userData.uid = userCredential.user.uid;
+
+                    // Store in Firebase Database
+                    await set(ref(database, 'users/' + userData.uid), userData);
+
+                    // Store in localStorage
+                    saveToLocalStorage(userData, password);
+
+                    // Show success message
+                    messageElement.textContent = 'Registration successful! Data saved both in Firebase and locally.';
+                    messageElement.className = 'message success-message';
+                    messageElement.style.display = 'block';
+
+                    // Reset form and redirect
+                    document.getElementById('signupForm').reset();
+
+                    // Tambahkan timeout lebih lama agar pesan dapat dibaca
+                    setTimeout(() => {
+                        window.location.href = `index.html?username=${encodeURIComponent(userData.username)}`;
+                    }, 2000);
+
+                } catch (error) {
+                    console.error("Error: ", error);
+                    messageElement.textContent = error.message;
+                    messageElement.className = 'message error-message';
+                    messageElement.style.display = 'block';
+
+                    // Jika gagal menyimpan di Firebase, coba simpan di localStorage saja
+                    try {
+                        saveToLocalStorage(userData, password);
+                        messageElement.textContent += ' But data saved locally.';
+                    } catch (localError) {
+                        console.error("Local Storage Error: ", localError);
+                    }
                 }
             });
-            additionalProductItems.forEach(product => {
-                const productName = product.querySelector('p').textContent.toLowerCase();
-                if (productName.includes(input)) {
-                    product.style.display = 'block';
-                    found = true;
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-            if (input === '') {
-                products.forEach(product => product.style.display = 'block');
-                additionalProductItems.forEach(product => product.style.display = 'block');
-            } else if (!found) {
-                products.forEach(product => product.style.display = 'none');
-                additionalProductItems.forEach(product => product.style.display = 'none');
-            }
-        }
 
-        function toggleFavorite(button, productName, productPrice) {
-            const icon = button.querySelector('i');
-            const cartItems = document.getElementById('cart-items');
-            if (icon.classList.contains('far')) {
-                icon.classList.remove('far');
-                icon.classList.add('fas');
-                icon.classList.add('text-black');
-                const cartItem = document.createElement('li');
-                cartItem.className = 'block py-2 px-4 hover:bg-gray-700';
-                cartItem.textContent = `${productName} - ${productPrice}`;
-                cartItem.setAttribute('data-product-name', productName);
-                cartItems.appendChild(cartItem);
-            } else {
-                icon.classList.remove('fas');
-                icon.classList.add('far');
-                icon.classList.remove('text-black');
-                const cartItem = cartItems.querySelector(`[data-product-name="${productName}"]`);
-                if (cartItem) {
-                    cartItems.removeChild(cartItem);
+            // Tambahkan fungsi untuk mengecek data yang tersimpan di localStorage saat halaman dimuat
+            window.onload = function () {
+                updateDateTime();
+                setInterval(updateDateTime, 1000);
+
+                // Cek apakah ada data user yang tersimpan
+                const savedUsername = localStorage.getItem('username');
+                if (savedUsername) {
+                    console.log('Data found in localStorage for user:', savedUsername);
                 }
+            };
+
+            // Tambahkan fungsi untuk membersihkan localStorage (optional, untuk testing)
+            function clearLocalStorage() {
+                localStorage.clear();
+                console.log('Local storage cleared');
             }
-        }
     </script>
 </body>
 
