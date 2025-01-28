@@ -18,7 +18,7 @@
             overflow: hidden;
             background: linear-gradient(45deg, #ff0000, #000000);
             background-size: 400% 400%;
-            animation: gradientAnimation 8s ease infinite;
+            animation: gradientAnimation 8s ease infinite, glitterAnimation 1.5s infinite linear;
             color: white;
             text-align: center;
         }
@@ -36,6 +36,36 @@
             100% {
                 background-position: 0% 50%;
             }
+        }
+
+        /* Animasi Kelap-Kelip (Glitter Effect) */
+        @keyframes glitterAnimation {
+            0% {
+                background-position: -200% -200%;
+            }
+
+            50% {
+                background-position: 200% 200%;
+            }
+
+            100% {
+                background-position: -200% -200%;
+            }
+        }
+
+        /* Glitter Effect */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://cdn.pixabay.com/photo/2017/10/28/15/18/abstract-2895879_960_720.jpg') repeat;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.2;
+            animation: glitterAnimation 2s infinite linear;
         }
 
         /* Judul */
@@ -69,15 +99,81 @@
             background: white;
             color: black;
         }
+
+        /* Animasi Kedipan */
+        .blinking {
+            animation: blink 1s infinite;
+        }
+
+        /* Kedipan semakin cepat */
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Pesan Peringatan */
+        #warning-message {
+            color: yellow;
+            font-size: 20px;
+            font-weight: bold;
+            display: none;
+            margin-top: 20px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
 
 <body>
     <div>
-        <h1>404</h1>
+        <h1 id="title">404</h1>
         <p>Halaman yang Anda cari tidak ditemukan.</p>
-        <a href="index.html">Kembali ke Halaman Utama</a>
+        <a href="index.html" id="back-button">Kembali ke Halaman Utama</a>
+        <p id="warning-message" class="blinking">Peringatan! Anda harus mengetik url dengan benar!</p>
     </div>
+
+    <script>
+        let blinkSpeed = 1000; // Kecepatan kedipan (dalam milidetik)
+        let warningMessage = document.getElementById('warning-message');
+        let backButton = document.getElementById('back-button');
+        let timeSpent = 0; // Waktu yang dihabiskan di halaman
+
+        // Fungsi untuk mempercepat kedipan
+        function increaseBlinkingSpeed() {
+            timeSpent += 1; // Menambah waktu yang telah dihabiskan
+
+            if (timeSpent > 5 && timeSpent <= 10) {
+                blinkSpeed = 800; // Kedipan lebih cepat setelah 5 detik
+            } else if (timeSpent > 10 && timeSpent <= 15) {
+                blinkSpeed = 600; // Kedipan lebih cepat setelah 10 detik
+            } else if (timeSpent > 15) {
+                blinkSpeed = 400; // Kedipan lebih cepat setelah 15 detik
+            }
+
+            warningMessage.style.display = 'block'; // Menampilkan pesan peringatan
+
+            // Mengatur animasi kedipan berdasarkan kecepatan
+            warningMessage.style.animationDuration = `${blinkSpeed}ms`;
+
+            // Menampilkan peringatan jika pengguna sudah berada di halaman terlalu lama
+            if (timeSpent > 20) {
+                alert('Waktu yang Anda habiskan terlalu lama! Silakan klik tombol yang benar!');
+                // Reset waktu agar tidak berulang
+                timeSpent = 0;
+            }
+        }
+
+        // Menambah kecepatan kedipan setiap detik
+        setInterval(increaseBlinkingSpeed, 1000);
+    </script>
 </body>
 
 </html>
