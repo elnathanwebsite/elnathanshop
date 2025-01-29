@@ -5,287 +5,340 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>EL NATHAN SHOP</title>
+    <title>EL NATHAN SHOP - Black & White Edition</title>
+
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
-        /* Reset default styles */
-        
+        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        /* Body and main container styles */
-        
+
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #000;
-            color: #fff;
-            padding: 0;
-            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #000000;
+            color: #ffffff;
+            background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M1 1h2v2H1V1zm4 0h2v2H5V1zm4 0h2v2H9V1zm4 0h2v2h-2V1zm4 0h2v2h-2V1zm-16 4h2v2H1V5zm4 0h2v2H5V5zm4 0h2v2H9V5zm4 0h2v2h-2V5zm4 0h2v2h-2V5zm-16 4h2v2H1V9zm4 0h2v2H5V9zm4 0h2v2H9V9zm4 0h2v2h-2V9zm4 0h2v2h-2V9zm-16 4h2v2H1v-2zm4 0h2v2H5v-2zm4 0h2v2H9v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2z" fill="%23222222" fill-opacity="0.4" fill-rule="evenodd"/%3E%3C/svg%3E');
         }
-        
+
         .container {
             width: 100%;
             max-width: 1200px;
-            margin: auto;
-            padding: 20px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        /* Header styles */
-        
+
+        /* Header */
         header {
-            text-align: center;
-            padding: 40px 0;
-            background-color: #fff;
-            color: #000000;
+            background: #000000;
+            border-bottom: 2px solid #ffffff;
+            padding: 2rem 0;
         }
-        
+
         header h1 {
-            font-size: 3rem;
-            font-weight: bold;
-        }
-        /* Logo section styles */
-        
-        .logo-section {
+            font-size: 3.5rem;
+            font-weight: 700;
             text-align: center;
-            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.1);
         }
-        
+
+        /* Logo Section */
+        .logo-section {
+            background-color: #111111;
+            padding: 3rem 0;
+            border: 1px solid #ffffff;
+            margin: 2rem auto;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .logo-section::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid #333;
+            pointer-events: none;
+        }
+
         .logo-section img {
             width: 200px;
             height: auto;
-            margin-bottom: 20px;
+            display: block;
+            margin: 0 auto 2rem;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
         }
-        
+
         .logo-text {
-            font-size: 1.5rem;
-            font-style: italic;
-            color: #ffffff;
-        }
-        
-        .logo-meaning {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            color: #ffffff;
             text-align: center;
+            color: #ffffff;
+            margin-bottom: 2rem;
         }
-        /* About EL NATHAN SHOP section */
-        
-        .about {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .about h2 {
+
+        .logo-text h2 {
             font-size: 2.5rem;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
         }
-        
-        .about p {
+
+        .logo-text p {
+            font-style: italic;
+            color: #cccccc;
             font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
         }
-        /* Contact section styles */
-        
-        .contact {
-            background-color: #777575;
-            padding: 40px 0;
+
+        /* About Section */
+        .about {
+            background-color: #111111;
+            padding: 4rem 2rem;
+            border: 1px solid #ffffff;
+            margin: 2rem auto;
+            max-width: 900px;
+        }
+
+        .about h2 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
             text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        
+
+        .about p {
+            color: #cccccc;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 4rem 2rem;
+            text-align: center;
+            border: 1px solid #ffffff;
+            margin: 2rem auto;
+            max-width: 900px;
+        }
+
         .contact h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        
+
         .contact p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact a {
+            color: #ffffff;
+            text-decoration: none;
+            border-bottom: 1px solid #ffffff;
+            padding-bottom: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .contact a:hover {
+            color: #cccccc;
+            border-color: #cccccc;
+        }
+
+        /* Footer */
+        footer {
+            background: #000000;
+            color: #ffffff;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid #ffffff;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h2 {
+            color: #ffffff;
+            margin-bottom: 1.5rem;
             font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: #cccccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
             color: #ffffff;
         }
-        /* Footer styles */
-        
-        footer {
+
+        /* Social Media Icons */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-icons a {
+            color: #ffffff;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            border: 1px solid #ffffff;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-3px);
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Back Arrow */
+        .arrow-left {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #ffffff;
+            color: #000000;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .arrow-left:hover {
+            transform: scale(1.1);
             background-color: #000000;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
+            color: #ffffff;
+            border: 1px solid #ffffff;
         }
-        
-        footer p {
-            font-size: 1rem;
-        }
+
         /* Responsive Design */
-        
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2.5rem;
             }
-            .about h2 {
-                font-size: 2rem;
+
+            .logo-section,
+            .about,
+            .contact {
+                margin: 1rem;
+                padding: 2rem 1rem;
             }
-            .about p {
-                font-size: 1rem;
+
+            .footer-grid {
+                grid-template-columns: 1fr;
             }
-            .contact h3 {
-                font-size: 1.8rem;
+
+            .social-icons a {
+                width: 35px;
+                height: 35px;
+                font-size: 1.2rem;
             }
-            .contact p {
-                font-size: 1rem;
-            }
-        }
-        
-        .arrow-left {
-            position: fixed;
-            top: 1px;
-            /* Jarak dari atas */
-            left: 5px;
-            /* Jarak dari kiri */
-            font-size: 40px;
-            /* Ukuran ikon */
-            color: #333;
-            /* Warna panah */
-            text-decoration: none;
-            /* Menghilangkan underline */
-            background-color: #f0f0f0;
-            /* Warna latar belakang */
-            padding: 1px 5px;
-            /* Jarak di sekitar panah */
-            border-radius: 30%;
-            /* Membuat bentuk lingkaran */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            /* Bayangan untuk estetika */
-            transition: transform 0.2s, background-color 0.2s;
-        }
-        
-        .arrow-left:hover {
-            transform: scale(1.1);
-            /* Efek zoom saat hover */
-            background-color: #ddd;
-            /* Warna latar belakang saat hover */
-            color: #000;
-            /* Warna panah saat hover */
         }
     </style>
 </head>
 
-<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="shortcut icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-title" content="ETH" />
-<link rel="manifest" href="/site.webmanifest" />
-
-<body class="bg-gray-200">
-
-    <body>
-        <a href="utama.html" class="arrow-left" title="Kembali">
-        &#8592;
+<body>
+    <a href="utama.html" class="arrow-left" title="Kembali">
+        <i class="fas fa-arrow-left"></i>
     </a>
-    </body>
 
-    <body>
+    <header>
         <div class="container">
-            <!-- Header Section -->
-            <header>
-                <h1> EL NATHAN SHOP</h1>
-            </header>
+            <h1>EL NATHAN SHOP</h1>
+        </div>
+    </header>
 
-            <!-- Logo Section -->
-            <section class="logo-section">
-                <img src="https://i.pinimg.com/736x/22/ce/99/22ce990742ddfb4a7eb85d99a86a2d34.jpg" alt="EL NATHAN Logo">
-                <div class="logo-text">
-                    <h2>ETHAN EL NATHAN</h2>
-                    <p>"LA TECNOLOGÍA ES EL MEJOR ASISTENTE"</p>
-                </div>
-                <div class="logo-meaning">
-                    <p>Logo ini menggunakan warna teks hitam dan latar belakang putih yang permanen. Font yang digunakan adalah Times New Roman, memberikan kesan formal, profesional, dan tradisional. Logo ini mencerminkan analisis, wewenang, dan sifat kritis
-                        yang mendalam dari EL NATHAN.</p>
-                </div>
-            </section>
+    <main class="container">
+        <section class="logo-section">
+            <img src="https://i.pinimg.com/736x/22/ce/99/22ce990742ddfb4a7eb85d99a86a2d34.jpg" alt="EL NATHAN Logo">
+            <div class="logo-text">
+                <h2>ETHAN EL NATHAN</h2>
+                <p>"LA TECNOLOGÍA ES EL MEJOR ASISTENTE"</p>
+            </div>
+        </section>
 
-            <!-- About EL NATHAN SHOP Section -->
-            <section class="about">
-                <h2>Tentang EL NATHAN SHOP</h2>
-                <p>EL NATHAN SHOP adalah platform e-commerce yang menyediakan berbagai produk berkualitas dengan fokus pada desain yang kreatif dan inovatif. Meskipun kami belum memiliki produk fisik yang dapat dibeli langsung di sini, kami terus berkomitmen
-                    untuk menghadirkan pengalaman berbelanja yang menyenangkan dan efisien bagi pelanggan kami.</p>
-            </section>
+        <section class="about">
+            <h2>Tentang EL NATHAN SHOP</h2>
+            <p>EL NATHAN SHOP adalah platform e-commerce yang menyediakan berbagai produk berkualitas dengan fokus pada
+                desain yang kreatif dan inovatif. Meskipun kami belum memiliki produk fisik yang dapat dibeli langsung
+                di sini, kami terus berkomitmen untuk menghadirkan pengalaman berbelanja yang menyenangkan dan efisien
+                bagi pelanggan kami.</p>
+        </section>
 
-            <!-- Contact Section -->
-            <section class="contact">
-                <h3>Hubungi Kami</h3>
-                <p>Untuk pertanyaan atau informasi lebih lanjut, silakan hubungi kami di email: <a href="mailto:elnathanshop@example.com" style="color: #000;">elnathanshop@example.com</a></p>
-            </section>
+        <section class="contact">
+            <h3>Hubungi Kami</h3>
+            <p>Untuk pertanyaan atau informasi lebih lanjut, silakan hubungi kami di:</p>
+            <p><a href="mailto:elnathanshop@example.com">elnathanshop@example.com</a></p>
+        </section>
+    </main>
 
-            <!-- Footer Section -->
-            <footer>
-                <footer class="bg-black text-white">
-                    <div class="container mx-auto py-10 px-5">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                            <div>
-                                <h1 class="text-xl font-bold mb-4">EL NATHAN SHOP</h1>
-                                <p class="mb-4">Sebagai pusat fashion online terpercaya, kami berkomitmen untuk menghadirkan produk berkualitas yang memenuhi kebutuhan gaya Anda. Mulai dari produk lokal hingga internasional, kami berfokus memberikan kenyamanan dan kepuasan
-                                    berbelanja bagi Anda. <span class="font-bold">Bersama EL NATHAN SHOP, Anda tampil percaya diri.</span></p>
-                                <h2 class="font-bold mb-2">Layanan Pengaduan Konsumen</h2>
-                                <p class="mb-2 font-bold">EL NATHAN SHOP</p>
-                                <p class="mb-2">E-mail: elnathanshop@gmail.com</p>
-                                <p class="mb-2 font-bold">Direktorat Jenderal Perlindungan Konsumen dan Tertib Niaga Kementerian Perdagangan RI</p>
-                                <p class="mb-2">WhatsApp: +62 831 806 667 770</p>
-                            </div>
-                            <div>
-                                <h2 class="font-bold mb-4">LAYANAN</h2>
-                                <ul>
-                                    <li class="mb-2">Bantuan</li>
-                                    <li class="mb-2">Cara Pengembalian</li>
-                                    <li class="mb-2">Product Index</li>
-                                    <li class="mb-2">Promo Partner Kami</li>
-                                    <li class="mb-2">Konfirmasi Transfer</li>
-                                    <li class="mb-2">Hubungi Kami</li>
-                                    <li class="mb-2">Cara Berjualan</li>
-                                    <li class="mb-2">Pengembalian Ongkir</li>
-                                    <li class="mb-2">Status Order</li>
-                                    <li class="mb-2">Brand di EL NATHAN SHOP</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h2 class="font-bold mb-4">TENTANG KAMI</h2>
-                                <ul>
-                                    <li class="mb-2">About Us</li>
-                                    <li class="mb-2">Promosikan Brand Anda</li>
-                                    <li class="mb-2">Pers/Media</li>
-                                    <li class="mb-2">Karir</li>
-                                    <li class="mb-2">Persyaratan & Ketentuan</li>
-                                    <li class="mb-2">Kebijakan Privasi</li>
-                                    <li class="mb-2">Responsible Disclosure</li>
-                                    <li class="mb-2">Influencer Program</li>
-                                    <li class="mb-2">EL NATHAN THREAD</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="mt-10">
-                            <h2 class="font-bold mb-4">TEMUKAN KAMI</h2>
-                            <div class="flex space-x-4 mb-4">
-                                <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-facebook fa-2x"></i></a>
-                                <a href="https://www.instagram.com/elnathanershop/profilecard/?igsh=bndlMzBxNzQ2ZzA3"><i class="fab fa-instagram fa-2x"></i></a>
-                                <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-twitter fa-2x"></i></a>
-                                <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-pinterest fa-2x"></i></a>
-                                <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fas fa-rss fa-2x"></i></a>
-                                <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-youtube fa-2x"></a>
-                            <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-tiktok fa-2x"></a>
-                            <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-linkedin fa-2x"></a>
-                        </div>
-                        <p>Anda punya pertanyaan? Kami siap membantu.</p>
-                        <p><a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"
-                                class="underline font-bold">Kontak</a> | <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"
-                                class="underline font-bold">Bantuan</a></p>
-                    </div>
-                </div>
-            </footer>
-    </div>
+    <footer>
+        <div class="container">
+            <div class="social-icons">
+                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
 
-    <!-- JavaScript -->
-    <script>
-        // JavaScript Code can be added here if necessary for interactions
-    </script>
+            <p style="text-align: center; margin-top: 2rem; color: #cccccc;">
+                © 2025 EL NATHAN SHOP. All rights reserved.
+            </p>
+        </div>
+    </footer>
 </body>
 
 </html>

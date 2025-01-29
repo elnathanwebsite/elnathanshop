@@ -8,55 +8,57 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <style>
         /* Custom styles for the drawer */
-        
+
         .drawer {
             transition: transform 0.3s ease-in-out;
         }
-        
+
         .drawer-closed {
             transform: translateX(-100%);
         }
-        
+
         .drawer-open {
             transform: translateX(0);
         }
+
         /* Custom styles for the main image */
-        
+
         .main-image-container {
             display: flex;
             justify-content: center;
             margin: 1rem 0;
             overflow-x: auto;
         }
-        
+
         .main-image {
             width: 100%;
             max-width: 1024px;
             height: auto;
             margin-right: 1rem;
         }
-        
+
         .additional-image {
             width: 100%;
             max-width: 1024px;
             height: auto;
             margin-right: 1rem;
         }
+
         /* Custom styles for product images */
-        
+
         .product-image {
             width: 300px;
             height: 300px;
         }
-        
+
         #drawer {
             z-index: 50;
         }
-        
+
         #ads {
             z-index: 10;
         }
-        
+
         .main-image-container {
             width: 100%;
             height: 300px;
@@ -64,23 +66,24 @@
             overflow: hidden;
             position: relative;
         }
-        
+
         .main-image-container img {
             width: auto;
             height: 100%;
             display: inline-block;
             animation: scrollImages 30s linear infinite;
         }
-        
+
         @keyframes scrollImages {
             0% {
                 transform: translateX(0);
             }
+
             100% {
                 transform: translateX(-100%);
             }
         }
-        
+
         .nav-buttons {
             position: fixed;
             bottom: 20px;
@@ -93,7 +96,7 @@
             z-index: 1000;
             /* Ensures the buttons stay on top */
         }
-        
+
         .nav-button {
             padding: 15px;
             background-color: #000;
@@ -113,21 +116,21 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         .nav-button:hover {
             background-color: #333;
             /* Dark gray background on hover */
             transform: translateY(-5px);
         }
-        
+
         .nav-button:active {
             transform: translateY(0);
         }
-        
+
         .nav-button:focus {
             outline: none;
         }
-        
+
         @media (max-width: 600px) {
             .nav-button {
                 width: 45px;
@@ -135,8 +138,9 @@
                 font-size: 20px;
             }
         }
+
         /* Style untuk pesan yang mengambang */
-        
+
         .floating-message {
             position: fixed;
             top: 10%;
@@ -151,20 +155,23 @@
             z-index: 9999;
             display: none;
         }
+
         /* Judul besar */
-        
+
         .floating-message h1 {
             font-size: 32px;
             margin: 0;
         }
+
         /* Pesan teks kecil */
-        
+
         .floating-message p {
             font-size: 18px;
             margin: 10px 0 0;
         }
+
         /* Ikon silang untuk menutup pesan */
-        
+
         .close-btn {
             position: absolute;
             top: 5px;
@@ -173,8 +180,9 @@
             cursor: pointer;
             color: white;
         }
+
         /* Drawer Container */
-        
+
         .drawer-container {
             position: fixed;
             bottom: 0;
@@ -187,19 +195,22 @@
             transition: height 0.3s ease;
             z-index: 1000;
         }
+
         /* Drawer Content */
-        
+
         .drawer-content {
             padding: 20px;
             text-align: center;
         }
+
         /* Toggle Button */
-        
+
         .drawer-toggle {
             cursor: pointer;
         }
+
         /* Style untuk pesan yang mengambang */
-        
+
         .new-floating-message {
             position: fixed;
             top: 20px;
@@ -217,8 +228,9 @@
             font-family: Arial, sans-serif;
             z-index: 1000;
         }
+
         /* Tombol tutup untuk pesan */
-        
+
         .new-close-btn {
             position: absolute;
             top: 5px;
@@ -229,8 +241,9 @@
             font-size: 18px;
             cursor: pointer;
         }
+
         /* CSS spesifik untuk tombol Buy Now */
-        
+
         button[onclick="showNewMessage()"] {
             background-color: #000;
             /* Warna hitam */
@@ -250,8 +263,9 @@
             /* Ikon kursor saat hover */
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
+
         /* Efek hover untuk tombol */
-        
+
         button[onclick="showNewMessage()"]:hover {
             background-color: #444;
             /* Abu-abu gelap saat hover */
@@ -260,16 +274,18 @@
             transform: scale(1.05);
             /* Sedikit membesarkan tombol */
         }
+
         /* Efek klik tombol */
-        
+
         button[onclick="showNewMessage()"]:active {
             background-color: #222;
             /* Hitam pekat saat aktif */
             transform: scale(0.98);
             /* Sedikit mengecilkan tombol */
         }
+
         /* Responsif untuk perangkat kecil */
-        
+
         @media (max-width: 480px) {
             button[onclick="showNewMessage()"] {
                 font-size: 14px;
@@ -278,8 +294,9 @@
                 /* Padding lebih kecil */
             }
         }
+
         /* CSS spesifik untuk tombol Lanjutkan Pembayaran */
-        
+
         a[href="https://www.linkpembayaran.com"][class="payment-btn"][target="_blank"] {
             display: inline-block;
             background-color: #000;
@@ -304,8 +321,9 @@
             /* Border abu-abu gelap */
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
+
         /* Efek hover untuk tombol */
-        
+
         a[href="https://www.linkpembayaran.com"][class="payment-btn"][target="_blank"]:hover {
             background-color: #444;
             /* Abu-abu gelap saat hover */
@@ -314,16 +332,18 @@
             transform: scale(1.05);
             /* Sedikit membesarkan tombol */
         }
+
         /* Efek klik tombol */
-        
+
         a[href="https://www.linkpembayaran.com"][class="payment-btn"][target="_blank"]:active {
             background-color: #222;
             /* Hitam pekat saat aktif */
             transform: scale(0.98);
             /* Sedikit mengecilkan tombol */
         }
+
         /* Responsif untuk perangkat kecil */
-        
+
         @media (max-width: 480px) {
             a[href="https://www.linkpembayaran.com"][class="payment-btn"][target="_blank"] {
                 font-size: 14px;
@@ -332,8 +352,9 @@
                 /* Padding lebih kecil */
             }
         }
+
         /* Styling untuk pesan yang mengambang */
-        
+
         .new-floating-message {
             position: absolute;
             /* Menggunakan absolute agar mudah ditempatkan relatif ke tombol */
@@ -350,17 +371,17 @@
             /* Default posisi pesan */
             left: 0;
         }
-        
+
         .new-floating-message h3 {
             font-size: 24px;
             margin-bottom: 10px;
         }
-        
+
         .new-floating-message p {
             font-size: 16px;
             margin-bottom: 15px;
         }
-        
+
         .new-close-btn {
             position: absolute;
             top: 5px;
@@ -369,7 +390,7 @@
             cursor: pointer;
             color: #000;
         }
-        
+
         .payment-btn {
             display: inline-block;
             background-color: #fff;
@@ -384,17 +405,17 @@
             cursor: pointer;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        
+
         .payment-btn:hover {
             background-color: #000;
             color: #fff;
         }
-        
+
         .payment-btn:active {
             background-color: #444;
             color: #fff;
         }
-        
+
         .buy-now-btn {
             background-color: #000;
             /* Warna hitam */
@@ -405,19 +426,20 @@
             font-size: 16px;
             cursor: pointer;
         }
-        
+
         .buy-now-btn:hover {
             background-color: #444;
             /* Warna hitam lebih terang saat hover */
         }
-        
+
         .message-container {
             margin-top: 10px;
             font-size: 14px;
             color: #333;
         }
+
         /* Styling untuk tombol Pembayaran Lainnya */
-        
+
         .payment-other-btn {
             background-color: #000;
             /* Warna latar belakang hitam */
@@ -436,8 +458,9 @@
             transition: all 0.3s ease-in-out;
             /* Efek transisi saat hover */
         }
+
         /* Efek saat hover pada tombol */
-        
+
         .payment-other-btn:hover {
             background-color: #00a6ff;
             /* Latar belakang lebih gelap saat hover */
@@ -446,15 +469,16 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
             /* Bayangan lebih tegas saat hover */
         }
+
         /* Efek saat tombol ditekan */
-        
+
         .payment-other-btn:active {
             background-color: #333;
             /* Latar belakang lebih gelap saat ditekan */
             transform: translateY(2px);
             /* Menekan tombol lebih ke bawah */
         }
-        
+
         .card-container {
             width: 100%;
             /* Menggunakan 100% dari lebar kontainer induk */
@@ -471,16 +495,16 @@
             box-sizing: border-box;
             /* Untuk memastikan padding tidak menambah lebar */
         }
-        
+
         .card-container::-webkit-scrollbar {
             height: 8px;
         }
-        
+
         .card-container::-webkit-scrollbar-thumb {
             background-color: #aaa;
             border-radius: 4px;
         }
-        
+
         .card {
             flex: 0 0 auto;
             width: 200px;
@@ -492,7 +516,7 @@
             position: relative;
             transition: transform 0.3s ease;
         }
-        
+
         .card-header {
             display: flex;
             justify-content: space-between;
@@ -501,17 +525,17 @@
             padding: 8px;
             cursor: pointer;
         }
-        
+
         .card-header h3 {
             font-size: 18px;
             margin: 0;
         }
-        
+
         .card-header .toggle-icon {
             font-size: 18px;
             cursor: pointer;
         }
-        
+
         .card-content {
             max-height: 0;
             overflow: hidden;
@@ -519,25 +543,25 @@
             text-align: left;
             transition: max-height 0.5s ease, padding 0.5s ease;
         }
-        
+
         .card img {
             width: 100%;
             height: 150px;
             object-fit: cover;
         }
-        
+
         .card p {
             font-size: 14px;
             color: #555;
             margin: 8px 0;
         }
-        
+
         .card.open .card-content {
             max-height: 200px;
             /* Adjust based on content size */
             padding: 8px;
         }
-        
+
         .scroll-buttons {
             position: absolute;
             top: 50%;
@@ -546,7 +570,7 @@
             justify-content: space-between;
             z-index: 10;
         }
-        
+
         .scroll-left,
         .scroll-right {
             background-color: black;
@@ -556,12 +580,12 @@
             cursor: pointer;
             font-size: 20px;
         }
-        
+
         .scroll-left:hover,
         .scroll-right:hover {
             background-color: #555;
         }
-        
+
         .card-container {
             width: 100%;
             overflow-x: auto;
@@ -573,8 +597,9 @@
             scroll-behavior: smooth;
             box-sizing: border-box;
         }
+
         /* Mengatur hanya gambar dalam container dengan kelas 'sertifikat' */
-        
+
         .sertifikat {
             display: flex;
             flex-direction: column;
@@ -584,24 +609,27 @@
             text-align: center;
             /* Memastikan teks berada di tengah */
         }
+
         /* Gaya untuk judul 'Sertifikat Developer' */
-        
+
         .judul {
             font-size: 24px;
             font-weight: bold;
             color: #333;
             margin: 20px 0;
         }
+
         /* Container untuk gambar agar disusun secara horizontal */
-        
+
         .gambar-container {
             display: flex;
             /* Menyusun gambar secara horizontal */
             gap: 15px;
             /* Memberikan jarak antar gambar */
         }
+
         /* Mengatur gambar */
-        
+
         .gambar-container img {
             width: 33.33%;
             /* Membuat gambar 3 kali lebih kecil dari ukuran aslinya */
@@ -609,6 +637,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         /* Mengatur hanya gambar dalam container dengan kelas 'sertifikat' */
     </style>
 
@@ -618,8 +647,12 @@
 <div class="floating-message" id="floatingMessage">
     <span class="close-btn" id="closeBtn">&times;</span>
     <h1>EL NATHAN SHOP</h1>
-    <p>Terima kasih sudah mengunjungi El Nathan Shop! Kami sangat senang Anda meluangkan waktu untuk menjelajahi koleksi kami. Di sini, Anda akan menemukan berbagai pilihan produk berkualitas yang didesain dengan penuh kreativitas. Jangan ragu untuk berbelanja
-        dan temukan produk yang paling cocok dengan gaya Anda! Ingin informasi lebih lanjut? Jangan lupa untuk follow kami di sosial media atau hubungi kami langsung jika ada pertanyaan. Kami siap membantu Anda! Selamat berbelanja, dan semoga hari Anda
+    <p>Terima kasih sudah mengunjungi El Nathan Shop! Kami sangat senang Anda meluangkan waktu untuk menjelajahi koleksi
+        kami. Di sini, Anda akan menemukan berbagai pilihan produk berkualitas yang didesain dengan penuh kreativitas.
+        Jangan ragu untuk berbelanja
+        dan temukan produk yang paling cocok dengan gaya Anda! Ingin informasi lebih lanjut? Jangan lupa untuk follow
+        kami di sosial media atau hubungi kami langsung jika ada pertanyaan. Kami siap membantu Anda! Selamat
+        berbelanja, dan semoga hari Anda
         menyenankan! El Nathan Shop 💫
     </p>
 
@@ -632,23 +665,50 @@
 <link rel="manifest" href="/site.webmanifest" />
 
 <body class="bg-gray-200">
-    <!-- Header -->
-    <header class="bg-black text-white flex items-center justify-between py-2 px-4">
-        <div class="flex items-center space-x-4">
-            <img alt="Shop logo" class="h-8 w-8" height="32" src="https://i.pinimg.com/736x/d5/db/ca/d5dbca067f5868f800f2f7483a308080.jpg" width="32" />
-            <h1 class="text-lg font-bold">EL NATHAN SHOP DESAIN KAOS</h1>
-        </div>
+    <!-- HEADER -->
+    <header class="bg-black text-white">
+        <div class="flex items-center justify-between py-2 px-4">
+            <!-- Logo dan Info Section -->
+            <div class="flex flex-col">
+                <!-- Logo dan Nama Shop -->
+                <div class="flex items-center space-x-4 mb-1">
+                    <img alt="Shop logo" class="h-8 w-8" height="32"
+                        src="https://i.pinimg.com/736x/d5/db/ca/d5dbca067f5868f800f2f7483a308080.jpg" width="32" />
+                    <h1 class="text-lg font-bold">EL NATHAN SHOP DESAIN KAOS</h1>
+                </div>
 
-        <!-- Nama Pengguna dengan Link -->
-        <div class="flex items-center space-x-4">
-            <a id="user-name-link" href="profile.html" class="font-semibold text-lg animate-blink" onclick="redirectToProfile(event)">
-                <span id="user-name"></span>
-            </a>
-            <button class="text-white text-2xl" onclick="toggleDrawer()">
-        <i class="fas fa-bars"></i>
-    </button>
+                <!-- Info Status -->
+                <div class="flex items-center gap-4 ml-12 text-[8px] text-white/70">
+                    <div id="currentDateTime">Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): 2025-01-29
+                        08:23:25</div>
+                    <!-- Signal -->
+                    <div class="flex items-end h-2 gap-[1px]">
+                        <div class="signal-bar"></div>
+                        <div class="signal-bar"></div>
+                        <div class="signal-bar"></div>
+                        <div class="signal-bar"></div>
+                    </div>
+                    <!-- Battery -->
+                    <div class="battery-container">
+                        <div id="battery-level"></div>
+                        <div class="battery-charging"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nama Pengguna dan Menu -->
+            <div class="flex items-center gap-4">
+                <!-- Nama Pengguna dengan Link -->
+                <a id="user-name-link" href="profile.html" class="font-semibold text-lg animate-blink"
+                    onclick="redirectToProfile(event)">
+                    <span id="user-name">Current User's Login: elnathanwebsite</span>
+                </a>
+                <!-- Menu Button -->
+                <button class="text-white text-2xl" onclick="toggleDrawer()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
-    </header>
     </header>
     <!-- Drawer -->
 
@@ -683,12 +743,18 @@
     </div>
     <!-- Main Image -->
     <div class="main-image-container">
-        <img alt="Colorful t-shirts hanging on a rack" class="main-image" src="https://i.pinimg.com/736x/db/ea/d4/dbead4c3398f08d2520f7c74d4caa337.jpg" />
-        <img alt="Additional advertisement image" class="additional-image" src="https://i.pinimg.com/736x/d1/d9/1c/d1d91cad29fbb077a93d4e2d440c2cd4.jpg" />
-        <img alt="Another advertisement image" class="additional-image" src="https://i.pinimg.com/736x/f4/93/3f/f4933f345acc353406c959d4b3148c0e.jpg" />
-        <img alt="Another advertisement image" class="additional-image" src="https://i.pinimg.com/736x/49/3a/b3/493ab3c24d748389c78389bba51e4905.jpg" />
-        <img alt="Another advertisement image" class="additional-image" src="https://i.pinimg.com/736x/0b/cb/a2/0bcba25a97d5f247c77c333ac71ab5f3.jpg" />
-        <img alt="Another advertisement image" class="additional-image" src="https://i.pinimg.com/736x/5c/15/a1/5c15a16f60321663c6db71c1bf4ff50e.jpg" />
+        <img alt="Colorful t-shirts hanging on a rack" class="main-image"
+            src="https://i.pinimg.com/736x/db/ea/d4/dbead4c3398f08d2520f7c74d4caa337.jpg" />
+        <img alt="Additional advertisement image" class="additional-image"
+            src="https://i.pinimg.com/736x/d1/d9/1c/d1d91cad29fbb077a93d4e2d440c2cd4.jpg" />
+        <img alt="Another advertisement image" class="additional-image"
+            src="https://i.pinimg.com/736x/f4/93/3f/f4933f345acc353406c959d4b3148c0e.jpg" />
+        <img alt="Another advertisement image" class="additional-image"
+            src="https://i.pinimg.com/736x/49/3a/b3/493ab3c24d748389c78389bba51e4905.jpg" />
+        <img alt="Another advertisement image" class="additional-image"
+            src="https://i.pinimg.com/736x/0b/cb/a2/0bcba25a97d5f247c77c333ac71ab5f3.jpg" />
+        <img alt="Another advertisement image" class="additional-image"
+            src="https://i.pinimg.com/736x/5c/15/a1/5c15a16f60321663c6db71c1bf4ff50e.jpg" />
     </div>
 
     <body>
@@ -715,7 +781,7 @@
             <script src="https://cdn.tailwindcss.com"></script>
             <style>
                 /* Styling untuk garis pemisah */
-                
+
                 .garis-pemisah {
                     border: 0;
                     height: 2px;
@@ -775,7 +841,7 @@
             let messageCount = 0;
 
             // Listen for new incoming messages
-            database.ref('messages').on('child_added', function(snapshot) {
+            database.ref('messages').on('child_added', function (snapshot) {
                 const message = snapshot.val().message;
                 const timestamp = snapshot.val().timestamp;
                 const reply = snapshot.val().reply || "No reply yet";
@@ -803,7 +869,7 @@
 
         <style>
             /* Ensure chat box is scrollable */
-            
+
             #chatBox {
                 overflow-y: auto;
                 /* Enable vertical scrolling */
@@ -812,18 +878,22 @@
                 padding-right: 10px;
                 /* Ensure space for scroll */
             }
+
             /* Additional responsive styling */
-            
+
             @media (max-width: 640px) {
                 .w-full {
                     width: 100%;
                 }
+
                 .max-w-4xl {
                     max-width: 100%;
                 }
+
                 .p-4 {
                     padding: 16px;
                 }
+
                 .mb-4 {
                     margin-bottom: 16px;
                 }
@@ -908,16 +978,18 @@
                     <i class="fas fa-info-circle"></i>
                 </a>
                 <!-- Using Font Awesome icons -->
-                <button class="nav-button" onclick="window.location.href='https://www.instagram.com/elnathanershop/profilecard/?igsh=bndlMzBxNzQ2ZzA';">
-            <i class="fab fa-instagram"></i>
-        </button>
+                <button class="nav-button"
+                    onclick="window.location.href='https://www.instagram.com/elnathanershop/profilecard/?igsh=bndlMzBxNzQ2ZzA';">
+                    <i class="fab fa-instagram"></i>
+                </button>
 
-                <button class="nav-button" onclick="window.location.href='https://shopee.co.id/ethanelnathan1?categoryId=100011&entryPoint=ShopByPDP&itemId=25839296191';">
-            <i class="fas fa-shopping-cart"></i>
-        </button>
+                <button class="nav-button"
+                    onclick="window.location.href='https://shopee.co.id/ethanelnathan1?categoryId=100011&entryPoint=ShopByPDP&itemId=25839296191';">
+                    <i class="fas fa-shopping-cart"></i>
+                </button>
                 <button class="nav-button" onclick="window.location.href='https://wa.me/6283180667700';">
-            <i class="fas fa-phone-alt"></i>
-        </button>
+                    <i class="fas fa-phone-alt"></i>
+                </button>
             </div>
 
             <!-- Product Section Header -->
@@ -927,43 +999,6 @@
             <!-- Product Listings -->
             <div class="max-w-7xl mx-auto">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <!-- Product 1 -->
-                            <div class="bg-white p-4 rounded-lg shadow-md">
-                                <div class="flex justify-between items-center mb-2">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-star text-yellow-500"></i>
-                                        <span class="ml-1 text-sm">5.0</span>
-                                    </div>
-                                    <span class="text-xs text-gray-500">AD</span>
-                                </div>
-                                <a
-                                    href="https://shopee.co.id/KAOS-DENGAN-DESAIN-DOGE-TO-MARS-i.1119999704.28624647441?sp_atk=fdb80b89-19a4-4766-8866-24733d83dfb2">
-                                    <img alt="Looney Tunes T-Shirt" class="w-full h-64 object-cover mb-4"
-                                        src="https://down-id.img.susercontent.com/file/id-11134207-7rask-m5gui5oenxy05a@resize_w450_nl.webp" />
-                                </a>
-                                <div class="bg-black text-white text-center py-1 mb-2">30% off</div>
-                                <p class="text-xs text-gray-500 mb-2">Min. pembelian Rp500.000, maks. potongan Rp150.000</p>
-                                <h3 class="text-lg font-semibold mb-1">LEMBUT, ADEM, DAN SUPER NYAMAN – DOGE CRYPTO COIN GO TO MARS
-                                    <span class="text-blue-500">VIP</span>
-                                </h3>
-                                <p class="text-sm text-gray-700 mb-2">KAOS DENGAN DESAIN DOGE TO MARS</p>
-                                <p class="text-red-500 text-lg font-bold">Dari Rp 120.999 <span class="line-through text-gray-500">Rp
-                                        199.000</span> -27%</p>
-                                <div class="flex justify-between items-center mt-2">
-                                    <div>
-                                        <a href="https://link.dana.id/paymentlink?params=[orderId=76xp379e]" class="payment-other-btn" target="_blank">
-                                           Bayar Via Dana IDR
-                                        </a>
-                            
-                                        <!-- Container untuk menampung pesan baru -->
-                                        <div id="messageContainer"></div>
-                            
-                                    </div>
-                                    <button onclick="toggleFavorite(this, 'MANGO KIDS VIP', 'Rp 219.000')">
-                                        <i class="far fa-heart text-gray-500"></i>
-                                    </button>
-                                </div>
-                            </div>
                     <!-- Product 1 -->
                     <div class="bg-white p-4 rounded-lg shadow-md">
                         <div class="flex justify-between items-center mb-2">
@@ -973,32 +1008,78 @@
                             </div>
                             <span class="text-xs text-gray-500">AD</span>
                         </div>
-                        <a href="https://shopee.co.id/KAOS-COTTON-COMBED-30S-PREMIUM-LEMBUT-ADEM-DAN-SUPER-NYAMAN-%E2%80%93-PAS-BUAT-PECINTA-KOPI-KUCING-i.1119999704.26570844260?sp_atk=145ff085-cd5a-4838-b8d1-b009b978a026">
-                            <img alt="Looney Tunes T-Shirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/d4/98/91/d49891d73edbdd204c37e00f14130c47.jpg" />
+                        <a
+                            href="https://shopee.co.id/KAOS-DENGAN-DESAIN-DOGE-TO-MARS-i.1119999704.28624647441?sp_atk=fdb80b89-19a4-4766-8866-24733d83dfb2">
+                            <img alt="Looney Tunes T-Shirt" class="w-full h-64 object-cover mb-4"
+                                src="https://down-id.img.susercontent.com/file/id-11134207-7rask-m5gui5oenxy05a@resize_w450_nl.webp" />
                         </a>
                         <div class="bg-black text-white text-center py-1 mb-2">30% off</div>
                         <p class="text-xs text-gray-500 mb-2">Min. pembelian Rp500.000, maks. potongan Rp150.000</p>
-                        <h3 class="text-lg font-semibold mb-1">LEMBUT, ADEM, DAN SUPER NYAMAN – PAS BUAT PECINTA KOPI & KUCING
-                            <span class="text-blue-500">VIP</span></h3>
-                        <p class="text-sm text-gray-700 mb-2">KAOS COTTON COMBED 30S PREMIUM</p>
-                        <p class="text-red-500 text-lg font-bold">Dari Rp 149.999 <span class="line-through text-gray-500">Rp
-                        299.000</span> -27%</p>
+                        <h3 class="text-lg font-semibold mb-1">LEMBUT, ADEM, DAN SUPER NYAMAN – DOGE CRYPTO COIN GO TO
+                            MARS
+                            <span class="text-blue-500">VIP</span>
+                        </h3>
+                        <p class="text-sm text-gray-700 mb-2">KAOS DENGAN DESAIN DOGE TO MARS</p>
+                        <p class="text-red-500 text-lg font-bold">Dari Rp 120.999 <span
+                                class="line-through text-gray-500">Rp
+                                199.000</span> -27%</p>
                         <div class="flex justify-between items-center mt-2">
                             <div>
-                                <!-- Tombol untuk menampilkan pesan untuk Produk 1 --><button class="buy-now-btn" onclick="showNewMessage('product1', this)">Buy Now for Pay Pal</button>
-                                <div id="messageContainer1" class="message-container"></div>
-                                <!-- Tombol Pembayaran Lainnya -->
-                                <a href="pembayaran.html" class="payment-other-btn" target="_blank">
-                            Pembayaran Lainnya
-                        </a>
+                                <a href="https://link.dana.id/paymentlink?params=[orderId=76xp379e]"
+                                    class="payment-other-btn" target="_blank">
+                                    Bayar Via Dana IDR
+                                </a>
 
                                 <!-- Container untuk menampung pesan baru -->
                                 <div id="messageContainer"></div>
 
                             </div>
                             <button onclick="toggleFavorite(this, 'MANGO KIDS VIP', 'Rp 219.000')">
-                        <i class="far fa-heart text-gray-500"></i>
-                    </button>
+                                <i class="far fa-heart text-gray-500"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Product 1 -->
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <div class="flex justify-between items-center mb-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-500"></i>
+                                <span class="ml-1 text-sm">5.0</span>
+                            </div>
+                            <span class="text-xs text-gray-500">AD</span>
+                        </div>
+                        <a
+                            href="https://shopee.co.id/KAOS-COTTON-COMBED-30S-PREMIUM-LEMBUT-ADEM-DAN-SUPER-NYAMAN-%E2%80%93-PAS-BUAT-PECINTA-KOPI-KUCING-i.1119999704.26570844260?sp_atk=145ff085-cd5a-4838-b8d1-b009b978a026">
+                            <img alt="Looney Tunes T-Shirt" class="w-full h-64 object-cover mb-4"
+                                src="https://i.pinimg.com/736x/d4/98/91/d49891d73edbdd204c37e00f14130c47.jpg" />
+                        </a>
+                        <div class="bg-black text-white text-center py-1 mb-2">30% off</div>
+                        <p class="text-xs text-gray-500 mb-2">Min. pembelian Rp500.000, maks. potongan Rp150.000</p>
+                        <h3 class="text-lg font-semibold mb-1">LEMBUT, ADEM, DAN SUPER NYAMAN – PAS BUAT PECINTA KOPI &
+                            KUCING
+                            <span class="text-blue-500">VIP</span>
+                        </h3>
+                        <p class="text-sm text-gray-700 mb-2">KAOS COTTON COMBED 30S PREMIUM</p>
+                        <p class="text-red-500 text-lg font-bold">Dari Rp 149.999 <span
+                                class="line-through text-gray-500">Rp
+                                299.000</span> -27%</p>
+                        <div class="flex justify-between items-center mt-2">
+                            <div>
+                                <!-- Tombol untuk menampilkan pesan untuk Produk 1 --><button class="buy-now-btn"
+                                    onclick="showNewMessage('product1', this)">Buy Now for Pay Pal</button>
+                                <div id="messageContainer1" class="message-container"></div>
+                                <!-- Tombol Pembayaran Lainnya -->
+                                <a href="pembayaran.html" class="payment-other-btn" target="_blank">
+                                    Pembayaran Lainnya
+                                </a>
+
+                                <!-- Container untuk menampung pesan baru -->
+                                <div id="messageContainer"></div>
+
+                            </div>
+                            <button onclick="toggleFavorite(this, 'MANGO KIDS VIP', 'Rp 219.000')">
+                                <i class="far fa-heart text-gray-500"></i>
+                            </button>
                         </div>
                     </div>
                     <!-- Product 2 -->
@@ -1010,30 +1091,34 @@
                             </div>
                             <span class="text-xs text-gray-500">AD</span>
                         </div>
-                        <a href="http://127.0.0.1:3000/c:/Users/Asus/OneDrive/Documents/CODING GEME SEMENTARA/TYPE SHOOOPPPPPPEEEEE.html">
-                            <img alt="Oversize Limited Bundle" class="w-full h-64 object-cover mb-4" src="https://storage.googleapis.com/a1aa/image/wMR5yOAKfi1qSKQCPpf9yZzZVj4sMlRsdHXefcdExum3pawPB.jpg" />
+                        <a
+                            href="http://127.0.0.1:3000/c:/Users/Asus/OneDrive/Documents/CODING GEME SEMENTARA/TYPE SHOOOPPPPPPEEEEE.html">
+                            <img alt="Oversize Limited Bundle" class="w-full h-64 object-cover mb-4"
+                                src="https://storage.googleapis.com/a1aa/image/wMR5yOAKfi1qSKQCPpf9yZzZVj4sMlRsdHXefcdExum3pawPB.jpg" />
                         </a>
                         <div class="bg-black text-white text-center py-1 mb-2">10% off</div>
                         <p class="text-xs text-gray-500 mb-2">Min. pembelian Rp200.000, maks. potongan Rp20.000</p>
-                        <h3 class="text-lg font-semibold mb-1">KAOS POLOS TERBUAT DARI COTTON COMBED 30S, LEMBUT, NYAMAN, DAN TAHAN LAMA<span class="text-blue-500">VIP</span></h3>
+                        <h3 class="text-lg font-semibold mb-1">KAOS POLOS TERBUAT DARI COTTON COMBED 30S, LEMBUT,
+                            NYAMAN, DAN TAHAN LAMA<span class="text-blue-500">VIP</span></h3>
                         <p class="text-sm text-gray-700 mb-2">KAOS MEREK Estylo.Co</p>
                         <p class="text-red-500 text-lg font-bold">Rp 50.000 <span class="line-through text-gray-500">Rp
-                        100.000</span> -73%</p>
+                                100.000</span> -73%</p>
                         <div class="flex justify-between items-center mt-2">
                             <div>
-                                <!-- Tombol untuk menampilkan pesan untuk Produk 1 --><button class="buy-now-btn" onclick="showNewMessage('product2', this)">Buy Now for Pay Pal</button>
+                                <!-- Tombol untuk menampilkan pesan untuk Produk 1 --><button class="buy-now-btn"
+                                    onclick="showNewMessage('product2', this)">Buy Now for Pay Pal</button>
                                 <div id="messageContainer2" class="message-container"></div>
                                 <!-- Tombol Pembayaran Lainnya -->
                                 <a href="pembayaran.html" class="payment-other-btn" target="_blank">
-                            Pembayaran Lainnya
-                        </a>
+                                    Pembayaran Lainnya
+                                </a>
 
                                 <!-- Container untuk menampung pesan baru -->
                                 <div id="messageContainer"></div>
                             </div>
                             <button onclick="toggleFavorite(this, 'Third Day VIP', 'Rp 240.000')">
-                        <i class="far fa-heart text-gray-500"></i>
-                    </button>
+                                <i class="far fa-heart text-gray-500"></i>
+                            </button>
                         </div>
                     </div>
                     <!-- Product 3 -->
@@ -1045,30 +1130,36 @@
                             </div>
                             <span class="text-xs text-gray-500">AD</span>
                         </div>
-                        <a href="https://shopee.co.id/Kaos-Cotton-Combed-30s-Super-Nyaman-dengan-Desain-Be-Kind-%E2%80%93-Tunjukkan-Gayamu-dan-Sebarkan-Energi-Positif!-i.1119999704.27920750533?sp_atk=ec42f227-b010-4be0-87c7-287efd105363">
-                            <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/0a/24/92/0a2492990c3ef6d5af4115979d1a2346.jpg" />
+                        <a
+                            href="https://shopee.co.id/Kaos-Cotton-Combed-30s-Super-Nyaman-dengan-Desain-Be-Kind-%E2%80%93-Tunjukkan-Gayamu-dan-Sebarkan-Energi-Positif!-i.1119999704.27920750533?sp_atk=ec42f227-b010-4be0-87c7-287efd105363">
+                            <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4"
+                                src="https://i.pinimg.com/736x/0a/24/92/0a2492990c3ef6d5af4115979d1a2346.jpg" />
                         </a>
                         <div class="bg-black text-white text-center py-1 mb-2">3% Cashback</div>
                         <p class="text-xs text-gray-500 mb-2">Tanpa min. pembelian.</p>
-                        <h3 class="text-lg font-semibold mb-1">KAOS COTTON COMBED 30S SUPER NYAMAN DENGAN DESAIN "BE KIND" – TUNJUKKAN GAYAMU DAN SEBARKAN ENERGI POSITIF! <span class="text-blue-500">VIP</span></h3>
+                        <h3 class="text-lg font-semibold mb-1">KAOS COTTON COMBED 30S SUPER NYAMAN DENGAN DESAIN "BE
+                            KIND" – TUNJUKKAN GAYAMU DAN SEBARKAN ENERGI POSITIF! <span class="text-blue-500">VIP</span>
+                        </h3>
                         <p class="text-sm text-gray-700 mb-2">KAOS MEREK Estylo.Co</p>
-                        <p class="text-red-500 text-lg font-bold">Dari Rp 99.999 <span class="line-through text-gray-500">Rp
-                        119.000</span> -56%</p>
+                        <p class="text-red-500 text-lg font-bold">Dari Rp 99.999 <span
+                                class="line-through text-gray-500">Rp
+                                119.000</span> -56%</p>
                         <div class="flex justify-between items-center mt-2">
                             <div>
-                                <!-- Tombol untuk menampilkan pesan untuk Produk 1 --><button class="buy-now-btn" onclick="showNewMessage('product3', this)">Buy Now for Pay Pal</button>
+                                <!-- Tombol untuk menampilkan pesan untuk Produk 1 --><button class="buy-now-btn"
+                                    onclick="showNewMessage('product3', this)">Buy Now for Pay Pal</button>
                                 <div id="messageContainer3" class="message-container"></div>
                                 <!-- Tombol Pembayaran Lainnya -->
                                 <a href="pembayaran.html" class="payment-other-btn" target="_blank">
-                            Pembayaran Lainnya
-                        </a>
+                                    Pembayaran Lainnya
+                                </a>
 
                                 <!-- Container untuk menampung pesan baru -->
                                 <div id="messageContainer"></div>
                             </div>
                             <button onclick="toggleFavorite(this, 'Hush Puppies VIP', 'Rp 219.000')">
-                        <i class="far fa-heart text-gray-500"></i>
-                    </button>
+                                <i class="far fa-heart text-gray-500"></i>
+                            </button>
                         </div>
                     </div>
                     <!-- Product 4 -->
@@ -1080,30 +1171,35 @@
                             </div>
                             <span class="text-xs text-gray-500">AD</span>
                         </div>
-                        <a href="https://shopee.co.id/Born-to-Play-Baseball-Tunjukkan-Semangat-Olahragamu-i.1119999704.27670249054?sp_atk=e1c80e8a-cfd5-4afc-80d5-f48e486e7de8">
-                            <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/c9/e6/b2/c9e6b2d8f1eeff16744b6a621ba810e8.jpg" />
+                        <a
+                            href="https://shopee.co.id/Born-to-Play-Baseball-Tunjukkan-Semangat-Olahragamu-i.1119999704.27670249054?sp_atk=e1c80e8a-cfd5-4afc-80d5-f48e486e7de8">
+                            <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4"
+                                src="https://i.pinimg.com/736x/c9/e6/b2/c9e6b2d8f1eeff16744b6a621ba810e8.jpg" />
                         </a>
                         <div class="bg-black text-white text-center py-1 mb-2">3% Cashback</div>
                         <p class="text-xs text-gray-500 mb-2">Tanpa min. pembelian.</p>
-                        <h3 class="text-lg font-semibold mb-1">BORN TO PLAY BASEBALL - TUNJUKKAN SEMANGAT OLAHRAGAMU <span class="text-blue-500">VIP</span></h3>
+                        <h3 class="text-lg font-semibold mb-1">BORN TO PLAY BASEBALL - TUNJUKKAN SEMANGAT OLAHRAGAMU
+                            <span class="text-blue-500">VIP</span></h3>
                         <p class="text-sm text-gray-700 mb-2">KAOS MEREK Estylo.Co</p>
-                        <p class="text-red-500 text-lg font-bold">Dari Rp 79.999 <span class="line-through text-gray-500">Rp
-                        189.000</span> -56%</p>
+                        <p class="text-red-500 text-lg font-bold">Dari Rp 79.999 <span
+                                class="line-through text-gray-500">Rp
+                                189.000</span> -56%</p>
                         <div class="flex justify-between items-center mt-2">
                             <div>
-                                <!-- Tombol untuk menampilkan pesan untuk Produk 1 --><button class="buy-now-btn" onclick="showNewMessage('product4', this)">Buy Now for Pay Pal</button>
+                                <!-- Tombol untuk menampilkan pesan untuk Produk 1 --><button class="buy-now-btn"
+                                    onclick="showNewMessage('product4', this)">Buy Now for Pay Pal</button>
                                 <div id="messageContainer4" class="message-container"></div>
                                 <!-- Tombol Pembayaran Lainnya -->
                                 <a href="pembayaran.html" class="payment-other-btn" target="_blank">
-                            Pembayaran Lainnya
-                        </a>
+                                    Pembayaran Lainnya
+                                </a>
 
                                 <!-- Container untuk menampung pesan baru -->
                                 <div id="messageContainer"></div>
                             </div>
                             <button onclick="toggleFavorite(this, 'Hush Puppies VIP', 'Rp 219.000')">
-                        <i class="far fa-heart text-gray-500"></i>
-                    </button>
+                                <i class="far fa-heart text-gray-500"></i>
+                            </button>
                         </div>
                     </div>
                     <!-- Product 5 -->
@@ -1115,31 +1211,37 @@
                             </div>
                             <span class="text-xs text-gray-500">AD</span>
                         </div>
-                        <a href="https://shopee.co.id/Desain-Eksklusif-'Kaguya-Tenji'-Tampilkan-Sisi-Artistikmu-i.1119999704.27470253131">
-                            <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/32/a7/02/32a7029af833af0a4be3585715028ec0.jpg" />
+                        <a
+                            href="https://shopee.co.id/Desain-Eksklusif-'Kaguya-Tenji'-Tampilkan-Sisi-Artistikmu-i.1119999704.27470253131">
+                            <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4"
+                                src="https://i.pinimg.com/736x/32/a7/02/32a7029af833af0a4be3585715028ec0.jpg" />
                         </a>
                         <div class="bg-black text-white text-center py-1 mb-2">3% Cashback</div>
                         <p class="text-xs text-gray-500 mb-2">Tanpa min. pembelian.</p>
-                        <h3 class="text-lg font-semibold mb-1">DESAIN EKSKLUSIF 'KAGUYA & TENJI' - TAMPILKAN SISI ARTISTIKMU
-                            <span class="text-blue-500">VIP</span></h3>
+                        <h3 class="text-lg font-semibold mb-1">DESAIN EKSKLUSIF 'KAGUYA & TENJI' - TAMPILKAN SISI
+                            ARTISTIKMU
+                            <span class="text-blue-500">VIP</span>
+                        </h3>
                         <p class="text-sm text-gray-700 mb-2">KAOS MEREK Estylo.Co</p>
-                        <p class="text-red-500 text-lg font-bold">Dari Rp 79.999 <span class="line-through text-gray-500">Rp
-                        189.000</span> -56%</p>
+                        <p class="text-red-500 text-lg font-bold">Dari Rp 79.999 <span
+                                class="line-through text-gray-500">Rp
+                                189.000</span> -56%</p>
                         <div class="flex justify-between items-center mt-2">
                             <div>
-                                <!-- Tombol untuk menampilkan pesan untuk Produk 1 --><button class="buy-now-btn" onclick="showNewMessage('product5', this)">Buy Now for Pay Pal</button>
+                                <!-- Tombol untuk menampilkan pesan untuk Produk 1 --><button class="buy-now-btn"
+                                    onclick="showNewMessage('product5', this)">Buy Now for Pay Pal</button>
                                 <div id="messageContainer5" class="message-container"></div>
                                 <!-- Tombol Pembayaran Lainnya -->
                                 <a href="pembayaran.html" class="payment-other-btn" target="_blank">
-                            Pembayaran Lainnya
-                        </a>
+                                    Pembayaran Lainnya
+                                </a>
 
                                 <!-- Container untuk menampung pesan baru -->
                                 <div id="messageContainer"></div>
                             </div>
                             <button onclick="toggleFavorite(this, 'Hush Puppies VIP', 'Rp 219.000')">
-                        <i class="far fa-heart text-gray-500"></i>
-                    </button>
+                                <i class="far fa-heart text-gray-500"></i>
+                            </button>
                         </div>
                     </div>
                     <!-- Product 3 -->
@@ -1151,30 +1253,35 @@
                             </div>
                             <span class="text-xs text-gray-500">AD</span>
                         </div>
-                        <a href="https://shopee.co.id/Be-Kind-Pesan-Positif-dalam-Gaya-Fashionmu-i.1119999704.25839296191?sp_atk=5d5d3494-46b4-47ea-bc7a-6d1587b6042d">
-                            <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/0a/7d/7f/0a7d7f681a6c103aac7174243b2ed4d4.jpg" />
+                        <a
+                            href="https://shopee.co.id/Be-Kind-Pesan-Positif-dalam-Gaya-Fashionmu-i.1119999704.25839296191?sp_atk=5d5d3494-46b4-47ea-bc7a-6d1587b6042d">
+                            <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4"
+                                src="https://i.pinimg.com/736x/0a/7d/7f/0a7d7f681a6c103aac7174243b2ed4d4.jpg" />
                         </a>
                         <div class="bg-black text-white text-center py-1 mb-2">3% Cashback</div>
                         <p class="text-xs text-gray-500 mb-2">Tanpa min. pembelian.</p>
-                        <h3 class="text-lg font-semibold mb-1">BE KIND - PESAN POSITIF DALAM GAYA FASHIONMU <span class="text-blue-500">VIP</span></h3>
+                        <h3 class="text-lg font-semibold mb-1">BE KIND - PESAN POSITIF DALAM GAYA FASHIONMU <span
+                                class="text-blue-500">VIP</span></h3>
                         <p class="text-sm text-gray-700 mb-2">KAOS MEREK Estylo.Co</p>
-                        <p class="text-red-500 text-lg font-bold">Dari Rp 79.999 <span class="line-through text-gray-500">Rp
-                        189.000</span> -56%</p>
+                        <p class="text-red-500 text-lg font-bold">Dari Rp 79.999 <span
+                                class="line-through text-gray-500">Rp
+                                189.000</span> -56%</p>
                         <div class="flex justify-between items-center mt-2">
                             <div>
-                                <!-- Tombol untuk menampilkan pesan untuk Produk 1 --><button class="buy-now-btn" onclick="showNewMessage('product6', this)">Buy Now for Pay Pal</button>
+                                <!-- Tombol untuk menampilkan pesan untuk Produk 1 --><button class="buy-now-btn"
+                                    onclick="showNewMessage('product6', this)">Buy Now for Pay Pal</button>
                                 <div id="messageContainer6" class="message-container"></div>
                                 <!-- Tombol Pembayaran Lainnya -->
                                 <a href="pembayaran.html" class="payment-other-btn" target="_blank">
-                            Pembayaran Lainnya
-                        </a>
+                                    Pembayaran Lainnya
+                                </a>
 
                                 <!-- Container untuk menampung pesan baru -->
                                 <div id="messageContainer"></div>
                             </div>
                             <button onclick="toggleFavorite(this, 'Hush Puppies VIP', 'Rp 219.000')">
-                        <i class="far fa-heart text-gray-500"></i>
-                    </button>
+                                <i class="far fa-heart text-gray-500"></i>
+                            </button>
                         </div>
                     </div>
                     <!-- Product 3 -->
@@ -1186,19 +1293,23 @@
                             </div>
                             <span class="text-xs text-gray-500">AD</span>
                         </div>
-                        <a href="https://shopee.co.id/ethanelnathan1?categoryId=100011&entryPoint=ShopByPDP&itemId=25839296191">
-                            <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/a4/9b/c2/a49bc299fd0b99317348a533ddc352d4.jpg" />
+                        <a
+                            href="https://shopee.co.id/ethanelnathan1?categoryId=100011&entryPoint=ShopByPDP&itemId=25839296191">
+                            <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4"
+                                src="https://i.pinimg.com/736x/a4/9b/c2/a49bc299fd0b99317348a533ddc352d4.jpg" />
                         </a>
                         <div class="bg-black text-white text-center py-1 mb-2">3% Cashback</div>
                         <p class="text-xs text-gray-500 mb-2">Tanpa min. pembelian.</p>
-                        <h3 class="text-lg font-semibold mb-1">SILAHKAN CHECK SHOPEE UNTUK PRODUK LAINNYA ATAU MENGHUBUNGI CONTACT KAMI<span class="text-blue-500">EL NATHAN SHOP DESAIN KAOS</span></h3>
+                        <h3 class="text-lg font-semibold mb-1">SILAHKAN CHECK SHOPEE UNTUK PRODUK LAINNYA ATAU
+                            MENGHUBUNGI CONTACT KAMI<span class="text-blue-500">EL NATHAN SHOP DESAIN KAOS</span></h3>
                         <p class="text-sm text-gray-700 mb-2">EL NATHAN SHOPDESAIN KAOS</p>
-                        <p class="text-red-500 text-lg font-bold">SENIN SAMPAI JUM'AT<span class="line-through text-gray-500">SABTU - AHAD </span></p>
+                        <p class="text-red-500 text-lg font-bold">SENIN SAMPAI JUM'AT<span
+                                class="line-through text-gray-500">SABTU - AHAD </span></p>
                         <div class="flex justify-between items-center mt-2">
                             <div></div>
                             <button onclick="toggleFavorite(this, 'Hush Puppies VIP', 'Rp 219.000')">
-                        <i class="far fa-heart text-gray-500"></i>
-                    </button>
+                                <i class="far fa-heart text-gray-500"></i>
+                            </button>
                         </div>
                     </div>
                     <!-- Product 3 -->
@@ -1210,19 +1321,23 @@
                             </div>
                             <span class="text-xs text-gray-500">AD</span>
                         </div>
-                        <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp">
-                            <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/22/f1/6b/22f16b6174f6bb94558303be1af7d384.jpg" />
+                        <a
+                            href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp">
+                            <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4"
+                                src="https://i.pinimg.com/736x/22/f1/6b/22f16b6174f6bb94558303be1af7d384.jpg" />
                         </a>
                         <div class="bg-black text-white text-center py-1 mb-2">3% Cashback</div>
                         <p class="text-xs text-gray-500 mb-2">Tanpa min. pembelian.</p>
-                        <h3 class="text-lg font-semibold mb-1">SILAHKAN CHECK SHOPEE UNTUK PRODUK LAINNYA ATAU MENGHUBUNGI CONTACT KAMI<span class="text-blue-500">EL NATHAN SHOP DESAIN KAOS</span></h3>
+                        <h3 class="text-lg font-semibold mb-1">SILAHKAN CHECK SHOPEE UNTUK PRODUK LAINNYA ATAU
+                            MENGHUBUNGI CONTACT KAMI<span class="text-blue-500">EL NATHAN SHOP DESAIN KAOS</span></h3>
                         <p class="text-sm text-gray-700 mb-2">EL NATHAN SHOPDESAIN KAOS</p>
-                        <p class="text-red-500 text-lg font-bold">SENIN SAMPAI JUM'AT<span class="line-through text-gray-500">SABTU - AHAD </span></p>
+                        <p class="text-red-500 text-lg font-bold">SENIN SAMPAI JUM'AT<span
+                                class="line-through text-gray-500">SABTU - AHAD </span></p>
                         <div class="flex justify-between items-center mt-2">
                             <div></div>
                             <button onclick="toggleFavorite(this, 'Hush Puppies VIP', 'Rp 219.000')">
-                        <i class="far fa-heart text-gray-500"></i>
-                    </button>
+                                <i class="far fa-heart text-gray-500"></i>
+                            </button>
                         </div>
                     </div>
                     <!-- Product 3 -->
@@ -1235,18 +1350,21 @@
                             <span class="text-xs text-gray-500">AD</span>
                         </div>
                         <a href="https://www.instagram.com/elnathanershop/profilecard/?igsh=bndlMzBxNzQ2ZzA3">
-                            <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4" src="https://i.pinimg.com/736x/81/01/f6/8101f6bf86e8d9be7458fa47060cf820.jpg" />
+                            <img alt="Hush Puppies Sweatshirt" class="w-full h-64 object-cover mb-4"
+                                src="https://i.pinimg.com/736x/81/01/f6/8101f6bf86e8d9be7458fa47060cf820.jpg" />
                         </a>
                         <div class="bg-black text-white text-center py-1 mb-2">3% Cashback</div>
                         <p class="text-xs text-gray-500 mb-2">Tanpa min. pembelian.</p>
-                        <h3 class="text-lg font-semibold mb-1">SILAHKAN CHECK SHOPEE UNTUK PRODUK LAINNYA ATAU MENGHUBUNGI CONTACT KAMI<span class="text-blue-500">EL NATHAN SHOP DESAIN KAOS</span></h3>
+                        <h3 class="text-lg font-semibold mb-1">SILAHKAN CHECK SHOPEE UNTUK PRODUK LAINNYA ATAU
+                            MENGHUBUNGI CONTACT KAMI<span class="text-blue-500">EL NATHAN SHOP DESAIN KAOS</span></h3>
                         <p class="text-sm text-gray-700 mb-2">EL NATHAN SHOPDESAIN KAOS</p>
-                        <p class="text-red-500 text-lg font-bold">SENIN SAMPAI JUM'AT<span class="line-through text-gray-500">SABTU - AHAD </span></p>
+                        <p class="text-red-500 text-lg font-bold">SENIN SAMPAI JUM'AT<span
+                                class="line-through text-gray-500">SABTU - AHAD </span></p>
                         <div class="flex justify-between items-center mt-2">
                             <div></div>
                             <button onclick="toggleFavorite(this, 'Hush Puppies VIP', 'Rp 219.000')">
-                        <i class="far fa-heart text-gray-500"></i>
-                    </button>
+                                <i class="far fa-heart text-gray-500"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1259,12 +1377,16 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                         <div>
                             <h1 class="text-xl font-bold mb-4">EL NATHAN SHOP</h1>
-                            <p class="mb-4">Sebagai pusat fashion online terpercaya, kami berkomitmen untuk menghadirkan produk berkualitas yang memenuhi kebutuhan gaya Anda. Mulai dari produk lokal hingga internasional, kami berfokus memberikan kenyamanan dan kepuasan
-                                berbelanja bagi Anda. <span class="font-bold">Bersama EL NATHAN SHOP, Anda tampil percaya diri.</span></p>
+                            <p class="mb-4">Sebagai pusat fashion online terpercaya, kami berkomitmen untuk menghadirkan
+                                produk berkualitas yang memenuhi kebutuhan gaya Anda. Mulai dari produk lokal hingga
+                                internasional, kami berfokus memberikan kenyamanan dan kepuasan
+                                berbelanja bagi Anda. <span class="font-bold">Bersama EL NATHAN SHOP, Anda tampil
+                                    percaya diri.</span></p>
                             <h2 class="font-bold mb-2">Layanan Pengaduan Konsumen</h2>
                             <p class="mb-2 font-bold">EL NATHAN SHOP</p>
                             <p class="mb-2">E-mail: elnathanshop@gmail.com</p>
-                            <p class="mb-2 font-bold">Direktorat Jenderal Perlindungan Konsumen dan Tertib Niaga Kementerian Perdagangan RI</p>
+                            <p class="mb-2 font-bold">Direktorat Jenderal Perlindungan Konsumen dan Tertib Niaga
+                                Kementerian Perdagangan RI</p>
                             <p class="mb-2">WhatsApp: +62 831 806 667 770</p>
                         </div>
                         <div>
@@ -1300,36 +1422,51 @@
                     <div class="mt-10">
                         <h2 class="font-bold mb-4">TEMUKAN KAMI</h2>
                         <div class="flex space-x-4 mb-4">
-                            <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-facebook fa-2x"></i></a>
+                            <a
+                                href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i
+                                    class="fab fa-facebook fa-2x"></i></a>
                             <a href="https://www.instagram.com/elnathanershop/profilecard/?igsh=bndlMzBxNzQ2ZzA3"><i
-                            class="fab fa-instagram fa-2x"></i></a>
-                            <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-twitter fa-2x"></i></a>
-                            <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-pinterest fa-2x"></i></a>
-                            <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fas fa-rss fa-2x"></i></a>
-                            <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-youtube fa-2x"></i></a>
-                            <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-tiktok fa-2x"></i></a>
-                            <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i class="fab fa-linkedin fa-2x"></i></a>
+                                    class="fab fa-instagram fa-2x"></i></a>
+                            <a
+                                href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i
+                                    class="fab fa-twitter fa-2x"></i></a>
+                            <a
+                                href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i
+                                    class="fab fa-pinterest fa-2x"></i></a>
+                            <a
+                                href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i
+                                    class="fas fa-rss fa-2x"></i></a>
+                            <a
+                                href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i
+                                    class="fab fa-youtube fa-2x"></i></a>
+                            <a
+                                href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i
+                                    class="fab fa-tiktok fa-2x"></i></a>
+                            <a
+                                href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"><i
+                                    class="fab fa-linkedin fa-2x"></i></a>
                         </div>
                         <p>Anda punya pertanyaan? Kami siap membantu.</p>
                         <p><a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"
-                                class="underline font-bold">Kontak</a> | <a href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"
+                                class="underline font-bold">Kontak</a> | <a
+                                href="https://www.google.com/search?q=el+nathan+shop+desain+kaos&sca_esv=77c2321d50c5a701&sxsrf=ADLYWIIstuk4GFrHpUHNWLGT7I3Szlt7FA%3A1734581147306&ei=m5tjZ9mlEoGx4-EPysHv-Qo&ved=0ahUKEwiZ3_mo-rKKAxWB2DgGHcrgO68Q4dUDCBA&uact=5&oq=el+nathan+shop+desain+kaos&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmVsIG5hdGhhbiBzaG9wIGRlc2FpbiBrYW9zMgQQIxgnMgQQIxgnMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBTIIEAAYgAQYogRIxypQ6AdYjClwAngBkAEAmAH1AaABgw2qAQYxNS4yLjG4AQPIAQD4AQGYAhOgAoQMwgIKEAAYsAMY1gQYR8ICBxAhGKABGArCAgQQIRgVmAMA4gMFEgExIECIBgGQBgiSBwQxNi4zoAfTcQ&sclient=gws-wiz-serp"
                                 class="underline font-bold">Bantuan</a></p>
                     </div>
                 </div>
             </footer>
             <script>
                 // Menampilkan pesan setelah 1 detik
-                setTimeout(function() {
+                setTimeout(function () {
                     document.getElementById("floatingMessage").style.display = "block";
                 }, 100);
 
                 // Menutup pesan ketika klik ikon silang
-                document.getElementById("closeBtn").onclick = function() {
+                document.getElementById("closeBtn").onclick = function () {
                     document.getElementById("floatingMessage").style.display = "none";
                 };
 
                 // Menyembunyikan pesan setelah 10 detik
-                setTimeout(function() {
+                setTimeout(function () {
                     document.getElementById("floatingMessage").style.display = "none";
                 }, 150000);
 
@@ -1453,7 +1590,7 @@
 
                     // Aksi saat tombol tutup diklik
                     const closeBtn = newMessage.querySelector('.new-close-btn');
-                    closeBtn.onclick = function() {
+                    closeBtn.onclick = function () {
                         newMessage.style.display = 'none';
                         newMessage.remove(); // Menghapus elemen pesan dari DOM
                     };
@@ -1515,6 +1652,101 @@
                         behavior: 'smooth'
                     });
                 });
+                // script.js
+                // Battery Status
+                function updateBatteryStatus() {
+                    if ('getBattery' in navigator) {
+                        navigator.getBattery().then(battery => {
+                            function updateAllBatteryInfo() {
+                                updateBatteryLevel(battery);
+                                updateChargingStatus(battery);
+                            }
+
+                            // Initial update
+                            updateAllBatteryInfo();
+
+                            // Add battery event listeners
+                            battery.addEventListener('levelchange', updateAllBatteryInfo);
+                            battery.addEventListener('chargingchange', updateAllBatteryInfo);
+                        });
+                    } else {
+                        // Fallback if Battery API not available
+                        const batteryLevel = document.getElementById('battery-level');
+                        batteryLevel.style.width = '100%';
+                        batteryLevel.textContent = '100%';
+                    }
+                }
+
+                function updateBatteryLevel(battery) {
+                    const level = battery.level * 100;
+                    const batteryLevel = document.getElementById('battery-level');
+
+                    batteryLevel.style.width = `${level}%`;
+                    batteryLevel.textContent = `${Math.round(level)}%`;
+
+                    // Update battery color based on level
+                    if (level <= 20) {
+                        batteryLevel.style.backgroundColor = '#ff4444';
+                    } else if (level <= 50) {
+                        batteryLevel.style.backgroundColor = '#ffbb33';
+                    } else {
+                        batteryLevel.style.backgroundColor = 'white';
+                    }
+                }
+
+                function updateChargingStatus(battery) {
+                    const chargingIndicator = document.querySelector('.battery-charging');
+                    if (battery.charging) {
+                        chargingIndicator.innerHTML = '⚡';
+                        chargingIndicator.classList.add('charging');
+                    } else {
+                        chargingIndicator.innerHTML = '';
+                        chargingIndicator.classList.remove('charging');
+                    }
+                }
+
+                // DateTime Update
+                function updateDateTime() {
+                    const now = new Date();
+                    const formattedDate = now.toISOString().split('T')[0];
+                    const formattedTime = now.toTimeString().split(' ')[0];
+                    const dateTimeString = `Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): ${formattedDate} ${formattedTime}`;
+
+                    document.getElementById('currentDateTime').textContent = dateTimeString;
+                }
+
+                // Profile Redirect
+                function redirectToProfile(event) {
+                    event.preventDefault();
+                    window.location.href = 'profile.html';
+                }
+
+                // Toggle Drawer
+                function toggleDrawer() {
+                    console.log('Toggle drawer menu');
+                }
+
+                // Initialize
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Set username
+                    document.getElementById('user-name').textContent = 'Current User\'s Login: elnathanwebsite';
+
+                    // Initialize battery status
+                    updateBatteryStatus();
+
+                    // Update datetime initially and start interval
+                    updateDateTime();
+                    setInterval(updateDateTime, 1000);
+
+                    // Add event listeners
+                    document.getElementById('user-name-link').addEventListener('click', redirectToProfile);
+                });
+
+                // Error handling
+                window.onerror = function (msg, url, lineNo, columnNo, error) {
+                    console.error('Error: ', msg, '\nURL: ', url, '\nLine: ', lineNo, '\nColumn: ', columnNo, '\nError object: ', error);
+                    return false;
+                };
             </script>
         </body>
 
