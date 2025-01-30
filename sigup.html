@@ -233,7 +233,7 @@
         </form>
 
         <div class="account-links">
-            <a href="index.html">I Have Account</a>
+            <a href="login.html">I Have Account</a>
         </div>
     </div>
 
@@ -294,7 +294,7 @@
 
                 document.getElementById('signupForm').reset();
                 setTimeout(() => {
-                    window.location.href = `index.html?username=${encodeURIComponent(userData.username)}`;
+                    window.location.href = `login.html?username=${encodeURIComponent(userData.username)}`;
                 }, 2000);
 
             } catch (error) {
@@ -305,91 +305,91 @@
             }
         });
         // Tambahkan fungsi untuk menyimpan di localStorage
-            function saveToLocalStorage(userData, password) {
-                localStorage.setItem('username', userData.username);
-                localStorage.setItem('email', userData.email);
-                localStorage.setItem('password', password); // Perhatian: menyimpan password di localStorage tidak aman
-                localStorage.setItem('activity', userData.activity);
-                localStorage.setItem('gender', userData.gender);
-                localStorage.setItem('age', userData.age);
-                localStorage.setItem('registrationDate', userData.registrationDate);
-                localStorage.setItem('uid', userData.uid);
-            }
+        function saveToLocalStorage(userData, password) {
+            localStorage.setItem('username', userData.username);
+            localStorage.setItem('email', userData.email);
+            localStorage.setItem('password', password); // Perhatian: menyimpan password di localStorage tidak aman
+            localStorage.setItem('activity', userData.activity);
+            localStorage.setItem('gender', userData.gender);
+            localStorage.setItem('age', userData.age);
+            localStorage.setItem('registrationDate', userData.registrationDate);
+            localStorage.setItem('uid', userData.uid);
+        }
 
-            // Modifikasi event listener form submission
-            document.getElementById('signupForm').addEventListener('submit', async (e) => {
-                e.preventDefault();
+        // Modifikasi event listener form submission
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-                const userData = {
-                    username: document.getElementById('username').value,
-                    email: document.getElementById('email').value,
-                    activity: document.getElementById('activity').value,
-                    gender: document.getElementById('gender').value,
-                    age: parseInt(document.getElementById('age').value),
-                    registrationDate: new Date().toISOString().replace('T', ' ').substr(0, 19),
-                    createdBy: 'elnathanwebsite'
-                };
-
-                const password = document.getElementById('password').value;
-                const messageElement = document.getElementById('message');
-
-                try {
-                    // Create user in Firebase Authentication
-                    const userCredential = await createUserWithEmailAndPassword(auth, userData.email, password);
-                    userData.uid = userCredential.user.uid;
-
-                    // Store in Firebase Database
-                    await set(ref(database, 'users/' + userData.uid), userData);
-
-                    // Store in localStorage
-                    saveToLocalStorage(userData, password);
-
-                    // Show success message
-                    messageElement.textContent = 'Registration successful! Data saved both in Firebase and locally.';
-                    messageElement.className = 'message success-message';
-                    messageElement.style.display = 'block';
-
-                    // Reset form and redirect
-                    document.getElementById('signupForm').reset();
-
-                    // Tambahkan timeout lebih lama agar pesan dapat dibaca
-                    setTimeout(() => {
-                        window.location.href = `index.html?username=${encodeURIComponent(userData.username)}`;
-                    }, 2000);
-
-                } catch (error) {
-                    console.error("Error: ", error);
-                    messageElement.textContent = error.message;
-                    messageElement.className = 'message error-message';
-                    messageElement.style.display = 'block';
-
-                    // Jika gagal menyimpan di Firebase, coba simpan di localStorage saja
-                    try {
-                        saveToLocalStorage(userData, password);
-                        messageElement.textContent += ' But data saved locally.';
-                    } catch (localError) {
-                        console.error("Local Storage Error: ", localError);
-                    }
-                }
-            });
-
-            // Tambahkan fungsi untuk mengecek data yang tersimpan di localStorage saat halaman dimuat
-            window.onload = function () {
-                updateDateTime();
-                setInterval(updateDateTime, 1000);
-
-                // Cek apakah ada data user yang tersimpan
-                const savedUsername = localStorage.getItem('username');
-                if (savedUsername) {
-                    console.log('Data found in localStorage for user:', savedUsername);
-                }
+            const userData = {
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                activity: document.getElementById('activity').value,
+                gender: document.getElementById('gender').value,
+                age: parseInt(document.getElementById('age').value),
+                registrationDate: new Date().toISOString().replace('T', ' ').substr(0, 19),
+                createdBy: 'elnathanwebsite'
             };
 
-            // Tambahkan fungsi untuk membersihkan localStorage (optional, untuk testing)
-            function clearLocalStorage() {
-                localStorage.clear();
-                console.log('Local storage cleared');
+            const password = document.getElementById('password').value;
+            const messageElement = document.getElementById('message');
+
+            try {
+                // Create user in Firebase Authentication
+                const userCredential = await createUserWithEmailAndPassword(auth, userData.email, password);
+                userData.uid = userCredential.user.uid;
+
+                // Store in Firebase Database
+                await set(ref(database, 'users/' + userData.uid), userData);
+
+                // Store in localStorage
+                saveToLocalStorage(userData, password);
+
+                // Show success message
+                messageElement.textContent = 'Registration successful! Data saved both in Firebase and locally.';
+                messageElement.className = 'message success-message';
+                messageElement.style.display = 'block';
+
+                // Reset form and redirect
+                document.getElementById('signupForm').reset();
+
+                // Tambahkan timeout lebih lama agar pesan dapat dibaca
+                setTimeout(() => {
+                    window.location.href = `login.html?username=${encodeURIComponent(userData.username)}`;
+                }, 2000);
+
+            } catch (error) {
+                console.error("Error: ", error);
+                messageElement.textContent = error.message;
+                messageElement.className = 'message error-message';
+                messageElement.style.display = 'block';
+
+                // Jika gagal menyimpan di Firebase, coba simpan di localStorage saja
+                try {
+                    saveToLocalStorage(userData, password);
+                    messageElement.textContent += ' But data saved locally.';
+                } catch (localError) {
+                    console.error("Local Storage Error: ", localError);
+                }
             }
+        });
+
+        // Tambahkan fungsi untuk mengecek data yang tersimpan di localStorage saat halaman dimuat
+        window.onload = function () {
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+
+            // Cek apakah ada data user yang tersimpan
+            const savedUsername = localStorage.getItem('username');
+            if (savedUsername) {
+                console.log('Data found in localStorage for user:', savedUsername);
+            }
+        };
+
+        // Tambahkan fungsi untuk membersihkan localStorage (optional, untuk testing)
+        function clearLocalStorage() {
+            localStorage.clear();
+            console.log('Local storage cleared');
+        }
     </script>
 </body>
 
