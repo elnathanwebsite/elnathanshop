@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Elnathan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #000;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: glowingBorder 2s infinite alternate;
+        }
+
+        @keyframes glowingBorder {
+            from {
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.2),
+                    0 0 20px rgba(255, 255, 255, 0.2),
+                    0 0 30px rgba(255, 255, 255, 0.2);
+            }
+
+            to {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.4),
+                    0 0 40px rgba(255, 255, 255, 0.4),
+                    0 0 60px rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        .datetime-info {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        h2 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #fff;
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .links a:hover {
+            opacity: 1;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .message {
+            display: none;
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .success-message {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+
+        .error-message {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+
+        #forgotPasswordForm {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="datetime-info" id="currentDateTime"></div>
+        <div class="datetime-info">Current User's Login: elnathanwebsite</div>
+
+        <!-- Login Form -->
+        <div id="loginForm">
+            <h2>Login</h2>
+            <form id="loginFormElement">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Enter your password">
+                </div>
+
+                <button type="submit">Login</button>
+                <div id="loginMessage" class="message"></div>
+
+                <div class="links">
+                    <a href="#" onclick="showForgotPassword()">Forgot Password?</a>
+                    <span style="color: #fff"> | </span>
+                    <a href="sigup.html">Sign Up</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <div id="forgotPasswordForm">
+            <h2>Reset Password</h2>
+            <form id="resetPasswordForm">
+                <div class="form-group">
+                    <label for="resetEmail">Email</label>
+                    <input type="email" id="resetEmail" required placeholder="Enter your email">
+                </div>
+
+                <button type="submit">Reset Password</button>
+                <div id="resetMessage" class="message"></div>
+
+                <div class="links">
+                    <a href="#" onclick="showLoginForm()">Back to Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDd8glQvhs-IvOMj6LRpJo1vYQi40DPCqM",
+            authDomain: "ethan-el-nathan.firebaseapp.com",
+            databaseURL: "https://ethan-el-nathan-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "ethan-el-nathan",
+            storageBucket: "ethan-el-nathan.firebasestorage.app",
+            messagingSenderId: "1079423989695",
+            appId: "1:1079423989695:web:9d94b8aaf4b8b692d9130a",
+            measurementId: "G-ED78MWFGRP"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+
+        // Update datetime
+        function updateDateTime() {
+            const now = new Date();
+            const formatted = now.toISOString().replace('T', ' ').substr(0, 19);
+            document.getElementById('currentDateTime').textContent =
+                `Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): ${formatted}`;
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+        // Auto-fill email from URL if available
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+            if (username) {
+                // Get user data from database to find email
+                const usersRef = ref(database, 'users');
+                get(usersRef).then((snapshot) => {
+                    const users = snapshot.val();
+                    for (let uid in users) {
+                        if (users[uid].username === username) {
+                            document.getElementById('email').value = users[uid].email;
+                            document.getElementById('password').focus();
+                            break;
+                        }
+                    }
+                });
+            }
+        };
+
+        // Login form handler
+        document.getElementById('loginFormElement').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const messageElement = document.getElementById('loginMessage');
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+                messageElement.textContent = 'Login successful!';
+                messageElement.className = 'message success-message';
+                messageElement.style.display = 'block';
+
+                // Redirect to dashboard after successful login
+                setTimeout(() => {
+                    window.location.href = 'utama.html';
+                }, 2000);
+
+            } catch (error) {
+                messageElement.textContent = error.message;
+                messageElement.className = 'message error-message';
+                messageElement.style.display = 'block';
+            }
+        });
+
+        // Reset password form handler
+        document.getElementById('resetPasswordForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('resetEmail').value;
+            const messageElement = document.getElementById('resetMessage');
+
+            try {
+                await sendPasswordResetEmail(auth, email);
+                messageElement.textContent = 'Password reset email sent!';
+                messageElement.className = 'message success-message';
+                messageElement.style.display = 'block';
+
+                setTimeout(() => {
+                    showLoginForm();
+                }, 3000);
+
+            } catch (error) {
+                messageElement.textContent = error.message;
+                messageElement.className = 'message error-message';
+                messageElement.style.display = 'block';
+            }
+        });
+
+        // Make functions available globally
+        window.showForgotPassword = function () {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('forgotPasswordForm').style.display = 'block';
+        };
+
+        window.showLoginForm = function () {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('forgotPasswordForm').style.display = 'none';
+        };
+    </script>
+</body>
+
+</html>
