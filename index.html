@@ -26,7 +26,72 @@
             overflow: hidden;
         }
 
-        /* Animated Background Styles */
+        /* Info Panel Styles */
+        .info-panel {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .info-panel:hover {
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .info-item i {
+            color: #007bff;
+            font-size: 16px;
+        }
+
+        .time-display {
+            font-family: 'Poppins', monospace;
+            background: linear-gradient(45deg, #007bff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            animation: colorChange 5s infinite alternate;
+        }
+
+        @keyframes colorChange {
+            0% {
+                background: linear-gradient(45deg, #007bff, #00ff88);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            50% {
+                background: linear-gradient(45deg, #00ff88, #ff6b6b);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            100% {
+                background: linear-gradient(45deg, #ff6b6b, #007bff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        /* Background Styles */
         .background {
             position: fixed;
             top: 0;
@@ -62,7 +127,6 @@
             }
         }
 
-        /* Lines animation */
         .lines {
             position: absolute;
             top: 0;
@@ -106,10 +170,12 @@
             }
         }
 
+        /* Button Styles */
         .container {
             position: relative;
             z-index: 1;
             text-align: center;
+            padding: 20px;
         }
 
         .btn {
@@ -175,6 +241,17 @@
             box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
         }
 
+        .btn-blue {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: #ffffff;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-blue:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+        }
+
         .floating {
             animation: float 3s ease-in-out infinite;
         }
@@ -192,15 +269,71 @@
                 transform: translateY(0px);
             }
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .info-panel {
+                flex-direction: column;
+                gap: 10px;
+                width: 90%;
+                padding: 10px 15px;
+            }
+
+            .info-item {
+                justify-content: center;
+                font-size: 14px;
+            }
+
+            .btn {
+                width: 200px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .info-panel {
+                top: 10px;
+                padding: 8px 12px;
+            }
+
+            .info-item {
+                font-size: 12px;
+            }
+
+            .btn {
+                width: 180px;
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!-- Info Panel -->
+    <div class="info-panel">
+        <div class="info-item">
+            <i class="fas fa-user-circle"></i>
+            <span>User: <strong>elnathanwebsite</strong></span>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-globe-asia"></i>
+            <span>UTC: <span class="time-display" id="jakarta-time"></span></span>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-clock"></i>
+            <span>Jakarta: <span class="time-display" id="utc-time"></span></span>
+        </div>
+    </div>
+
+    <!-- Background -->
     <div class="background">
         <div class="stars"></div>
         <div class="lines"></div>
     </div>
 
+    <!-- Buttons Container -->
     <div class="container">
         <a href="sigup.html" class="btn btn-gold floating">
             <i class="fas fa-crown"></i>
@@ -210,9 +343,44 @@
             <i class="fas fa-eye"></i>
             Pengunjung
         </a>
+        <a href="https://tokomini.vercel.app/" class="btn btn-blue floating" style="animation-delay: 1s;">
+            <i class="fas fa-globe"></i>
+            Beli Website
+        </a>
     </div>
 
     <script>
+        // Time formatting and update functions
+        function formatNumber(num) {
+            return num.toString().padStart(2, '0');
+        }
+
+        function formatDateTime(date) {
+            const year = date.getFullYear();
+            const month = formatNumber(date.getMonth() + 1);
+            const day = formatNumber(date.getDate());
+            const hours = formatNumber(date.getHours());
+            const minutes = formatNumber(date.getMinutes());
+            const seconds = formatNumber(date.getSeconds());
+
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }
+
+        function updateTime() {
+            const now = new Date();
+
+            // Update UTC time
+            document.getElementById('utc-time').textContent = formatDateTime(now);
+
+            // Update Jakarta time (UTC+7)
+            const jakartaTime = new Date(now.getTime() + (7 * 60 * 60 * 1000));
+            document.getElementById('jakarta-time').textContent = formatDateTime(jakartaTime);
+        }
+
+        // Update time immediately and then every second
+        updateTime();
+        setInterval(updateTime, 1000);
+
         // Create stars
         const starsContainer = document.querySelector('.stars');
         for (let i = 0; i < 200; i++) {
