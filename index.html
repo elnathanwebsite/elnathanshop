@@ -1,203 +1,32 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EL NATHAN SHOP</title>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Google Fonts - Poppins for professional look -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>elnathanwebsite | Modern Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+        .cube-bg {
+            background-image:
+                linear-gradient(#ffffff 2px, transparent 2px),
+                linear-gradient(90deg, #ffffff 2px, transparent 2px),
+                linear-gradient(#e5e7eb 1px, transparent 1px),
+                linear-gradient(90deg, #e5e7eb 1px, #f3f4f6 1px);
+            background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+            background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
         }
 
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: #000000;
-            overflow: hidden;
-        }
-
-        /* Info Panel Styles */
-        .info-panel {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            z-index: 2;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px 25px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            gap: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .info-panel:hover {
-            transform: translateX(-50%) translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-        }
-
-        .info-item i {
-            color: #007bff;
-            font-size: 16px;
-        }
-
-        .time-display {
-            font-family: 'Poppins', monospace;
-            background: linear-gradient(45deg, #007bff, #00ff88);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 600;
-            animation: colorChange 5s infinite alternate;
-        }
-
-        @keyframes colorChange {
-            0% {
-                background: linear-gradient(45deg, #007bff, #00ff88);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-
-            50% {
-                background: linear-gradient(45deg, #00ff88, #ff6b6b);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-
-            100% {
-                background: linear-gradient(45deg, #ff6b6b, #007bff);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-        }
-
-        /* Background Styles */
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .star {
-            position: absolute;
-            background: #ffffff;
-            border-radius: 50%;
-            animation: twinkle var(--duration) infinite;
-            opacity: 0;
-        }
-
-        @keyframes twinkle {
-
-            0%,
-            100% {
-                opacity: 0;
-            }
-
-            50% {
-                opacity: 1;
-            }
-        }
-
-        .lines {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .line {
-            position: absolute;
-            width: 1px;
-            height: 100%;
-            background: linear-gradient(to bottom,
-                    transparent,
-                    rgba(255, 255, 255, 0.1),
-                    rgba(255, 255, 255, 0.3),
-                    rgba(255, 255, 255, 0.1),
-                    transparent);
-            animation: moveLine 8s infinite;
-            opacity: 0;
-        }
-
-        @keyframes moveLine {
-            0% {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-
-            20% {
-                opacity: 0.5;
-            }
-
-            80% {
-                opacity: 0.5;
-            }
-
-            100% {
-                transform: translateX(100vw);
-                opacity: 0;
-            }
-        }
-
-        /* Button Styles */
-        .container {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 250px;
-            padding: 15px 30px;
-            margin: 20px auto;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
+        .button-hover {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
 
-        .btn::before {
+        .button-hover::before {
             content: '';
             position: absolute;
             top: 0;
@@ -206,213 +35,271 @@
             height: 100%;
             background: linear-gradient(120deg,
                     transparent,
-                    rgba(255, 255, 255, 0.3),
+                    rgba(255, 255, 255, 0.6),
                     transparent);
             transition: 0.5s;
         }
 
-        .btn:hover::before {
+        .button-hover:hover::before {
             left: 100%;
         }
 
-        .btn i {
-            margin-right: 10px;
-            font-size: 20px;
+        .button-hover:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow:
+                0 20px 35px rgba(0, 0, 0, 0.1),
+                0 15px 65px rgba(0, 0, 0, 0.1);
         }
 
-        .btn-gold {
-            background: linear-gradient(45deg, #FFD700, #FFA500);
-            color: #000;
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        .icon-spin {
+            transition: transform 0.5s ease;
         }
 
-        .btn-gold:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        .button-hover:hover .icon-spin {
+            transform: rotate(360deg) scale(1.2);
         }
 
-        .btn-white {
-            background: #ffffff;
-            color: #000;
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        .gradient-text {
+            background: linear-gradient(45deg, #3B82F6, #8B5CF6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 3s ease infinite;
+            background-size: 200% 200%;
         }
 
-        .btn-white:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-blue {
-            background: linear-gradient(45deg, #007bff, #0056b3);
-            color: #ffffff;
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-        }
-
-        .btn-blue:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
-        }
-
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
+        @keyframes gradient {
             0% {
-                transform: translateY(0px);
+                background-position: 0% 50%;
             }
 
             50% {
-                transform: translateY(-5px);
+                background-position: 100% 50%;
             }
 
             100% {
-                transform: translateY(0px);
+                background-position: 0% 50%;
             }
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .info-panel {
-                flex-direction: column;
-                gap: 10px;
-                width: 90%;
-                padding: 10px 15px;
+        .time-display {
+            animation: timeGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes timeGlow {
+            from {
+                text-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
             }
 
-            .info-item {
-                justify-content: center;
-                font-size: 14px;
-            }
-
-            .btn {
-                width: 200px;
-                padding: 12px 20px;
-                font-size: 14px;
+            to {
+                text-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
             }
         }
 
-        @media (max-width: 480px) {
-            .info-panel {
-                top: 10px;
-                padding: 8px 12px;
+        .user-badge {
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0% {
+                transform: scale(1);
             }
 
-            .info-item {
-                font-size: 12px;
+            50% {
+                transform: scale(1.05);
             }
 
-            .btn {
-                width: 180px;
-                padding: 10px 15px;
-                font-size: 13px;
+            100% {
+                transform: scale(1);
             }
+        }
+
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            transform: translateX(200%);
+            transition: transform 0.5s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification:nth-child(1) {
+            top: 90px;
+        }
+
+        .notification:nth-child(2) {
+            top: 160px;
+        }
+
+        .notification:nth-child(3) {
+            top: 230px;
+        }
+
+        .notification:nth-child(4) {
+            top: 300px;
+        }
+
+        .notification-yellow {
+            background: linear-gradient(to right, #eab308, #f59e0b);
+        }
+
+        .notification-blue {
+            background: linear-gradient(to right, #3b82f6, #2563eb);
+        }
+
+        .notification-green {
+            background: linear-gradient(to right, #22c55e, #16a34a);
+        }
+
+        .notification-purple {
+            background: linear-gradient(to right, #a855f7, #7c3aed);
         }
     </style>
 </head>
 
-<body>
-    <!-- Info Panel -->
-    <div class="info-panel">
-        <div class="info-item">
-            <i class="fas fa-user-circle"></i>
-            <span>User: <strong>elnathanwebsite</strong></span>
-        </div>
-        <div class="info-item">
-            <i class="fas fa-globe-asia"></i>
-            <span>UTC: <span class="time-display" id="jakarta-time"></span></span>
-        </div>
-        <div class="info-item">
-            <i class="fas fa-clock"></i>
-            <span>Jakarta: <span class="time-display" id="utc-time"></span></span>
-        </div>
-    </div>
-
-    <!-- Background -->
-    <div class="background">
-        <div class="stars"></div>
-        <div class="lines"></div>
-    </div>
-
-    <!-- Buttons Container -->
-    <div class="container">
-        <a href="sigup.html" class="btn btn-gold floating">
+<body class="min-h-screen cube-bg flex flex-col font-outfit">
+    <!-- Notifications -->
+    <div id="notification-container">
+        <div class="notification notification-yellow" id="notif-account">
             <i class="fas fa-crown"></i>
-            Buat Akun
-        </a>
-        <a href="utama.html" class="btn btn-white floating" style="animation-delay: 0.5s;">
+            <span>Buat akun untuk mengakses fitur premium!</span>
+        </div>
+        <div class="notification notification-blue" id="notif-visitor">
             <i class="fas fa-eye"></i>
-            Pengunjung
-        </a>
-        <a href="https://tokomini.vercel.app/" class="btn btn-blue floating" style="animation-delay: 1s;">
+            <span>Lihat statistik pengunjung website Anda!</span>
+        </div>
+        <div class="notification notification-green" id="notif-web">
             <i class="fas fa-globe"></i>
-            Beli Website
-        </a>
+            <span>Beli website dengan harga terjangkau!</span>
+        </div>
+        <div class="notification notification-purple" id="notif-tutorial">
+            <i class="fas fa-book"></i>
+            <span>Pelajari tutorial lengkap penggunaan website!</span>
+        </div>
     </div>
+
+    <!-- Header -->
+    <header class="w-full bg-white/80 backdrop-blur-md shadow-md py-4 px-6 fixed top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="time-display text-blue-600 font-bold flex items-center">
+                    <i class="fas fa-clock mr-2"></i>
+                    <span id="jakarta-time"></span>
+                    <span class="ml-1">WIB</span>
+                </div>
+            </div>
+            <div class="user-badge flex items-center space-x-3 bg-blue-50 px-4 py-2 rounded-full">
+                <i class="fas fa-user-circle text-blue-500 text-xl"></i>
+                <span class="font-semibold text-blue-700">elnathanwebsite</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 mt-24 mb-12">
+        <div class="max-w-md mx-auto px-4">
+            <h1 class="text-4xl font-bold text-center mb-12">
+                <span class="gradient-text">elnathanwebsite</span>
+            </h1>
+
+            <div class="flex flex-col space-y-6">
+                <!-- Buttons -->
+                <a href="sigup.html" class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fas fa-crown text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">Buat Akun</span>
+                    </div>
+                </a>
+
+                <a href="utama.html" class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fas fa-eye text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">Pengunjung</span>
+                    </div>
+                </a>
+
+                <a href="https://tokomini.vercel.app/" class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fas fa-globe text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">Beli Web</span>
+                    </div>
+                </a>
+
+                <a href="coomingshooon.html" class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fas fa-book text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">Tutorial</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
 
     <script>
-        // Time formatting and update functions
-        function formatNumber(num) {
-            return num.toString().padStart(2, '0');
+        // Update Jakarta Time
+        function updateJakartaTime() {
+            const jakartaTime = new Date().toLocaleString('id-ID', {
+                timeZone: 'Asia/Jakarta',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            }).replace(/\./g, '-').replace(',', '').replace(/\//g, '-');
+
+            document.getElementById('jakarta-time').textContent = jakartaTime;
         }
 
-        function formatDateTime(date) {
-            const year = date.getFullYear();
-            const month = formatNumber(date.getMonth() + 1);
-            const day = formatNumber(date.getDate());
-            const hours = formatNumber(date.getHours());
-            const minutes = formatNumber(date.getMinutes());
-            const seconds = formatNumber(date.getSeconds());
+        // Update time every second
+        updateJakartaTime();
+        setInterval(updateJakartaTime, 1000);
 
-            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-        }
+        // Show notifications sequentially
+        function showNotifications() {
+            const notifications = [
+                document.getElementById('notif-account'),
+                document.getElementById('notif-visitor'),
+                document.getElementById('notif-web'),
+                document.getElementById('notif-tutorial')
+            ];
 
-        function updateTime() {
-            const now = new Date();
-
-            // Update UTC time
-            document.getElementById('utc-time').textContent = formatDateTime(now);
-
-            // Update Jakarta time (UTC+7)
-            const jakartaTime = new Date(now.getTime() + (7 * 60 * 60 * 1000));
-            document.getElementById('jakarta-time').textContent = formatDateTime(jakartaTime);
-        }
-
-        // Update time immediately and then every second
-        updateTime();
-        setInterval(updateTime, 1000);
-
-        // Create stars
-        const starsContainer = document.querySelector('.stars');
-        for (let i = 0; i < 200; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.width = `${Math.random() * 2}px`;
-            star.style.height = star.style.width;
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.top = `${Math.random() * 100}%`;
-            star.style.setProperty('--duration', `${Math.random() * 3 + 1}s`);
-            starsContainer.appendChild(star);
-        }
-
-        // Create moving lines
-        const linesContainer = document.querySelector('.lines');
-        for (let i = 0; i < 15; i++) {
-            const line = document.createElement('div');
-            line.className = 'line';
-            line.style.left = `${Math.random() * 100}%`;
-            line.style.animationDelay = `${Math.random() * 8}s`;
-            linesContainer.appendChild(line);
-        }
-
-        // Button hover effects
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('mouseenter', () => {
-                button.style.transform = 'scale(1.05)';
+            notifications.forEach((notification, index) => {
+                setTimeout(() => {
+                    notification.classList.add('show');
+                    setTimeout(() => {
+                        notification.classList.remove('show');
+                    }, 3000); // Hide after 3 seconds
+                }, index * 3500); // Show next notification after 3.5 seconds
             });
+        }
 
-            button.addEventListener('mouseleave', () => {
-                button.style.transform = 'scale(1)';
+        // Show notifications when page loads
+        window.addEventListener('load', showNotifications);
+
+        // Add hover and click sound effects
+        document.querySelectorAll('.button-hover').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                const audio = new Audio('data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//OEAAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAADAAAGhgBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqr///////////////////////////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAYAAAAAAAAABoYPqzKnAAAAAAAAAAAAAAAAAAAA//MUZAAAAAGkAAAAAAAAA0gAAAAATEFN//MUZAMAAAGkAAAAAAAAA0gAAAAARTMu//MUZAYAAAGkAAAAAAAAA0gAAAAAOTku//MUZAkAAAGkAAAAAAAAA0gAAAAANVVV');
+                audio.volume = 0.1;
+                audio.play();
             });
         });
     </script>
