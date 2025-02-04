@@ -150,6 +150,14 @@
             top: 300px;
         }
 
+        .notification:nth-child(5) {
+            top: 370px;
+        }
+
+        .notification:nth-child(6) {
+            top: 440px;
+        }
+
         .notification-yellow {
             background: linear-gradient(to right, #eab308, #f59e0b);
         }
@@ -164,6 +172,33 @@
 
         .notification-purple {
             background: linear-gradient(to right, #a855f7, #7c3aed);
+        }
+
+        .notification-pink {
+            background: linear-gradient(to right, #ec4899, #db2777);
+        }
+
+        .notification-skyblue {
+            background: linear-gradient(to right, #38bdf8, #0ea5e9);
+        }
+
+        /* Profile image animation */
+        .profile-image {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translatey(0px);
+            }
+
+            50% {
+                transform: translatey(-10px);
+            }
+
+            100% {
+                transform: translatey(0px);
+            }
         }
     </style>
 </head>
@@ -187,6 +222,14 @@
             <i class="fas fa-book"></i>
             <span>Semua tutorial web dev</span>
         </div>
+        <div class="notification notification-pink" id="notif-design">
+            <i class="fas fa-palette"></i>
+            <span>Tutorial Desain Product tersedia!</span>
+        </div>
+        <div class="notification notification-skyblue" id="notif-joki">
+            <i class="fas fa-computer"></i>
+            <span>Jasa Joki Tugas Tersedia!</span>
+        </div>
     </div>
 
     <!-- Header -->
@@ -196,7 +239,7 @@
                 <div class="time-display text-blue-600 font-bold flex items-center">
                     <i class="fas fa-clock mr-2"></i>
                     <span id="jakarta-time"></span>
-                    <span class="ml-1">WIB</span>
+                    <span class="ml-1">IND</span>
                 </div>
             </div>
             <div class="user-badge flex items-center space-x-3 bg-blue-50 px-4 py-2 rounded-full">
@@ -209,9 +252,37 @@
     <!-- Main Content -->
     <main class="flex-1 mt-24 mb-12">
         <div class="max-w-md mx-auto px-4">
-            <h1 class="text-4xl font-bold text-center mb-12">
-                <span class="gradient-text">elnathanwebsite</span>
+            <!-- Profile Photo -->
+            <div class="flex justify-center mb-6">
+                <div class="relative">
+                    <img src="https://i.pinimg.com/736x/d5/db/ca/d5dbca067f5868f800f2f7483a308080.jpg" alt="Profile"
+                        class="w-32 h-32 rounded-full border-4 border-white shadow-lg hover:scale-105 transition-transform duration-300 profile-image"
+                        onerror="this.src='https://ui-avatars.com/api/?name=EL+NATHAN&background=0D8ABC&color=fff&size=128'" />
+                    <div class="absolute bottom-0 right-0 bg-green-500 w-6 h-6 rounded-full border-4 border-white">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Title -->
+            <h1 class="text-4xl font-bold text-center mb-4">
+                <span class="gradient-text">elnathanwebsite </span>
             </h1>
+
+            <!-- Description -->
+            <div class="text-center mb-12">
+                <p class="text-gray-600 text-lg leading-relaxed mb-4">
+                    Selamat datang di website saya! Saya adalah pengembang web dan desainer yang berfokus pada pembuatan
+                    pengalaman digital yang indah.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
+                        <i class="fas fa-code mr-1"></i>Website Developer
+                    </span>
+                    <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">
+                        <i class="fas fa-palette mr-1"></i>Design Grafis
+                    </span>
+                </div>
+            </div>
 
             <div class="flex flex-col space-y-6">
                 <!-- Buttons -->
@@ -227,7 +298,7 @@
                     <div
                         class="flex items-center justify-center space-x-4 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fas fa-eye text-2xl icon-spin"></i>
-                        <span class="font-bold uppercase text-lg tracking-wider">Pengunjung</span>
+                        <span class="font-bold uppercase text-lg tracking-wider">EL NATHAN SHOP</span>
                     </div>
                 </a>
 
@@ -246,10 +317,51 @@
                         <span class="font-bold uppercase text-lg tracking-wider">Tutorial</span>
                     </div>
                 </a>
+
+                <a href="https://elnathanwebsite.my.canva.site/tech-website-in-blue-purple-white-gradients-style"
+                    class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fas fa-palette text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">Tutorial Desain Product</span>
+                    </div>
+                </a>
+
+                <!-- New Jasa Joki Button -->
+                <a href="coomingshooon.html" class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-sky-300 via-sky-400 to-sky-500 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fas fa-computer text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">Jasa Joki</span>
+                    </div>
+                </a>
             </div>
         </div>
     </main>
 
+    <!-- Footer -->
+    <footer class="bg-white/80 backdrop-blur-md py-4 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-600">
+                © 2025 elnathanwebsite. by arifan alfahri.
+            </p>
+            <div class="flex justify-center space-x-4 mt-2">
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://github.com/elnathanwebsite"
+                    class="text-gray-400 hover:text-blue-500 transition-colors">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Update Jakarta Time
@@ -278,7 +390,9 @@
                 document.getElementById('notif-account'),
                 document.getElementById('notif-visitor'),
                 document.getElementById('notif-web'),
-                document.getElementById('notif-tutorial')
+                document.getElementById('notif-tutorial'),
+                document.getElementById('notif-design'),
+                document.getElementById('notif-joki')
             ];
 
             notifications.forEach((notification, index) => {
@@ -302,6 +416,14 @@
                 audio.play();
             });
         });
+
+        // Auto restart notifications after all have been shown
+        function startNotificationLoop() {
+            showNotifications();
+            setInterval(showNotifications, 21000); // Restart every 21 seconds (6 notifications * 3.5 seconds)
+        }
+
+        startNotificationLoop();
     </script>
 </body>
 
