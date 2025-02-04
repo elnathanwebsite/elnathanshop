@@ -2,12 +2,7 @@
 <html lang="en">
 
 <head>
-    <script>
-    if (window.location.search) {
-        window.history.replaceState({}, document.title, window.location.pathname);
-    }
-</script>
-
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ETHAN EL NATHAN WEBSITE | DASHBORD HYPERLINK</title>
@@ -431,6 +426,15 @@
 
         startNotificationLoop();
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.location.search) {
+                var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                window.history.replaceState({}, document.title, newUrl);
+            }
+        });
+    </script>
+
 </body>
 
 </html>

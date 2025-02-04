@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,8 +40,15 @@
         }
 
         @keyframes container-float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
         .error-code {
@@ -57,7 +65,9 @@
         }
 
         @keyframes shine {
-            to { background-position: 200% center; }
+            to {
+                background-position: 200% center;
+            }
         }
 
         .glitch {
@@ -140,12 +150,10 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.2),
-                transparent
-            );
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent);
             transition: 0.5s;
         }
 
@@ -172,8 +180,15 @@
         }
 
         @keyframes gridPulse {
-            0%, 100% { opacity: 0.1; }
-            50% { opacity: 0.3; }
+
+            0%,
+            100% {
+                opacity: 0.1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
         }
 
         .scanning-line {
@@ -187,8 +202,13 @@
         }
 
         @keyframes scanning {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100vh); }
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
         }
 
         .matrix-rain {
@@ -216,6 +236,7 @@
                 transform: translateY(-100%);
                 opacity: 1;
             }
+
             100% {
                 transform: translateY(100vh);
                 opacity: 0;
@@ -223,17 +244,41 @@
         }
 
         @keyframes glitch {
-            0% { clip-path: polygon(0 0, 100% 0, 100% 5%, 0 5%); }
-            20% { clip-path: polygon(0 20%, 100% 20%, 100% 25%, 0 25%); }
-            40% { clip-path: polygon(0 40%, 100% 40%, 100% 45%, 0 45%); }
-            60% { clip-path: polygon(0 60%, 100% 60%, 100% 65%, 0 65%); }
-            80% { clip-path: polygon(0 80%, 100% 80%, 100% 85%, 0 85%); }
-            100% { clip-path: polygon(0 100%, 100% 100%, 100% 105%, 0 105%); }
+            0% {
+                clip-path: polygon(0 0, 100% 0, 100% 5%, 0 5%);
+            }
+
+            20% {
+                clip-path: polygon(0 20%, 100% 20%, 100% 25%, 0 25%);
+            }
+
+            40% {
+                clip-path: polygon(0 40%, 100% 40%, 100% 45%, 0 45%);
+            }
+
+            60% {
+                clip-path: polygon(0 60%, 100% 60%, 100% 65%, 0 65%);
+            }
+
+            80% {
+                clip-path: polygon(0 80%, 100% 80%, 100% 85%, 0 85%);
+            }
+
+            100% {
+                clip-path: polygon(0 100%, 100% 100%, 100% 105%, 0 105%);
+            }
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
         }
 
         @keyframes fadeInUp {
@@ -241,6 +286,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -248,6 +294,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="cyber-grid">
         <!-- Grid lines will be added via JavaScript -->
@@ -264,11 +311,12 @@
             <div class="error-code">404</div>
             <div class="glitch"></div>
         </div>
-        
+
         <h1 class="error-message">System Malfunction</h1>
-        
+
         <p class="error-description">
-            The requested resource has been lost in the digital void. Our cyber-agents are currently investigating the anomaly.
+            The requested resource has been lost in the digital void. Our cyber-agents are currently investigating the
+            anomaly.
         </p>
 
         <div class="action-buttons">
@@ -324,5 +372,15 @@
 
         setInterval(createGlitch, 2000);
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.location.search) {
+                var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                window.history.replaceState({}, document.title, newUrl);
+            }
+        });
+    </script>
+
 </body>
+
 </html>
