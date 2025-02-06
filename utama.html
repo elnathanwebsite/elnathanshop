@@ -838,15 +838,22 @@
         </div>
 
         <script>
-            if (!window.location.search.includes('selamatdatangdielnathanshop')) {
-    if (!sessionStorage.getItem("visited")) {
-        sessionStorage.setItem("visited", "true");
-        
-        // Tambahkan query string tanpa refresh
-        let newURL = window.location.pathname + "?selamatdatangdielnathanshop";
-        window.history.pushState({ path: newURL }, '', newURL);
+document.addEventListener("DOMContentLoaded", function() {
+    if (!window.location.search.includes('selamatdatangdielnathanshop')) {
+        if (!sessionStorage.getItem("visited")) {
+            sessionStorage.setItem("visited", "true");
+
+            // Ambil URL saat ini
+            let currentURL = window.location.href;
+            let newURL = currentURL.includes("?") 
+                ? currentURL + "&selamatdatangdielnathanshop"  // Jika ada query lain, tambahkan dengan "&"
+                : currentURL + "?selamatdatangdielnathanshop"; // Jika belum ada query, tambahkan dengan "?"
+
+            // Modifikasi URL tanpa refresh
+            window.history.replaceState({}, '', newURL);
+        }
     }
-}
+});
 
 
             // Firebase configuration
