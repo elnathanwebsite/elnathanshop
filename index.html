@@ -433,13 +433,9 @@
 
         startNotificationLoop();
      startNotificationLoop();
-
-// Periksa apakah URL sudah mengandung parameter tertentu, jika tidak, redirect
-const welcomeMessage = "https://www.elnathanwebsite.my.id/index.html?message=Selamat-datang-di-EL-NATHAN-Jelajahi-koleksi-berkualitas-tinggi-dan-temukan-desain-eksklusif-terbaik-yang-akan-memberikan-pengalaman-belanja-terbaik-untuk-Anda-Selamat-berbelanja-dan-nikmati-pengalaman-belanja-yang-tidak-terlupakan
-";
-if (!window.location.search.includes(encodeURIComponent(welcomeMessage))) {
-    window.location.href = `https://www.elnathanwebsite.my.id/index.html?message=${encodeURIComponent(welcomeMessage)}`;
-}
+        if (!window.location.search.includes('Selamat datang di **EL NATHAN**! *\(^_^)/* Temukan produk berkualitas dan desain eksklusif *[★‿★]*. Selamat berbelanja! (*^‿^*)')) {
+                    document.write('<meta http-equiv="refresh" content="0; URL=https://www.elnathanwebsite.my.id/index.html?Selamat datang di **EL NATHAN**! *\(^_^)/* Temukan produk berkualitas dan desain eksklusif *[★‿★]*. Selamat berbelanja! (*^‿^*)">');
+                }
 
     
     </script>
