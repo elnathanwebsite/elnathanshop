@@ -843,17 +843,13 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!sessionStorage.getItem("visited")) {
             sessionStorage.setItem("visited", "true");
 
-            // Ambil URL saat ini
-            let currentURL = window.location.href;
-            let newURL = currentURL.includes("?") 
-                ? currentURL + "&selamatdatangdielnathanshop"  // Jika ada query lain, tambahkan dengan "&"
-                : currentURL + "?selamatdatangdielnathanshop"; // Jika belum ada query, tambahkan dengan "?"
-
-            // Modifikasi URL tanpa refresh
+            // Set URL baru tanpa refresh
+            let newURL = "https://www.elnathanwebsite.my.id/utama.html?selamatdatangdielnathanshop";
             window.history.replaceState({}, '', newURL);
         }
     }
 });
+
 
 
             // Firebase configuration
