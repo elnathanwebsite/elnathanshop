@@ -838,14 +838,16 @@
         </div>
 
         <script>
-      if (!window.location.search.includes('selamatdatangdielnathanshop')) {
+            if (!window.location.search.includes('selamatdatangdielnathanshop')) {
     if (!sessionStorage.getItem("visited")) {
         sessionStorage.setItem("visited", "true");
-        window.location.replace("https://www.elnathanwebsite.my.id/utama.html?selamatdatangdielnathanshop");
+        
+        // Tambahkan query string tanpa refresh
+        let newURL = window.location.pathname + "?selamatdatangdielnathanshop";
+        window.history.pushState({ path: newURL }, '', newURL);
     }
-} else {
-    sessionStorage.setItem("visited", "true");
 }
+
 
             // Firebase configuration
             const firebaseConfig = {
