@@ -425,17 +425,26 @@
             });
         });
 
-        // Auto restart notifications after all have been shown
-        function startNotificationLoop() {
-            showNotifications();
-            setInterval(showNotifications, 21000); // Restart every 21 seconds (6 notifications * 3.5 seconds)
-        }
+       // Auto restart notifications after all have been shown
+function startNotificationLoop() {
+    showNotifications();
+    setTimeout(() => {
+        setInterval(showNotifications, 21000); // Restart every 21 seconds
+    }, 3500); // Delay pertama agar tidak ada pemutaran ganda
+}
 
-        startNotificationLoop();
-     startNotificationLoop();
-        if (!window.location.search.includes('Selamat datang di **EL NATHAN**! *\(^_^)/* Temukan produk berkualitas dan desain eksklusif *[★‿★]*. Selamat berbelanja! (*^‿^*)')) {
-                    document.write('<meta http-equiv="refresh" content="0; URL=https://www.elnathanwebsite.my.id/index.html?Selamat datang di **EL NATHAN**! *\(^_^)/* Temukan produk berkualitas dan desain eksklusif *[★‿★]*. Selamat berbelanja! (*^‿^*)">');
-                }
+// Pastikan hanya satu instance dari loop berjalan
+if (!window.notificationLoopStarted) {
+    window.notificationLoopStarted = true;
+    startNotificationLoop();
+}
+
+// Periksa apakah URL sudah mengandung parameter tertentu, jika tidak, redirect
+const welcomeMessage = "Selamat datang di **EL NATHAN**! \\(^_^)/ Temukan produk berkualitas dan desain eksklusif [★‿★]. Selamat berbelanja! (*^‿^*)";
+if (!window.location.search.includes(encodeURIComponent(welcomeMessage))) {
+    window.location.href = `https://www.elnathanwebsite.my.id/index.html?message=${encodeURIComponent(welcomeMessage)}`;
+}
+
     
     </script>
 
