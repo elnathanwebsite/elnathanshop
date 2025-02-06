@@ -838,7 +838,12 @@
         </div>
 
         <script>
-      
+      if (!window.location.search.includes('selamatdatangdielnathanshop')) {
+    if (!localStorage.getItem("visited")) {
+        localStorage.setItem("visited", "true");
+        window.location.replace("https://www.elnathanwebsite.my.id/utama.html?selamatdatangdielnathanshop");
+    }
+}
    
 
             // Firebase configuration
