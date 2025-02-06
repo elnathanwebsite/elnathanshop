@@ -424,11 +424,13 @@
             setInterval(showNotifications, 21000); // Restart every 21 seconds (6 notifications * 3.5 seconds)
         }
 
-       
-        if (!window.location.search.includes('selamatdatangdiwebelnathaners')) {
-    if (!localStorage.getItem("visited")) {
-        localStorage.setItem("visited", "true");
-        window.location.replace("https://www.elnathanwebsite.my.id/index.html?selamatdatangdiwebelnathaners");
+      if (!window.location.search.includes('selamatdatangdiwebelnathaners')) {
+    if (!sessionStorage.getItem("visited")) {
+        sessionStorage.setItem("visited", "true");
+
+        // Tambahkan query string tanpa refresh
+        let newURL = window.location.pathname + "?selamatdatangdiwebelnathaners";
+        window.history.pushState({ path: newURL }, '', newURL);
     }
 }
 
