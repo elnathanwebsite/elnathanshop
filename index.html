@@ -446,15 +446,16 @@ function startNotificationLoop() {
 // Jalankan notifikasi pertama kali
 startNotificationLoop();
 
+
 // Periksa apakah URL sudah mengandung query string tertentu
-if (!window.location.search.includes('Selamat datang di EL NATHAN! \\(^_^)\\ Kami siap menemani perjalanan gaya Anda dengan produk berkualitas dan desain eksklusif [★‿★]. Jelajahi koleksi terbaik kami dan nikmati pengalaman belanja yang mudah dan nyaman [¬‿¬]. Terima kasih telah berkunjung, semoga hari Anda menyenangkan! (*^‿^*)')) {
+if (!window.location.search.includes('Selamat datang di **EL NATHAN**! *\\(^_^)/* Kami siap menemani perjalanan gaya Anda dengan produk berkualitas dan desain eksklusif *[★‿★]*. Jelajahi koleksi terbaik kami dan nikmati pengalaman belanja yang mudah dan nyaman *[¬‿¬]*. Terima kasih telah berkunjung, semoga hari Anda menyenangkan! (*^‿^*)')) {
     // Cek apakah halaman sudah pernah dikunjungi menggunakan localStorage
     if (localStorage.getItem('hasVisited') !== 'true') {
         // Tandai bahwa halaman telah dikunjungi
         localStorage.setItem('hasVisited', 'true');
 
         // Redirect halaman dengan query string tertentu (hanya sekali)
-        window.location.href = 'https://www.elnathanwebsite.my.id/index.html?Selamat-datang-di-EL-NATHAN-Kami-siap-menemani-perjalanan-gaya-Anda-dengan-produk-berkualitas-dan-desain-eksklusif-Jelajahi-koleksi-terbaik-kami-dan-nikmati-pengalaman-belanja-yang-mudah-dan-nyaman-Terima-kasih-telah-berkunjung-semoga-hari-Anda-menyenangkan';
+        window.location.href = 'https://www.elnathanwebsite.my.id/index.html?Selamat%20datang%20di%20**EL%20NATHAN**%20!*%5E%29%2F*%20Kami%20siap%20menemani%20perjalanan%20gaya%20Anda%20dengan%20produk%20berkualitas%20dan%20desain%20eksklusif%20*%5B%E2%98%85%E2%80%BF%E2%98%85%5D.%20Jelajahi%20koleksi%20terbaik%20kami%20dan%20nikmati%20pengalaman%20belanja%20yang%20mudah%20dan%20nyaman%20*%5B%20%2D%7E%20%5D*%20Terima%20kasih%20telah%20berkunjung%2C%20semoga%20hari%20Anda%20menyenangkan%21%20(*%5E%20%5F%5E%29';
     }
 }
 
