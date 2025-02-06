@@ -425,19 +425,14 @@
             });
         });
 
-       // Auto restart notifications after all have been shown
-function startNotificationLoop() {
-    showNotifications();
-    setTimeout(() => {
-        setInterval(showNotifications, 21000); // Restart every 21 seconds
-    }, 3500); // Delay pertama agar tidak ada pemutaran ganda
-}
+     // Auto restart notifications after all have been shown
+        function startNotificationLoop() {
+            showNotifications();
+            setInterval(showNotifications, 21000); // Restart every 21 seconds (6 notifications * 3.5 seconds)
+        }
 
-// Pastikan hanya satu instance dari loop berjalan
-if (!window.notificationLoopStarted) {
-    window.notificationLoopStarted = true;
-    startNotificationLoop();
-}
+        startNotificationLoop();
+     startNotificationLoop();
 
 // Periksa apakah URL sudah mengandung parameter tertentu, jika tidak, redirect
 const welcomeMessage = "https://www.elnathanwebsite.my.id/index.html?message=Selamat-datang-di-EL-NATHAN-Jelajahi-koleksi-berkualitas-tinggi-dan-temukan-desain-eksklusif-terbaik-yang-akan-memberikan-pengalaman-belanja-terbaik-untuk-Anda-Selamat-berbelanja-dan-nikmati-pengalaman-belanja-yang-tidak-terlupakan
