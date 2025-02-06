@@ -839,21 +839,7 @@
 
         <script>
       
-    let targetParam = 'Wellcome-t0-El-Nathan-Shop';
-    let currentUrl = window.location.href;
-    let newUrl = "https://www.elnathanwebsite.my.id/utama.html?" + targetParam;
-
-    // Cek apakah URL sudah mengandung parameter
-    if (!window.location.search.includes(targetParam)) {
-        // Cek apakah sudah pernah di-redirect sebelumnya
-        if (!localStorage.getItem('redirected')) {
-            localStorage.setItem('redirected', 'true'); // Tandai sudah di-redirect
-            window.location.replace(newUrl);
-        }
-    } else {
-        // Reset status redirect jika pengguna sudah di halaman yang benar
-        localStorage.removeItem('redirected');
-    }
+   
 
             // Firebase configuration
             const firebaseConfig = {
