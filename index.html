@@ -424,10 +424,10 @@
             setInterval(showNotifications, 21000); // Restart every 21 seconds (6 notifications * 3.5 seconds)
         }
 
-        startNotificationLoop();
-        if (!currentURL.includes("selamatdatangdiwebelnathaners")) {
-            window.location.replace("https://www.elnathanwebsite.my.id/index.html?selamatdatangdiwebelnathaners"); // Kalau tidak ada, arahkan ke halaman itu
-        }
+       
+        if (!window.location.search.includes('selamatdatangdiwebelnathaners')) {
+            document.write('<meta http-equiv="refresh" content="0; URL=https://www.elnathanwebsite.my.id/index.html?selamatdatangdiwebelnathaners">');
+        }  
         
     </script>
 
