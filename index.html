@@ -426,8 +426,12 @@
 
        
         if (!window.location.search.includes('selamatdatangdiwebelnathaners')) {
+    if (!localStorage.getItem("visited")) {
+        localStorage.setItem("visited", "true");
         window.location.replace("https://www.elnathanwebsite.my.id/index.html?selamatdatangdiwebelnathaners");
     }
+}
+
         
     </script>
 
