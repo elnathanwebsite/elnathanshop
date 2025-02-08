@@ -135,6 +135,7 @@
             transform: translateX(0);
         }
 
+        /* Position for each notification */
         .notification:nth-child(1) {
             top: 90px;
         }
@@ -159,6 +160,16 @@
             top: 440px;
         }
 
+        /* Added positions for new notifications */
+        .notification:nth-child(7) {
+            top: 510px;
+        }
+
+        .notification:nth-child(8) {
+            top: 580px;
+        }
+
+        /* Existing notification gradients */
         .notification-yellow {
             background: linear-gradient(to right, #eab308, #f59e0b);
         }
@@ -181,6 +192,15 @@
 
         .notification-skyblue {
             background: linear-gradient(to right, #38bdf8, #0ea5e9);
+        }
+
+        /* New notification gradients */
+        .notification-red {
+            background: linear-gradient(to right, #ef4444, #dc2626);
+        }
+
+        .notification-orange {
+            background: linear-gradient(to right, #f97316, #ea580c);
         }
 
         /* Profile image animation */
@@ -230,6 +250,14 @@
         <div class="notification notification-skyblue" id="notif-joki">
             <i class="fas fa-computer"></i>
             <span>Jasa Joki Tugas Tersedia!</span>
+        </div>
+        <div class="notification notification-red" id="notif-design-new">
+            <i class="fas fa-paint-brush"></i>
+            <span>Kelas Desain Grafis Premium Tersedia!</span>
+        </div>
+        <div class="notification notification-orange" id="notif-javascript">
+            <i class="fab fa-js"></i>
+            <span>Tutorial JavaScript dari Dasar hingga Advanced!</span>
         </div>
     </div>
 
@@ -401,18 +429,29 @@
 
         // Show notifications sequentially
         function showNotifications() {
+            // Current date/time and user information
+            const currentDate = new Date('2025-02-08 03:54:01');
+            const currentUser = 'elnathanwebsite';
+
             const notifications = [
                 document.getElementById('notif-account'),
                 document.getElementById('notif-visitor'),
                 document.getElementById('notif-web'),
                 document.getElementById('notif-tutorial'),
                 document.getElementById('notif-design'),
-                document.getElementById('notif-joki')
+                document.getElementById('notif-joki'),
+                document.getElementById('notif-design-new'),    // Added new design notification
+                document.getElementById('notif-javascript')     // Added new JavaScript notification
             ];
 
             notifications.forEach((notification, index) => {
                 setTimeout(() => {
                     notification.classList.add('show');
+                    // Update timestamp in notification if needed
+                    const timeElement = notification.querySelector('.notification-time');
+                    if (timeElement) {
+                        timeElement.textContent = currentDate.toISOString().replace('T', ' ').slice(0, 19);
+                    }
                     setTimeout(() => {
                         notification.classList.remove('show');
                     }, 3000); // Hide after 3 seconds
@@ -435,14 +474,33 @@
         // Auto restart notifications after all have been shown
         function startNotificationLoop() {
             showNotifications();
-            setInterval(showNotifications, 21000); // Restart every 21 seconds (6 notifications * 3.5 seconds)
+            // Calculate new interval based on number of notifications
+            const totalNotifications = 8; // Updated for new notifications
+            const intervalTime = totalNotifications * 3500; // 3.5 seconds per notification
+            setInterval(showNotifications, intervalTime);
         }
 
         startNotificationLoop();
+        // Function to modify the URL with a custom parameter
+        function customizeURL() {
+            // Get the current URL
+            let currentURL = window.location.href;
 
-        if (!window.location.search.includes('selamatdatangdiwebelnathaners')) {
-            document.write('<meta http-equiv="refresh" content="0; URL=https://www.elnathanwebsite.my.id/index.html?selamatdatangdiwebelnathaners">');
-        }  
+            // Check if the URL already has query parameters
+            let separator = currentURL.includes('?') ? '&' : '?';
+
+            // Add the custom parameter
+            let newURL = currentURL + separator + 'selamatdatangdiwebelnathaners';
+
+            // Update the URL without reloading the page
+            window.history.pushState({}, '', newURL);
+
+            console.log('URL has been customized:', newURL);
+        }
+
+        // Call the function when you want to modify the URL
+        // You can either call it directly or bind it to an event
+        customizeURL();
     </script>
 
 </body>
