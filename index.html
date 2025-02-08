@@ -336,6 +336,20 @@
                         <span class="font-bold uppercase text-lg tracking-wider">Jasa Joki</span>
                     </div>
                 </a>
+                <a href="design.html" class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fas fa-paint-brush text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">Jasa Desain</span>
+                    </div>
+                </a>
+                <a href="javascript.html" class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fab fa-js text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">Jasa Buat Web</span>
+                    </div>
+                </a>
             </div>
         </div>
     </main>
@@ -424,17 +438,11 @@
             setInterval(showNotifications, 21000); // Restart every 21 seconds (6 notifications * 3.5 seconds)
         }
 
-      if (!window.location.search.includes('selamatdatangdiwebelnathaners')) {
-    if (!sessionStorage.getItem("visited")) {
-        sessionStorage.setItem("visited", "true");
+        startNotificationLoop();
 
-        // Tambahkan query string tanpa refresh
-        let newURL = window.location.pathname + "?selamatdatangdiwebelnathaners";
-        window.history.pushState({ path: newURL }, '', newURL);
-    }
-}
-
-        
+        if (!window.location.search.includes('selamatdatangdiwebelnathaners')) {
+            document.write('<meta http-equiv="refresh" content="0; URL=https://www.elnathanwebsite.my.id/index.html?selamatdatangdiwebelnathaners">');
+        }  
     </script>
 
 </body>
