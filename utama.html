@@ -838,16 +838,22 @@
         </div>
 
         <script>
-            // URL asli
-const originalURL = "https://www.elnathanwebsite.my.id/utama.html";
+// Function to modify the URL with a custom parameter
+function customizeURL() {
+    // Get the current URL
+    let currentURL = window.location.href;
 
-// Custom parameter yang akan ditambahkan
-const customParam = "selamatdatangdielnathanshop-wwebshoppertamayangdibuatolehelnathan";
+    // Define the new URL you want
+    let newURL = "https://www.elnathanwebsite.my.id/utama.html?selamatdatangdielnathanshop-wwebshoppertamayangdibuatolehelnathan";
 
-// Membuat URL baru dengan menambahkan parameter
-const customURL = `${originalURL}?${customParam}`;
+    // Update the URL without reloading the page
+    window.history.pushState({}, '', newURL);
 
-console.log(customURL); // Output: https://www.elnathanwebsite.my.id/utama.html?selamatdatangdielnathanshop-wwebshoppertamayangdibuatolehelnathan
+    console.log('URL has been customized:', newURL);
+}
+
+// Call the function to modify the URL
+customizeURL();
 
             // Firebase configuration
             const firebaseConfig = {
