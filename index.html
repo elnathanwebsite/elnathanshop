@@ -130,136 +130,135 @@
             align-items: center;
             gap: 12px;
         }
+.notification.show {
+    transform: translateX(0);
+}
 
-        .notification.show {
-            transform: translateX(0);
-        }
+/* Position for each notification */
+.notification:nth-child(1) {
+    top: 90px;
+}
 
-        /* Position for each notification */
-        .notification:nth-child(1) {
-            top: 90px;
-        }
+.notification:nth-child(2) {
+    top: 160px;
+}
 
-        .notification:nth-child(2) {
-            top: 160px;
-        }
+.notification:nth-child(3) {
+    top: 230px;
+}
 
-        .notification:nth-child(3) {
-            top: 230px;
-        }
+.notification:nth-child(4) {
+    top: 300px;
+}
 
-        .notification:nth-child(4) {
-            top: 300px;
-        }
+.notification:nth-child(5) {
+    top: 370px;
+}
 
-        .notification:nth-child(5) {
-            top: 370px;
-        }
+.notification:nth-child(6) {
+    top: 440px;
+}
 
-        .notification:nth-child(6) {
-            top: 440px;
-        }
+/* Added positions for new notifications */
+.notification:nth-child(7) {
+    top: 510px;
+}
 
-        /* Added positions for new notifications */
-        .notification:nth-child(7) {
-            top: 510px;
-        }
+.notification:nth-child(8) {
+    top: 580px;
+}
 
-        .notification:nth-child(8) {
-            top: 580px;
-        }
+/* Existing notification gradients */
+.notification-yellow {
+    background: linear-gradient(to right, #eab308, #f59e0b);
+}
 
-        /* Existing notification gradients */
-        .notification-yellow {
-            background: linear-gradient(to right, #eab308, #f59e0b);
-        }
+.notification-blue {
+    background: linear-gradient(to right, #3b82f6, #2563eb);
+}
 
-        .notification-blue {
-            background: linear-gradient(to right, #3b82f6, #2563eb);
-        }
+.notification-green {
+    background: linear-gradient(to right, #22c55e, #16a34a);
+}
 
-        .notification-green {
-            background: linear-gradient(to right, #22c55e, #16a34a);
-        }
+.notification-purple {
+    background: linear-gradient(to right, #a855f7, #7c3aed);
+}
 
-        .notification-purple {
-            background: linear-gradient(to right, #a855f7, #7c3aed);
-        }
+.notification-pink {
+    background: linear-gradient(to right, #ec4899, #db2777);
+}
 
-        .notification-pink {
-            background: linear-gradient(to right, #ec4899, #db2777);
-        }
+.notification-skyblue {
+    background: linear-gradient(to right, #38bdf8, #0ea5e9);
+}
 
-        .notification-skyblue {
-            background: linear-gradient(to right, #38bdf8, #0ea5e9);
-        }
+/* New notification gradients */
+.notification-red {
+    background: linear-gradient(to right, #ef4444, #dc2626);
+}
 
-        /* New notification gradients */
-        .notification-red {
-            background: linear-gradient(to right, #ef4444, #dc2626);
-        }
+.notification-orange {
+    background: linear-gradient(to right, #f97316, #ea580c);
+}
 
-        .notification-orange {
-            background: linear-gradient(to right, #f97316, #ea580c);
-        }
+/* Profile image animation */
+.profile-image {
+    animation: float 6s ease-in-out infinite;
+}
 
-        /* Profile image animation */
-        .profile-image {
-            animation: float 6s ease-in-out infinite;
-        }
+@keyframes float {
+    0% {
+        transform: translatey(0px);
+    }
 
-        @keyframes float {
-            0% {
-                transform: translatey(0px);
-            }
+    50% {
+        transform: translatey(-10px);
+    }
 
-            50% {
-                transform: translatey(-10px);
-            }
-
-            100% {
-                transform: translatey(0px);
-            }
-        }
-    </style>
+    100% {
+        transform: translatey(0px);
+    }
+}
+</style>
 </head>
 
 <body class="min-h-screen cube-bg flex flex-col font-outfit">
     <!-- Notifications -->
-    <div id="notification-container">
-        <div class="notification notification-yellow" id="notif-account">
-            <i class="fas fa-crown"></i>
-            <span>Buat akun untuk mengakses fitur premium!</span>
-        </div>
-        <div class="notification notification-blue" id="notif-visitor">
-            <i class="fas fa-eye"></i>
-            <span>Jadi pengunjung EL NATHAN SHOP</span>
-        </div>
-        <div class="notification notification-green" id="notif-web">
-            <i class="fas fa-globe"></i>
-            <span>Beli website dengan harga terjangkau!</span>
-        </div>
-        <div class="notification notification-purple" id="notif-tutorial">
-            <i class="fas fa-book"></i>
-            <span>Semua tutorial web dev</span>
-        </div>
-        <div class="notification notification-pink" id="notif-design">
-            <i class="fas fa-palette"></i>
-            <span>Tutorial Desain Product tersedia!</span>
-        </div>
-        <div class="notification notification-skyblue" id="notif-joki">
-            <i class="fas fa-computer"></i>
-            <span>Jasa Joki Tugas Tersedia!</span>
-        </div>
-        <div class="notification notification-red" id="notif-design-new">
-            <i class="fas fa-paint-brush"></i>
-            <span>Kelas Desain Grafis Premium Tersedia!</span>
-        </div>
-        <div class="notification notification-orange" id="notif-javascript">
-            <i class="fab fa-js"></i>
-            <span>Tutorial JavaScript dari Dasar hingga Advanced!</span>
-        </div>
+<div id="notification-container">
+    <div class="notification notification-yellow" id="notif-account">
+        <i class="fas fa-crown"></i>
+        <span>Buat akun untuk mengakses fitur premium!</span>
     </div>
+    <div class="notification notification-blue" id="notif-visitor">
+        <i class="fas fa-eye"></i>
+        <span>Jadi pengunjung EL NATHAN SHOP</span>
+    </div>
+    <div class="notification notification-green" id="notif-web">
+        <i class="fas fa-globe"></i>
+        <span>Beli website dengan harga terjangkau!</span>
+    </div>
+    <div class="notification notification-purple" id="notif-tutorial">
+        <i class="fas fa-book"></i>
+        <span>Semua tutorial web dev</span>
+    </div>
+    <div class="notification notification-pink" id="notif-design">
+        <i class="fas fa-palette"></i>
+        <span>Tutorial Desain Product tersedia!</span>
+    </div>
+    <div class="notification notification-skyblue" id="notif-joki">
+        <i class="fas fa-computer"></i>
+        <span>Jasa Joki Tugas Tersedia!</span>
+    </div>
+    <div class="notification notification-red" id="notif-design-new">
+        <i class="fas fa-paint-brush"></i>
+        <span>Kelas Desain Grafis Premium Tersedia!</span>
+    </div>
+    <div class="notification notification-orange" id="notif-javascript">
+        <i class="fab fa-js"></i>
+        <span>Tutorial JavaScript dari Dasar hingga Advanced!</span>
+    </div>
+</div>
 
     <!-- Header -->
     <header class="w-full bg-white/80 backdrop-blur-md shadow-md py-4 px-6 fixed top-0 z-50">
@@ -428,7 +427,7 @@
         setInterval(updateJakartaTime, 1000);
 
         // Show notifications sequentially
-        function showNotifications() {
+    function showNotifications() {
             // Current date/time and user information
             const currentDate = new Date('2025-02-08 03:54:01');
             const currentUser = 'elnathanwebsite';
@@ -481,28 +480,26 @@
         }
 
         startNotificationLoop();
-        // Function to modify the URL using hash (#) as separator
-        function customizeURL() {
-            // Get the current URL
-            let currentURL = window.location.href;
+        // Function to modify the URL with a custom parameter
+            function customizeURL() {
+                // Get the current URL
+                let currentURL = window.location.href;
 
-            // Remove any existing hash or query parameters if they exist
-            let baseURL = currentURL.split(/[#?]/)[0];
+                // Check if the URL already has query parameters
+                let separator = currentURL.includes('?') ? '&' : '?';
 
-            // Add the custom parameter with hash separator
-            let newURL = baseURL + '#selamatdatangdiwebelnathaners';
+                // Add the custom parameter
+                let newURL = currentURL + separator + 'selamatdatangdiwebelnathaners';
 
-            // Update the URL without reloading the page
-            window.history.pushState({}, '', newURL);
+                // Update the URL without reloading the page
+                window.history.pushState({}, '', newURL);
 
-            console.log('URL has been customized:', newURL);
-        }
+                console.log('URL has been customized:', newURL);
+            }
 
-        // Alternative function using window.location.hash
-        function customizeURLAlternative() {
-            // This method is simpler but will trigger a scroll if there's a matching element ID
-            window.location.hash = 'selamatdatangdiwebelnathaners';
-        }
+            // Call the function when you want to modify the URL
+            // You can either call it directly or bind it to an event
+            customizeURL();
     </script>
 
 </body>
