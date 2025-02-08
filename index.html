@@ -11,29 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
-         /* Style untuk notifikasi popup */
-        #notifPopup {
-            display: none;
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-            border-radius: 5px;
-            z-index: 1000;
-        }
-        #overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
         .cube-bg {
             background-image:
                 linear-gradient(#ffffff 2px, transparent 2px),
@@ -246,11 +223,7 @@
         }
     </style>
 </head>
- <div id="overlay"></div>
-    <div id="notifPopup">
-        <p>Selamat datang! Ada update terbaru untuk Anda.</p>
-        <button onclick="closePopup()">OK</button>
-    </div>
+
 <body class="min-h-screen cube-bg flex flex-col font-outfit">
     <!-- Notifications -->
     <div id="notification-container">
@@ -434,15 +407,6 @@
     </footer>
 
     <script>
-         window.onload = function() {
-            document.getElementById("notifPopup").style.display = "block";
-            document.getElementById("overlay").style.display = "block";
-        };
-
-        function closePopup() {
-            document.getElementById("notifPopup").style.display = "none";
-            document.getElementById("overlay").style.display = "none";
-        }
         // Update Jakarta Time
         function updateJakartaTime() {
             const jakartaTime = new Date().toLocaleString('id-ID', {
@@ -494,27 +458,7 @@
                 }, index * 3500); // Show next notification after 3.5 seconds
             });
         }
-const messaging = firebase.messaging();
 
-messaging.onBackgroundMessage((payload) => {
-    self.registration.showNotification(payload.notification.title, {
-        body: payload.notification.body,
-        icon: payload.notification.icon
-    });
-});
-        // Meminta izin notifikasi saat user membuka web
-    function requestNotificationPermission() {
-        Notification.requestPermission().then((permission) => {
-            if (permission === "granted") {
-                messaging.getToken().then((token) => {
-                    console.log("Token pengguna:", token);
-                });
-            }
-        });
-    }
-
-    // Jalankan saat halaman dimuat
-    window.onload = requestNotificationPermission;
         // Show notifications when page loads
         window.addEventListener('load', showNotifications);
 
@@ -557,20 +501,6 @@ messaging.onBackgroundMessage((payload) => {
         // Call the function when you want to modify the URL
         // You can either call it directly or bind it to an event
         customizeURL();
-        const socket = io("https://www.elnathanwebsite.my.id/?selamatdatangdiwebelnathaners");
-socket.on("notification", function(message) {
-    alert("Notifikasi baru: " + message);
-    const eventSource = new EventSource("https://www.elnathanwebsite.my.id/?selamatdatangdiwebelnathaners");
-eventSource.onmessage = function(event) {
-    alert("Pesan dari server: " + event.data);
-};
-
-});
-        window.onload = function() {
-    alert("Selamat datang! Ada update terbaru untuk Anda.");
-};
-
-
     </script>
 
 </body>
