@@ -501,6 +501,14 @@
         // Call the function when you want to modify the URL
         // You can either call it directly or bind it to an event
         customizeURL();
+        <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+    appId: "eb7f1406-ad34-47eb-8ec2-d751a945cc69",
+    });
+    });
+
     </script>
 
 </body>
