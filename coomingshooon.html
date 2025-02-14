@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coming Soon | elnathanwebsite</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <style>
+        /* Animations */
         @keyframes float {
 
             0%,
@@ -22,19 +24,7 @@
             }
         }
 
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        @keyframes spin-slow {
+        @keyframes spin {
             0% {
                 transform: rotate(0deg);
             }
@@ -58,16 +48,21 @@
             }
         }
 
-        @keyframes typing {
-            from {
-                width: 0
+        @keyframes scale-up {
+            0% {
+                transform: scale(0);
             }
 
-            to {
-                width: 100%
+            70% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
             }
         }
 
+        /* Base styles */
         .animate-float {
             animation: float 6s ease-in-out infinite;
         }
@@ -84,75 +79,63 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* User Info Bar */
-        .user-info-bar {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        .loading-spinner {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto;
         }
 
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .success-animation {
+            animation: scale-up 0.5s ease-in-out;
+        }
+
+        /* Responsive styles */
         @media (max-width: 768px) {
-            .user-info-bar {
-                font-size: 0.875rem;
+            #notify-form {
+                flex-direction: column;
             }
 
             .countdown-container {
                 grid-template-columns: repeat(2, 1fr);
             }
-
-            #notify-form {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .user-info-bar {
-                font-size: 0.75rem;
-            }
-
-            h1.main-title {
-                font-size: 2rem;
-            }
-
-            .countdown-item {
-                padding: 0.75rem;
-            }
-        }
-
-        .particle {
-            position: absolute;
-            pointer-events: none;
-            opacity: 0.7;
-        }
-
-        .countdown-item {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .countdown-item:hover {
-            transform: scale(1.05);
-        }
-
-        .social-icon {
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            transform: translateY(-5px);
         }
     </style>
 </head>
 
 <body class="gradient-bg min-h-screen font-outfit text-white overflow-x-hidden">
-    <!-- User Info Bar -->
-    <div class="user-info-bar fixed top-0 w-full z-50 px-4 py-2">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="text-center">
+            <div class="loading-spinner mb-4"></div>
+            <p>Mengirim email...</p>
+        </div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="fixed top-0 w-full bg-black/10 backdrop-blur-sm border-b border-white/10 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <i class="fas fa-clock"></i>
-                <span id="current-time">2025-02-04 12:15:17 UTC</span>
+                <span id="current-time">2025-02-14 16:40:29</span>
             </div>
             <div class="flex items-center space-x-2">
                 <i class="fas fa-user"></i>
@@ -161,123 +144,127 @@
         </div>
     </div>
 
-    <!-- Particles -->
-    <div id="particles" class="fixed inset-0 pointer-events-none">
-        <!-- Particles will be added here via JavaScript -->
-    </div>
-
     <!-- Main Content -->
     <div class="relative z-10 min-h-screen flex flex-col items-center justify-center p-4 pt-16">
         <!-- Logo -->
         <div class="animate-float mb-8">
             <h1
-                class="main-title text-4xl sm:text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-200">
+                class="text-4xl sm:text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-200">
                 ELNATHAN
             </h1>
         </div>
 
         <!-- Coming Soon Text -->
-        <div class="glass-effect p-4 sm:p-8 rounded-2xl mb-8 sm:mb-12 w-full max-w-2xl text-center">
-            <h2 class="text-xl sm:text-2xl md:text-4xl font-light mb-4 sm:mb-6">
+        <div class="glass-effect p-4 sm:p-8 rounded-2xl mb-8 w-full max-w-2xl text-center">
+            <h2 class="text-xl sm:text-2xl md:text-4xl font-light mb-4">
                 Something Amazing is Coming Soon
             </h2>
-            <p class="text-base sm:text-lg md:text-xl opacity-80">
+            <p class="text-base sm:text-lg opacity-80">
                 We're working hard to bring you something extraordinary. Stay tuned!
             </p>
         </div>
 
-        <!-- Countdown Timer -->
-        <div class="countdown-container grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-8 w-full max-w-2xl mx-auto">
-            <div class="countdown-item rounded-xl p-3 md:p-4 text-center">
+        <!-- Countdown -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 w-full max-w-2xl">
+            <div class="glass-effect rounded-xl p-4 text-center">
                 <span id="days" class="text-2xl sm:text-3xl md:text-4xl font-bold block">00</span>
-                <span class="text-xs sm:text-sm opacity-80">Days</span>
+                <span class="text-sm opacity-80">Days</span>
             </div>
-            <div class="countdown-item rounded-xl p-3 md:p-4 text-center">
+            <div class="glass-effect rounded-xl p-4 text-center">
                 <span id="hours" class="text-2xl sm:text-3xl md:text-4xl font-bold block">00</span>
-                <span class="text-xs sm:text-sm opacity-80">Hours</span>
+                <span class="text-sm opacity-80">Hours</span>
             </div>
-            <div class="countdown-item rounded-xl p-3 md:p-4 text-center">
+            <div class="glass-effect rounded-xl p-4 text-center">
                 <span id="minutes" class="text-2xl sm:text-3xl md:text-4xl font-bold block">00</span>
-                <span class="text-xs sm:text-sm opacity-80">Minutes</span>
+                <span class="text-sm opacity-80">Minutes</span>
             </div>
-            <div class="countdown-item rounded-xl p-3 md:p-4 text-center">
+            <div class="glass-effect rounded-xl p-4 text-center">
                 <span id="seconds" class="text-2xl sm:text-3xl md:text-4xl font-bold block">00</span>
-                <span class="text-xs sm:text-sm opacity-80">Seconds</span>
+                <span class="text-sm opacity-80">Seconds</span>
             </div>
         </div>
 
-        <!-- Notification Form -->
-        <div class="glass-effect p-4 sm:p-6 rounded-xl w-full max-w-md mx-auto mb-8">
+        <!-- Email Form -->
+        <div class="glass-effect p-6 rounded-xl w-full max-w-md mb-8">
             <form id="notify-form" class="flex flex-col sm:flex-row gap-2">
-                <input type="email" placeholder="Enter your email address"
-                    class="w-full sm:flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition-colors"
-                    required>
+                <input type="email" id="email" required
+                    class="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40"
+                    placeholder="Enter your email address">
                 <button type="submit"
-                    class="w-full sm:w-auto px-6 py-3 bg-white text-gray-900 rounded-lg font-semibold hover:bg-opacity-90 transition-all transform hover:scale-105">
-                    Notify Me
+                    class="px-6 py-3 bg-white text-gray-900 rounded-lg font-semibold hover:bg-opacity-90 transition transform hover:scale-105 disabled:opacity-50">
+                    <span class="submit-text">Notify Me</span>
+                    <div class="loading-spinner"></div>
                 </button>
             </form>
+            <p id="status" class="mt-4 text-center"></p>
         </div>
 
         <!-- Social Links -->
-        <div class="flex gap-4 sm:gap-6">
-            <a href="#" class="social-icon text-2xl sm:text-3xl opacity-80 hover:opacity-100 transition-all">
+        <div class="flex gap-6">
+            <a href="#" class="text-2xl sm:text-3xl opacity-80 hover:opacity-100 transition-all hover:-translate-y-1">
                 <i class="fab fa-twitter"></i>
             </a>
-            <a href="#" class="social-icon text-2xl sm:text-3xl opacity-80 hover:opacity-100 transition-all">
+            <a href="#" class="text-2xl sm:text-3xl opacity-80 hover:opacity-100 transition-all hover:-translate-y-1">
                 <i class="fab fa-instagram"></i>
             </a>
-            <a href="#" class="social-icon text-2xl sm:text-3xl opacity-80 hover:opacity-100 transition-all">
+            <a href="#" class="text-2xl sm:text-3xl opacity-80 hover:opacity-100 transition-all hover:-translate-y-1">
                 <i class="fab fa-facebook"></i>
             </a>
-            <a href="#" class="social-icon text-2xl sm:text-3xl opacity-80 hover:opacity-100 transition-all">
+            <a href="#" class="text-2xl sm:text-3xl opacity-80 hover:opacity-100 transition-all hover:-translate-y-1">
                 <i class="fab fa-linkedin"></i>
             </a>
         </div>
     </div>
 
     <script>
-        // Update Current Time
-        function updateTime() {
-            const now = new Date();
-            const formatted = now.toISOString().replace('T', ' ').substr(0, 19) + ' UTC';
-            document.getElementById('current-time').textContent = formatted;
-        }
+        // Initialize EmailJS
+        emailjs.init("8IkRIAQhAsqPra4RN");
 
-        setInterval(updateTime, 1000);
-        updateTime();
+        // Elements
+        const form = document.getElementById("notify-form");
+        const loadingOverlay = document.getElementById("loadingOverlay");
+        const submitButton = form.querySelector('button[type="submit"]');
+        const submitText = submitButton.querySelector('.submit-text');
+        const loadingSpinner = submitButton.querySelector('.loading-spinner');
+        const statusElement = document.getElementById("status");
 
-        // Particles Animation
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.width = '2px';
-            particle.style.height = '2px';
-            particle.style.background = 'white';
-            particle.style.left = Math.random() * 100 + 'vw';
-            particle.style.top = Math.random() * 100 + 'vh';
+        // Email Form Handler
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
 
-            document.getElementById('particles').appendChild(particle);
+            // Show loading state
+            submitText.style.display = 'none';
+            loadingSpinner.style.display = 'block';
+            submitButton.disabled = true;
+            loadingOverlay.style.display = 'flex';
 
-            const animation = particle.animate([
-                { transform: 'translate(0, 0)', opacity: 0 },
-                { transform: `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`, opacity: 0.8 },
-                { transform: `translate(${Math.random() * 400 - 200}px, ${Math.random() * 400 - 200}px)`, opacity: 0 }
-            ], {
-                duration: 5000,
-                easing: 'ease-out'
-            });
+            try {
+                await emailjs.send("service_04gzfqa", "template_mog7m3k", {
+                    email: document.getElementById("email").value
+                });
 
-            animation.onfinish = () => {
-                particle.remove();
-                createParticle();
-            };
-        }
+                // Success state
+                statusElement.textContent = "✅ Email berhasil dikirim!";
+                statusElement.style.color = "rgb(34, 197, 94)";
+                statusElement.classList.add('success-animation');
+                form.reset();
+            } catch (error) {
+                // Error state
+                statusElement.textContent = "❌ Gagal mengirim email.";
+                statusElement.style.color = "rgb(239, 68, 68)";
+            } finally {
+                // Reset UI state
+                loadingOverlay.style.display = 'none';
+                submitButton.disabled = false;
+                loadingSpinner.style.display = 'none';
+                submitText.style.display = 'block';
 
-        // Create initial particles
-        for (let i = 0; i < 50; i++) {
-            createParticle();
-        }
+                // Remove animation class
+                setTimeout(() => {
+                    statusElement.classList.remove('success-animation');
+                }, 500);
+            }
+        });
 
         // Countdown Timer
         function updateCountdown() {
@@ -296,23 +283,25 @@
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
         }
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        // Update time display
+        function updateTime() {
+            const now = new Date();
+            const formatted = now.toISOString().replace('T', ' ').substr(0, 19);
+            document.getElementById('current-time').textContent = formatted;
+        }
 
-        // Form Submission
-        document.getElementById('notify-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = e.target.querySelector('input').value;
-            alert(`Thank you! We'll notify ${email} when we launch.`);
-            e.target.reset();
-        });
+        // Initialize timers
+        setInterval(updateCountdown, 1000);
+        setInterval(updateTime, 1000);
+        updateCountdown();
+        updateTime();
 
         // Add sound effects
-        document.querySelectorAll('.countdown-item, .social-icon, button').forEach(element => {
+        document.querySelectorAll('button, a').forEach(element => {
             element.addEventListener('mouseenter', () => {
                 const audio = new Audio('data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//OEAAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAADAAAGhgBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqr///////////////////////////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAYAAAAAAAAABoYPqzKnAAAAAAAAAAAAAAAAAAAA//MUZAAAAAGkAAAAAAAAA0gAAAAATEFN//MUZAMAAAGkAAAAAAAAA0gAAAAARTMu//MUZAYAAAGkAAAAAAAAA0gAAAAAOTku//MUZAkAAAGkAAAAAAAAA0gAAAAANVVV');
                 audio.volume = 0.1;
-                audio.play();
+                audio.play().catch(() => { });
             });
         });
     </script>
