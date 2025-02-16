@@ -526,14 +526,7 @@ OneSignalDeferred.push(async function(OneSignal) {
         console.log("User menolak izin notifikasi.");
     }
 });
-window.OneSignalDeferred = window.OneSignalDeferred || [];
-OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-        appId: "eb7f1406-ad34-47eb-8ec2-d751a945cc69",
-        autoResubscribe: true,  // Memastikan user tetap berlangganan setelah refresh
-        notifyButton: {
-            enable: true,  // Menampilkan ikon lonceng untuk berlangganan
-        },
+
         welcomeNotification: {
             title: "Selamat Datang di EL NATHAN!",
             message: "Aktifkan notifikasi untuk mendapatkan update terbaru.",
