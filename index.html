@@ -525,17 +525,11 @@ OneSignalDeferred.push(async function(OneSignal) {
     } else {
         console.log("User menolak izin notifikasi.");
     }
-});
 
-        welcomeNotification: {
-            title: "Selamat Datang di EL NATHAN!",
-            message: "Aktifkan notifikasi untuk mendapatkan update terbaru.",
-        }
-    });
-
-    // Langsung meminta izin notifikasi dengan slidedown prompt
+    // Langsung menampilkan pop-up subscribe jika user belum berlangganan
     OneSignal.Notifications.showSlidedownPrompt();
 });
+
 
 <!-- memulai kode pelacakan webpushr --> 
 (function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') kembali; w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(argumen)}; var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1; js.src = "https://cdn.webpushr.com/app.min.js";
