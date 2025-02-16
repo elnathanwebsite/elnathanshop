@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -503,12 +504,29 @@
         // You can either call it directly or bind it to an event
         customizeURL();
       
-    window.OneSignalDeferred = window.OneSignalDeferred || [];
-    OneSignalDeferred.push(async function(OneSignal) {
+   window.OneSignalDeferred = window.OneSignalDeferred || [];
+OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
-    appId: "eb7f1406-ad34-47eb-8ec2-d751a945cc69",
+        appId: "eb7f1406-ad34-47eb-8ec2-d751a945cc69",
+        autoResubscribe: true,  // Memastikan user tetap berlangganan setelah refresh
+        notifyButton: {
+            enable: true,  // Menampilkan ikon lonceng untuk berlangganan
+        },
+        welcomeNotification: {
+            title: "Selamat Datang!",
+            message: "Aktifkan notifikasi untuk mendapatkan update terbaru dari EL NATHAN.",
+        }
     });
-    });
+
+    // Langsung meminta izin notifikasi saat pengguna pertama kali masuk
+    const permission = await OneSignal.Notifications.requestPermission();
+    if (permission === "granted") {
+        console.log("User telah mengizinkan notifikasi.");
+    } else {
+        console.log("User menolak izin notifikasi.");
+    }
+});
+
 <!-- memulai kode pelacakan webpushr --> 
 (function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') kembali; w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(argumen)}; var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1; js.src = "https://cdn.webpushr.com/app.min.js";
 fjs.parentNode.appendChild(js);}(jendela, dokumen, 'skrip', 'webpushr-jssdk'));
