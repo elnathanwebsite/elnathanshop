@@ -518,17 +518,35 @@ OneSignalDeferred.push(async function(OneSignal) {
         }
     });
 
-    // Langsung meminta izin notifikasi saat pengguna pertama kali masuk
-    const permission = await OneSignal.Notifications.requestPermission();
-    if (permission === "granted") {
-        console.log("User telah mengizinkan notifikasi.");
-    } else {
-        console.log("User menolak izin notifikasi.");
+    // Fungsi untuk memastikan permintaan izin tetap muncul sampai user memilih
+    async function requestPermissionLoop() {
+        let permission = await OneSignal.Notifications.getPermission();
+        
+        while (permission === "default") { // Jika user belum memilih (status: "default")
+            console.log("Menunggu izin notifikasi...");
+
+            // Tampilkan kembali permintaan izin
+            await OneSignal.Notifications.requestPermission();
+            await OneSignal.Notifications.showSlidedownPrompt();
+
+            // Tunggu 5 detik sebelum mencoba lagi
+            await new Promise(resolve => setTimeout(resolve, 5000));
+
+            // Perbarui status izin
+            permission = await OneSignal.Notifications.getPermission();
+        }
+
+        if (permission === "granted") {
+            console.log("User telah mengizinkan notifikasi.");
+        } else {
+            console.log("User menolak izin notifikasi.");
+        }
     }
 
-    // Langsung menampilkan pop-up subscribe jika user belum berlangganan
-    OneSignal.Notifications.showSlidedownPrompt();
+    // Jalankan fungsi loop saat halaman dimuat
+    requestPermissionLoop();
 });
+
 
 
 <!-- memulai kode pelacakan webpushr --> 
