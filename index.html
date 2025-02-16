@@ -508,44 +508,32 @@ window.OneSignalDeferred = window.OneSignalDeferred || [];
 OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
         appId: "eb7f1406-ad34-47eb-8ec2-d751a945cc69",
-        autoResubscribe: true,  // Memastikan user tetap berlangganan setelah refresh
-        notifyButton: {
-            enable: true,  // Menampilkan ikon lonceng untuk berlangganan
-        },
+        autoResubscribe: true,
+        notifyButton: { enable: true },
         welcomeNotification: {
             title: "Selamat Datang!",
             message: "Aktifkan notifikasi untuk mendapatkan update terbaru dari EL NATHAN.",
         }
     });
 
-    // Fungsi untuk memastikan permintaan izin tetap muncul sampai user memilih
-    async function requestPermissionLoop() {
-        let permission = await OneSignal.Notifications.getPermission();
-        
-        while (permission === "default") { // Jika user belum memilih (status: "default")
-            console.log("Menunggu izin notifikasi...");
-
-            // Tampilkan kembali permintaan izin
-            await OneSignal.Notifications.requestPermission();
-            await OneSignal.Notifications.showSlidedownPrompt();
-
-            // Tunggu 5 detik sebelum mencoba lagi
-            await new Promise(resolve => setTimeout(resolve, 5000));
-
-            // Perbarui status izin
-            permission = await OneSignal.Notifications.getPermission();
-        }
-
-        if (permission === "granted") {
-            console.log("User telah mengizinkan notifikasi.");
-        } else {
-            console.log("User menolak izin notifikasi.");
+    async function ensureNotificationPermission() {
+        while (true) {
+            let permission = await OneSignal.Notifications.getPermission();
+            if (permission === "default") {
+                console.log("Menunggu izin notifikasi...");
+                await OneSignal.Notifications.requestPermission();
+                await OneSignal.Notifications.showSlidedownPrompt();
+                await new Promise(resolve => setTimeout(resolve, 2000)); // Cek setiap 2 detik
+            } else {
+                console.log(`User memilih: ${permission}`);
+                break; // Stop loop jika user sudah memilih (granted/denied)
+            }
         }
     }
 
-    // Jalankan fungsi loop saat halaman dimuat
-    requestPermissionLoop();
+    ensureNotificationPermission();
 });
+
 
 
 
