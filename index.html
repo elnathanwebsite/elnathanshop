@@ -517,25 +517,24 @@ OneSignalDeferred.push(async function(OneSignal) {
     });
 
     async function ensureNotificationPermission() {
-        while (true) {
-            let permission = await OneSignal.Notifications.getPermission();
-            if (permission === "default") {
-                console.log("Menunggu izin notifikasi...");
-                await OneSignal.Notifications.requestPermission();
-                await OneSignal.Notifications.showSlidedownPrompt();
-                await new Promise(resolve => setTimeout(resolve, 2000)); // Cek setiap 2 detik
-            } else {
-                console.log(`User memilih: ${permission}`);
-                break; // Stop loop jika user sudah memilih (granted/denied)
-            }
+        let permission = localStorage.getItem("notificationPermission") || "default";
+
+        while (permission === "default") {
+            console.log("Menunggu izin notifikasi...");
+            await OneSignal.Notifications.requestPermission();
+            await OneSignal.Notifications.showSlidedownPrompt();
+            await new Promise(resolve => setTimeout(resolve, 2000)); // Cek setiap 2 detik
+
+            // Update status setelah pengguna mengambil tindakan
+            permission = await OneSignal.Notifications.getPermission();
+            localStorage.setItem("notificationPermission", permission);
         }
+
+        console.log(`User memilih: ${permission}`);
     }
 
     ensureNotificationPermission();
 });
-
-
-
 
 <!-- memulai kode pelacakan webpushr --> 
 (function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') kembali; w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(argumen)}; var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1; js.src = "https://cdn.webpushr.com/app.min.js";
