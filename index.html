@@ -541,6 +541,28 @@ OneSignalDeferred.push(async function(OneSignal) {
 (function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') kembali; w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(argumen)}; var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1; js.src = "https://cdn.webpushr.com/app.min.js";
 fjs.parentNode.appendChild(js);}(jendela, dokumen, 'skrip', 'webpushr-jssdk'));
 webpushr('setup',{'key':'BDj9zSkt_VeOrkCUn8auNuBorOkCfWBpfXIGkW7W440RYdRKn1X1VZ5uRZ8-lYwCC7kxgnV__XAAPCAFnI-cufU' });
+document.getElementById("loadButton").addEventListener("click", function(event) {
+    event.preventDefault();  // Mencegah halaman untuk melakukan reload saat link diklik
+
+    // URL yang ingin dimuat (ganti dengan alamat halaman yang sesuai)
+    const url = "utama.html";
+    
+    // Menggunakan Fetch API untuk mengambil konten dari halaman utama.html
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Gagal memuat halaman");
+            }
+            return response.text();  // Mengambil konten HTML sebagai teks
+        })
+        .then(data => {
+            // Menyisipkan konten HTML yang didapatkan ke dalam elemen tertentu
+            document.getElementById("content").innerHTML = data;
+        })
+        .catch(error => {
+            console.error("Terjadi kesalahan:", error);
+        });
+});
 
     </script>
 
