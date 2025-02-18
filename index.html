@@ -223,6 +223,52 @@
                 transform: translatey(0px);
             }
         }
+        @keyframes blinkRainbow {
+    0% { filter: hue-rotate(0deg); }
+    50% { filter: hue-rotate(180deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Terapkan ke latar belakang grid */
+.cube-bg {
+    animation: blinkRainbow 4s infinite linear;
+}
+
+/* Tombol berkedip warna-warni lebih lambat */
+.button-hover {
+    animation: blinkRainbow 4s infinite linear;
+}
+
+/* Ikon dalam tombol juga ikut berwarna-warni */
+.button-hover .icon-spin {
+    animation: blinkRainbow 4s infinite linear;
+}
+
+/* Efek kelap-kelip warna-warni di teks gradasi */
+.gradient-text {
+    animation: blinkRainbow 4s infinite linear, gradient 5s ease infinite;
+}
+
+/* Efek berkedip warna-warni di waktu */
+.time-display {
+    animation: blinkRainbow 4s infinite linear, timeGlow 3s ease-in-out infinite alternate;
+}
+
+/* Efek berkedip warna-warni di badge pengguna */
+.user-badge {
+    animation: blinkRainbow 4s infinite linear, badgePulse 3s ease-in-out infinite;
+}
+
+/* Notifikasi berkedip warna-warni */
+.notification {
+    animation: blinkRainbow 4s infinite linear;
+}
+
+/* Efek berkedip warna-warni di profil gambar */
+.profile-image {
+    animation: blinkRainbow 4s infinite linear, float 6s ease-in-out infinite;
+}
+
     </style>
 </head>
 
@@ -296,7 +342,7 @@
 
             <!-- Title -->
             <h1 class="text-4xl font-bold text-center mb-4">
-                <span class="gradient-text">elnathanwebsite </span>
+                <span class="gradient-text"> elnathanwebsite.my.id </span>
             </h1>
 
             <!-- Description -->
@@ -406,7 +452,6 @@
                 </a>
             </div>
         </div>
-    
     </footer>
 
     <script>
@@ -505,64 +550,16 @@
         // You can either call it directly or bind it to an event
         customizeURL();
       
-window.OneSignalDeferred = window.OneSignalDeferred || [];
-OneSignalDeferred.push(async function(OneSignal) {
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
-        appId: "eb7f1406-ad34-47eb-8ec2-d751a945cc69",
-        autoResubscribe: true,
-        notifyButton: { enable: true },
-        welcomeNotification: {
-            title: "Selamat Datang!",
-            message: "Aktifkan notifikasi untuk mendapatkan update terbaru dari EL NATHAN.",
-        }
+    appId: "eb7f1406-ad34-47eb-8ec2-d751a945cc69",
     });
-
-    async function ensureNotificationPermission() {
-        let permission = localStorage.getItem("notificationPermission") || "default";
-
-        while (permission === "default") {
-            console.log("Menunggu izin notifikasi...");
-            await OneSignal.Notifications.requestPermission();
-            await OneSignal.Notifications.showSlidedownPrompt();
-            await new Promise(resolve => setTimeout(resolve, 2000)); // Cek setiap 2 detik
-
-            // Update status setelah pengguna mengambil tindakan
-            permission = await OneSignal.Notifications.getPermission();
-            localStorage.setItem("notificationPermission", permission);
-        }
-
-        console.log(`User memilih: ${permission}`);
-    }
-
-    ensureNotificationPermission();
-});
-
+    });
 <!-- memulai kode pelacakan webpushr --> 
 (function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') kembali; w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(argumen)}; var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1; js.src = "https://cdn.webpushr.com/app.min.js";
 fjs.parentNode.appendChild(js);}(jendela, dokumen, 'skrip', 'webpushr-jssdk'));
 webpushr('setup',{'key':'BDj9zSkt_VeOrkCUn8auNuBorOkCfWBpfXIGkW7W440RYdRKn1X1VZ5uRZ8-lYwCC7kxgnV__XAAPCAFnI-cufU' });
-document.getElementById("loadButton").addEventListener("click", function(event) {
-    event.preventDefault();  // Mencegah halaman untuk melakukan reload saat link diklik
-
-    // URL yang ingin dimuat (ganti dengan alamat halaman yang sesuai)
-    const url = "utama.html";
-    
-    // Menggunakan Fetch API untuk mengambil konten dari halaman utama.html
-    fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Gagal memuat halaman");
-            }
-            return response.text();  // Mengambil konten HTML sebagai teks
-        })
-        .then(data => {
-            // Menyisipkan konten HTML yang didapatkan ke dalam elemen tertentu
-            document.getElementById("content").innerHTML = data;
-        })
-        .catch(error => {
-            console.error("Terjadi kesalahan:", error);
-        });
-});
 
     </script>
 
