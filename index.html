@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,40 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ETHAN EL NATHAN WEBSITE | DASHBORD HYPERLINK</title>
-      <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        .notification q {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(51, 51, 51, 0.9);
-            color: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 9999;
-            font-family: Arial, sans-serif;
-        }
-        .notification q {
-            background: #ff5722;
-            color: #fff;
-            padding: 8px 12px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .notification .close q {
-            cursor: pointer;
-            margin-left: 10px;
-            font-size: 18px;
-        }
         .cube-bg {
             background-image:
                 linear-gradient(#ffffff 2px, transparent 2px),
@@ -252,47 +222,55 @@
                 transform: translatey(0px);
             }
         }
+
         @keyframes blinkRainbow {
-    0% { filter: hue-rotate(0deg); }
-    50% { filter: hue-rotate(180deg); }
-    100% { filter: hue-rotate(360deg); }
-}
+            0% {
+                filter: hue-rotate(0deg);
+            }
 
-/* Tombol berkedip warna-warni lebih lambat */
-.button-hover {
-    animation: blinkRainbow 4s infinite linear;
-}
+            50% {
+                filter: hue-rotate(180deg);
+            }
 
-/* Ikon dalam tombol juga ikut berwarna-warni */
-.button-hover .icon-spin {
-    animation: blinkRainbow 4s infinite linear;
-}
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
 
-/* Efek kelap-kelip warna-warni di teks gradasi */
-.gradient-text {
-    animation: blinkRainbow 4s infinite linear, gradient 5s ease infinite;
-}
+        /* Tombol berkedip warna-warni lebih lambat */
+        .button-hover {
+            animation: blinkRainbow 4s infinite linear;
+        }
 
-/* Efek berkedip warna-warni di waktu */
-.time-display {
-    animation: blinkRainbow 4s infinite linear, timeGlow 3s ease-in-out infinite alternate;
-}
+        /* Ikon dalam tombol juga ikut berwarna-warni */
+        .button-hover .icon-spin {
+            animation: blinkRainbow 4s infinite linear;
+        }
 
-/* Efek berkedip warna-warni di badge pengguna */
-.user-badge {
-    animation: blinkRainbow 4s infinite linear, badgePulse 3s ease-in-out infinite;
-}
+        /* Efek kelap-kelip warna-warni di teks gradasi */
+        .gradient-text {
+            animation: blinkRainbow 4s infinite linear, gradient 5s ease infinite;
+        }
 
-/* Notifikasi berkedip warna-warni */
-.notification {
-    animation: blinkRainbow 4s infinite linear;
-}
+        /* Efek berkedip warna-warni di waktu */
+        .time-display {
+            animation: blinkRainbow 4s infinite linear, timeGlow 3s ease-in-out infinite alternate;
+        }
 
-/* Efek berkedip warna-warni di profil gambar */
-.profile-image {
-    animation: blinkRainbow 4s infinite linear, float 6s ease-in-out infinite;
-}
+        /* Efek berkedip warna-warni di badge pengguna */
+        .user-badge {
+            animation: blinkRainbow 4s infinite linear, badgePulse 3s ease-in-out infinite;
+        }
 
+        /* Notifikasi berkedip warna-warni */
+        .notification {
+            animation: blinkRainbow 4s infinite linear;
+        }
+
+        /* Efek berkedip warna-warni di profil gambar */
+        .profile-image {
+            animation: blinkRainbow 4s infinite linear, float 6s ease-in-out infinite;
+        }
     </style>
 </head>
 
@@ -476,40 +454,10 @@
                 </a>
             </div>
         </div>
-        <div class='onesignal-customlink-container'></div>
+
     </footer>
 
     <script>
-         document.addEventListener("DOMContentLoaded", function () {
-            if (!sessionStorage.getItem("notificationShown")) {
-                let notification = document.createElement("div");
-                notification.classList.add("notification");
-
-                let message = document.createElement("span");
-                message.textContent = "Kunjungi halaman spesial kami!";
-                notification.appendChild(message);
-
-                let button = document.createElement("a");
-                button.textContent = "Lihat";
-                button.href = "https://drive.google.com/file/d/1X24fu45mpyGrKsaxYJhTzaLMzJ03nrb1/view?usp=sharing";
-                button.target = "_blank";
-                notification.appendChild(button);
-
-                let closeButton = document.createElement("span");
-                closeButton.textContent = "×";
-                closeButton.classList.add("close");
-                closeButton.onclick = function () {
-                    notification.style.display = "none";
-                };
-                notification.appendChild(closeButton);
-
-                document.body.appendChild(notification);
-                setTimeout(function () {
-                    notification.style.display = "none";
-                }, 3000);
-                sessionStorage.setItem("notificationShown", "true");
-            }
-        });
         // Update Jakarta Time
         function updateJakartaTime() {
             const jakartaTime = new Date().toLocaleString('id-ID', {
@@ -604,43 +552,45 @@
         // Call the function when you want to modify the URL
         // You can either call it directly or bind it to an event
         customizeURL();
-      
-window.OneSignalDeferred = window.OneSignalDeferred || [];
-OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-        appId: "eb7f1406-ad34-47eb-8ec2-d751a945cc69",
-        autoResubscribe: true,
-        notifyButton: { enable: true },
-        welcomeNotification: {
-            title: "Selamat Datang!",
-            message: "Aktifkan notifikasi untuk mendapatkan update terbaru dari EL NATHAN.",
-        }
-    });
 
-    async function ensureNotificationPermission() {
-        let permission = localStorage.getItem("notificationPermission") || "default";
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(async function (OneSignal) {
+            await OneSignal.init({
+                appId: "eb7f1406-ad34-47eb-8ec2-d751a945cc69",
+                autoResubscribe: true,
+                notifyButton: { enable: true },
+                welcomeNotification: {
+                    title: "Selamat Datang!",
+                    message: "Aktifkan notifikasi untuk mendapatkan update terbaru dari EL NATHAN.",
+                }
+            });
 
-        while (permission === "default") {
-            console.log("Menunggu izin notifikasi...");
-            await OneSignal.Notifications.requestPermission();
-            await OneSignal.Notifications.showSlidedownPrompt();
-            await new Promise(resolve => setTimeout(resolve, 2000)); // Cek setiap 2 detik
+            async function ensureNotificationPermission() {
+                let permission = localStorage.getItem("notificationPermission") || "default";
 
-            // Update status setelah pengguna mengambil tindakan
-            permission = await OneSignal.Notifications.getPermission();
-            localStorage.setItem("notificationPermission", permission);
-        }
+                while (permission === "default") {
+                    console.log("Menunggu izin notifikasi...");
+                    await OneSignal.Notifications.requestPermission();
+                    await OneSignal.Notifications.showSlidedownPrompt();
+                    await new Promise(resolve => setTimeout(resolve, 2000)); // Cek setiap 2 detik
 
-        console.log(`User memilih: ${permission}`);
-    }
+                    // Update status setelah pengguna mengambil tindakan
+                    permission = await OneSignal.Notifications.getPermission();
+                    localStorage.setItem("notificationPermission", permission);
+                }
 
-    ensureNotificationPermission();
-});
+                console.log(`User memilih: ${permission}`);
+            }
 
-<!-- memulai kode pelacakan webpushr --> 
-(function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') kembali; w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(argumen)}; var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1; js.src = "https://cdn.webpushr.com/app.min.js";
-fjs.parentNode.appendChild(js);}(jendela, dokumen, 'skrip', 'webpushr-jssdk'));
-webpushr('setup',{'key':'BDj9zSkt_VeOrkCUn8auNuBorOkCfWBpfXIGkW7W440RYdRKn1X1VZ5uRZ8-lYwCC7kxgnV__XAAPCAFnI-cufU' });
+            ensureNotificationPermission();
+        });
+
+        <!-- memulai kode pelacakan webpushr -- 
+        (function (w, d, s, id) {
+            if (typeof (w.webpushr) !== 'undefined') kembali; w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(argumen) }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.src = "https://cdn.webpushr.com/app.min.js";
+            fjs.parentNode.appendChild(js);
+        }(jendela, dokumen, 'skrip', 'webpushr-jssdk'));
+        webpushr('setup', { 'key': 'BDj9zSkt_VeOrkCUn8auNuBorOkCfWBpfXIGkW7W440RYdRKn1X1VZ5uRZ8-lYwCC7kxgnV__XAAPCAFnI-cufU' });
 
     </script>
 
