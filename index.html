@@ -14,6 +14,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(51, 51, 51, 0.9);
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 9999;
+            font-family: Arial, sans-serif;
+        }
+        .notification a {
+            background: #ff5722;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .notification .close {
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 18px;
+        }
         .cube-bg {
             background-image:
                 linear-gradient(#ffffff 2px, transparent 2px),
@@ -338,7 +366,7 @@
 
             <!-- Title -->
             <h1 class="text-4xl font-bold text-center mb-4">
-                <span class="gradient-text">Arifan</span>
+                <span class="gradient-text">elnathanwebsite </span>
             </h1>
 
             <!-- Description -->
@@ -448,10 +476,40 @@
                 </a>
             </div>
         </div>
-        
+        <div class='onesignal-customlink-container'></div>
     </footer>
 
     <script>
+         document.addEventListener("DOMContentLoaded", function () {
+            if (!sessionStorage.getItem("notificationShown")) {
+                let notification = document.createElement("div");
+                notification.classList.add("notification");
+
+                let message = document.createElement("span");
+                message.textContent = "Kunjungi halaman spesial kami!";
+                notification.appendChild(message);
+
+                let button = document.createElement("a");
+                button.textContent = "Lihat";
+                button.href = "https://drive.google.com/file/d/1X24fu45mpyGrKsaxYJhTzaLMzJ03nrb1/view?usp=sharing";
+                button.target = "_blank";
+                notification.appendChild(button);
+
+                let closeButton = document.createElement("span");
+                closeButton.textContent = "×";
+                closeButton.classList.add("close");
+                closeButton.onclick = function () {
+                    notification.style.display = "none";
+                };
+                notification.appendChild(closeButton);
+
+                document.body.appendChild(notification);
+                setTimeout(function () {
+                    notification.style.display = "none";
+                }, 3000);
+                sessionStorage.setItem("notificationShown", "true");
+            }
+        });
         // Update Jakarta Time
         function updateJakartaTime() {
             const jakartaTime = new Date().toLocaleString('id-ID', {
@@ -583,10 +641,6 @@ OneSignalDeferred.push(async function(OneSignal) {
 (function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') kembali; w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(argumen)}; var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1; js.src = "https://cdn.webpushr.com/app.min.js";
 fjs.parentNode.appendChild(js);}(jendela, dokumen, 'skrip', 'webpushr-jssdk'));
 webpushr('setup',{'key':'BDj9zSkt_VeOrkCUn8auNuBorOkCfWBpfXIGkW7W440RYdRKn1X1VZ5uRZ8-lYwCC7kxgnV__XAAPCAFnI-cufU' });
-document.addEventListener("DOMContentLoaded", function () {
-  document.addEventListener("DOMContentLoaded", function () {
-  
-
 
     </script>
 
