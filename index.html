@@ -644,52 +644,87 @@
     </footer>
 
     <script>
-       // Menggunakan namespace yang unik untuk fungsi
-        function elnathan2025ShowNotification() {
+    // Fungsi untuk menampilkan notifikasi
+        function showRefreshNotification2025() {
             const overlay = document.getElementById('elnathan_2025_notification_overlay');
             const notification = document.getElementById('elnathan_2025_notification_container');
 
-            overlay.style.display = 'block';
-            notification.style.display = 'block';
+            if (overlay && notification) {
+                // Reset opacity dan display
+                overlay.style.opacity = '0';
+                notification.style.opacity = '0';
+                overlay.style.display = 'block';
+                notification.style.display = 'block';
 
-            // Trigger reflow
-            notification.offsetHeight;
+                // Trigger reflow untuk animasi
+                notification.offsetHeight;
 
-            // Fade in
-            setTimeout(() => {
-                overlay.style.opacity = '1';
-                notification.style.opacity = '1';
-                notification.setAttribute('data-visible', 'true');
-            }, 10);
-        }
-
-        function elnathan2025CloseNotification() {
-            const overlay = document.getElementById('elnathan_2025_notification_overlay');
-            const notification = document.getElementById('elnathan_2025_notification_container');
-
-            notification.style.opacity = '0';
-            overlay.style.opacity = '0';
-            notification.setAttribute('data-visible', 'false');
-
-            setTimeout(() => {
-                notification.style.display = 'none';
-                overlay.style.display = 'none';
-            }, 300);
-        }
-
-        function elnathan2025CheckNotification() {
-            const storageKey = 'elnathan_2025_notification_seen';
-            const hasSeenNotification = localStorage.getItem(storageKey);
-
-            if (!hasSeenNotification) {
-                setTimeout(elnathan2025ShowNotification, 1000);
-                localStorage.setItem(storageKey, 'true');
+                // Fade in
+                setTimeout(() => {
+                    overlay.style.opacity = '1';
+                    notification.style.opacity = '1';
+                    notification.setAttribute('data-visible', 'true');
+                }, 100);
             }
         }
 
-        // Menjalankan check notifikasi setelah DOM load
-        document.addEventListener('DOMContentLoaded', elnathan2025CheckNotification);
-        // Update Jakarta Time
+        // Fungsi untuk menutup notifikasi
+        function closeRefreshNotification2025() {
+            const overlay = document.getElementById('elnathan_2025_notification_overlay');
+            const notification = document.getElementById('elnathan_2025_notification_container');
+
+            if (overlay && notification) {
+                notification.style.opacity = '0';
+                overlay.style.opacity = '0';
+                notification.setAttribute('data-visible', 'false');
+
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                    overlay.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        // Fungsi untuk menangani refresh page
+        function handleRefreshNotification2025() {
+            // Menampilkan notifikasi setelah delay singkat
+            setTimeout(showRefreshNotification2025, 500);
+
+            // Menambahkan event listener untuk tombol close
+            const closeButton = document.getElementById('elnathan_2025_notification_close');
+            if (closeButton) {
+                closeButton.onclick = closeRefreshNotification2025;
+            }
+        }
+
+        // Event listener saat DOM telah dimuat
+        document.addEventListener('DOMContentLoaded', handleRefreshNotification2025);
+
+        // Event listener untuk refresh page
+        window.addEventListener('load', handleRefreshNotification2025);
+
+        // Optional: Menangani back/forward navigation
+        window.addEventListener('pageshow', (event) => {
+            // Jika halaman dimuat dari cache (back/forward navigation)
+            if (event.persisted) {
+                handleRefreshNotification2025();
+            }
+        });
+
+        // Optional: Menangani visibility change (tab switching)
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                handleRefreshNotification2025();
+            }
+        });
+
+        // Escape key untuk menutup notifikasi
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeRefreshNotification2025();
+            }
+        });
+// Update Jakarta Time
         function updateJakartaTime() {
             const jakartaTime = new Date().toLocaleString('id-ID', {
                 timeZone: 'Asia/Jakarta',
