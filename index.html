@@ -583,6 +583,58 @@ OneSignalDeferred.push(async function(OneSignal) {
 (function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') kembali; w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(argumen)}; var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1; js.src = "https://cdn.webpushr.com/app.min.js";
 fjs.parentNode.appendChild(js);}(jendela, dokumen, 'skrip', 'webpushr-jssdk'));
 webpushr('setup',{'key':'BDj9zSkt_VeOrkCUn8auNuBorOkCfWBpfXIGkW7W440RYdRKn1X1VZ5uRZ8-lYwCC7kxgnV__XAAPCAFnI-cufU' });
+document.addEventListener("DOMContentLoaded", function () {
+    // Membuat elemen notifikasi
+    let notification = document.createElement("div");
+    notification.style.position = "fixed";
+    notification.style.bottom = "20px";
+    notification.style.right = "20px";
+    notification.style.background = "#333";
+    notification.style.color = "#fff";
+    notification.style.padding = "15px";
+    notification.style.borderRadius = "8px";
+    notification.style.boxShadow = "0px 0px 10px rgba(0, 0, 0, 0.3)";
+    notification.style.display = "flex";
+    notification.style.alignItems = "center";
+    notification.style.gap = "10px";
+
+    // Menambahkan teks notifikasi
+    let message = document.createElement("span");
+    message.textContent = "Kunjungi halaman spesial kami!";
+    notification.appendChild(message);
+
+    // Membuat tombol dengan link
+    let button = document.createElement("a");
+    button.textContent = "Lihat";
+    button.href = "https://drive.google.com/file/d/1X24fu45mpyGrKsaxYJhTzaLMzJ03nrb1/view?usp=sharing"; // Ganti dengan link tujuan
+    button.target = "_blank";
+    button.style.background = "#ff5722";
+    button.style.color = "#fff";
+    button.style.padding = "8px 12px";
+    button.style.borderRadius = "5px";
+    button.style.textDecoration = "none";
+    button.style.fontWeight = "bold";
+    notification.appendChild(button);
+
+    // Menambahkan tombol close
+    let closeButton = document.createElement("span");
+    closeButton.textContent = "×";
+    closeButton.style.cursor = "pointer";
+    closeButton.style.marginLeft = "10px";
+    closeButton.style.fontSize = "18px";
+    closeButton.onclick = function () {
+        notification.style.display = "none";
+    };
+    notification.appendChild(closeButton);
+
+    // Menambahkan notifikasi ke dalam body
+    document.body.appendChild(notification);
+
+    // Menghilangkan notifikasi setelah 3 detik
+    setTimeout(function () {
+        notification.style.display = "none";
+    }, 3000);
+});
 
     </script>
 
