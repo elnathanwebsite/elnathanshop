@@ -1,0 +1,863 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETHAN EL NATHAN WEBSITE | DASHBORD HYPERLINK</title>
+      <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        .cube-bg {
+            background-image:
+                linear-gradient(#ffffff 2px, transparent 2px),
+                linear-gradient(90deg, #ffffff 2px, transparent 2px),
+                linear-gradient(#e5e7eb 1px, transparent 1px),
+                linear-gradient(90deg, #e5e7eb 1px, #f3f4f6 1px);
+            background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+            background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+        }
+
+        .button-hover {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.6),
+                    transparent);
+            transition: 0.5s;
+        }
+
+        .button-hover:hover::before {
+            left: 100%;
+        }
+
+        .button-hover:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow:
+                0 20px 35px rgba(0, 0, 0, 0.1),
+                0 15px 65px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-spin {
+            transition: transform 0.5s ease;
+        }
+
+        .button-hover:hover .icon-spin {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #3B82F6, #8B5CF6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .time-display {
+            animation: timeGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes timeGlow {
+            from {
+                text-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+            }
+
+            to {
+                text-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+            }
+        }
+
+        .user-badge {
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            transform: translateX(200%);
+            transition: transform 0.5s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* Position for each notification */
+        .notification:nth-child(1) {
+            top: 90px;
+        }
+
+        .notification:nth-child(2) {
+            top: 160px;
+        }
+
+        .notification:nth-child(3) {
+            top: 230px;
+        }
+
+        .notification:nth-child(4) {
+            top: 300px;
+        }
+
+        .notification:nth-child(5) {
+            top: 370px;
+        }
+
+        .notification:nth-child(6) {
+            top: 440px;
+        }
+
+        /* Added positions for new notifications */
+        .notification:nth-child(7) {
+            top: 510px;
+        }
+
+        .notification:nth-child(8) {
+            top: 580px;
+        }
+
+        /* Existing notification gradients */
+        .notification-yellow {
+            background: linear-gradient(to right, #eab308, #f59e0b);
+        }
+
+        .notification-blue {
+            background: linear-gradient(to right, #3b82f6, #2563eb);
+        }
+
+        .notification-green {
+            background: linear-gradient(to right, #22c55e, #16a34a);
+        }
+
+        .notification-purple {
+            background: linear-gradient(to right, #a855f7, #7c3aed);
+        }
+
+        .notification-pink {
+            background: linear-gradient(to right, #ec4899, #db2777);
+        }
+
+        .notification-skyblue {
+            background: linear-gradient(to right, #38bdf8, #0ea5e9);
+        }
+
+        /* New notification gradients */
+        .notification-red {
+            background: linear-gradient(to right, #ef4444, #dc2626);
+        }
+
+        .notification-orange {
+            background: linear-gradient(to right, #f97316, #ea580c);
+        }
+
+        /* Profile image animation */
+        .profile-image {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translatey(0px);
+            }
+
+            50% {
+                transform: translatey(-10px);
+            }
+
+            100% {
+                transform: translatey(0px);
+            }
+        }
+        @keyframes blinkRainbow {
+    0% { filter: hue-rotate(0deg); }
+    50% { filter: hue-rotate(180deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Tombol berkedip warna-warni lebih lambat */
+.button-hover {
+    animation: blinkRainbow 4s infinite linear;
+}
+
+/* Ikon dalam tombol juga ikut berwarna-warni */
+.button-hover .icon-spin {
+    animation: blinkRainbow 4s infinite linear;
+}
+
+/* Efek kelap-kelip warna-warni di teks gradasi */
+.gradient-text {
+    animation: blinkRainbow 4s infinite linear, gradient 5s ease infinite;
+}
+
+/* Efek berkedip warna-warni di waktu */
+.time-display {
+    animation: blinkRainbow 4s infinite linear, timeGlow 3s ease-in-out infinite alternate;
+}
+
+/* Efek berkedip warna-warni di badge pengguna */
+.user-badge {
+    animation: blinkRainbow 4s infinite linear, badgePulse 3s ease-in-out infinite;
+}
+
+/* Notifikasi berkedip warna-warni */
+.notification {
+    animation: blinkRainbow 4s infinite linear;
+}
+
+/* Efek berkedip warna-warni di profil gambar */
+.profile-image {
+    animation: blinkRainbow 4s infinite linear, float 6s ease-in-out infinite;
+}
+ /* Menggunakan prefix yang sangat spesifik dan unik */
+        #elnathan_2025_notification_overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: none;
+            z-index: 2147483646; /* Satu angka di bawah maksimum z-index */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #elnathan_2025_notification_container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: linear-gradient(135deg, #fff9f9 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1),
+                        0 1px 8px rgba(0,0,0,0.2),
+                        inset 0 0 0 1px rgba(255,255,255,0.5);
+            max-width: 350px;
+            width: 90%;
+            display: none;
+            z-index: 2147483647; /* Maksimum z-index */
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        #elnathan_2025_notification_container[data-visible="true"] {
+            animation: elnathan_2025_float 6s ease-in-out infinite;
+        }
+
+        @keyframes elnathan_2025_float {
+            0%, 100% {
+                transform: translate(-50%, -50%);
+            }
+            50% {
+                transform: translate(-50%, -54%);
+            }
+        }
+
+        #elnathan_2025_notification_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        #elnathan_2025_notification_title {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 700;
+            color: #FF6B6B;
+            font-family: '__elnathan_2025_segoe_ui', 'Segoe UI', sans-serif;
+        }
+
+        #elnathan_2025_notification_close {
+            background: #FFE2E2;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #FF6B6B;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(255, 107, 107, 0.2);
+        }
+
+        #elnathan_2025_notification_close:hover {
+            background: #FF6B6B;
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        #elnathan_2025_notification_content {
+            margin-bottom: 20px;
+            color: #666;
+            font-size: 16px;
+            line-height: 1.5;
+            font-family: '__elnathan_2025_segoe_ui', 'Segoe UI', sans-serif;
+            text-align: center;
+        }
+
+        #elnathan_2025_notification_link {
+            display: block;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #FF6B6B, #FFE2E2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            font-family: '__elnathan_2025_segoe_ui', 'Segoe UI', sans-serif;
+        }
+
+        #elnathan_2025_notification_link:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255,255,255,0.3),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        #elnathan_2025_notification_link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        #elnathan_2025_notification_link:hover:before {
+            left: 100%;
+        }
+
+        /* Emoji decorations with specific IDs */
+        #elnathan_2025_notification_emoji_top {
+            position: absolute;
+            top: -30px;
+            left: -20px;
+            font-size: 40px;
+            animation: elnathan_2025_bounce 2s infinite;
+        }
+
+        #elnathan_2025_notification_emoji_bottom {
+            position: absolute;
+            bottom: -20px;
+            right: -15px;
+            font-size: 35px;
+            animation: elnathan_2025_bounce 2s infinite 0.5s;
+        }
+
+        @keyframes elnathan_2025_bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<!-- Overlay dengan ID unik -->
+<div id="elnathan_2025_notification_overlay"></div>
+
+<!-- Container notifikasi dengan ID unik -->
+<div id="elnathan_2025_notification_container">
+    <span id="elnathan_2025_notification_emoji_top">🎉</span>
+    <div id="elnathan_2025_notification_header">
+        <h3 id="elnathan_2025_notification_title">Hay! Elnathaners 👋</h3>
+        <button id="elnathan_2025_notification_close" onclick="elnathan2025CloseNotification()">×</button>
+    </div>
+    <div id="elnathan_2025_notification_content">
+        <p> Selamat Datang di EL NATHAN WEBSITE! 🎉🚀
+        
+        Halo, Sahabat Kreatif! 👋✨ Selamat datang di www.elnathanwebsite.my.id – tempat di mana inovasi, desain, dan bisnis
+        bertemu dalam satu platform keren! 💻🔥
+        
+        Kamu suka hal-hal kreatif dan inovatif? 🤩 Jangan sampai ketinggalan! Kami punya sesuatu yang spesial buat kamu! 🎁
+        
+        📢 Download Aplikasi MIKET Sekarang! 🚀💯
+        Dapatkan pengalaman terbaik dengan aplikasi MIKET yang akan membuat hidupmu lebih mudah dan produktif! ⚡📱 Cukup klik
+        tombol di bawah ini dan rasakan sendiri manfaatnya! ⬇️⬇️
+        
+        👉 Download MIKET Sekarang! 🚀🎯
+        
+        Jangan lupa bagikan kabar baik ini ke teman-temanmu ya! 🔥✨
+        Terima kasih sudah mampir di EL NATHAN WEBSITE! 😍🎊✨</p>
+    </div>
+    <a href="https://drive.google.com/file/d/1X24fu45mpyGrKsaxYJhTzaLMzJ03nrb1/view?usp=sharing"
+        id="elnathan_2025_notification_link" target="_blank">
+        Download Sekarang
+    </a>
+    <span id="elnathan_2025_notification_emoji_bottom">🎈</span>
+</div>
+<body class="min-h-screen cube-bg flex flex-col font-outfit">
+    <!-- Notifications -->
+    <div id="notification-container">
+        <div class="notification notification-yellow" id="notif-account">
+            <i class="fas fa-crown"></i>
+            <span>Buat akun untuk mengakses fitur premium!</span>
+        </div>
+        <div class="notification notification-blue" id="notif-visitor">
+            <i class="fas fa-eye"></i>
+            <span>Jadi pengunjung EL NATHAN SHOP</span>
+        </div>
+        <div class="notification notification-green" id="notif-web">
+            <i class="fas fa-globe"></i>
+            <span>Beli website dengan harga terjangkau!</span>
+        </div>
+        <div class="notification notification-purple" id="notif-tutorial">
+            <i class="fas fa-book"></i>
+            <span>Semua tutorial web dev</span>
+        </div>
+        <div class="notification notification-pink" id="notif-design">
+            <i class="fas fa-palette"></i>
+            <span>Tutorial Desain Product tersedia!</span>
+        </div>
+        <div class="notification notification-skyblue" id="notif-joki">
+            <i class="fas fa-computer"></i>
+            <span>Jasa Joki Tugas Tersedia!</span>
+        </div>
+        <div class="notification notification-red" id="notif-design-new">
+            <i class="fas fa-paint-brush"></i>
+            <span>Kelas Desain Grafis Premium Tersedia!</span>
+        </div>
+        <div class="notification notification-orange" id="notif-javascript">
+            <i class="fab fa-js"></i>
+            <span>Tutorial JavaScript dari Dasar hingga Advanced!</span>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="w-full bg-white/80 backdrop-blur-md shadow-md py-4 px-6 fixed top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="time-display text-blue-600 font-bold flex items-center">
+                    <i class="fas fa-clock mr-2"></i>
+                    <span id="jakarta-time"></span>
+                    <span class="ml-1">IND</span>
+                </div>
+            </div>
+            <div class="user-badge flex items-center space-x-3 bg-blue-50 px-4 py-2 rounded-full">
+                <i class="fas fa-user-circle text-blue-500 text-xl"></i>
+                <span class="font-semibold text-blue-700">elnathanwebsite</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 mt-24 mb-12">
+        <div class="max-w-md mx-auto px-4">
+            <!-- Profile Photo -->
+            <div class="flex justify-center mb-6">
+                <div class="relative">
+                    <img src="https://i.pinimg.com/736x/d5/db/ca/d5dbca067f5868f800f2f7483a308080.jpg" alt="Profile"
+                        class="w-32 h-32 rounded-full border-4 border-white shadow-lg hover:scale-105 transition-transform duration-300 profile-image"
+                        onerror="this.src='https://ui-avatars.com/api/?name=EL+NATHAN&background=0D8ABC&color=fff&size=128'" />
+                    <div class="absolute bottom-0 right-0 bg-green-500 w-6 h-6 rounded-full border-4 border-white">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Title -->
+            <h1 class="text-4xl font-bold text-center mb-4">
+                <span class="gradient-text">elnathanwebsite </span>
+            </h1>
+
+            <!-- Description -->
+            <div class="text-center mb-12">
+                <p class="text-gray-600 text-lg leading-relaxed mb-4">
+                    Selamat datang di website saya! Saya adalah pengembang web dan desainer yang berfokus pada pembuatan
+                    pengalaman digital yang indah.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
+                        <i class="fas fa-code mr-1"></i>Website Developer
+                    </span>
+                    <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">
+                        <i class="fas fa-palette mr-1"></i>Design Grafis
+                    </span>
+                </div>
+            </div>
+
+            <div class="flex flex-col space-y-6">
+                <!-- Buttons -->
+                <a href="sigup.html" class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fas fa-crown text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">Buat Akun</span>
+                    </div>
+                </a>
+
+                <a href="utama.html" class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fas fa-eye text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">EL NATHAN SHOP</span>
+                    </div>
+                </a>
+
+                <a href="https://tokomini.vercel.app/" class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fas fa-globe text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">Beli Web</span>
+                    </div>
+                </a>
+
+                <a href="coomingshooon.html" class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fas fa-book text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">Tutorial</span>
+                    </div>
+                </a>
+
+                <a href="https://elnathanwebsite.my.canva.site/tech-website-in-blue-purple-white-gradients-style"
+                    class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fas fa-palette text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">Tutorial Desain Product</span>
+                    </div>
+                </a>
+
+                <!-- New Jasa Joki Button -->
+                <a href="coomingshooon.html" class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-sky-300 via-sky-400 to-sky-500 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fas fa-computer text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">Jasa Joki</span>
+                    </div>
+                </a>
+                <a href="hubungiwa.html" class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fas fa-paint-brush text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">Jasa Desain</span>
+                    </div>
+                </a>
+                <a href="hubungiwa.html" class="button-hover group relative overflow-hidden rounded-xl">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-white px-8 py-5 w-full transition-all duration-500">
+                        <i class="fab fa-js text-2xl icon-spin"></i>
+                        <span class="font-bold uppercase text-lg tracking-wider">Jasa Buat Web</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white/80 backdrop-blur-md py-4 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-600">
+                © 2025 elnathanwebsite. by arifan alfahri.
+            </p>
+            <div class="flex justify-center space-x-4 mt-2">
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://github.com/elnathanwebsite"
+                    class="text-gray-400 hover:text-blue-500 transition-colors">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+ 
+    </footer>
+
+    <script>
+    // Fungsi untuk menampilkan notifikasi
+        function showRefreshNotification2025() {
+            const overlay = document.getElementById('elnathan_2025_notification_overlay');
+            const notification = document.getElementById('elnathan_2025_notification_container');
+
+            if (overlay && notification) {
+                // Reset opacity dan display
+                overlay.style.opacity = '0';
+                notification.style.opacity = '0';
+                overlay.style.display = 'block';
+                notification.style.display = 'block';
+
+                // Trigger reflow untuk animasi
+                notification.offsetHeight;
+
+                // Fade in
+                setTimeout(() => {
+                    overlay.style.opacity = '1';
+                    notification.style.opacity = '1';
+                    notification.setAttribute('data-visible', 'true');
+                }, 100);
+            }
+        }
+
+        // Fungsi untuk menutup notifikasi
+        function closeRefreshNotification2025() {
+            const overlay = document.getElementById('elnathan_2025_notification_overlay');
+            const notification = document.getElementById('elnathan_2025_notification_container');
+
+            if (overlay && notification) {
+                notification.style.opacity = '0';
+                overlay.style.opacity = '0';
+                notification.setAttribute('data-visible', 'false');
+
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                    overlay.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        // Fungsi untuk menangani refresh page
+        function handleRefreshNotification2025() {
+            // Menampilkan notifikasi setelah delay singkat
+            setTimeout(showRefreshNotification2025, 500);
+
+            // Menambahkan event listener untuk tombol close
+            const closeButton = document.getElementById('elnathan_2025_notification_close');
+            if (closeButton) {
+                closeButton.onclick = closeRefreshNotification2025;
+            }
+        }
+
+        // Event listener saat DOM telah dimuat
+        document.addEventListener('DOMContentLoaded', handleRefreshNotification2025);
+
+        // Event listener untuk refresh page
+        window.addEventListener('load', handleRefreshNotification2025);
+
+        // Optional: Menangani back/forward navigation
+        window.addEventListener('pageshow', (event) => {
+            // Jika halaman dimuat dari cache (back/forward navigation)
+            if (event.persisted) {
+                handleRefreshNotification2025();
+            }
+        });
+
+        // Optional: Menangani visibility change (tab switching)
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                handleRefreshNotification2025();
+            }
+        });
+
+        // Escape key untuk menutup notifikasi
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeRefreshNotification2025();
+            }
+        });
+// Update Jakarta Time
+        function updateJakartaTime() {
+            const jakartaTime = new Date().toLocaleString('id-ID', {
+                timeZone: 'Asia/Jakarta',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            }).replace(/\./g, '-').replace(',', '').replace(/\//g, '-');
+
+            document.getElementById('jakarta-time').textContent = jakartaTime;
+        }
+
+        // Update time every second
+        updateJakartaTime();
+        setInterval(updateJakartaTime, 1000);
+
+        // Show notifications sequentially
+        function showNotifications() {
+            // Current date/time and user information
+            const currentDate = new Date('2025-02-08 03:54:01');
+            const currentUser = 'elnathanwebsite';
+
+            const notifications = [
+                document.getElementById('notif-account'),
+                document.getElementById('notif-visitor'),
+                document.getElementById('notif-web'),
+                document.getElementById('notif-tutorial'),
+                document.getElementById('notif-design'),
+                document.getElementById('notif-joki'),
+                document.getElementById('notif-design-new'),    // Added new design notification
+                document.getElementById('notif-javascript')     // Added new JavaScript notification
+            ];
+
+            notifications.forEach((notification, index) => {
+                setTimeout(() => {
+                    notification.classList.add('show');
+                    // Update timestamp in notification if needed
+                    const timeElement = notification.querySelector('.notification-time');
+                    if (timeElement) {
+                        timeElement.textContent = currentDate.toISOString().replace('T', ' ').slice(0, 19);
+                    }
+                    setTimeout(() => {
+                        notification.classList.remove('show');
+                    }, 3000); // Hide after 3 seconds
+                }, index * 3500); // Show next notification after 3.5 seconds
+            });
+        }
+
+        // Show notifications when page loads
+        window.addEventListener('load', showNotifications);
+
+        // Add hover and click sound effects
+        document.querySelectorAll('.button-hover').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                const audio = new Audio('data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//OEAAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAADAAAGhgBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqr///////////////////////////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAYAAAAAAAAABoYPqzKnAAAAAAAAAAAAAAAAAAAA//MUZAAAAAGkAAAAAAAAA0gAAAAATEFN//MUZAMAAAGkAAAAAAAAA0gAAAAARTMu//MUZAYAAAGkAAAAAAAAA0gAAAAAOTku//MUZAkAAAGkAAAAAAAAA0gAAAAANVVV');
+                audio.volume = 0.1;
+                audio.play();
+            });
+        });
+
+        // Auto restart notifications after all have been shown
+        function startNotificationLoop() {
+            showNotifications();
+            // Calculate new interval based on number of notifications
+            const totalNotifications = 8; // Updated for new notifications
+            const intervalTime = totalNotifications * 3500; // 3.5 seconds per notification
+            setInterval(showNotifications, intervalTime);
+        }
+
+        startNotificationLoop();
+        // Function to modify the URL with a custom parameter
+        function customizeURL() {
+            // Get the current URL
+            let currentURL = window.location.href;
+
+            // Check if the URL already has query parameters
+            let separator = currentURL.includes('?') ? '&' : '?';
+
+            // Add the custom parameter
+            let newURL = currentURL + separator + 'selamatdatangdiwebelnathaners';
+
+            // Update the URL without reloading the page
+            window.history.pushState({}, '', newURL);
+
+            console.log('URL has been customized:', newURL);
+        }
+
+        // Call the function when you want to modify the URL
+        // You can either call it directly or bind it to an event
+        customizeURL();
+      
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+        appId: "eb7f1406-ad34-47eb-8ec2-d751a945cc69",
+        autoResubscribe: true,
+        notifyButton: { enable: true },
+        welcomeNotification: {
+            title: "Selamat Datang!",
+            message: "Aktifkan notifikasi untuk mendapatkan update terbaru dari EL NATHAN.",
+        }
+    });
+
+    async function ensureNotificationPermission() {
+        let permission = localStorage.getItem("notificationPermission") || "default";
+
+        while (permission === "default") {
+            console.log("Menunggu izin notifikasi...");
+            await OneSignal.Notifications.requestPermission();
+            await OneSignal.Notifications.showSlidedownPrompt();
+            await new Promise(resolve => setTimeout(resolve, 2000)); // Cek setiap 2 detik
+
+            // Update status setelah pengguna mengambil tindakan
+            permission = await OneSignal.Notifications.getPermission();
+            localStorage.setItem("notificationPermission", permission);
+        }
+
+        console.log(`User memilih: ${permission}`);
+    }
+
+    ensureNotificationPermission();
+});
+
+<!-- memulai kode pelacakan webpushr --> 
+(function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') kembali; w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(argumen)}; var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1; js.src = "https://cdn.webpushr.com/app.min.js";
+fjs.parentNode.appendChild(js);}(jendela, dokumen, 'skrip', 'webpushr-jssdk'));
+webpushr('setup',{'key':'BDj9zSkt_VeOrkCUn8auNuBorOkCfWBpfXIGkW7W440RYdRKn1X1VZ5uRZ8-lYwCC7kxgnV__XAAPCAFnI-cufU' });
+
+    </script>
+
+</body>
+
+</html>
