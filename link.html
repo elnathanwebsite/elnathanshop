@@ -264,118 +264,153 @@
 .profile-image {
     animation: blinkRainbow 4s infinite linear, float 6s ease-in-out infinite;
 }
- /* Menggunakan prefix yang sangat spesifik dan unik */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Main container styles */
+        #elnathan_2025_main_container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9997;
+        }
+
         #elnathan_2025_notification_overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9998;
             backdrop-filter: blur(5px);
-            display: none;
-            z-index: 2147483646; /* Satu angka di bawah maksimum z-index */
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
         #elnathan_2025_notification_container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            background: linear-gradient(135deg, #fff9f9 0%, #ffffff 100%);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1),
-                        0 1px 8px rgba(0,0,0,0.2),
-                        inset 0 0 0 1px rgba(255,255,255,0.5);
-            max-width: 350px;
+            position: relative;
             width: 90%;
-            display: none;
-            z-index: 2147483647; /* Maksimum z-index */
-            opacity: 0;
-            transition: all 0.3s ease;
+            max-width: 500px;
+            background: linear-gradient(135deg, #ffffff, #f0f8ff);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            padding: 25px;
+            text-align: center;
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 2px solid rgba(255, 255, 255, 0.5);
         }
 
-        #elnathan_2025_notification_container[data-visible="true"] {
-            animation: elnathan_2025_float 6s ease-in-out infinite;
-        }
-
-        @keyframes elnathan_2025_float {
-            0%, 100% {
-                transform: translate(-50%, -50%);
+        @keyframes popIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
             }
-            50% {
-                transform: translate(-50%, -54%);
+            100% {
+                transform: scale(1);
+                opacity: 1;
             }
         }
 
-        #elnathan_2025_notification_header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
+        /* Decorative elements */
+        .decoration {
+            position: absolute;
+            pointer-events: none;
         }
 
-        #elnathan_2025_notification_title {
-            margin: 0;
-            font-size: 22px;
-            font-weight: 700;
-            color: #FF6B6B;
-            font-family: '__elnathan_2025_segoe_ui', 'Segoe UI', sans-serif;
+        .decoration-top-left {
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #ff61d5, transparent);
+            border-radius: 20px 0 100% 0;
+            opacity: 0.2;
+        }
+
+        .decoration-bottom-right {
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(225deg, #61c9ff, transparent);
+            border-radius: 100% 0 20px 0;
+            opacity: 0.2;
         }
 
         #elnathan_2025_notification_close {
-            background: #FFE2E2;
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 35px;
+            height: 35px;
+            background: #ff5252;
             border: none;
+            border-radius: 50%;
+            color: white;
             font-size: 20px;
             cursor: pointer;
-            color: #FF6B6B;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(255, 82, 82, 0.3);
+            z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(255, 107, 107, 0.2);
         }
 
         #elnathan_2025_notification_close:hover {
-            background: #FF6B6B;
-            color: white;
             transform: rotate(90deg);
+            background: #ff3333;
+            box-shadow: 0 2px 15px rgba(255, 82, 82, 0.5);
         }
 
-        #elnathan_2025_notification_content {
-            margin-bottom: 20px;
-            color: #666;
-            font-size: 16px;
-            line-height: 1.5;
-            font-family: '__elnathan_2025_segoe_ui', 'Segoe UI', sans-serif;
-            text-align: center;
+        .notification-image {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border-radius: 15px;
+            margin: 10px auto;
+            display: block;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+            border: 3px solid white;
+        }
+
+        .notification-image:hover {
+            transform: scale(1.02);
         }
 
         #elnathan_2025_notification_link {
-            display: block;
-            padding: 12px 24px;
-            background: linear-gradient(45deg, #FF6B6B, #FFE2E2);
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #ff61d5, #61c9ff);
             color: white;
             text-decoration: none;
             border-radius: 50px;
-            transition: all 0.3s ease;
-            font-size: 16px;
             font-weight: 600;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(97, 201, 255, 0.4);
             position: relative;
             overflow: hidden;
-            font-family: '__elnathan_2025_segoe_ui', 'Segoe UI', sans-serif;
         }
 
-        #elnathan_2025_notification_link:before {
+        #elnathan_2025_notification_link::before {
             content: '';
             position: absolute;
             top: 0;
@@ -385,80 +420,217 @@
             background: linear-gradient(
                 120deg,
                 transparent,
-                rgba(255,255,255,0.3),
+                rgba(255, 255, 255, 0.3),
                 transparent
             );
             transition: 0.5s;
         }
 
-        #elnathan_2025_notification_link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 15px rgba(255, 107, 107, 0.3);
-        }
-
-        #elnathan_2025_notification_link:hover:before {
+        #elnathan_2025_notification_link:hover::before {
             left: 100%;
         }
 
-        /* Emoji decorations with specific IDs */
-        #elnathan_2025_notification_emoji_top {
-            position: absolute;
-            top: -30px;
-            left: -20px;
-            font-size: 40px;
-            animation: elnathan_2025_bounce 2s infinite;
+        #elnathan_2025_notification_link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(97, 201, 255, 0.6);
         }
 
-        #elnathan_2025_notification_emoji_bottom {
-            position: absolute;
-            bottom: -20px;
-            right: -15px;
-            font-size: 35px;
-            animation: elnathan_2025_bounce 2s infinite 0.5s;
+        @media (max-width: 768px) {
+            #elnathan_2025_notification_container {
+                width: 95%;
+                margin: 20px;
+            }
         }
 
-        @keyframes elnathan_2025_bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
+        /* Animation for closing */
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: scale(0.9);
             }
         }
+ /* Additional decorative elements */
+.decoration-top-right {
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(-45deg, #FFD700, transparent);
+    border-radius: 0 20px 0 100%;
+    opacity: 0.2;
+    position: absolute;
+    animation: sparkle 3s infinite;
+}
+
+.decoration-bottom-left {
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, #00FF00, transparent);
+    border-radius: 0 100% 0 20px;
+    opacity: 0.2;
+    position: absolute;
+    animation: sparkle 3s infinite reverse;
+}
+
+/* Floating circles decoration */
+.floating-circles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+.circle {
+    position: absolute;
+    background: linear-gradient(45deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+    border-radius: 50%;
+    animation: float 8s infinite;
+}
+
+.circle:nth-child(1) {
+    width: 40px;
+    height: 40px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.circle:nth-child(2) {
+    width: 30px;
+    height: 30px;
+    top: 20%;
+    right: 15%;
+    animation-delay: -2s;
+}
+
+.circle:nth-child(3) {
+    width: 25px;
+    height: 25px;
+    bottom: 15%;
+    left: 20%;
+    animation-delay: -4s;
+}
+
+/* Shiny border effect */
+#elnathan_2025_notification_container::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        #ff61d5, #61c9ff, #FFD700, #00FF00, 
+        #ff61d5, #61c9ff, #FFD700, #00FF00);
+    border-radius: 22px;
+    z-index: -1;
+    animation: borderGlow 6s linear infinite;
+    background-size: 400%;
+    filter: blur(10px);
+    opacity: 0.5;
+}
+
+/* Rainbow shine effect on button hover */
+#elnathan_2025_notification_link::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.2),
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: rainbowShine 3s linear infinite;
+}
+
+/* Animations */
+@keyframes sparkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.4; }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+}
+
+@keyframes borderGlow {
+    0% { background-position: 0 0; }
+    100% { background-position: 400% 0; }
+}
+
+@keyframes rainbowShine {
+    0% { left: -200%; }
+    100% { left: 200%; }
+}
+
+/* Enhanced image hover effect */
+.notification-image {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.notification-image:hover {
+    transform: scale(1.03) rotate(1deg);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+/* Enhanced button hover effect */
+#elnathan_2025_notification_link:hover {
+    transform: translateY(-5px) scale(1.02);
+    background: linear-gradient(45deg, #ff61d5, #61c9ff, #FFD700);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
     </style>
 </head>
-<!-- Overlay dengan ID unik -->
-<div id="elnathan_2025_notification_overlay"></div>
 
-<!-- Container notifikasi dengan ID unik -->
-<div id="elnathan_2025_notification_container">
-    <span id="elnathan_2025_notification_emoji_top">🎉</span>
-    <div id="elnathan_2025_notification_header">
-        <h3 id="elnathan_2025_notification_title">Hay! Elnathaners 👋</h3>
+<!-- Main container for centering -->
+<div id="elnathan_2025_main_container">
+    <!-- Overlay -->
+    <div id="elnathan_2025_notification_overlay"></div>
+
+    <!-- Notification Container -->
+    <div id="elnathan_2025_notification_container">
+        <!-- Close button -->
         <button id="elnathan_2025_notification_close" onclick="elnathan2025CloseNotification()">×</button>
+
+        <!-- Decorative elements -->
+        <div class="decoration decoration-top-left"></div>
+        <div class="decoration decoration-bottom-right"></div>
+
+        <!-- Content -->
+        <div id="elnathan_2025_notification_content">
+            <img src="https://i.pinimg.com/1200x/c1/d6/cc/c1d6cc2ce5d2e3e57768fc04e15c49d1.jpg"
+                alt="EL NATHAN Advertisement" class="notification-image">
+        </div>
+
+        <!-- Call to action button -->
+        <a href="https://webjadwal.vercel.app/"
+            id="elnathan_2025_notification_link" target="_blank">
+            Buka Webnya sekarang
+        </a>
     </div>
-    <div id="elnathan_2025_notification_content">
-        <p> Selamat Datang di EL NATHAN WEBSITE! 🎉🚀
-        
-        Halo, Sahabat Kreatif! 👋✨ Selamat datang di www.elnathanwebsite.my.id – tempat di mana inovasi, desain, dan bisnis
-        bertemu dalam satu platform keren! 💻🔥
-        
-        Kamu suka hal-hal kreatif dan inovatif? 🤩 Jangan sampai ketinggalan! Kami punya sesuatu yang spesial buat kamu! 🎁
-        
-        📢 Download Aplikasi MIKET Sekarang! 🚀💯
-        Dapatkan pengalaman terbaik dengan aplikasi MIKET yang akan membuat hidupmu lebih mudah dan produktif! ⚡📱 Cukup klik
-        tombol di bawah ini dan rasakan sendiri manfaatnya! ⬇️⬇️
-        
-        👉 Download MIKET Sekarang! 🚀🎯
-        
-        Jangan lupa bagikan kabar baik ini ke teman-temanmu ya! 🔥✨
-        Terima kasih sudah mampir di EL NATHAN WEBSITE! 😍🎊✨</p>
-    </div>
-    <a href="https://drive.google.com/file/d/1X24fu45mpyGrKsaxYJhTzaLMzJ03nrb1/view?usp=sharing"
-        id="elnathan_2025_notification_link" target="_blank">
-        Download Sekarang
-    </a>
-    <span id="elnathan_2025_notification_emoji_bottom">🎈</span>
 </div>
 <body class="min-h-screen cube-bg flex flex-col font-outfit">
     <!-- Notifications -->
@@ -644,58 +816,94 @@
     </footer>
 
     <script>
-    // Fungsi untuk menampilkan notifikasi
-        function showRefreshNotification2025() {
-            const overlay = document.getElementById('elnathan_2025_notification_overlay');
-            const notification = document.getElementById('elnathan_2025_notification_container');
+      // Show notification after page load
+window.addEventListener('load', function () {
+    // Check if notification was already shown today
+    const lastShown = localStorage.getItem('elnathan_2025_ad_last_shown');
+    const today = new Date().toDateString();
 
-            if (overlay && notification) {
-                // Reset opacity dan display
-                overlay.style.opacity = '0';
-                notification.style.opacity = '0';
-                overlay.style.display = 'block';
-                notification.style.display = 'block';
+    if (lastShown !== today) {
+        showNotification();
+        localStorage.setItem('elnathan_2025_ad_last_shown', today);
+    }
+});
 
-                // Trigger reflow untuk animasi
-                notification.offsetHeight;
+// Array of image URLs
+const imageUrls = [
+    'https://i.pinimg.com/1200x/c1/d6/cc/c1d6cc2ce5d2e3e57768fc04e15c49d1.jpg',
+    'https://i.pinimg.com/736x/91/3d/ad/913dadf509a38f3db54ee00fe659ae3d.jpg', // Replace with your second image URL
+    'https://i.pinimg.com/736x/63/70/e9/6370e9ec8364ab02ee184a658c2e859d.jpg',  // Replace with your third image URL
+    'https://i.pinimg.com/736x/4a/e7/60/4ae760b32af11ff48fb30fd48dd31499.jpg'  // Replace with your fourth image URL
+];
 
-                // Fade in
-                setTimeout(() => {
-                    overlay.style.opacity = '1';
-                    notification.style.opacity = '1';
-                    notification.setAttribute('data-visible', 'true');
-                }, 100);
-            }
-        }
+let currentImageIndex = 0;
 
-        // Fungsi untuk menutup notifikasi
-        function closeRefreshNotification2025() {
-            const overlay = document.getElementById('elnathan_2025_notification_overlay');
-            const notification = document.getElementById('elnathan_2025_notification_container');
+function showNotification() {
+    document.getElementById('elnathan_2025_main_container').style.display = 'flex';
+}
 
-            if (overlay && notification) {
-                notification.style.opacity = '0';
-                overlay.style.opacity = '0';
-                notification.setAttribute('data-visible', 'false');
+function elnathan2025CloseNotification() {
+    const mainContainer = document.getElementById('elnathan_2025_main_container');
+    const container = document.getElementById('elnathan_2025_notification_container');
+    const overlay = document.getElementById('elnathan_2025_notification_overlay');
+    const notificationImage = document.querySelector('.notification-image');
 
-                setTimeout(() => {
-                    notification.style.display = 'none';
-                    overlay.style.display = 'none';
-                }, 300);
-            }
-        }
+    // If we haven't shown all images yet
+    if (currentImageIndex < imageUrls.length - 1) {
+        currentImageIndex++;
+        
+        // Add fade out animation to current image
+        notificationImage.style.opacity = '0';
+        notificationImage.style.transition = 'opacity 0.3s';
 
-        // Fungsi untuk menangani refresh page
-        function handleRefreshNotification2025() {
-            // Menampilkan notifikasi setelah delay singkat
-            setTimeout(showRefreshNotification2025, 500);
+        // After fade out, change image and fade in
+        setTimeout(() => {
+            notificationImage.src = imageUrls[currentImageIndex];
+            notificationImage.style.opacity = '1';
+        }, 300);
 
-            // Menambahkan event listener untuk tombol close
-            const closeButton = document.getElementById('elnathan_2025_notification_close');
-            if (closeButton) {
-                closeButton.onclick = closeRefreshNotification2025;
-            }
-        }
+    } else {
+        // If we've shown all images, close the notification
+        container.style.animation = 'fadeOut 0.3s forwards';
+        overlay.style.opacity = '0';
+
+        setTimeout(() => {
+            mainContainer.style.display = 'none';
+            // Reset the image index for next time
+            currentImageIndex = 0;
+        }, 300);
+    }
+}
+
+// Close notification when clicking overlay
+document.getElementById('elnathan_2025_notification_overlay')
+    .addEventListener('click', elnathan2025CloseNotification);
+
+// Auto-close after 30 seconds
+setTimeout(() => {
+    const mainContainer = document.getElementById('elnathan_2025_main_container');
+    if (mainContainer.style.display !== 'none') {
+        elnathan2025CloseNotification();
+    }
+}, 30000);
+
+// Prevent closing when clicking the notification itself
+document.getElementById('elnathan_2025_notification_container')
+    .addEventListener('click', function (e) {
+        e.stopPropagation();
+    });
+
+// Fungsi untuk menangani refresh page
+function handleRefreshNotification2025() {
+    // Menampilkan notifikasi setelah delay singkat
+    setTimeout(showRefreshNotification2025, 500);
+
+    // Menambahkan event listener untuk tombol close
+    const closeButton = document.getElementById('elnathan_2025_notification_close');
+    if (closeButton) {
+        closeButton.onclick = elnathan2025CloseNotification;
+    }
+}
 
         // Event listener saat DOM telah dimuat
         document.addEventListener('DOMContentLoaded', handleRefreshNotification2025);
