@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ETHAN EL NATHAN WEBSITE | DASHBORD HYPERLINK</title>
-      <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
@@ -222,47 +222,57 @@
                 transform: translatey(0px);
             }
         }
+
         @keyframes blinkRainbow {
-    0% { filter: hue-rotate(0deg); }
-    50% { filter: hue-rotate(180deg); }
-    100% { filter: hue-rotate(360deg); }
-}
+            0% {
+                filter: hue-rotate(0deg);
+            }
 
-/* Tombol berkedip warna-warni lebih lambat */
-.button-hover {
-    animation: blinkRainbow 4s infinite linear;
-}
+            50% {
+                filter: hue-rotate(180deg);
+            }
 
-/* Ikon dalam tombol juga ikut berwarna-warni */
-.button-hover .icon-spin {
-    animation: blinkRainbow 4s infinite linear;
-}
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
 
-/* Efek kelap-kelip warna-warni di teks gradasi */
-.gradient-text {
-    animation: blinkRainbow 4s infinite linear, gradient 5s ease infinite;
-}
+        /* Tombol berkedip warna-warni lebih lambat */
+        .button-hover {
+            animation: blinkRainbow 4s infinite linear;
+        }
 
-/* Efek berkedip warna-warni di waktu */
-.time-display {
-    animation: blinkRainbow 4s infinite linear, timeGlow 3s ease-in-out infinite alternate;
-}
+        /* Ikon dalam tombol juga ikut berwarna-warni */
+        .button-hover .icon-spin {
+            animation: blinkRainbow 4s infinite linear;
+        }
 
-/* Efek berkedip warna-warni di badge pengguna */
-.user-badge {
-    animation: blinkRainbow 4s infinite linear, badgePulse 3s ease-in-out infinite;
-}
+        /* Efek kelap-kelip warna-warni di teks gradasi */
+        .gradient-text {
+            animation: blinkRainbow 4s infinite linear, gradient 5s ease infinite;
+        }
 
-/* Notifikasi berkedip warna-warni */
-.notification {
-    animation: blinkRainbow 4s infinite linear;
-}
+        /* Efek berkedip warna-warni di waktu */
+        .time-display {
+            animation: blinkRainbow 4s infinite linear, timeGlow 3s ease-in-out infinite alternate;
+        }
 
-/* Efek berkedip warna-warni di profil gambar */
-.profile-image {
-    animation: blinkRainbow 4s infinite linear, float 6s ease-in-out infinite;
-}
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+        /* Efek berkedip warna-warni di badge pengguna */
+        .user-badge {
+            animation: blinkRainbow 4s infinite linear, badgePulse 3s ease-in-out infinite;
+        }
+
+        /* Notifikasi berkedip warna-warni */
+        .notification {
+            animation: blinkRainbow 4s infinite linear;
+        }
+
+        /* Efek berkedip warna-warni di profil gambar */
+        .profile-image {
+            animation: blinkRainbow 4s infinite linear, float 6s ease-in-out infinite;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
         /* Reset default styles */
         * {
@@ -318,6 +328,7 @@
                 transform: scale(0.8);
                 opacity: 0;
             }
+
             100% {
                 transform: scale(1);
                 opacity: 1;
@@ -383,7 +394,7 @@
             border-radius: 15px;
             margin: 10px auto;
             display: block;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s;
             border: 3px solid white;
         }
@@ -415,12 +426,10 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(255, 255, 255, 0.3),
-                transparent
-            );
+            background: linear-gradient(120deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.3),
+                    transparent);
             transition: 0.5s;
         }
 
@@ -447,376 +456,520 @@
                 transform: scale(0.9);
             }
         }
- /* Additional decorative elements */
-.decoration-top-right {
-    top: 0;
-    right: 0;
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(-45deg, #FFD700, transparent);
-    border-radius: 0 20px 0 100%;
-    opacity: 0.2;
-    position: absolute;
-    animation: sparkle 3s infinite;
-}
 
-.decoration-bottom-left {
-    bottom: 0;
-    left: 0;
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(45deg, #00FF00, transparent);
-    border-radius: 0 100% 0 20px;
-    opacity: 0.2;
-    position: absolute;
-    animation: sparkle 3s infinite reverse;
-}
+        /* Additional decorative elements */
+        .decoration-top-right {
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(-45deg, #FFD700, transparent);
+            border-radius: 0 20px 0 100%;
+            opacity: 0.2;
+            position: absolute;
+            animation: sparkle 3s infinite;
+        }
 
-/* Floating circles decoration */
-.floating-circles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    border-radius: 20px;
-    pointer-events: none;
-}
+        .decoration-bottom-left {
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #00FF00, transparent);
+            border-radius: 0 100% 0 20px;
+            opacity: 0.2;
+            position: absolute;
+            animation: sparkle 3s infinite reverse;
+        }
 
-.circle {
-    position: absolute;
-    background: linear-gradient(45deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
-    border-radius: 50%;
-    animation: float 8s infinite;
-}
+        /* Floating circles decoration */
+        .floating-circles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 20px;
+            pointer-events: none;
+        }
 
-.circle:nth-child(1) {
-    width: 40px;
-    height: 40px;
-    top: 10%;
-    left: 10%;
-    animation-delay: 0s;
-}
+        .circle {
+            position: absolute;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border-radius: 50%;
+            animation: float 8s infinite;
+        }
 
-.circle:nth-child(2) {
-    width: 30px;
-    height: 30px;
-    top: 20%;
-    right: 15%;
-    animation-delay: -2s;
-}
+        .circle:nth-child(1) {
+            width: 40px;
+            height: 40px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
 
-.circle:nth-child(3) {
-    width: 25px;
-    height: 25px;
-    bottom: 15%;
-    left: 20%;
-    animation-delay: -4s;
-}
+        .circle:nth-child(2) {
+            width: 30px;
+            height: 30px;
+            top: 20%;
+            right: 15%;
+            animation-delay: -2s;
+        }
 
-/* Shiny border effect */
-#elnathan_2025_notification_container::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, 
-        #ff61d5, #61c9ff, #FFD700, #00FF00, 
-        #ff61d5, #61c9ff, #FFD700, #00FF00);
-    border-radius: 22px;
-    z-index: -1;
-    animation: borderGlow 6s linear infinite;
-    background-size: 400%;
-    filter: blur(10px);
-    opacity: 0.5;
-}
+        .circle:nth-child(3) {
+            width: 25px;
+            height: 25px;
+            bottom: 15%;
+            left: 20%;
+            animation-delay: -4s;
+        }
 
-/* Rainbow shine effect on button hover */
-#elnathan_2025_notification_link::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent,
-        rgba(255, 255, 255, 0.1),
-        rgba(255, 255, 255, 0.2),
-        rgba(255, 255, 255, 0.1),
-        transparent
-    );
-    transform: rotate(45deg);
-    animation: rainbowShine 3s linear infinite;
-}
+        /* Shiny border effect */
+        #elnathan_2025_notification_container::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg,
+                    #ff61d5, #61c9ff, #FFD700, #00FF00,
+                    #ff61d5, #61c9ff, #FFD700, #00FF00);
+            border-radius: 22px;
+            z-index: -1;
+            animation: borderGlow 6s linear infinite;
+            background-size: 400%;
+            filter: blur(10px);
+            opacity: 0.5;
+        }
 
-/* Animations */
-@keyframes sparkle {
-    0%, 100% { opacity: 0.2; }
-    50% { opacity: 0.4; }
-}
+        /* Rainbow shine effect on button hover */
+        #elnathan_2025_notification_link::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.1),
+                    rgba(255, 255, 255, 0.2),
+                    rgba(255, 255, 255, 0.1),
+                    transparent);
+            transform: rotate(45deg);
+            animation: rainbowShine 3s linear infinite;
+        }
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-20px) rotate(180deg);
-    }
-}
+        /* Animations */
+        @keyframes sparkle {
 
-@keyframes borderGlow {
-    0% { background-position: 0 0; }
-    100% { background-position: 400% 0; }
-}
+            0%,
+            100% {
+                opacity: 0.2;
+            }
 
-@keyframes rainbowShine {
-    0% { left: -200%; }
-    100% { left: 200%; }
-}
+            50% {
+                opacity: 0.4;
+            }
+        }
 
-/* Enhanced image hover effect */
-.notification-image {
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
+        @keyframes float {
 
-.notification-image:hover {
-    transform: scale(1.03) rotate(1deg);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-}
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
 
-/* Enhanced button hover effect */
-#elnathan_2025_notification_link:hover {
-    transform: translateY(-5px) scale(1.02);
-    background: linear-gradient(45deg, #ff61d5, #61c9ff, #FFD700);
-    background-size: 200% 200%;
-    animation: gradientShift 3s ease infinite;
-}
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
 
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-/* Popup Window Base Styles */
-#popupWindow {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    transition: all 0.3s ease;
-    overflow: hidden;
-    /* Responsive sizing */
-    width: 90vw !important;
-    max-width: 1200px !important;
-    height: 90vh !important;
-    max-height: 800px !important;
-}
+        @keyframes borderGlow {
+            0% {
+                background-position: 0 0;
+            }
 
-/* Popup Header */
-#popupWindow .flex {
-    background: linear-gradient(45deg, #2193b0, #6dd5ed);
-    padding: 12px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-}
+            100% {
+                background-position: 400% 0;
+            }
+        }
 
-/* Content Container */
-#popupContent {
-    width: 100% !important;
-    height: calc(100% - 56px) !important; /* Subtract header height */
-    position: relative;
-    overflow: hidden;
-}
+        @keyframes rainbowShine {
+            0% {
+                left: -200%;
+            }
 
-/* iframe Styling */
-#contentFrame {
-    width: 100% !important;
-    height: 100% !important;
-    border: none;
-    /* Enable scrolling within iframe */
-    overflow: auto;
-    /* Smooth scaling */
-    transform-origin: top left;
-}
+            100% {
+                left: 200%;
+            }
+        }
 
-/* Responsive Design */
-@media screen and (max-width: 1200px) {
-    #popupWindow {
-        width: 95vw !important;
-        height: 90vh !important;
-    }
-}
+        /* Enhanced image hover effect */
+        .notification-image {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-@media screen and (max-width: 768px) {
-    #popupWindow {
-        width: 100vw !important;
-        height: 100vh !important;
-        max-height: none !important;
-        border-radius: 0;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        transform: none !important;
-    }
-    
-    #popupContent {
-        height: calc(100% - 48px) !important;
-    }
-}
+        .notification-image:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
 
-/* Animation and Visual Effects */
-@keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
+        /* Enhanced button hover effect */
+        #elnathan_2025_notification_link:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: linear-gradient(45deg, #ff61d5, #61c9ff, #FFD700);
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+        }
 
-#popupWindow:not(.hidden) {
-    animation: scaleIn 0.3s ease forwards;
-}
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
 
-/* Control Buttons */
-#popupWindow .flex .flex {
-    background: transparent;
-    gap: 8px;
-}
+            50% {
+                background-position: 100% 50%;
+            }
 
-#popupWindow button {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    color: white;
-}
+            100% {
+                background-position: 0% 50%;
+            }
+        }
 
-#popupWindow button:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-}
+        /* Popup Window Base Styles */
+        #popupWindow {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            /* Responsive sizing */
+            width: 90vw !important;
+            max-width: 1200px !important;
+            height: 90vh !important;
+            max-height: 800px !important;
+        }
 
-/* Loading Indicator */
-#popupContent::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(to right, #2193b0, #6dd5ed);
-    animation: loading 2s ease infinite;
-    transform-origin: left;
-    z-index: 1000;
-}
+        /* Popup Header */
+        #popupWindow .flex {
+            background: linear-gradient(45deg, #2193b0, #6dd5ed);
+            padding: 12px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
 
-@keyframes loading {
-    0% { transform: scaleX(0); }
-    50% { transform: scaleX(1); }
-    100% {
-        transform: scaleX(0);
-        transform-origin: right;
-    }
-}
+        /* Content Container */
+        #popupContent {
+            width: 100% !important;
+            height: calc(100% - 56px) !important;
+            /* Subtract header height */
+            position: relative;
+            overflow: hidden;
+        }
 
-/* Overlay */
-#overlay {
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    background: rgba(0, 0, 0, 0.4);
-    transition: all 0.3s ease;
-}
-/* Add these styles to your existing CSS */
+        /* iframe Styling */
+        #contentFrame {
+            width: 100% !important;
+            height: 100% !important;
+            border: none;
+            /* Enable scrolling within iframe */
+            overflow: auto;
+            /* Smooth scaling */
+            transform-origin: top left;
+        }
 
-/* Loading State */
-#popupWindow.loading #popupContent::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(to right, #2193b0, #6dd5ed);
-    animation: loading 2s ease infinite;
-    transform-origin: left;
-    z-index: 1000;
-}
+        /* Responsive Design */
+        @media screen and (max-width: 1200px) {
+            #popupWindow {
+                width: 95vw !important;
+                height: 90vh !important;
+            }
+        }
 
-@keyframes loading {
-    0% {
-        transform: scaleX(0);
-    }
-    50% {
-        transform: scaleX(1);
-    }
-    100% {
-        transform: scaleX(0);
-        transform-origin: right;
-    }
-}
+        @media screen and (max-width: 768px) {
+            #popupWindow {
+                width: 100vw !important;
+                height: 100vh !important;
+                max-height: none !important;
+                border-radius: 0;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                transform: none !important;
+            }
 
-/* Popup Enter Animation */
-@keyframes popupEnter {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
+            #popupContent {
+                height: calc(100% - 48px) !important;
+            }
+        }
 
-/* Popup Exit Animation */
-@keyframes popupExit {
-    from {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
-    to {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.95);
-    }
-}
+        /* Animation and Visual Effects */
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
 
-#popupWindow:not(.hidden) {
-    animation: popupEnter 0.3s ease forwards;
-}
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
 
-#popupWindow.hidden {
-    animation: popupExit 0.3s ease forwards;
-}
+        #popupWindow:not(.hidden) {
+            animation: scaleIn 0.3s ease forwards;
+        }
 
-/* Overlay Animations */
-#overlay:not(.hidden) {
-    animation: fadeIn 0.3s ease forwards;
-}
+        /* Control Buttons */
+        #popupWindow .flex .flex {
+            background: transparent;
+            gap: 8px;
+        }
 
-#overlay.hidden {
-    animation: fadeOut 0.3s ease forwards;
-}
+        #popupWindow button {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            color: white;
+        }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+        #popupWindow button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
 
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-</style>
+        /* Loading Indicator */
+        #popupContent::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, #2193b0, #6dd5ed);
+            animation: loading 2s ease infinite;
+            transform-origin: left;
+            z-index: 1000;
+        }
+
+        @keyframes loading {
+            0% {
+                transform: scaleX(0);
+            }
+
+            50% {
+                transform: scaleX(1);
+            }
+
+            100% {
+                transform: scaleX(0);
+                transform-origin: right;
+            }
+        }
+
+        /* Overlay */
+        #overlay {
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        /* Add these styles to your existing CSS */
+
+        /* Loading State */
+        #popupWindow.loading #popupContent::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, #2193b0, #6dd5ed);
+            animation: loading 2s ease infinite;
+            transform-origin: left;
+            z-index: 1000;
+        }
+
+        @keyframes loading {
+            0% {
+                transform: scaleX(0);
+            }
+
+            50% {
+                transform: scaleX(1);
+            }
+
+            100% {
+                transform: scaleX(0);
+                transform-origin: right;
+            }
+        }
+
+        /* Popup Enter Animation */
+        @keyframes popupEnter {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* Popup Exit Animation */
+        @keyframes popupExit {
+            from {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.95);
+            }
+        }
+
+        /* Popup Container */
+        #popupWindow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 95vw;
+            max-width: 1200px;
+            height: 90vh;
+            max-height: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        /* Popup Content */
+        #popupContent {
+            width: 100%;
+            height: calc(100% - 56px);
+            /* Header height */
+            overflow: hidden;
+            position: relative;
+            background: white;
+        }
+
+        /* Iframe Container */
+        #contentFrame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Loading Indicator */
+        .loading-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #2193b0, #6dd5ed);
+            transform-origin: left;
+            animation: loading 2s infinite linear;
+        }
+
+        @keyframes loading {
+            0% {
+                transform: scaleX(0);
+            }
+
+            50% {
+                transform: scaleX(1);
+            }
+
+            100% {
+                transform: scaleX(0);
+                transform-origin: right;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #popupWindow {
+                width: 100vw;
+                height: 100vh;
+                max-height: none;
+                border-radius: 0;
+                top: 0;
+                left: 0;
+                transform: none;
+            }
+
+            #popupContent {
+                height: calc(100% - 48px);
+                /* Smaller header on mobile */
+            }
+        }
+
+        /* Animations */
+        @keyframes popupEnter {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        @keyframes popupExit {
+            from {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.95);
+            }
+        }
+
+        #popupWindow:not(.hidden) {
+            animation: popupEnter 0.3s ease forwards;
+        }
+
+        #popupWindow.hidden {
+            animation: popupExit 0.3s ease forwards;
+        }
+
+        /* Overlay */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 999;
+        }
+    </style>
 </head>
 
 <!-- Main container for centering -->
@@ -840,12 +993,12 @@
         </div>
 
         <!-- Call to action button -->
-        <a href="https://webjadwal.vercel.app/"
-            id="elnathan_2025_notification_link" target="_blank">
+        <a href="https://webjadwal.vercel.app/" id="elnathan_2025_notification_link" target="_blank">
             Buka Webnya sekarang
         </a>
     </div>
 </div>
+
 <body class="min-h-screen cube-bg flex flex-col font-outfit">
     <!-- Notifications -->
     <div id="notification-container">
@@ -935,61 +1088,76 @@
                 </div>
             </div>
 
-                <div class="flex flex-col space-y-6">
+            <div class="flex flex-col space-y-6">
                 <!-- Buttons -->
-                <a href="sigup.html" class="button-hover group relative overflow-hidden rounded-xl" onclick="showPopup(event, 'sigup.html')">
-                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white px-8 py-5 w-full transition-all duration-500">
+                <a href="sigup.html" class="button-hover group relative overflow-hidden rounded-xl"
+                    onclick="showPopup(event, 'sigup.html')">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fas fa-crown text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">Buat Akun</span>
                     </div>
                 </a>
 
-                <a href="utama.html" class="button-hover group relative overflow-hidden rounded-xl" onclick="showPopup(event, 'utama.html')">
-                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white px-8 py-5 w-full transition-all duration-500">
+                <a href="https://www.elnathanwebsite.my.id/utama.html" class="button-hover group relative overflow-hidden rounded-xl"
+                    onclick="showPopup(event, 'utama.html')">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fas fa-eye text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">EL NATHAN SHOP</span>
                     </div>
                 </a>
 
-                <a href="https://tokomini.vercel.app/" class="button-hover group relative overflow-hidden rounded-xl" onclick="showPopup(event, 'https://tokomini.vercel.app/')">
-                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white px-8 py-5 w-full transition-all duration-500">
+                <a href="https://tokomini.vercel.app/" class="button-hover group relative overflow-hidden rounded-xl"
+                    onclick="showPopup(event, 'https://tokomini.vercel.app/')">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fas fa-globe text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">Beli Web</span>
                     </div>
                 </a>
 
-                <a href="coomingshooon.html" class="button-hover group relative overflow-hidden rounded-xl" onclick="showPopup(event, 'coomingshooon.html')">
-                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 text-white px-8 py-5 w-full transition-all duration-500">
+                <a href="coomingshooon.html" class="button-hover group relative overflow-hidden rounded-xl"
+                    onclick="showPopup(event, 'coomingshooon.html')">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fas fa-book text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">Tutorial</span>
                     </div>
                 </a>
 
-                <a href="https://elnathanwebsite.my.canva.site/tech-website-in-blue-purple-white-gradients-style" 
-                   class="button-hover group relative overflow-hidden rounded-xl" 
-                   onclick="showPopup(event, 'https://elnathanwebsite.my.canva.site/tech-website-in-blue-purple-white-gradients-style')">
-                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 text-white px-8 py-5 w-full transition-all duration-500">
+                <a href="https://elnathanwebsite.my.canva.site/tech-website-in-blue-purple-white-gradients-style"
+                    class="button-hover group relative overflow-hidden rounded-xl"
+                    onclick="showPopup(event, 'https://elnathanwebsite.my.canva.site/tech-website-in-blue-purple-white-gradients-style')">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fas fa-palette text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">Tutorial Desain Product</span>
                     </div>
                 </a>
 
-                <a href="coomingshooon.html" class="button-hover group relative overflow-hidden rounded-xl" onclick="showPopup(event, 'coomingshooon.html')">
-                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-sky-300 via-sky-400 to-sky-500 text-white px-8 py-5 w-full transition-all duration-500">
+                <a href="coomingshooon.html" class="button-hover group relative overflow-hidden rounded-xl"
+                    onclick="showPopup(event, 'coomingshooon.html')">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-sky-300 via-sky-400 to-sky-500 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fas fa-computer text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">Jasa Joki</span>
                     </div>
                 </a>
 
-                <a href="hubungiwa.html" class="button-hover group relative overflow-hidden rounded-xl" onclick="showPopup(event, 'hubungiwa.html')">
-                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-white px-8 py-5 w-full transition-all duration-500">
+                <a href="hubungiwa.html" class="button-hover group relative overflow-hidden rounded-xl"
+                    onclick="showPopup(event, 'hubungiwa.html')">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fas fa-paint-brush text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">Jasa Desain</span>
                     </div>
                 </a>
 
-                <a href="hubungiwa.html" class="button-hover group relative overflow-hidden rounded-xl" onclick="showPopup(event, 'hubungiwa.html')">
-                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-white px-8 py-5 w-full transition-all duration-500">
+                <a href="hubungiwa.html" class="button-hover group relative overflow-hidden rounded-xl"
+                    onclick="showPopup(event, 'hubungiwa.html')">
+                    <div
+                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fab fa-js text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">Jasa Buat Web</span>
                     </div>
@@ -999,7 +1167,8 @@
     </main>
 
     <!-- Popup Window -->
-    <div id="popupWindow" class="hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl z-50">
+    <div id="popupWindow"
+        class="hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl z-50">
         <div class="flex justify-between items-center bg-gray-100 p-2 rounded-t-lg">
             <h3 class="text-lg font-semibold px-2">🪼</h3>
             <div class="flex space-x-2">
@@ -1042,198 +1211,198 @@
                 </a>
             </div>
         </div>
- 
+
     </footer>
 
     <script>
-      
-      // Show notification after page load
-window.addEventListener('load', function () {
-    // Check if notification was already shown today
-    const lastShown = localStorage.getItem('elnathan_2025_ad_last_shown');
-    const today = new Date().toDateString();
 
-    if (lastShown !== today) {
-        showNotification();
-        localStorage.setItem('elnathan_2025_ad_last_shown', today);
-    }
-});
-(function() {
-    // State management
-    let currentUrl = ''; 
-    let isInitialized = false;
+        // Show notification after page load
+        window.addEventListener('load', function () {
+            // Check if notification was already shown today
+            const lastShown = localStorage.getItem('elnathan_2025_ad_last_shown');
+            const today = new Date().toDateString();
 
-    // Initialize all event listeners and functionality
-    function initialize() {
-        if (isInitialized) return;
-
-        // Set up date time updater
-        setupDateTime();
-        
-        // Set up popup handlers
-        setupPopupHandlers();
-        
-        isInitialized = true;
-    }
-
-    // DateTime functionality
-    function setupDateTime() {
-        function updateDateTime() {
-            const now = new Date();
-            const formatted = now.toISOString().replace('T', ' ').substr(0, 19);
-            const dateTimeElement = document.getElementById('currentDateTime');
-            if (dateTimeElement) {
-                dateTimeElement.textContent = formatted;
-            }
-        }
-
-        // Update time every second
-        setInterval(updateDateTime, 1000);
-        updateDateTime(); // Initial call
-    }
-
-    // Popup functionality
-    function setupPopupHandlers() {
-        // Fullscreen button handler
-        const fullscreenBtn = document.getElementById('fullscreenButton');
-        if (fullscreenBtn) {
-            fullscreenBtn.addEventListener('click', function() {
-                if (currentUrl) {
-                    window.location.href = currentUrl;
-                }
-            });
-        }
-
-        // Overlay click handler
-        const overlay = document.getElementById('overlay');
-        if (overlay) {
-            overlay.addEventListener('click', closePopup);
-        }
-
-        // Escape key handler
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closePopup();
+            if (lastShown !== today) {
+                showNotification();
+                localStorage.setItem('elnathan_2025_ad_last_shown', today);
             }
         });
-    }
+        (function () {
+            // State management
+            let currentUrl = '';
+            let isInitialized = false;
 
-    // Popup control functions
-    function showPopup(event, url) {
-        event.preventDefault();
-        
-        const popup = document.getElementById('popupWindow');
-        const overlay = document.getElementById('overlay');
-        const iframe = document.getElementById('contentFrame');
-        
-        if (popup && overlay && iframe) {
-            currentUrl = url;
-            iframe.src = url;
-            popup.classList.remove('hidden');
-            overlay.classList.remove('hidden');
+            // Initialize all event listeners and functionality
+            function initialize() {
+                if (isInitialized) return;
+
+                // Set up date time updater
+                setupDateTime();
+
+                // Set up popup handlers
+                setupPopupHandlers();
+
+                isInitialized = true;
+            }
+
+            // DateTime functionality
+            function setupDateTime() {
+                function updateDateTime() {
+                    const now = new Date();
+                    const formatted = now.toISOString().replace('T', ' ').substr(0, 19);
+                    const dateTimeElement = document.getElementById('currentDateTime');
+                    if (dateTimeElement) {
+                        dateTimeElement.textContent = formatted;
+                    }
+                }
+
+                // Update time every second
+                setInterval(updateDateTime, 1000);
+                updateDateTime(); // Initial call
+            }
+
+            // Popup functionality
+            function setupPopupHandlers() {
+                // Fullscreen button handler
+                const fullscreenBtn = document.getElementById('fullscreenButton');
+                if (fullscreenBtn) {
+                    fullscreenBtn.addEventListener('click', function () {
+                        if (currentUrl) {
+                            window.location.href = currentUrl;
+                        }
+                    });
+                }
+
+                // Overlay click handler
+                const overlay = document.getElementById('overlay');
+                if (overlay) {
+                    overlay.addEventListener('click', closePopup);
+                }
+
+                // Escape key handler
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') {
+                        closePopup();
+                    }
+                });
+            }
+
+            // Popup control functions
+            function showPopup(event, url) {
+                event.preventDefault();
+
+                const popup = document.getElementById('popupWindow');
+                const overlay = document.getElementById('overlay');
+                const iframe = document.getElementById('contentFrame');
+
+                if (popup && overlay && iframe) {
+                    currentUrl = url;
+                    iframe.src = url;
+                    popup.classList.remove('hidden');
+                    overlay.classList.remove('hidden');
+                }
+            }
+
+            function closePopup() {
+                const popup = document.getElementById('popupWindow');
+                const overlay = document.getElementById('overlay');
+                const iframe = document.getElementById('contentFrame');
+
+                if (popup && overlay && iframe) {
+                    popup.classList.add('hidden');
+                    overlay.classList.add('hidden');
+                    iframe.src = '';
+                    currentUrl = '';
+                }
+            }
+
+            // Make necessary functions globally available
+            window.showPopup = showPopup;
+            window.closePopup = closePopup;
+
+            // Initialize when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initialize);
+            } else {
+                initialize();
+            }
+        })();
+        // Array of image URLs
+        const imageUrls = [
+            'https://i.pinimg.com/1200x/c1/d6/cc/c1d6cc2ce5d2e3e57768fc04e15c49d1.jpg',
+            'https://i.pinimg.com/736x/91/3d/ad/913dadf509a38f3db54ee00fe659ae3d.jpg', // Replace with your second image URL
+            'https://i.pinimg.com/736x/63/70/e9/6370e9ec8364ab02ee184a658c2e859d.jpg',  // Replace with your third image URL
+            'https://i.pinimg.com/736x/4a/e7/60/4ae760b32af11ff48fb30fd48dd31499.jpg'  // Replace with your fourth image URL
+        ];
+
+        let currentImageIndex = 0;
+
+        function showNotification() {
+            document.getElementById('elnathan_2025_main_container').style.display = 'flex';
         }
-    }
 
-    function closePopup() {
-        const popup = document.getElementById('popupWindow');
-        const overlay = document.getElementById('overlay');
-        const iframe = document.getElementById('contentFrame');
-        
-        if (popup && overlay && iframe) {
-            popup.classList.add('hidden');
-            overlay.classList.add('hidden');
-            iframe.src = '';
-            currentUrl = '';
+        function elnathan2025CloseNotification() {
+            const mainContainer = document.getElementById('elnathan_2025_main_container');
+            const container = document.getElementById('elnathan_2025_notification_container');
+            const overlay = document.getElementById('elnathan_2025_notification_overlay');
+            const notificationImage = document.querySelector('.notification-image');
+
+            // If we haven't shown all images yet
+            if (currentImageIndex < imageUrls.length - 1) {
+                currentImageIndex++;
+
+                // Add fade out animation to current image
+                notificationImage.style.opacity = '0';
+                notificationImage.style.transition = 'opacity 0.3s';
+
+                // After fade out, change image and fade in
+                setTimeout(() => {
+                    notificationImage.src = imageUrls[currentImageIndex];
+                    notificationImage.style.opacity = '1';
+                }, 300);
+
+            } else {
+                // If we've shown all images, close the notification
+                container.style.animation = 'fadeOut 0.3s forwards';
+                overlay.style.opacity = '0';
+
+                setTimeout(() => {
+                    mainContainer.style.display = 'none';
+                    // Reset the image index for next time
+                    currentImageIndex = 0;
+                }, 300);
+            }
         }
-    }
 
-    // Make necessary functions globally available
-    window.showPopup = showPopup;
-    window.closePopup = closePopup;
+        // Close notification when clicking overlay
+        document.getElementById('elnathan_2025_notification_overlay')
+            .addEventListener('click', elnathan2025CloseNotification);
 
-    // Initialize when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initialize);
-    } else {
-        initialize();
-    }
-})();
-// Array of image URLs
-const imageUrls = [
-    'https://i.pinimg.com/1200x/c1/d6/cc/c1d6cc2ce5d2e3e57768fc04e15c49d1.jpg',
-    'https://i.pinimg.com/736x/91/3d/ad/913dadf509a38f3db54ee00fe659ae3d.jpg', // Replace with your second image URL
-    'https://i.pinimg.com/736x/63/70/e9/6370e9ec8364ab02ee184a658c2e859d.jpg',  // Replace with your third image URL
-    'https://i.pinimg.com/736x/4a/e7/60/4ae760b32af11ff48fb30fd48dd31499.jpg'  // Replace with your fourth image URL
-];
-
-let currentImageIndex = 0;
-
-function showNotification() {
-    document.getElementById('elnathan_2025_main_container').style.display = 'flex';
-}
-
-function elnathan2025CloseNotification() {
-    const mainContainer = document.getElementById('elnathan_2025_main_container');
-    const container = document.getElementById('elnathan_2025_notification_container');
-    const overlay = document.getElementById('elnathan_2025_notification_overlay');
-    const notificationImage = document.querySelector('.notification-image');
-
-    // If we haven't shown all images yet
-    if (currentImageIndex < imageUrls.length - 1) {
-        currentImageIndex++;
-        
-        // Add fade out animation to current image
-        notificationImage.style.opacity = '0';
-        notificationImage.style.transition = 'opacity 0.3s';
-
-        // After fade out, change image and fade in
+        // Auto-close after 30 seconds
         setTimeout(() => {
-            notificationImage.src = imageUrls[currentImageIndex];
-            notificationImage.style.opacity = '1';
-        }, 300);
+            const mainContainer = document.getElementById('elnathan_2025_main_container');
+            if (mainContainer.style.display !== 'none') {
+                elnathan2025CloseNotification();
+            }
+        }, 30000);
 
-    } else {
-        // If we've shown all images, close the notification
-        container.style.animation = 'fadeOut 0.3s forwards';
-        overlay.style.opacity = '0';
+        // Prevent closing when clicking the notification itself
+        document.getElementById('elnathan_2025_notification_container')
+            .addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
 
-        setTimeout(() => {
-            mainContainer.style.display = 'none';
-            // Reset the image index for next time
-            currentImageIndex = 0;
-        }, 300);
-    }
-}
+        // Fungsi untuk menangani refresh page
+        function handleRefreshNotification2025() {
+            // Menampilkan notifikasi setelah delay singkat
+            setTimeout(showRefreshNotification2025, 500);
 
-// Close notification when clicking overlay
-document.getElementById('elnathan_2025_notification_overlay')
-    .addEventListener('click', elnathan2025CloseNotification);
-
-// Auto-close after 30 seconds
-setTimeout(() => {
-    const mainContainer = document.getElementById('elnathan_2025_main_container');
-    if (mainContainer.style.display !== 'none') {
-        elnathan2025CloseNotification();
-    }
-}, 30000);
-
-// Prevent closing when clicking the notification itself
-document.getElementById('elnathan_2025_notification_container')
-    .addEventListener('click', function (e) {
-        e.stopPropagation();
-    });
-
-// Fungsi untuk menangani refresh page
-function handleRefreshNotification2025() {
-    // Menampilkan notifikasi setelah delay singkat
-    setTimeout(showRefreshNotification2025, 500);
-
-    // Menambahkan event listener untuk tombol close
-    const closeButton = document.getElementById('elnathan_2025_notification_close');
-    if (closeButton) {
-        closeButton.onclick = elnathan2025CloseNotification;
-    }
-}
+            // Menambahkan event listener untuk tombol close
+            const closeButton = document.getElementById('elnathan_2025_notification_close');
+            if (closeButton) {
+                closeButton.onclick = elnathan2025CloseNotification;
+            }
+        }
 
         // Event listener saat DOM telah dimuat
         document.addEventListener('DOMContentLoaded', handleRefreshNotification2025);
@@ -1262,7 +1431,7 @@ function handleRefreshNotification2025() {
                 closeRefreshNotification2025();
             }
         });
-// Update Jakarta Time
+        // Update Jakarta Time
         function updateJakartaTime() {
             const jakartaTime = new Date().toLocaleString('id-ID', {
                 timeZone: 'Asia/Jakarta',
@@ -1356,206 +1525,253 @@ function handleRefreshNotification2025() {
         // Call the function when you want to modify the URL
         // You can either call it directly or bind it to an event
         customizeURL();
-      
-window.OneSignalDeferred = window.OneSignalDeferred || [];
-OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-        appId: "eb7f1406-ad34-47eb-8ec2-d751a945cc69",
-        autoResubscribe: true,
-        notifyButton: { enable: true },
-        welcomeNotification: {
-            title: "Selamat Datang!",
-            message: "Aktifkan notifikasi untuk mendapatkan update terbaru dari EL NATHAN.",
-        }
-    });
 
-    async function ensureNotificationPermission() {
-        let permission = localStorage.getItem("notificationPermission") || "default";
-
-        while (permission === "default") {
-            console.log("Menunggu izin notifikasi...");
-            await OneSignal.Notifications.requestPermission();
-            await OneSignal.Notifications.showSlidedownPrompt();
-            await new Promise(resolve => setTimeout(resolve, 2000)); // Cek setiap 2 detik
-
-            // Update status setelah pengguna mengambil tindakan
-            permission = await OneSignal.Notifications.getPermission();
-            localStorage.setItem("notificationPermission", permission);
-        }
-
-        console.log(`User memilih: ${permission}`);
-    }
-
-    ensureNotificationPermission();
-});
-(function() {
-    // State management
-    let currentUrl = '';
-    let isInitialized = false;
-
-    // Initialize system
-    function initialize() {
-        if (isInitialized) return;
-        
-        // Setup date time display
-        setupDateTime();
-        
-        // Setup popup system
-        setupPopupSystem();
-        
-        isInitialized = true;
-    }
-
-    // DateTime functionality
-    function setupDateTime() {
-        function updateDateTime() {
-            const now = new Date();
-            const formatted = now.toISOString().replace('T', ' ').substr(0, 19);
-            const dateTimeElement = document.getElementById('currentDateTime');
-            if (dateTimeElement) {
-                dateTimeElement.textContent = formatted;
-            }
-        }
-
-        setInterval(updateDateTime, 1000);
-        updateDateTime();
-    }
-
-    // Popup System
-    function setupPopupSystem() {
-        // Intercept all links
-        interceptAllLinks();
-        
-        // Setup popup controls
-        setupPopupControls();
-    }
-
-    function interceptAllLinks() {
-        // Get all links in the document
-        const links = document.getElementsByTagName('a');
-        
-        // Add click handler to each link
-        for (let link of links) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const url = this.href;
-                showPopup(url);
-            });
-        }
-    }
-
-    function showPopup(url) {
-        const popup = document.getElementById('popupWindow');
-        const overlay = document.getElementById('overlay');
-        const iframe = document.getElementById('contentFrame');
-        const title = document.querySelector('#popupWindow h3');
-        
-        // Store current URL
-        currentUrl = url;
-        
-        // Update popup title based on link text
-        const linkElement = Array.from(document.getElementsByTagName('a')).find(a => a.href === url);
-        if (linkElement) {
-            title.textContent = linkElement.textContent.trim() || 'Mini Window';
-        }
-        
-        // Load content
-        iframe.src = url;
-        
-        // Show popup and overlay with animation
-        popup.classList.remove('hidden');
-        overlay.classList.remove('hidden');
-        
-        // Add loading indicator
-        popup.classList.add('loading');
-        
-        // Handle iframe load
-        iframe.onload = function() {
-            popup.classList.remove('loading');
-            adjustIframeContent();
-        };
-    }
-
-    function closePopup() {
-        const popup = document.getElementById('popupWindow');
-        const overlay = document.getElementById('overlay');
-        const iframe = document.getElementById('contentFrame');
-        
-        popup.classList.add('hidden');
-        overlay.classList.add('hidden');
-        iframe.src = '';
-        currentUrl = '';
-    }
-
-    function setupPopupControls() {
-        // Fullscreen button
-        const fullscreenBtn = document.getElementById('fullscreenButton');
-        if (fullscreenBtn) {
-            fullscreenBtn.addEventListener('click', function() {
-                if (currentUrl) {
-                    window.location.href = currentUrl;
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(async function (OneSignal) {
+            await OneSignal.init({
+                appId: "eb7f1406-ad34-47eb-8ec2-d751a945cc69",
+                autoResubscribe: true,
+                notifyButton: { enable: true },
+                welcomeNotification: {
+                    title: "Selamat Datang!",
+                    message: "Aktifkan notifikasi untuk mendapatkan update terbaru dari EL NATHAN.",
                 }
             });
-        }
 
-        // Close button and overlay
-        const overlay = document.getElementById('overlay');
-        if (overlay) {
-            overlay.addEventListener('click', closePopup);
-        }
+            async function ensureNotificationPermission() {
+                let permission = localStorage.getItem("notificationPermission") || "default";
 
-        // Escape key handler
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closePopup();
+                while (permission === "default") {
+                    console.log("Menunggu izin notifikasi...");
+                    await OneSignal.Notifications.requestPermission();
+                    await OneSignal.Notifications.showSlidedownPrompt();
+                    await new Promise(resolve => setTimeout(resolve, 2000)); // Cek setiap 2 detik
+
+                    // Update status setelah pengguna mengambil tindakan
+                    permission = await OneSignal.Notifications.getPermission();
+                    localStorage.setItem("notificationPermission", permission);
+                }
+
+                console.log(`User memilih: ${permission}`);
             }
+
+            ensureNotificationPermission();
         });
-    }
+        (function () {
+            // State management
+            let currentUrl = '';
+            let isInitialized = false;
 
-    // Iframe content adjustment
-    function adjustIframeContent() {
-        const iframe = document.getElementById('contentFrame');
-        if (!iframe.contentWindow || !iframe.contentWindow.document.body) return;
+            // Initialize system
+            function initialize() {
+                if (isInitialized) return;
 
-        const content = iframe.contentWindow.document.body;
-        const originalWidth = content.scrollWidth;
-        const originalHeight = content.scrollHeight;
-        const availableWidth = iframe.offsetWidth;
-        const availableHeight = iframe.offsetHeight;
-        
-        const scaleX = availableWidth / originalWidth;
-        const scaleY = availableHeight / originalHeight;
-        const scale = Math.min(scaleX, scaleY, 1);
-        
-        if (scale < 1) {
-            content.style.transform = `scale(${scale})`;
-            content.style.transformOrigin = 'top left';
-        }
-    }
+                setupDateTime();
+                setupPopupSystem();
 
-    // Window resize handler
-    window.addEventListener('resize', function() {
-        const popup = document.getElementById('popupWindow');
-        if (popup && !popup.classList.contains('hidden')) {
-            adjustIframeContent();
-        }
-    });
+                isInitialized = true;
+            }
 
-    // Initialize when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initialize);
-    } else {
-        initialize();
-    }
+            // DateTime functionality with UTC
+            function setupDateTime() {
+                function updateDateTime() {
+                    const now = new Date();
+                    // Format date to UTC YYYY-MM-DD HH:MM:SS
+                    const formatted = now.toISOString().slice(0, 19).replace('T', ' ');
+                    const dateTimeElement = document.getElementById('currentDateTime');
+                    if (dateTimeElement) {
+                        dateTimeElement.textContent = formatted;
+                    }
+                }
 
-    // Expose necessary functions globally
-    window.showPopup = showPopup;
-    window.closePopup = closePopup;
-})();
-<!-- memulai kode pelacakan webpushr --> 
-(function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') kembali; w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(argumen)}; var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1; js.src = "https://cdn.webpushr.com/app.min.js";
-fjs.parentNode.appendChild(js);}(jendela, dokumen, 'skrip', 'webpushr-jssdk'));
-webpushr('setup',{'key':'BDj9zSkt_VeOrkCUn8auNuBorOkCfWBpfXIGkW7W440RYdRKn1X1VZ5uRZ8-lYwCC7kxgnV__XAAPCAFnI-cufU' });
+                setInterval(updateDateTime, 1000);
+                updateDateTime();
+            }
+
+            // Enhanced Popup System
+            function setupPopupSystem() {
+                interceptAllLinks();
+                setupPopupControls();
+                setupIframeResponsiveness();
+            }
+
+            function interceptAllLinks() {
+                document.addEventListener('click', function (e) {
+                    // Find closest anchor tag
+                    const link = e.target.closest('a');
+                    if (link) {
+                        e.preventDefault();
+                        showPopup(link.href, link.textContent.trim());
+                    }
+                });
+            }
+
+            function setupIframeResponsiveness() {
+                const iframe = document.getElementById('contentFrame');
+
+                if (iframe) {
+                    iframe.onload = function () {
+                        try {
+                            makeIframeResponsive(iframe);
+                            // Add viewport meta to iframe content
+                            const iframeDoc = iframe.contentWindow.document;
+                            let viewport = iframeDoc.querySelector('meta[name="viewport"]');
+                            if (!viewport) {
+                                viewport = iframeDoc.createElement('meta');
+                                viewport.name = 'viewport';
+                                viewport.content = 'width=device-width, initial-scale=1';
+                                iframeDoc.head.appendChild(viewport);
+                            }
+
+                            // Add responsive styles to iframe content
+                            const style = iframeDoc.createElement('style');
+                            style.textContent = `
+                        body {
+                            width: 100% !important;
+                            height: auto !important;
+                            margin: 0 !important;
+                            padding: 0 !important;
+                            overflow-x: hidden !important;
+                        }
+                        img, video, iframe {
+                            max-width: 100% !important;
+                            height: auto !important;
+                        }
+                        * {
+                            box-sizing: border-box !important;
+                        }
+                    `;
+                            iframeDoc.head.appendChild(style);
+
+                            // Remove loading state
+                            document.getElementById('popupWindow').classList.remove('loading');
+                        } catch (err) {
+                            console.log('Cannot modify iframe content due to same-origin policy');
+                        }
+                    };
+                }
+            }
+
+            function makeIframeResponsive(iframe) {
+                try {
+                    const iframeDoc = iframe.contentWindow.document;
+                    const iframeBody = iframeDoc.body;
+
+                    // Get the natural dimensions of the content
+                    const contentWidth = iframeBody.scrollWidth;
+                    const contentHeight = iframeBody.scrollHeight;
+
+                    // Get the available space in the popup
+                    const popupContent = document.getElementById('popupContent');
+                    const availableWidth = popupContent.clientWidth;
+                    const availableHeight = popupContent.clientHeight;
+
+                    // Calculate the scale needed to fit the content
+                    const scaleX = availableWidth / contentWidth;
+                    const scaleY = availableHeight / contentHeight;
+                    const scale = Math.min(scaleX, scaleY, 1);
+
+                    // Apply responsive styles
+                    iframeBody.style.transformOrigin = 'top left';
+                    iframeBody.style.transform = `scale(${scale})`;
+                    iframeBody.style.width = `${100 / scale}%`;
+                    iframeBody.style.height = `${100 / scale}%`;
+                } catch (err) {
+                    console.log('Cannot modify iframe content due to same-origin policy');
+                }
+            }
+
+            function showPopup(url, title = 'Mini Window') {
+                const popup = document.getElementById('popupWindow');
+                const overlay = document.getElementById('overlay');
+                const iframe = document.getElementById('contentFrame');
+                const titleElement = document.querySelector('#popupWindow h3');
+
+                currentUrl = url;
+
+                // Update title
+                if (titleElement) {
+                    titleElement.textContent = title;
+                }
+
+                // Show loading state
+                popup.classList.add('loading');
+
+                // Setup iframe
+                iframe.src = url;
+
+                // Show popup and overlay
+                popup.classList.remove('hidden');
+                overlay.classList.remove('hidden');
+            }
+
+            function closePopup() {
+                const popup = document.getElementById('popupWindow');
+                const overlay = document.getElementById('overlay');
+                const iframe = document.getElementById('contentFrame');
+
+                popup.classList.add('hidden');
+                overlay.classList.add('hidden');
+                setTimeout(() => {
+                    iframe.src = '';
+                    currentUrl = '';
+                }, 300); // Wait for animation to complete
+            }
+
+            // Window resize handler
+            let resizeTimeout;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function () {
+                    const iframe = document.getElementById('contentFrame');
+                    if (iframe && !document.getElementById('popupWindow').classList.contains('hidden')) {
+                        makeIframeResponsive(iframe);
+                    }
+                }, 250);
+            });
+
+            function setupPopupControls() {
+                // Fullscreen button
+                const fullscreenBtn = document.getElementById('fullscreenButton');
+                if (fullscreenBtn) {
+                    fullscreenBtn.addEventListener('click', function () {
+                        if (currentUrl) {
+                            window.location.href = currentUrl;
+                        }
+                    });
+                }
+
+                // Close button and overlay
+                const overlay = document.getElementById('overlay');
+                if (overlay) {
+                    overlay.addEventListener('click', closePopup);
+                }
+
+                // Escape key handler
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') {
+                        closePopup();
+                    }
+                });
+            }
+
+            // Initialize when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initialize);
+            } else {
+                initialize();
+            }
+
+            // Expose necessary functions globally
+            window.showPopup = showPopup;
+            window.closePopup = closePopup;
+        })();
+        <!-- memulai kode pelacakan webpushr -- 
+        (function (w, d, s, id) {
+            if (typeof (w.webpushr) !== 'undefined') kembali; w.webpushr = w.webpushr || function () { (w.webpushr.q = w.webpushr.q || []).push(argumen) }; var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.async = 1; js.src = "https://cdn.webpushr.com/app.min.js";
+            fjs.parentNode.appendChild(js);
+        }(jendela, dokumen, 'skrip', 'webpushr-jssdk'));
+        webpushr('setup', { 'key': 'BDj9zSkt_VeOrkCUn8auNuBorOkCfWBpfXIGkW7W440RYdRKn1X1VZ5uRZ8-lYwCC7kxgnV__XAAPCAFnI-cufU' });
 
     </script>
 
