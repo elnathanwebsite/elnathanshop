@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -602,7 +603,191 @@
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-    </style>
+/* Popup Container */
+#popupWindow {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Popup Header */
+#popupWindow .flex {
+    background: linear-gradient(45deg, #2193b0, #6dd5ed);
+    padding: 12px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Popup Title */
+#popupWindow h3 {
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Container */
+#popupWindow .flex .flex {
+    background: transparent;
+    gap: 8px;
+}
+
+/* Control Buttons (Fullscreen & Close) */
+#popupWindow button {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    color: white;
+}
+
+#popupWindow button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+#popupWindow button:active {
+    transform: scale(0.95);
+}
+
+/* Button Icons */
+#popupWindow button i {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+#fullscreenButton:hover i {
+    transform: scale(1.2);
+}
+
+/* Close button specific hover */
+#popupWindow button:last-child:hover i {
+    transform: rotate(90deg);
+}
+
+/* Content Area */
+#popupContent {
+    position: relative;
+    background: white;
+    border-radius: 0 0 20px 20px;
+}
+
+/* iframe styling */
+#contentFrame {
+    border-radius: 0 0 18px 18px;
+    background: white;
+}
+
+/* Overlay Styling */
+#overlay {
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+/* Animation for popup appearance */
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Animation for popup disappearance */
+@keyframes popOut {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+}
+
+/* Apply animations */
+#popupWindow:not(.hidden) {
+    animation: popIn 0.4s ease forwards;
+}
+
+#popupWindow.hidden {
+    animation: popOut 0.3s ease forwards;
+}
+
+/* Loading indicator for iframe */
+#popupContent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, #2193b0, #6dd5ed);
+    animation: loading 2s ease infinite;
+    transform-origin: left;
+    z-index: 1000;
+}
+
+@keyframes loading {
+    0% {
+        transform: scaleX(0);
+    }
+    50% {
+        transform: scaleX(1);
+    }
+    100% {
+        transform: scaleX(0);
+        transform-origin: right;
+    }
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    #popupWindow {
+        width: 95vw !important;
+        height: 90vh !important;
+    }
+    
+    #popupWindow h3 {
+        font-size: 1rem;
+    }
+    
+    #popupWindow button {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Custom Scrollbar for Popup */
+#popupContent::-webkit-scrollbar {
+    width: 8px;
+}
+
+#popupContent::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 20px 0;
+}
+
+#popupContent::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #2193b0, #6dd5ed);
+    border-radius: 4px;
+}  </style>
 </head>
 
 <!-- Main container for centering -->
@@ -721,67 +906,61 @@
                 </div>
             </div>
 
-            <div class="flex flex-col space-y-6">
+                <div class="flex flex-col space-y-6">
                 <!-- Buttons -->
-                <a href="sigup.html" class="button-hover group relative overflow-hidden rounded-xl">
-                    <div
-                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white px-8 py-5 w-full transition-all duration-500">
+                <a href="sigup.html" class="button-hover group relative overflow-hidden rounded-xl" onclick="showPopup(event, 'sigup.html')">
+                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fas fa-crown text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">Buat Akun</span>
                     </div>
                 </a>
 
-                <a href="utama.html" class="button-hover group relative overflow-hidden rounded-xl">
-                    <div
-                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white px-8 py-5 w-full transition-all duration-500">
+                <a href="utama.html" class="button-hover group relative overflow-hidden rounded-xl" onclick="showPopup(event, 'utama.html')">
+                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fas fa-eye text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">EL NATHAN SHOP</span>
                     </div>
                 </a>
 
-                <a href="https://tokomini.vercel.app/" class="button-hover group relative overflow-hidden rounded-xl">
-                    <div
-                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white px-8 py-5 w-full transition-all duration-500">
+                <a href="https://tokomini.vercel.app/" class="button-hover group relative overflow-hidden rounded-xl" onclick="showPopup(event, 'https://tokomini.vercel.app/')">
+                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fas fa-globe text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">Beli Web</span>
                     </div>
                 </a>
 
-                <a href="coomingshooon.html" class="button-hover group relative overflow-hidden rounded-xl">
-                    <div
-                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 text-white px-8 py-5 w-full transition-all duration-500">
+                <a href="coomingshooon.html" class="button-hover group relative overflow-hidden rounded-xl" onclick="showPopup(event, 'coomingshooon.html')">
+                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fas fa-book text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">Tutorial</span>
                     </div>
                 </a>
 
-                <a href="https://elnathanwebsite.my.canva.site/tech-website-in-blue-purple-white-gradients-style"
-                    class="button-hover group relative overflow-hidden rounded-xl">
-                    <div
-                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 text-white px-8 py-5 w-full transition-all duration-500">
+                <a href="https://elnathanwebsite.my.canva.site/tech-website-in-blue-purple-white-gradients-style" 
+                   class="button-hover group relative overflow-hidden rounded-xl" 
+                   onclick="showPopup(event, 'https://elnathanwebsite.my.canva.site/tech-website-in-blue-purple-white-gradients-style')">
+                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fas fa-palette text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">Tutorial Desain Product</span>
                     </div>
                 </a>
 
-                <!-- New Jasa Joki Button -->
-                <a href="coomingshooon.html" class="button-hover group relative overflow-hidden rounded-xl">
-                    <div
-                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-sky-300 via-sky-400 to-sky-500 text-white px-8 py-5 w-full transition-all duration-500">
+                <a href="coomingshooon.html" class="button-hover group relative overflow-hidden rounded-xl" onclick="showPopup(event, 'coomingshooon.html')">
+                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-sky-300 via-sky-400 to-sky-500 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fas fa-computer text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">Jasa Joki</span>
                     </div>
                 </a>
-                <a href="hubungiwa.html" class="button-hover group relative overflow-hidden rounded-xl">
-                    <div
-                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-white px-8 py-5 w-full transition-all duration-500">
+
+                <a href="hubungiwa.html" class="button-hover group relative overflow-hidden rounded-xl" onclick="showPopup(event, 'hubungiwa.html')">
+                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fas fa-paint-brush text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">Jasa Desain</span>
                     </div>
                 </a>
-                <a href="hubungiwa.html" class="button-hover group relative overflow-hidden rounded-xl">
-                    <div
-                        class="flex items-center justify-center space-x-4 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-white px-8 py-5 w-full transition-all duration-500">
+
+                <a href="hubungiwa.html" class="button-hover group relative overflow-hidden rounded-xl" onclick="showPopup(event, 'hubungiwa.html')">
+                    <div class="flex items-center justify-center space-x-4 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-white px-8 py-5 w-full transition-all duration-500">
                         <i class="fab fa-js text-2xl icon-spin"></i>
                         <span class="font-bold uppercase text-lg tracking-wider">Jasa Buat Web</span>
                     </div>
@@ -789,6 +968,28 @@
             </div>
         </div>
     </main>
+
+    <!-- Popup Window -->
+    <div id="popupWindow" class="hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl z-50">
+        <div class="flex justify-between items-center bg-gray-100 p-2 rounded-t-lg">
+            <h3 class="text-lg font-semibold px-2">Mini Window</h3>
+            <div class="flex space-x-2">
+                <button id="fullscreenButton" class="p-1 hover:bg-gray-200 rounded">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button onclick="closePopup()" class="p-1 hover:bg-gray-200 rounded">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div id="popupContent" class="w-[80vw] h-[80vh] max-w-4xl">
+            <iframe id="contentFrame" class="w-full h-full" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+
 
     <!-- Footer -->
     <footer class="bg-white/80 backdrop-blur-md py-4 mt-auto">
@@ -816,6 +1017,7 @@
     </footer>
 
     <script>
+      
       // Show notification after page load
 window.addEventListener('load', function () {
     // Check if notification was already shown today
@@ -827,7 +1029,106 @@ window.addEventListener('load', function () {
         localStorage.setItem('elnathan_2025_ad_last_shown', today);
     }
 });
+(function() {
+    // State management
+    let currentUrl = ''; 
+    let isInitialized = false;
 
+    // Initialize all event listeners and functionality
+    function initialize() {
+        if (isInitialized) return;
+
+        // Set up date time updater
+        setupDateTime();
+        
+        // Set up popup handlers
+        setupPopupHandlers();
+        
+        isInitialized = true;
+    }
+
+    // DateTime functionality
+    function setupDateTime() {
+        function updateDateTime() {
+            const now = new Date();
+            const formatted = now.toISOString().replace('T', ' ').substr(0, 19);
+            const dateTimeElement = document.getElementById('currentDateTime');
+            if (dateTimeElement) {
+                dateTimeElement.textContent = formatted;
+            }
+        }
+
+        // Update time every second
+        setInterval(updateDateTime, 1000);
+        updateDateTime(); // Initial call
+    }
+
+    // Popup functionality
+    function setupPopupHandlers() {
+        // Fullscreen button handler
+        const fullscreenBtn = document.getElementById('fullscreenButton');
+        if (fullscreenBtn) {
+            fullscreenBtn.addEventListener('click', function() {
+                if (currentUrl) {
+                    window.location.href = currentUrl;
+                }
+            });
+        }
+
+        // Overlay click handler
+        const overlay = document.getElementById('overlay');
+        if (overlay) {
+            overlay.addEventListener('click', closePopup);
+        }
+
+        // Escape key handler
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePopup();
+            }
+        });
+    }
+
+    // Popup control functions
+    function showPopup(event, url) {
+        event.preventDefault();
+        
+        const popup = document.getElementById('popupWindow');
+        const overlay = document.getElementById('overlay');
+        const iframe = document.getElementById('contentFrame');
+        
+        if (popup && overlay && iframe) {
+            currentUrl = url;
+            iframe.src = url;
+            popup.classList.remove('hidden');
+            overlay.classList.remove('hidden');
+        }
+    }
+
+    function closePopup() {
+        const popup = document.getElementById('popupWindow');
+        const overlay = document.getElementById('overlay');
+        const iframe = document.getElementById('contentFrame');
+        
+        if (popup && overlay && iframe) {
+            popup.classList.add('hidden');
+            overlay.classList.add('hidden');
+            iframe.src = '';
+            currentUrl = '';
+        }
+    }
+
+    // Make necessary functions globally available
+    window.showPopup = showPopup;
+    window.closePopup = closePopup;
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initialize);
+    } else {
+        initialize();
+    }
+})();
 // Array of image URLs
 const imageUrls = [
     'https://i.pinimg.com/1200x/c1/d6/cc/c1d6cc2ce5d2e3e57768fc04e15c49d1.jpg',
