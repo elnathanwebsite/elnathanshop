@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -739,7 +736,87 @@
     -webkit-backdrop-filter: blur(5px);
     background: rgba(0, 0, 0, 0.4);
     transition: all 0.3s ease;
-} </style>
+}
+/* Add these styles to your existing CSS */
+
+/* Loading State */
+#popupWindow.loading #popupContent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, #2193b0, #6dd5ed);
+    animation: loading 2s ease infinite;
+    transform-origin: left;
+    z-index: 1000;
+}
+
+@keyframes loading {
+    0% {
+        transform: scaleX(0);
+    }
+    50% {
+        transform: scaleX(1);
+    }
+    100% {
+        transform: scaleX(0);
+        transform-origin: right;
+    }
+}
+
+/* Popup Enter Animation */
+@keyframes popupEnter {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Popup Exit Animation */
+@keyframes popupExit {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+}
+
+#popupWindow:not(.hidden) {
+    animation: popupEnter 0.3s ease forwards;
+}
+
+#popupWindow.hidden {
+    animation: popupExit 0.3s ease forwards;
+}
+
+/* Overlay Animations */
+#overlay:not(.hidden) {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+#overlay.hidden {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+</style>
 </head>
 
 <!-- Main container for centering -->
@@ -1311,58 +1388,170 @@ OneSignalDeferred.push(async function(OneSignal) {
 
     ensureNotificationPermission();
 });
-// Add this to your existing script.js
-function adjustIframeContent() {
-    const iframe = document.getElementById('contentFrame');
-    const content = iframe.contentWindow.document.body;
-    
-    if (content) {
-        // Get the original content dimensions
+(function() {
+    // State management
+    let currentUrl = '';
+    let isInitialized = false;
+
+    // Initialize system
+    function initialize() {
+        if (isInitialized) return;
+        
+        // Setup date time display
+        setupDateTime();
+        
+        // Setup popup system
+        setupPopupSystem();
+        
+        isInitialized = true;
+    }
+
+    // DateTime functionality
+    function setupDateTime() {
+        function updateDateTime() {
+            const now = new Date();
+            const formatted = now.toISOString().replace('T', ' ').substr(0, 19);
+            const dateTimeElement = document.getElementById('currentDateTime');
+            if (dateTimeElement) {
+                dateTimeElement.textContent = formatted;
+            }
+        }
+
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+    }
+
+    // Popup System
+    function setupPopupSystem() {
+        // Intercept all links
+        interceptAllLinks();
+        
+        // Setup popup controls
+        setupPopupControls();
+    }
+
+    function interceptAllLinks() {
+        // Get all links in the document
+        const links = document.getElementsByTagName('a');
+        
+        // Add click handler to each link
+        for (let link of links) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const url = this.href;
+                showPopup(url);
+            });
+        }
+    }
+
+    function showPopup(url) {
+        const popup = document.getElementById('popupWindow');
+        const overlay = document.getElementById('overlay');
+        const iframe = document.getElementById('contentFrame');
+        const title = document.querySelector('#popupWindow h3');
+        
+        // Store current URL
+        currentUrl = url;
+        
+        // Update popup title based on link text
+        const linkElement = Array.from(document.getElementsByTagName('a')).find(a => a.href === url);
+        if (linkElement) {
+            title.textContent = linkElement.textContent.trim() || 'Mini Window';
+        }
+        
+        // Load content
+        iframe.src = url;
+        
+        // Show popup and overlay with animation
+        popup.classList.remove('hidden');
+        overlay.classList.remove('hidden');
+        
+        // Add loading indicator
+        popup.classList.add('loading');
+        
+        // Handle iframe load
+        iframe.onload = function() {
+            popup.classList.remove('loading');
+            adjustIframeContent();
+        };
+    }
+
+    function closePopup() {
+        const popup = document.getElementById('popupWindow');
+        const overlay = document.getElementById('overlay');
+        const iframe = document.getElementById('contentFrame');
+        
+        popup.classList.add('hidden');
+        overlay.classList.add('hidden');
+        iframe.src = '';
+        currentUrl = '';
+    }
+
+    function setupPopupControls() {
+        // Fullscreen button
+        const fullscreenBtn = document.getElementById('fullscreenButton');
+        if (fullscreenBtn) {
+            fullscreenBtn.addEventListener('click', function() {
+                if (currentUrl) {
+                    window.location.href = currentUrl;
+                }
+            });
+        }
+
+        // Close button and overlay
+        const overlay = document.getElementById('overlay');
+        if (overlay) {
+            overlay.addEventListener('click', closePopup);
+        }
+
+        // Escape key handler
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePopup();
+            }
+        });
+    }
+
+    // Iframe content adjustment
+    function adjustIframeContent() {
+        const iframe = document.getElementById('contentFrame');
+        if (!iframe.contentWindow || !iframe.contentWindow.document.body) return;
+
+        const content = iframe.contentWindow.document.body;
         const originalWidth = content.scrollWidth;
         const originalHeight = content.scrollHeight;
-        
-        // Get the available space in the popup
         const availableWidth = iframe.offsetWidth;
         const availableHeight = iframe.offsetHeight;
         
-        // Calculate scale to fit content
         const scaleX = availableWidth / originalWidth;
         const scaleY = availableHeight / originalHeight;
-        const scale = Math.min(scaleX, scaleY, 1); // Don't scale up
+        const scale = Math.min(scaleX, scaleY, 1);
         
-        // Apply the scaling if needed
         if (scale < 1) {
             content.style.transform = `scale(${scale})`;
             content.style.transformOrigin = 'top left';
         }
     }
-}
 
-// Modify your showPopup function
-function showPopup(event, url) {
-    event.preventDefault();
-    
-    const popup = document.getElementById('popupWindow');
-    const overlay = document.getElementById('overlay');
-    const iframe = document.getElementById('contentFrame');
-    
-    currentUrl = url;
-    iframe.src = url;
-    popup.classList.remove('hidden');
-    overlay.classList.remove('hidden');
-    
-    // Add iframe load handler
-    iframe.onload = function() {
-        adjustIframeContent();
-    };
-}
+    // Window resize handler
+    window.addEventListener('resize', function() {
+        const popup = document.getElementById('popupWindow');
+        if (popup && !popup.classList.contains('hidden')) {
+            adjustIframeContent();
+        }
+    });
 
-// Add window resize handler
-window.addEventListener('resize', function() {
-    if (!document.getElementById('popupWindow').classList.contains('hidden')) {
-        adjustIframeContent();
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initialize);
+    } else {
+        initialize();
     }
-});
+
+    // Expose necessary functions globally
+    window.showPopup = showPopup;
+    window.closePopup = closePopup;
+})();
 <!-- memulai kode pelacakan webpushr --> 
 (function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') kembali; w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(argumen)}; var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1; js.src = "https://cdn.webpushr.com/app.min.js";
 fjs.parentNode.appendChild(js);}(jendela, dokumen, 'skrip', 'webpushr-jssdk'));
