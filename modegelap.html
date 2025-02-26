@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETHAN EL NATHAN WEBSITE | DASHBORD HYPERLINK</title>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Grid Background Pattern */
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(20px);
+            }
+        }
+
+        .info-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideDown 1s ease;
+        }
+
+        .datetime {
+            font-family: 'JetBrains Mono', monospace;
+            color: #64ffda;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideLeft 1s ease;
+        }
+
+        .user-avatar {
+            width: 30px;
+            height: 30px;
+            background: #64ffda;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #0f172a;
+            animation: rotate 4s linear infinite;
+        }
+
+        .username {
+            color: #fff;
+            font-size: 0.9em;
+        }
+
+        .main-content {
+            text-align: center;
+            padding: 2rem;
+            animation: fadeIn 1.5s ease;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            position: relative;
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        .logo {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.2);
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #64ffda, #48cae4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            animation: colorChange 5s infinite;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            animation: slideUp 1s ease;
+        }
+
+        .enter-button {
+            background: linear-gradient(45deg, #64ffda, #48cae4);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            color: #0f172a;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: bounce 2s infinite;
+        }
+
+        .enter-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.4);
+        }
+
+        /* Additional Animations */
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        @keyframes colorChange {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideLeft {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .floating-particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: rgba(100, 255, 218, 0.5);
+            border-radius: 50%;
+            animation: particleFloat 10s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .info-bar {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .logo-container {
+                width: 150px;
+                height: 150px;
+            }
+
+            .tagline {
+                font-size: 1em;
+            }
+        }
+
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0f172a;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-container {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .water-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(45deg, #64ffda, #48cae4);
+            transition: height 0.1s ease;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .loading-glass {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        .loading-text {
+            color: #64ffda;
+            font-size: 1.5em;
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 20px;
+        }
+
+        .water-drops {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            top: -20px;
+        }
+
+        .drop {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #64ffda;
+            border-radius: 50%;
+            animation: dropFall 1s infinite;
+        }
+
+        @keyframes dropFall {
+            0% {
+                transform: translateY(-20px);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(220px);
+                opacity: 0;
+            }
+        }
+
+        .ripple {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background: transparent;
+            border: 2px solid #64ffda;
+            border-radius: 50%;
+            animation: rippleEffect 1s infinite;
+        }
+
+        @keyframes rippleEffect {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+
+            100% {
+                width: 50px;
+                height: 50px;
+                opacity: 0;
+            }
+        }
+
+        /* Hide main content initially */
+        .main-content {
+            display: none;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=JetBrains+Mono&display=swap"
+        rel="stylesheet">
+</head>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="ETH" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<body>
+    <div class="grid-pattern"></div>
+    <div class="floating-particles" id="particles"></div>
+
+    <div class="info-bar">
+        <div class="datetime" id="datetime"></div>
+        <div class="user-info">
+            <div class="user-avatar">E</div>
+            <div class="username">elnathanwebsite</div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="logo-container">
+            <!-- Replace with your actual logo -->
+            <img src="https://i.pinimg.com/736x/d5/db/ca/d5dbca067f5868f800f2f7483a308080.jpg"
+                alt="Elnathan Website Logo" class="logo">
+        </div>
+        <h1>Elnathan Website</h1>
+        <p class="tagline">Web ini sedikit berat dan membutuhkan jaringan yang sedikit kencang pastikan ( Device anda
+            Kuat dan Jaringan Anda Kencang/min 4G atau Di Atasnya ) </p>
+        <button class="enter-button" onclick="window.location.href='link.html'">
+            Enter Site
+        </button>
+    </div>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-container">
+            <div class="water-fill" id="waterFill"></div>
+            <div class="loading-glass"></div>
+            <div class="water-drops" id="waterDrops"></div>
+            <div class="ripple"></div>
+        </div>
+        <div class="loading-text" id="loadingText">Loading: 0%</div>
+    </div>
+    <script>
+        function startLoading() {
+            const waterFill = document.getElementById('waterFill');
+            const loadingText = document.getElementById('loadingText');
+            const loadingScreen = document.getElementById('loadingScreen');
+            const mainContent = document.querySelector('.main-content');
+            let progress = 0;
+
+            // Create water drops
+            function createDrops() {
+                const waterDrops = document.getElementById('waterDrops');
+                const drop = document.createElement('div');
+                drop.className = 'drop';
+                drop.style.left = Math.random() * 180 + 10 + 'px';
+                waterDrops.appendChild(drop);
+
+                // Remove drop after animation
+                setTimeout(() => {
+                    drop.remove();
+                }, 1000);
+            }
+
+            // Start dropping water
+            const dropInterval = setInterval(createDrops, 100);
+
+            const loadingInterval = setInterval(() => {
+                progress += 1;
+
+                // Update water fill height
+                waterFill.style.height = progress + '%';
+
+                // Update loading text
+                loadingText.textContent = `Loading: ${progress}%`;
+
+                if (progress >= 100) {
+                    clearInterval(loadingInterval);
+                    clearInterval(dropInterval);
+
+                    // Fade out loading screen
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                            mainContent.style.display = 'block';
+                        }, 500);
+                    }, 500);
+                }
+            }, 50); // Adjust speed of loading here
+        }
+
+        // Start loading animation when page loads
+        window.onload = function () {
+            startLoading();
+            createParticles();
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+        };
+        // Function to create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                container.appendChild(particle);
+            }
+        }
+
+        // Function to update Jakarta time
+        function updateDateTime() {
+            const options = {
+                timeZone: 'Asia/Jakarta',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            };
+
+            const jakartaTime = new Date().toLocaleString('en-US', options);
+            const [date, time] = jakartaTime.split(', ');
+            const [month, day, year] = date.split('/');
+            const formattedDateTime = `${year}-${month}-${day} ${time} WIB`;
+            document.getElementById('datetime').textContent = formattedDateTime;
+        }
+
+        // Initialize particles and time
+        createParticles();
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+
+</html>
