@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -976,9 +977,194 @@
         margin: 10px auto;
     }
 }
-    </style>
-</head>
+/* Base styles */
+.floating-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
 
+/* RGB Gradient Animation for Text */
+@keyframes rgbText {
+    0% { color: #ff0000; }
+    33% { color: #00ff00; }
+    66% { color: #0000ff; }
+    100% { color: #ff0000; }
+}
+
+/* RGB Border Animation */
+@keyframes rgbBorder {
+    0% { border-color: #ff0000; }
+    33% { border-color: #00ff00; }
+    66% { border-color: #0000ff; }
+    100% { border-color: #ff0000; }
+}
+
+/* RGB Shadow Animation */
+@keyframes rgbShadow {
+    0% { box-shadow: 0 0 10px #ff0000; }
+    33% { box-shadow: 0 0 10px #00ff00; }
+    66% { box-shadow: 0 0 10px #0000ff; }
+    100% { box-shadow: 0 0 10px #ff0000; }
+}
+
+/* RGB Background Gradient Animation */
+@keyframes rgbBackground {
+    0% { background: linear-gradient(45deg, #ff0000, #ff00ff); }
+    33% { background: linear-gradient(45deg, #00ff00, #00ffff); }
+    66% { background: linear-gradient(45deg, #0000ff, #ff00ff); }
+    100% { background: linear-gradient(45deg, #ff0000, #ff00ff); }
+}
+
+/* RGB Glow Animation */
+@keyframes rgbGlow {
+    0% { text-shadow: 0 0 10px #ff0000; }
+    33% { text-shadow: 0 0 10px #00ff00; }
+    66% { text-shadow: 0 0 10px #0000ff; }
+    100% { text-shadow: 0 0 10px #ff0000; }
+}
+
+/* Apply RGB text animation to menu button */
+#menuButton {
+    animation: rgbText 5s infinite;
+    transition: all 0.3s ease;
+}
+
+/* Apply RGB border and shadow to menu button on hover */
+#menuButton:hover {
+    border: 2px solid;
+    animation: rgbBorder 5s infinite, rgbShadow 5s infinite;
+    transform: scale(1.05);
+}
+
+/* Apply RGB background to popup menu */
+#menuPopup .bg-white {
+    position: relative;
+    overflow: hidden;
+}
+
+#menuPopup .bg-white::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgb(255, 0, 0),
+        rgb(0, 255, 0),
+        rgb(0, 0, 255));
+    animation: rgbBackground 10s infinite;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+/* RGB hover effect for menu items */
+#menuPopup a:hover {
+    animation: rgbText 3s infinite;
+    transform: translateX(10px);
+    transition: transform 0.3s ease;
+}
+
+/* RGB animation for close button */
+#closePopup {
+    animation: rgbGlow 5s infinite;
+}
+
+#closePopup:hover {
+    animation: rgbText 3s infinite;
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
+}
+
+/* RGB animation for time display */
+.time-display {
+    animation: rgbText 8s infinite;
+}
+
+/* Smooth transitions for all elements */
+* {
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* RGB Border Pulse Animation */
+@keyframes rgbPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+    }
+    33% {
+        box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
+    }
+    66% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 255, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+    }
+}
+
+/* Add pulse effect to menu button */
+#menuButton {
+    animation: rgbText 5s infinite, rgbPulse 2s infinite;
+}
+
+/* Rainbow gradient text effect */
+@keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.rainbow-text {
+    background: linear-gradient(
+        to right,
+        #ff0000,
+        #ff8000,
+        #ffff00,
+        #00ff00,
+        #00ffff,
+        #0000ff,
+        #8000ff,
+        #ff0000
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow 5s linear infinite;
+}
+
+/* RGB Outline Glow */
+.rgb-outline {
+    position: relative;
+}
+
+.rgb-outline::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: inherit;
+    background: linear-gradient(45deg,
+        #ff0000,
+        #00ff00,
+        #0000ff,
+        #ff0000);
+    background-size: 400% 400%;
+    animation: rainbow 3s linear infinite;
+    z-index: -1;
+    filter: blur(5px);
+}
+/* Menu item links */
+   </style>
+
+<head>
+   
+
+</html>
 <!-- Main container for centering -->
 <div id="elnathan_2025_main_container">
     <!-- Overlay -->
@@ -1042,23 +1228,64 @@
             <span>Tutorial JavaScript dari Dasar hingga Advanced!</span>
         </div>
     </div>
-
-    <!-- Header -->
-    <header class="w-full bg-white/80 backdrop-blur-md shadow-md py-4 px-6 fixed top-0 z-50">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-4">
-                <div class="time-display text-blue-600 font-bold flex items-center">
-                    <i class="fas fa-clock mr-2"></i>
-                    <span id="jakarta-time"></span>
-                    <span class="ml-1">IND</span>
-                </div>
-            </div>
-            <div class="user-badge flex items-center space-x-3 bg-blue-50 px-4 py-2 rounded-full">
-                <i class="fas fa-user-circle text-blue-500 text-xl"></i>
-                <span class="font-semibold text-blue-700">elnathanwebsite</span>
+<!-- Header -->
+<header class="w-full bg-white/80 backdrop-blur-md shadow-md py-4 px-6 fixed top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+            <div class="time-display text-blue-600 font-bold flex items-center">
+                <i class="fas fa-clock mr-2"></i>
+                <span id="jakarta-time"></span>
+                <span class="ml-1">INDONESIA</span>
             </div>
         </div>
-    </header>
+        <!-- Menu Button -->
+        <div class="relative">
+            <button id="menuButton"
+                class="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                <i class="fas fa-bars"></i>
+                <span>Menu</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Popup Menu -->
+<div id="menuPopup" class="hidden fixed inset-0 bg-black bg-opacity-50 z-[60] flex items-center justify-center">
+    <div class="bg-white rounded-lg p-6 w-[90%] max-w-md transform transition-all shadow-xl">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold text-gray-800">☃️</h2>
+            <button id="closePopup" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="space-y-4">
+            <a href="#" class="block p-3 rounded-lg hover:bg-gray-100 transition-colors">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-home text-blue-600"></i>
+                    <span>Home</span>
+                </div>
+            </a>
+            <a href="#" class="block p-3 rounded-lg hover:bg-gray-100 transition-colors">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-user text-blue-600"></i>
+                    <span>Profile</span>
+                </div>
+            </a>
+            <a href="#" class="block p-3 rounded-lg hover:bg-gray-100 transition-colors">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-cog text-blue-600"></i>
+                    <span>Settings</span>
+                </div>
+            </a>
+            <a href="#" class="block p-3 rounded-lg hover:bg-gray-100 transition-colors">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-sign-out-alt text-blue-600"></i>
+                    <span>Logout</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
 
     <!-- Main Content -->
     <main class="flex-1 mt-24 mb-12">
@@ -1861,7 +2088,62 @@ document.addEventListener('DOMContentLoaded', () => {
 // Add error handling for images
 document.querySelector('.ad-image').addEventListener('error', function() {
     this.src = 'https://via.placeholder.com/380x220?text=🎨+Image+Coming+Soon!';
+}); document.addEventListener('DOMContentLoaded', () => {
+    const menuButton = document.getElementById('menuButton');
+    const menuPopup = document.getElementById('menuPopup');
+    const closePopup = document.getElementById('closePopup');
+
+    // Function to open popup
+    const openPopup = () => {
+        menuPopup.classList.remove('hidden');
+        setTimeout(() => {
+            menuPopup.querySelector('.bg-white').classList.add('popup-enter-active');
+        }, 10);
+    };
+
+    // Function to close popup
+    const closePopupFunc = () => {
+        menuPopup.querySelector('.bg-white').classList.remove('popup-enter-active');
+        menuPopup.querySelector('.bg-white').classList.add('popup-exit-active');
+        setTimeout(() => {
+            menuPopup.classList.add('hidden');
+            menuPopup.querySelector('.bg-white').classList.remove('popup-exit-active');
+        }, 200);
+    };
+
+    // Event listeners
+    menuButton.addEventListener('click', openPopup);
+    closePopup.addEventListener('click', closePopupFunc);
+
+    // Close popup when clicking outside
+    menuPopup.addEventListener('click', (e) => {
+        if (e.target === menuPopup) {
+            closePopupFunc();
+        }
+    });
+
+    // Close popup with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !menuPopup.classList.contains('hidden')) {
+            closePopupFunc();
+        }
+    });
 });
+
+    // Update Jakarta time
+    function updateJakartaTime() {
+        const jakartaTime = new Date().toLocaleTimeString('id-ID', {
+            timeZone: 'Asia/Jakarta',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+        document.getElementById('jakarta-time').textContent = jakartaTime;
+    }
+
+    // Update time every second
+    setInterval(updateJakartaTime, 1000);
+    updateJakartaTime(); // Initial call
     </script>
 </body>
 
