@@ -11,372 +11,321 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+        /* Main Styles */
         body {
-            font-family: 'Press Start 2P', cursive;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        .pixel-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background:
-                linear-gradient(transparent 0%, rgba(0, 0, 0, 0.3) 100%),
-                linear-gradient(90deg, #4a148c 0%, #311b92 49%, #4a148c 100%);
-            background-size: 100% 100%, 200% 100%;
-            animation: moveBackground 10s linear infinite;
-        }
-
-        .pixel-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-
-        .container {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            gap: 30px;
-            padding: 20px;
-            flex-wrap: wrap;
-        }
-
-        .button {
-            padding: 25px 40px;
-            font-size: 18px;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            text-decoration: none;
+            margin: 0;
+            font-family: 'Press Start 2P', cursive;
+            background: #87CEEB;
+            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            overflow-x: hidden;
         }
 
-        .dark-button {
-            background-color: #1a237e;
+        /* Cloud Animation */
+        .cloud {
+            position: absolute;
+            width: 60px;
+            height: 30px;
+            background: white;
+            border-radius: 20px;
+            animation: moveCloud 15s linear infinite;
+            opacity: 0.8;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .cloud::before {
+            width: 25px;
+            height: 25px;
+            top: -10px;
+            left: 10px;
+        }
+
+        .cloud::after {
+            width: 30px;
+            height: 30px;
+            top: -15px;
+            right: 10px;
+        }
+
+        @keyframes moveCloud {
+            from { left: -100px; }
+            to { left: 100%; }
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            z-index: 1;
+        }
+
+        /* Super Mario Link Button Style */
+        .mario-link {
+            text-decoration: none;
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            background: #e52521;
             color: white;
-            border: 3px solid #4DD0E1;
+            text-transform: uppercase;
+            box-shadow: 0 5px 0 #8b0000;
+            transition: all 0.2s;
+            overflow: hidden;
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
         }
 
-        .light-button {
-            background-color: #e3f2fd;
-            color: #0277bd;
-            border: 3px solid #0277bd;
+        .mario-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
         }
 
-        .button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+        .mario-link:hover::before {
+            left: 100%;
         }
 
-        .dark-button:hover {
-            background-color: #283593;
-            border-color: #80DEEA;
+        .mario-link:hover {
+            transform: translateY(2px);
+            box-shadow: 0 3px 0 #8b0000;
         }
 
-        .light-button:hover {
-            background-color: #bbdefb;
-            border-color: #039BE5;
+        .mario-link:active {
+            transform: translateY(5px);
+            box-shadow: none;
         }
 
-        .dino {
-            font-size: 50px;
-            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
-            animation: idle 2s infinite;
+        /* Link Specific Styles */
+        #lightMode {
+            background: #ffd700;
+            box-shadow: 0 5px 0 #b8860b;
         }
 
-        .content {
-            display: none;
+        #darkMode {
+            background: #4b0082;
+            box-shadow: 0 5px 0 #2a004d;
+        }
+
+        #portfolio {
+            background: #228b22;
+            box-shadow: 0 5px 0 #006400;
+        }
+
+        /* Coin Animation */
+        @keyframes spin {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        .coin {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ffd700;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: spin 0.5s linear;
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        #dark-content {
-            background: linear-gradient(45deg, #1a237e 0%, #283593 100%);
-            color: white;
-        }
-
-        #light-content {
-            background: linear-gradient(45deg, #e3f2fd 0%, #bbdefb 100%);
-            color: #0277bd;
-        }
-
-        .content-box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 600px;
-            margin: 40px auto;
-            backdrop-filter: blur(10px);
-            border: 3px solid;
-            animation: fadeIn 0.5s ease;
-        }
-
-        #dark-content .content-box {
-            border-color: #4DD0E1;
-            box-shadow: 0 0 30px rgba(77, 208, 225, 0.3);
-        }
-
-        #light-content .content-box {
-            border-color: #0277bd;
-            box-shadow: 0 0 30px rgba(2, 119, 189, 0.3);
-        }
-
-        .countdown {
-            font-size: 48px;
-            margin: 30px 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        #dark-content .countdown {
-            color: #4DD0E1;
-        }
-
-        #light-content .countdown {
-            color: #0277bd;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            padding: 15px 25px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 14px;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
             z-index: 1000;
-            text-decoration: none;
-            transition: all 0.3s ease;
         }
 
-        #dark-content .back-button {
-            background: #283593;
-            color: white;
-            border: 2px solid #4DD0E1;
+        .loading-sprite {
+            width: 32px;
+            height: 32px;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQ1IDc5LjE2MzQ5OSwgMjAxOC8wOC8xMy0xNjo0MDoyMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjQ5MjhGNzI1RjE4NzExRUE5QjE0QjYyOTM0QkM4OEE1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjQ5MjhGNzI2RjE4NzExRUE5QjE0QjYyOTM0QkM4OEE1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NDkyOEY3MjNGMTg3MTFFQTlCMTRCNjI5MzRCQzg4QTUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NDkyOEY3MjRGMTg3MTFFQTlCMTRCNjI5MzRCQzg4QTUiLz4gPC9yZGY6RERlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Q0PJ8wAABBtJREFUeNq8V21IU2EYPm93dze3zc1N3XR+pOWHmR8FlqaWFWqU/YgsCcGMfoT9KAuKIiyI6F9/oqLC+hFBUL+KiAgqi6CwMM0Py9TSdLqpW3Pb3O7evW/nHJ1u25mbQ7zwsrOz877Pec55nvd5z5tamqYhJeVFxEFEIsIfoYz1PYSM+IYoQTwiSBHJCD2iC/EZ8QnxBvEYUYd4i+hA9Iz1oHEIwBtxFLERUeDEdy3EfUQ1og3hkILy7cQNxEnEDIfxHxCXEE8RDikGs3BPntNszSFkiE2IWsQlxPgxfpuAKEVUIeoRW6QY7ARgJvU+YvcY1zaBuICoQaRJ0QlnEacl2GYTcRpRifCSovLtiCrEOgm2WYoIdkWABYhKRIQE2yxGXEMESrFFFuKiBJ2AxV5E7HgFYK5WKsE2pyPOj0cAZuanEWESbBO3XTFCNdYA7OAHERESbBPPQjEiaSwCsNjfKcE2mQCnRiNAKmKzBNtkR3KXGAHYXbRHgm3yE83mZKx4OOtg7BuISkSgBJ3AI2oQsxFfhlOebVqIWCbBNnlU70Ps5E0vRACW+1+1oXHghFjEZRuRJMFAeXDxd3QVwgiI0ET8GLEhYX6QFs4164wwc6uVx9EtRBebgQHfuIR4h7iFKEA0IqwjEGImYgfiDuIOoomZDVaKGxAJCDOiE5HDSpRaAdtTI3IT81PtFKIdcRXxQOAGWvamI7kZcQNxXEDnNiEeIq4jntnNXtZP5ONutwqhEql8P+IZ4qSDBkURohbRKbKPmBlxGXFSQC/QiWCLdR5h4q2nvxAXEStF7gULEU8QewXMQgfiKGIP4rvQ7phF10XEcgFukUV8QhxG7EU0CP2AlBVYeZA5PCWyKaHm0Yki+KLiObwAcRvRjDgwWgHY2k5E3EP0Ik4gbgjc2LuwstxOROdo8z3rgtjd7VZEIvudxSyrLbUhFE4zSPO737x2EuIK78qN1sEbgLmO0IuXOxDvERsQHxGb+CSiHnGIr3OWNFgKHuKJhXfpB/nrTb7RqHjlbS+z7sn7xYVD1JMrEIcQL23eZ7FzH/FywDO2I+YjViG2IlIQc/n7K7zMr0cY+axVD1gLlg5XI7gzzPAgcJt6JQtci2AhtkxkHeEOAfcQcJtnBTwHeaHJwzdEoNQEkOshAiQjtDx/eETcNlswQysX4AH6B/CE7wB3EDbu8lE+N2cBfHl6YR8hyC4bkKEH1NsZD6EfZiEruKvtF5hYWHiYBQ/Bfjbr4xBgNq+chnGJlQQ000MEmMMPnmiyFQJVJYQArHA4KbD1ZqG7U4QAMQKvSf4zfrZAD0gSKIB+BAIkeogA4QLTECuzQgXwE5iGaH4tgEAgABgFCUDwrVigAAaBHuD4+x8BkgBanl9o9BQB9AIFsDn6a4QIDPEQAZRiivJfAQYA3HPHzTVPwVAAAAAASUVORK5CYII=');
+            animation: jump 0.5s infinite alternate;
         }
 
-        #light-content .back-button {
-            background: #bbdefb;
-            color: #0277bd;
-            border: 2px solid #0277bd;
-        }
-
-        .back-button:hover {
-            transform: translateX(-5px);
-        }
-
-        @keyframes moveBackground {
-            0% {
-                background-position: 0 0, 0 0;
-            }
-
-            100% {
-                background-position: 0 0, 200% 0;
-            }
-        }
-
-        @keyframes idle {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .button {
-                width: 90%;
-                max-width: 300px;
-                padding: 20px;
-                font-size: 14px;
-            }
-
-            .dino {
-                font-size: 40px;
-            }
-
-            .content-box {
-                padding: 20px;
-                margin: 20px;
-            }
-
-            .countdown {
-                font-size: 36px;
-            }
+        @keyframes jump {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
         }
     </style>
 </head>
-
 <body>
-    <div class="pixel-background">
-        <div class="pixel-grid"></div>
+    <!-- Cloud Elements -->
+    <div class="cloud" style="top: 20%"></div>
+    <div class="cloud" style="top: 40%; animation-delay: -5s"></div>
+    <div class="cloud" style="top: 60%; animation-delay: -10s"></div>
+
+    <div class="button-container">
+        <a href="modeterang.html" id="lightMode" class="mario-link" target="_blank">Light Mode</a>
+        <a href="modegelap.html" id="darkMode" class="mario-link" target="_blank">Dark Mode</a>
+        <a href="tempateportfolio" id="portfolio" class="mario-link" target="_blank">Portfolio</a>
     </div>
 
-    <div class="container" id="main-container">
-        <button class="button dark-button" onclick="switchMode('dark')">
-            <span class="dino">🦕</span>
-            Mode Gelap
-        </button>
-
-        <button class="button light-button" onclick="switchMode('light')">
-            <span class="dino">🦕</span>
-            Mode Terang
-        </button>
-    </div>
-<button class="button light-button" onclick="window.location.href='https://contoh.com'">
-    <span class="dino">🦕</span>
-    Portofolio template
-</button>
-
-    <div id="dark-content" class="content">
-        <button class="back-button" onclick="goBack()">← Kembali</button>
-        <div class="content-box">
-            <h2>Mode Gelap Aktif</h2>
-            <div class="dino" style="font-size: 80px; margin: 30px 0;">🦕</div>
-            <p style="margin: 20px 0;">Perubahan mode akan berlaku dalam:</p>
-            <div class="countdown" id="dark-countdown">3</div>
-        </div>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-sprite"></div>
     </div>
 
-    <div id="light-content" class="content">
-        <button class="back-button" onclick="goBack()">← Kembali</button>
-        <div class="content-box">
-            <h2>Mode Terang Aktif</h2>
-            <div class="dino" style="font-size: 80px; margin: 30px 0;">🦕</div>
-            <p style="margin: 20px 0;">Perubahan mode akan berlaku dalam:</p>
-            <div class="countdown" id="light-countdown">3</div>
-        </div>
-    </div>
-
+   <!-- Continue from previous code... -->
     <script>
-        function switchMode(mode) {
-            document.getElementById('main-container').style.display = 'none';
-            document.getElementById(`${mode}-content`).style.display = 'block';
-            startCountdown(mode);
-        }
-
-        function startCountdown(mode) {
-            let countdown = 3;
-            const countdownElement = document.getElementById(`${mode}-countdown`);
-
-            const timer = setInterval(() => {
-                countdown--;
-                countdownElement.textContent = countdown;
-
-                if (countdown <= 0) {
-                    clearInterval(timer);
-                    setTimeout(() => {
-                        if (mode === 'dark') {
-                            document.body.style.backgroundColor = '#1a237e';
-                            document.body.style.color = 'white';
-                        } else {
-                            document.body.style.backgroundColor = '#e3f2fd';
-                            document.body.style.color = '#0277bd';
-                        }
-                    }, 500);
-                }
-            }, 1000);
-        }
-
-        function goBack() {
-            document.querySelectorAll('.content').forEach(section => {
-                section.style.display = 'none';
-            });
-            document.getElementById('main-container').style.display = 'flex';
-        }
-        // Konfigurasi link untuk masing-masing mode
-        const config = {
-            darkModePath: 'modegelap.html',  // Path ke file mode gelap
-            lightModePath: 'modeterang.html' // Path ke file mode terang
+        // Sound Effects
+        const createAudio = (frequency, duration) => {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = 'square';
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
         };
 
-        function switchMode(mode) {
-            document.getElementById('main-container').style.display = 'none';
-            document.getElementById(`${mode}-content`).style.display = 'block';
-            startCountdown(mode);
-        }
+        // Coin Animation
+        const createCoin = (x, y) => {
+            const coin = document.createElement('div');
+            coin.className = 'coin';
+            coin.style.left = `${x}px`;
+            coin.style.top = `${y}px`;
+            document.body.appendChild(coin);
+            
+            setTimeout(() => coin.remove(), 500);
+        };
 
-        function startCountdown(mode) {
-            let countdown = 3;
-            const countdownElement = document.getElementById(`${mode}-countdown`);
-            const path = mode === 'dark' ? config.darkModePath : config.lightModePath;
+        // Loading Animation
+        const showLoading = () => {
+            const loading = document.querySelector('.loading-overlay');
+            loading.style.display = 'flex';
+        };
 
-            const timer = setInterval(() => {
-                countdown--;
-                countdownElement.textContent = countdown;
+        const hideLoading = () => {
+            const loading = document.querySelector('.loading-overlay');
+            loading.style.display = 'none';
+        };
 
-                if (countdown <= 0) {
-                    clearInterval(timer);
-                    // Redirect ke file yang sesuai setelah countdown selesai
-                    window.location.href = path;
+        // Get all Mario links
+        const marioLinks = document.querySelectorAll('.mario-link');
+
+        // Add click event listeners to all links
+        marioLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Create coin effect at click position
+                createCoin(e.clientX, e.clientY);
+                
+                // Play sound based on button type
+                switch(link.id) {
+                    case 'lightMode':
+                        createAudio(660, 0.1);
+                        break;
+                    case 'darkMode':
+                        createAudio(440, 0.1);
+                        break;
+                    case 'portfolio':
+                        createAudio(523.25, 0.1);
+                        break;
                 }
-            }, 1000);
-        }
 
-        function goBack() {
-            document.querySelectorAll('.content').forEach(section => {
-                section.style.display = 'none';
+                // Show loading animation
+                showLoading();
+
+                // Add small delay before navigation for effects
+                e.preventDefault();
+                setTimeout(() => {
+                    window.location.href = link.href;
+                }, 500);
             });
-            document.getElementById('main-container').style.display = 'flex';
-        }
+        });
 
-        // Menambahkan informasi waktu dan user
-        const currentDate = '2025-02-26 11:30:11'; // Sesuai dengan waktu yang diberikan
-        const currentUser = 'elnathanwebsite';     // Sesuai dengan user yang diberikan
+        // Create Initial Clouds
+        const createClouds = () => {
+            setInterval(() => {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                cloud.style.top = `${Math.random() * 80}%`;
+                cloud.style.animationDuration = `${15 + Math.random() * 10}s`;
+                document.body.appendChild(cloud);
+                
+                setTimeout(() => cloud.remove(), 25000);
+            }, 10000);
+        };
 
-        // Optional: Bisa ditambahkan untuk logging atau tracking
-        console.log(`Accessed by ${currentUser} at ${currentDate}`);
+        // Initialize clouds
+        createClouds();
+
+        // Add hover sound effects
+        marioLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                createAudio(300, 0.05);
+            });
+        });
+
+        // Current user and time display
+        const currentUser = 'elnathanwebsite';
+        const currentDate = new Date('2025-03-01T08:55:07Z');
+
+        // Create user info display
+        const createUserInfo = () => {
+            const userInfo = document.createElement('div');
+            userInfo.style.position = 'fixed';
+            userInfo.style.bottom = '10px';
+            userInfo.style.right = '10px';
+            userInfo.style.fontFamily = "'Press Start 2P', cursive";
+            userInfo.style.fontSize = '8px';
+            userInfo.style.color = '#333';
+            userInfo.innerHTML = `User: ${currentUser}<br>Time: ${currentDate.toLocaleString()}`;
+            document.body.appendChild(userInfo);
+        };
+
+        // Initialize user info
+        createUserInfo();
+
+        // Update links with user information
+        marioLinks.forEach(link => {
+            const url = new URL(link.href);
+            url.searchParams.append('user', currentUser);
+            url.searchParams.append('timestamp', currentDate.toISOString());
+            link.href = url.toString();
+        });
     </script>
 </body>
-
 </html>
