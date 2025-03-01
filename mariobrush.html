@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Mario Website - elnathanwebsite</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        /* Custom Properties */
+        :root {
+            --mario-red: #e52521;
+            --mario-blue: #4a90e2;
+            --mario-yellow: #fbd000;
+            --mario-brown: #683c0c;
+            --mario-green: #20b038;
+            --brick-color: #ca8465;
+            --sky-color: #5c94fc;
+            --ground-color: #683c0c;
+            --pixel-size: 4px;
+        }
+
+        /* Animations */
+        @keyframes coinSpin {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
+
+        @keyframes blockBump {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes marioWalk {
+            0% { transform: translateX(-100px) scaleX(1); }
+            49% { transform: translateX(calc(50vw - 50px)) scaleX(1); }
+            50% { transform: translateX(calc(50vw - 50px)) scaleX(-1); }
+            99% { transform: translateX(-100px) scaleX(-1); }
+            100% { transform: translateX(-100px) scaleX(1); }
+        }
+
+        @keyframes cloudsMove {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(100%); }
+        }
+
+        /* Body and Background Styles */
+        body {
+            background: var(--sky-color);
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #5c94fc 0%, #8cb3fd 100%);
+            z-index: -2;
+        }
+
+        .ground {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: var(--ground-color);
+            z-index: -1;
+        }
+
+        .brick-row {
+            position: fixed;
+            bottom: 80px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--brick-color) 0px,
+                var(--brick-color) 40px,
+                var(--mario-brown) 40px,
+                var(--mario-brown) 42px
+            );
+            z-index: -1;
+        }
+
+        /* Mario Character */
+        .mario {
+            position: fixed;
+            bottom: 100px;
+            left: -100px;
+            width: 50px;
+            height: 50px;
+            background: var(--mario-red);
+            animation: marioWalk 10s infinite linear;
+            z-index: 2;
+        }
+
+        /* Cloud */
+        .cloud {
+            position: fixed;
+            width: 60px;
+            height: 30px;
+            background: white;
+            border-radius: 15px;
+            animation: cloudsMove 20s linear infinite;
+            z-index: -1;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .cloud::before {
+            width: 25px;
+            height: 25px;
+            top: -10px;
+            left: 10px;
+        }
+
+        .cloud::after {
+            width: 20px;
+            height: 20px;
+            top: -5px;
+            left: 30px;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: block;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            background: var(--mario-red);
+            border: 4px solid #fff;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 4px;
+            background: white;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Pop-up Menu */
+        .popup-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+
+        .popup-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .menu-content {
+            background: var(--mario-blue);
+            padding: 2rem;
+            border: 8px solid white;
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3);
+            transform: translateY(-100%);
+            transition: 0.5s;
+            position: relative;
+        }
+
+        .popup-menu.active .menu-content {
+            transform: translateY(0);
+        }
+
+        .menu-item {
+            display: block;
+            padding: 1rem 2rem;
+            margin: 1rem 0;
+            background: var(--mario-red);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border: 4px solid white;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.1);
+            background: var(--mario-yellow);
+            color: black;
+        }
+
+        /* Close Button */
+        .close-menu {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 40px;
+            height: 40px;
+            background: var(--mario-red);
+            border: 4px solid white;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .close-menu:hover {
+            background: var(--mario-yellow);
+            color: black;
+        }        /* Time Display */
+        .time-display {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--mario-blue);
+            color: white;
+            padding: 10px;
+            border: 4px solid white;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            font-size: 0.7rem;
+        }
+
+        /* User Login Display */
+        .user-login {
+            position: fixed;
+            top: 70px;
+            left: 20px;
+            background: var(--mario-red);
+            color: white;
+            padding: 10px;
+            border: 4px solid white;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            font-size: 0.7rem;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            padding: 100px 20px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Section Styles */
+        .section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 4px solid var(--mario-blue);
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3);
+            color: black;
+        }
+
+        .section h2 {
+            color: var(--mario-red);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Mario Card Styles */
+        .mario-card {
+            background: white;
+            padding: 1.5rem;
+            border: 4px solid var(--mario-blue);
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .mario-card:hover {
+            transform: translateY(-5px);
+            animation: blockBump 0.3s ease;
+        }
+
+        .mario-card h3 {
+            color: var(--mario-red);
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* Power-up Element */
+        .power-up {
+            position: absolute;
+            top: -20px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background: var(--mario-red);
+            border: 3px solid white;
+            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+            animation: blockBump 2s infinite;
+        }
+
+        /* Coin Element */
+        .coin {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--mario-yellow);
+            border-radius: 50%;
+            animation: coinSpin 1s infinite;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* Button Styles */
+        .mario-btn {
+            background: var(--mario-red);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            margin-top: 1rem;
+            text-transform: uppercase;
+        }
+
+        .mario-btn:hover {
+            background: var(--mario-yellow);
+            color: black;
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .mario-btn:active {
+            transform: translateY(0);
+            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* Form Styles */
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 2px solid var(--mario-blue);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--mario-red);
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: var(--mario-blue);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 4px solid var(--mario-red);
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mario-card {
+                margin-bottom: 1rem;
+            }
+
+            .social-buttons {
+                flex-direction: column;
+            }
+
+            .time-display,
+            .user-login {
+                font-size: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="background"></div>
+    <div class="ground"></div>
+    <div class="brick-row"></div>
+    <div class="mario"></div>
+
+    <!-- Clouds -->
+    <div class="cloud" style="top: 50px;"></div>
+    <div class="cloud" style="top: 100px; animation-delay: -5s;"></div>
+    <div class="cloud" style="top: 150px; animation-delay: -10s;"></div>
+
+    <!-- Time and User Display -->
+    <div class="time-display">2025-03-01 08:23:20</div>
+    <div class="user-login">Welcome, elnathanwebsite!</div>
+
+    <!-- Hamburger Menu Button -->
+    <div class="hamburger" id="menuButton">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+        <!-- Pop-up Menu -->
+    <div class="popup-menu" id="popupMenu">
+        <div class="menu-content">
+            <button class="close-menu" id="closeMenu">×</button>
+            <a href="#world1" class="menu-item">WORLD 1-1</a>
+            <a href="#world2" class="menu-item">WORLD 1-2</a>
+            <a href="#world3" class="menu-item">WORLD 1-3</a>
+            <a href="#contact" class="menu-item">CONTACT</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- World 1 Section -->
+        <section id="world1" class="section">
+            <h2>WORLD 1-1</h2>
+            <div class="grid">
+                <div class="mario-card">
+                    <div class="power-up"></div>
+                    <h3>Power-Ups</h3>
+                    <p>Collect special items to power up!</p>
+                    <button class="mario-btn">GET POWER</button>
+                </div>
+                <div class="mario-card">
+                    <div class="coin"></div>
+                    <h3>Coins</h3>
+                    <p>Collect coins for extra lives!</p>
+                    <button class="mario-btn">COLLECT</button>
+                </div>
+                <div class="mario-card">
+                    <h3>Enemies</h3>
+                    <p>Watch out for Goombas!</p>
+                    <button class="mario-btn">JUMP</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- World 2 Section -->
+        <section id="world2" class="section">
+            <h2>WORLD 1-2</h2>
+            <div class="grid">
+                <div class="mario-card">
+                    <h3>Underground</h3>
+                    <p>Explore secret passages!</p>
+                    <button class="mario-btn">EXPLORE</button>
+                </div>
+                <div class="mario-card">
+                    <h3>Pipes</h3>
+                    <p>Find warp zones!</p>
+                    <button class="mario-btn">WARP</button>
+                </div>
+                <div class="mario-card">
+                    <h3>Secrets</h3>
+                    <p>Discover hidden blocks!</p>
+                    <button class="mario-btn">SEARCH</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- World 3 Section -->
+        <section id="world3" class="section">
+            <h2>WORLD 1-3</h2>
+            <div class="grid">
+                <div class="mario-card">
+                    <h3>Castle</h3>
+                    <p>Save the Princess!</p>
+                    <button class="mario-btn">RESCUE</button>
+                </div>
+                <div class="mario-card">
+                    <h3>Boss Battle</h3>
+                    <p>Defeat Bowser!</p>
+                    <button class="mario-btn">FIGHT</button>
+                </div>
+                <div class="mario-card">
+                    <h3>Victory</h3>
+                    <p>Complete the level!</p>
+                    <button class="mario-btn">FINISH</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2>SEND A MESSAGE</h2>
+            <div class="mario-card">
+                <form id="contactForm" class="contact-form">
+                    <div>
+                        <label for="name">NAME:</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div>
+                        <label for="email">EMAIL:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div>
+                        <label for="message">MESSAGE:</label>
+                        <textarea id="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="mario-btn">SEND MESSAGE</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Super Mario Website. All rights reserved.</p>
+        <p>Created by: elnathanwebsite</p>
+        <div class="social-buttons">
+            <button class="mario-btn">FACEBOOK</button>
+            <button class="mario-btn">TWITTER</button>
+            <button class="mario-btn">INSTAGRAM</button>
+        </div>
+    </footer>
+
+    <script>
+        // Menu functionality
+        const menuButton = document.getElementById('menuButton');
+        const popupMenu = document.getElementById('popupMenu');
+        const closeMenu = document.getElementById('closeMenu');
+        const menuItems = document.querySelectorAll('.menu-item');
+
+        function toggleMenu() {
+            menuButton.classList.toggle('active');
+            popupMenu.classList.toggle('active');
+        }
+
+        menuButton.addEventListener('click', toggleMenu);
+        closeMenu.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (popupMenu.classList.contains('active') && 
+                !e.target.closest('.menu-content') && 
+                !e.target.closest('.hamburger')) {
+                toggleMenu();
+            }
+        });
+
+        // Update time display
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toISOString().replace('T', ' ').substr(0, 19);
+            document.querySelector('.time-display').textContent = timeString;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call
+
+        // Power-up animation
+        document.querySelectorAll('.power-up').forEach(powerUp => {
+            powerUp.addEventListener('click', () => {
+                powerUp.style.transform = 'scale(1.5)';
+                setTimeout(() => {
+                    powerUp.style.transform = 'scale(1)';
+                }, 500);
+            });
+        });
+
+        // Coin collection animation
+        document.querySelectorAll('.coin').forEach(coin => {
+            coin.addEventListener('click', () => {
+                coin.style.transform = 'translateY(-50px) rotate(360deg)';
+                coin.style.opacity = '0';
+                setTimeout(() => {
+                    coin.style.transform = 'translateY(0) rotate(0deg)';
+                    coin.style.opacity = '1';
+                }, 500);
+            });
+        });
+
+        // Button effects
+        document.querySelectorAll('.mario-btn').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'translateY(4px)';
+                button.style.boxShadow = '2px 2px 0 rgba(0, 0, 0, 0.3)';
+            });
+
+            button.addEventListener('mouseup', () => {
+                button.style.transform = '';
+                button.style.boxShadow = '';
+            });
+
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = '';
+                button.style.boxShadow = '';
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Message sent to the Mushroom Kingdom!');
+            e.target.reset();
+        });
+
+        // Smooth scrolling for menu items
+        menuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = item.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                toggleMenu();
+                targetSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Create additional clouds
+        function createCloud() {
+            const cloud = document.createElement('div');
+            cloud.className = 'cloud';
+            cloud.style.top = Math.random() * 200 + 'px';
+            cloud.style.animationDelay = `-${Math.random() * 20}s`;
+            document.body.appendChild(cloud);
+        }
+
+        // Create multiple clouds
+        for (let i = 0; i < 5; i++) {
+            createCloud();
+        }
+    </script>
+</body>
+</html>

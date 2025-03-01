@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy Space Theme - by elnathanwebsite</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Custom Properties */
+        :root {
+            --primary-dark: #0a0a2e;
+            --secondary-dark: #1a1a3a;
+            --accent-blue: #4169E1;
+            --accent-red: #ff3366;
+            --accent-purple: #9370DB;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --transition-speed: 0.3s;
+        }
+
+        /* Galaxy Background Animation */
+        @keyframes space {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-2000px) rotate(360deg);
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Body Styles with Galaxy Theme */
+        body {
+            background: linear-gradient(45deg, #0a0a2e, #1a1a3a, #2a2a4a);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Galaxy Stars Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, #ffffff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            animation: space 180s linear infinite;
+            z-index: -1;
+        }
+
+        /* Nebula Effect */
+        .nebula {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(65, 105, 225, 0.2), transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 51, 102, 0.2), transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(147, 112, 219, 0.2), transparent 40%);
+            filter: blur(20px);
+            z-index: -1;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            background: rgba(26, 26, 58, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(65, 105, 225, 0.3);
+            border-bottom: 1px solid rgba(65, 105, 225, 0.2);
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        .nav-brand:hover {
+            color: var(--accent-blue);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(26, 26, 58, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(65, 105, 225, 0.2);
+            box-shadow: 0 4px 30px rgba(65, 105, 225, 0.2);
+            transition: transform var(--transition-speed);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 8px 30px rgba(65, 105, 225, 0.4);
+        }
+
+        /* Card Styles */
+        .card {
+            background: rgba(26, 26, 58, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid rgba(65, 105, 225, 0.2);
+            transition: all var(--transition-speed);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 8px 30px rgba(65, 105, 225, 0.4);
+        }
+
+        /* Link Card Styles */
+        .link-card {
+            display: block;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: rgba(26, 26, 58, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            border: 1px solid rgba(65, 105, 225, 0.2);
+            transition: all var(--transition-speed);
+        }
+
+        .link-card:hover {
+            background: rgba(65, 105, 225, 0.2);
+            transform: translateX(10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 30px rgba(65, 105, 225, 0.4);
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Button Styles */
+        .btn {
+            background: linear-gradient(45deg, var(--accent-blue), var(--accent-red));
+            border: none;
+            padding: 0.8rem 1.5rem;
+            color: var(--text-primary);
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all var(--transition-speed);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: rgba(26, 26, 58, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            border-top: 1px solid rgba(65, 105, 225, 0.2);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        .social-link:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(26, 26, 58, 0.8);
+            border: 1px solid rgba(65, 105, 225, 0.2);
+            border-radius: 5px;
+            color: var(--text-primary);
+            transition: all var(--transition-speed);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(65, 105, 225, 0.4);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--accent-blue), var(--accent-red));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(var(--accent-red), var(--accent-blue));
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: rgba(26, 26, 58, 0.95);
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--secondary-dark);
+            border-top: 5px solid var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* UTC Time Display */
+        .utc-time {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(26, 26, 58, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(65, 105, 225, 0.2);
+            z-index: 1000;
+        }
+
+        /* User Login Display */
+        .user-login {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(26, 26, 58, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(65, 105, 225, 0.2);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Nebula Effect -->
+    <div class="nebula"></div>
+
+    <!-- Loading Animation -->
+    <div class="loader" id="loader"></div>
+
+    <!-- UTC Time Display -->
+    <div class="utc-time" id="utcTime">UTC: 2025-03-01 08:03:39</div>
+
+    <!-- User Login Display -->
+    <div class="user-login">Welcome, elnathanwebsite</div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="nav-brand">Galaxy Space</a>
+        <button class="nav-toggle" id="navToggle">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="link-card">Home</a></li>
+            <li><a href="#about" class="link-card">About</a></li>
+            <li><a href="#services" class="link-card">Services</a></li>
+            <li><a href="#contact" class="link-card">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section fade-in">
+            <h1>Welcome to Galaxy Space</h1>
+            <p>Explore the infinite possibilities in our cosmic digital universe.</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Stellar Design</h3>
+                    <p>Experience our cutting-edge cosmic interface.</p>
+                    <button class="btn">Explore More</button>
+                </div>
+                <div class="card">
+                    <h3>Nebula Features</h3>
+                    <p>Discover the amazing features that await you.</p>
+                    <button class="btn">Learn More</button>
+                </div>
+                <div class="card">
+                    <h3>Cosmic Innovation</h3>
+                    <p>Push the boundaries of digital exploration.</p>
+                    <button class="btn">Get Started</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section fade-in">
+            <h2>About Our Universe</h2>
+            <p>Discover the story behind our galactic journey and mission.</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Our Mission</h3>
+                    <p>To create extraordinary digital experiences that transcend boundaries.</p>
+                    <button class="btn">Read More</button>
+                </div>
+                              <div class="card">
+                    <h3>Our Vision</h3>
+                    <p>Leading innovation in the digital cosmos.</p>
+                    <button class="btn">Discover</button>
+                </div>
+                <div class="card">
+                    <h3>Our Team</h3>
+                    <p>Meet the stellar minds behind our success.</p>
+                    <button class="btn">Meet Us</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section fade-in">
+            <h2>Our Galactic Services</h2>
+            <p>Explore our range of cutting-edge digital solutions.</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Web Development</h3>
+                    <p>Creating websites that are out of this world.</p>
+                    <button class="btn">View Projects</button>
+                </div>
+                <div class="card">
+                    <h3>UI/UX Design</h3>
+                    <p>Crafting interfaces that defy gravity.</p>
+                    <button class="btn">See Designs</button>
+                </div>
+                <div class="card">
+                    <h3>Digital Marketing</h3>
+                    <p>Launching your brand into the digital universe.</p>
+                    <button class="btn">Learn More</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section fade-in">
+            <h2>Contact Transmission</h2>
+            <p>Send us a message from anywhere in the universe.</p>
+            <div class="card">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Galaxy Space. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" class="social-link">Facebook</a>
+            <a href="#" class="social-link">Twitter</a>
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    loader.style.display = 'block';
+                    setTimeout(() => {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        loader.style.display = 'none';
+                    }, 500);
+                }
+            });
+        });
+
+        // Create Galaxy Stars
+        function createStars() {
+            const starsContainer = document.createElement('div');
+            starsContainer.className = 'stars';
+            
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                starsContainer.appendChild(star);
+            }
+            
+            document.body.appendChild(starsContainer);
+        }
+
+        // Update UTC Time
+        function updateUTCTime() {
+            const now = new Date();
+            const utcString = now.toISOString().replace('T', ' ').substr(0, 19);
+            document.getElementById('utcTime').textContent = `UTC: ${utcString}`;
+        }
+
+        setInterval(updateUTCTime, 1000);
+
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+            console.log('Form submitted:', formData);
+            alert('Thank you for your message! We will respond soon.');
+            contactForm.reset();
+        });
+
+        // Intersection Observer for Fade-in Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(element);
+        });
+
+        // Interactive Card Effects
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const angleX = (y - centerY) / 30;
+                const angleY = (centerX - x) / 30;
+
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.02)`;
+                card.style.background = `
+                    radial-gradient(
+                        circle at ${x}px ${y}px,
+                        rgba(65, 105, 225, 0.4),
+                        rgba(26, 26, 58, 0.8) 40%
+                    )
+                `;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+                card.style.background = 'rgba(26, 26, 58, 0.8)';
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            updateUTCTime();
+        });
+    </script>
+</body>
+</html>
+                    

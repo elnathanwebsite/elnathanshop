@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Jungle Dino - by elnathanwebsite</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Press Start 2P', 'Courier New', monospace;
+        }
+
+        /* Custom Properties */
+        :root {
+            --primary-green: #2d4f1e;
+            --secondary-green: #3a6428;
+            --accent-brown: #8b4513;
+            --accent-yellow: #ffd700;
+            --text-primary: #ffffff;
+            --text-secondary: #90EE90;
+            --pixel-size: 2px;
+            --transition-speed: 0.3s;
+        }
+
+        /* Pixel Art Background Animation */
+        @keyframes move-ground {
+            0% { background-position: 0 0; }
+            100% { background-position: -32px 0; }
+        }
+
+        @keyframes dino-idle {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Body Styles with Pixel Theme */
+        body {
+            background-color: var(--primary-green);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            image-rendering: pixelated;
+        }
+
+        /* Pixel Ground */
+        body::before {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 32px;
+            background: repeating-linear-gradient(
+                to right,
+                var(--accent-brown) 0,
+                var(--accent-brown) 16px,
+                var(--secondary-green) 16px,
+                var(--secondary-green) 32px
+            );
+            animation: move-ground 0.5s linear infinite;
+            z-index: -1;
+        }
+
+        /* Pixel Trees Background */
+        .pixel-trees {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(
+                    circle at center,
+                    transparent 0%,
+                    var(--primary-green) 70%
+                ),
+                repeating-linear-gradient(
+                    to right,
+                    var(--secondary-green) 0,
+                    var(--secondary-green) 32px,
+                    transparent 32px,
+                    transparent 64px
+                );
+            opacity: 0.5;
+            z-index: -2;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            background: var(--secondary-green);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: var(--pixel-size) solid var(--accent-yellow);
+        }
+
+        .nav-brand {
+            font-size: 1.2rem;
+            color: var(--accent-yellow);
+            text-decoration: none;
+            text-shadow: var(--pixel-size) var(--pixel-size) 0 #000;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: var(--pixel-size) solid transparent;
+        }
+
+        .nav-links a:hover {
+            border-color: var(--accent-yellow);
+            background: var(--primary-green);
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--secondary-green);
+            border: var(--pixel-size) solid var(--accent-yellow);
+            padding: 1rem;
+            margin: 1rem 0;
+            image-rendering: pixelated;
+        }
+
+        .card:hover {
+            transform: translateY(-var(--pixel-size));
+            box-shadow: var(--pixel-size) var(--pixel-size) 0 var(--accent-brown);
+        }
+
+        /* Button Styles */
+        .btn {
+            background: var(--accent-yellow);
+            border: var(--pixel-size) solid var(--accent-brown);
+            color: var(--primary-green);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            image-rendering: pixelated;
+        }
+
+        .btn:hover {
+            transform: translateY(-var(--pixel-size));
+            box-shadow: var(--pixel-size) var(--pixel-size) 0 var(--accent-brown);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        /* Section Styles */
+        .section {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--secondary-green);
+            border: var(--pixel-size) solid var(--accent-yellow);
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        /* Dino Character */
+        .dino {
+            width: 32px;
+            height: 32px;
+            background: var(--accent-yellow);
+            position: fixed;
+            bottom: 32px;
+            left: 20px;
+            animation: dino-idle 1s infinite;
+            clip-path: polygon(
+                0% 100%,
+                100% 100%,
+                100% 80%,
+                80% 80%,
+                80% 60%,
+                60% 60%,
+                60% 40%,
+                40% 40%,
+                40% 20%,
+                20% 20%,
+                20% 0%,
+                0% 0%
+            );
+        }
+
+        /* Form Styles */
+        .form-control {
+            background: var(--primary-green);
+            border: var(--pixel-size) solid var(--accent-yellow);
+            color: var(--text-primary);
+            padding: 0.5rem;
+            width: 100%;
+            margin: 0.5rem 0;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-brown);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary-green);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-brown);
+            border: var(--pixel-size) solid var(--accent-yellow);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 1rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary-green);
+            padding: 2rem;
+            text-align: center;
+            border-top: var(--pixel-size) solid var(--accent-yellow);
+            margin-top: 3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                margin: 0.5rem 0;
+            }
+        }
+
+        /* Pixel Art Elements */
+        .pixel-cloud {
+            position: fixed;
+            width: 48px;
+            height: 24px;
+            background: white;
+            top: 100px;
+            animation: move-clouds 20s linear infinite;
+            opacity: 0.7;
+            clip-path: polygon(
+                0% 50%,
+                25% 50%,
+                25% 25%,
+                75% 25%,
+                75% 50%,
+                100% 50%,
+                100% 75%,
+                0% 75%
+            );
+        }
+
+        @keyframes move-clouds {
+            from { left: -48px; }
+            to { left: 100%; }
+        }
+
+        /* Time Display */
+        .time-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--secondary-green);
+            padding: 0.5rem;
+            border: var(--pixel-size) solid var(--accent-yellow);
+            font-size: 0.8rem;
+            color: var(--accent-yellow);
+        }
+    </style>
+</head>
+<body>
+    <!-- Pixel Trees Background -->
+    <div class="pixel-trees"></div>
+
+    <!-- Dino Character -->
+    <div class="dino"></div>
+
+    <!-- Pixel Clouds -->
+    <div class="pixel-cloud" style="top: 80px;"></div>
+    <div class="pixel-cloud" style="top: 150px; animation-delay: -10s;"></div>
+    <div class="pixel-cloud" style="top: 220px; animation-delay: -5s;"></div>
+
+    <!-- Time Display -->
+    <div class="time-display">2025-03-01 08:08:41</div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="nav-brand">PIXEL JUNGLE DINO</a>
+        <ul class="nav-links">
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#games">GAMES</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section">
+            <h1>Welcome to Pixel Jungle</h1>
+            <p>Explore the retro world of dinosaurs and pixels!</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Play Now</h3>
+                    <p>Start your pixel adventure</p>
+                    <button class="btn">START</button>
+                </div>
+                <div class="card">
+                    <h3>High Scores</h3>
+                    <p>Check the leaderboard</p>
+                    <button class="btn">VIEW</button>
+                </div>
+                <div class="card">
+                    <h3>Challenges</h3>
+                    <p>Daily pixel missions</p>
+                    <button class="btn">ACCEPT</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2>About The Game</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Story</h3>
+                    <p>Journey through the pixel jungle</p>
+                    <button class="btn">READ MORE</button>
+                </div>
+                <div class="card">
+                    <h3>Characters</h3>
+                    <p>Meet the pixel dinos</p>
+                    <button class="btn">MEET</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Games Section -->
+        <section id="games" class="section">
+            <h2>Available Games</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Dino Run</h3>
+                    <p>Classic runner game</p>
+                    <button class="btn">PLAY</button>
+                </div>
+                <div class="card">
+                    <h3>Jungle Quest</h3>
+                    <p>Adventure game</p>
+                    <button class="btn">EXPLORE</button>
+                </div>
+                <div class="card">
+                    <h3>Pixel Battle</h3>
+                    <p>Multiplayer arena</p>
+                    <button class="btn">FIGHT</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <div class="card">
+                <form id="contactForm">
+                    <input type="text" class="form-control" placeholder="Your Name" required>
+                    <input type="email" class="form-control" placeholder="Your Email" required>
+                    <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn">SEND</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Pixel Jungle Dino. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Update time display
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toISOString().replace('T', ' ').substr(0, 19);
+            document.querySelector('.time-display').textContent = timeString;
+        }
+        setInterval(updateTime, 1000);
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Message sent to the pixel world!');
+            e.target.reset();
+        });
+
+        // Add more clouds dynamically
+        function createCloud() {
+            const cloud = document.createElement('div');
+            cloud.className = 'pixel-cloud';
+            cloud.style.top = Math.random() * 300 + 'px';
+            cloud.style.animationDelay = `-${Math.random() * 20}s`;
+            document.body.appendChild(cloud);
+        }
+
+        // Create multiple clouds
+        for (let i = 0; i < 5; i++) {
+            createCloud();
+        }
+    </script>
+</body>
+</html>

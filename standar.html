@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Dark Theme Website</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Custom Properties */
+        :root {
+            --primary-dark: #121212;
+            --secondary-dark: #1a1a1a;
+            --accent-blue: #007bff;
+            --accent-red: #dc3545;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --transition-speed: 0.3s;
+        }
+
+        /* Body Styles */
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            background-color: var(--secondary-dark);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        .nav-brand:hover {
+            color: var(--accent-blue);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: var(--secondary-dark);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform var(--transition-speed);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Link Styles */
+        .link-card {
+            display: block;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background-color: var(--primary-dark);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all var(--transition-speed);
+            border: 1px solid var(--secondary-dark);
+        }
+
+        .link-card:hover {
+            background-color: var(--secondary-dark);
+            transform: translateX(10px);
+            border-color: var(--accent-blue);
+        }
+
+        .link-card h3 {
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            transition: color var(--transition-speed);
+        }
+
+        .link-card:hover h3 {
+            color: var(--accent-red);
+        }
+
+        .link-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: var(--secondary-dark);
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        .social-link:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all var(--transition-speed);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-blue);
+            color: var(--text-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-red);
+            transform: translateY(-2px);
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: var(--secondary-dark);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all var(--transition-speed);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn var(--transition-speed);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: var(--secondary-dark);
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-blue);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-red);
+        }
+
+        /* Loading Animation */
+        .loader {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--secondary-dark);
+            border-top: 5px solid var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div class="loader" id="loader"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="nav-brand">Modern Dark</a>
+        <button class="nav-toggle" id="navToggle">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="link-card">Home</a></li>
+            <li><a href="#about" class="link-card">About</a></li>
+            <li><a href="#services" class="link-card">Services</a></li>
+            <li><a href="#contact" class="link-card">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section fade-in">
+            <h1>Welcome to Modern Dark</h1>
+            <p>Discover our modern and responsive website design with smooth transitions and hover effects.</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Modern Design</h3>
+                    <p>Clean and contemporary design principles with attention to detail.</p>
+                    <button class="btn btn-primary">Learn More</button>
+                </div>
+                <div class="card">
+                    <h3>Responsive Layout</h3>
+                    <p>Fully responsive design that works on all devices and screen sizes.</p>
+                    <button class="btn btn-primary">View Details</button>
+                </div>
+                <div class="card">
+                    <h3>Smooth Transitions</h3>
+                    <p>Beautiful animations and transitions for enhanced user experience.</p>
+                    <button class="btn btn-primary">Explore</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section fade-in">
+            <h2>About Us</h2>
+            <p>We are passionate about creating beautiful and functional websites that deliver exceptional user experiences.</p>
+            <div class="grid">
+                <a href="#" class="link-card">
+                    <h3>Our Story</h3>
+                    <p>Learn about our journey and mission.</p>
+                </a>
+                <a href="#" class="link-card">
+                    <h3>Our Team</h3>
+                    <p>Meet the talented individuals behind our success.</p>
+                </a>
+                <a href="#" class="link-card">
+                    <h3>Our Vision</h3>
+                    <p>Discover what drives us forward.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section fade-in">
+            <h2>Our Services</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Web Design</h3>
+                    <p>Custom website design tailored to your needs.</p>
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+                <div class="card">
+                    <h3>Development</h3>
+                    <p>Full-stack development solutions for your business.</p>
+                    <button class="btn btn-primary">Learn More</button>
+                </div>
+                <div class="card">
+                    <h3>Consulting</h3>
+                    <p>Expert advice for your digital presence.</p>
+                    <button class="btn btn-primary">Contact Us</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section fade-in">
+            <h2>Contact Us</h2>
+            <p>Get in touch with us for any inquiries or collaboration opportunities.</p>
+            <form id="contactForm" class="card">
+                <div style="margin-bottom: 1rem;">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" style="width: 100%; padding: 0.5rem; background: var(--primary-dark); color: var(--text-primary); border: 1px solid var(--text-secondary); border-radius: 5px;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" style="width: 100%; padding: 0.5rem; background: var(--primary-dark); color: var(--text-primary); border: 1px solid var(--text-secondary); border-radius: 5px;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="4" style="width: 100%; padding: 0.5rem; background: var(--primary-dark); color: var(--text-primary); border: 1px solid var(--text-secondary); border-radius: 5px;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Modern Dark. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" class="social-link">Facebook</a>
+            <a href="#" class="social-link">Twitter</a>
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        const loader = document.getElementById('loader');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    loader.style.display = 'block';
+                    setTimeout(() => {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        loader.style.display = 'none';
+                    }, 500);
+                }
+            });
+        });
+
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+            console.log('Form submitted:', formData);
+            // Add your form submission logic here
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+
+        // Intersection Observer for Fade-in Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(element);
+        });
+
+                   // Previous code remains the same...
+
+            // Page Transition Effect (continued)
+            window.addEventListener('beforeunload', () => {
+                document.body.style.opacity = '0';
+            });
+
+            // Dynamic Theme Colors
+            const root = document.documentElement;
+            let isBlueTheme = true;
+
+            function toggleThemeColors() {
+                if (isBlueTheme) {
+                    root.style.setProperty('--accent-blue', '#dc3545');
+                    root.style.setProperty('--accent-red', '#007bff');
+                } else {
+                    root.style.setProperty('--accent-blue', '#007bff');
+                    root.style.setProperty('--accent-red', '#dc3545');
+                }
+                isBlueTheme = !isBlueTheme;
+            }
+
+            // Auto theme toggle every 5 seconds for link cards
+            setInterval(() => {
+                document.querySelectorAll('.link-card').forEach(card => {
+                    card.addEventListener('mouseover', toggleThemeColors);
+                });
+            }, 5000);
+
+            // Current Date and Time Display
+            function updateDateTime() {
+                const now = new Date();
+                const formattedDateTime = now.toISOString().replace('T', ' ').substr(0, 19);
+                const dateTimeElement = document.createElement('div');
+                dateTimeElement.style.position = 'fixed';
+                dateTimeElement.style.bottom = '20px';
+                dateTimeElement.style.right = '20px';
+                dateTimeElement.style.background = 'var(--secondary-dark)';
+                dateTimeElement.style.padding = '10px';
+                dateTimeElement.style.borderRadius = '5px';
+                dateTimeElement.style.fontSize = '0.8rem';
+                dateTimeElement.style.color = 'var(--text-secondary)';
+                dateTimeElement.textContent = `UTC: ${formattedDateTime}`;
+                document.body.appendChild(dateTimeElement);
+            }
+
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+
+            // Scroll Progress Indicator
+            const progressBar = document.createElement('div');
+            progressBar.style.position = 'fixed';
+            progressBar.style.top = '0';
+            progressBar.style.left = '0';
+            progressBar.style.height = '3px';
+            progressBar.style.width = '0';
+            progressBar.style.backgroundColor = 'var(--accent-blue)';
+            progressBar.style.transition = 'width 0.2s';
+            progressBar.style.zIndex = '1001';
+            document.body.appendChild(progressBar);
+
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                progressBar.style.width = scrolled + '%';
+            });
+
+            // Dynamic Card Creation
+            function createDynamicCards() {
+                const cardData = [
+                    {
+                        title: 'Latest Updates',
+                        content: 'Check out our newest features and improvements.',
+                        color: 'var(--accent-blue)'
+                    },
+                    {
+                        title: 'Special Offers',
+                        content: 'Limited time deals on our premium services.',
+                        color: 'var(--accent-red)'
+                    },
+                    {
+                        title: 'Community News',
+                        content: 'Stay connected with our growing community.',
+                        color: 'var(--accent-blue)'
+                    }
+                ];
+
+                const dynamicSection = document.createElement('section');
+                dynamicSection.className = 'section fade-in';
+                dynamicSection.innerHTML = '<h2>Latest News</h2>';
+                const dynamicGrid = document.createElement('div');
+                dynamicGrid.className = 'grid';
+
+                cardData.forEach(data => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <h3 style="color: ${data.color}">${data.title}</h3>
+                        <p>${data.content}</p>
+                        <button class="btn btn-primary">Read More</button>
+                    `;
+                    dynamicGrid.appendChild(card);
+                });
+
+                dynamicSection.appendChild(dynamicGrid);
+                document.querySelector('.main-content').appendChild(dynamicSection);
+            }
+
+            // Call dynamic card creation after page load
+            window.addEventListener('load', createDynamicCards);
+
+            // Custom Right-Click Menu
+            document.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                const contextMenu = document.createElement('div');
+                contextMenu.style.position = 'fixed';
+                contextMenu.style.left = e.pageX + 'px';
+                contextMenu.style.top = e.pageY + 'px';
+                contextMenu.style.background = 'var(--secondary-dark)';
+                contextMenu.style.border = '1px solid var(--accent-blue)';
+                contextMenu.style.borderRadius = '5px';
+                contextMenu.style.padding = '10px';
+                contextMenu.style.zIndex = '1000';
+
+                const menuItems = [
+                    { text: 'Home', href: '#home' },
+                    { text: 'About', href: '#about' },
+                    { text: 'Services', href: '#services' },
+                    { text: 'Contact', href: '#contact' }
+                ];
+
+                menuItems.forEach(item => {
+                    const menuItem = document.createElement('a');
+                    menuItem.href = item.href;
+                    menuItem.textContent = item.text;
+                    menuItem.style.display = 'block';
+                    menuItem.style.padding = '5px 10px';
+                    menuItem.style.color = 'var(--text-primary)';
+                    menuItem.style.textDecoration = 'none';
+                    menuItem.style.transition = 'all var(--transition-speed)';
+                    
+                    menuItem.addEventListener('mouseover', () => {
+                        menuItem.style.backgroundColor = 'var(--accent-blue)';
+                    });
+                    
+                    menuItem.addEventListener('mouseout', () => {
+                        menuItem.style.backgroundColor = 'transparent';
+                    });
+                    
+                    contextMenu.appendChild(menuItem);
+                });
+
+                document.body.appendChild(contextMenu);
+
+                // Remove context menu when clicking elsewhere
+                const removeMenu = () => {
+                    document.body.removeChild(contextMenu);
+                    document.removeEventListener('click', removeMenu);
+                };
+
+                document.addEventListener('click', removeMenu);
+            });
+
+            // User Login Display
+            const userLoginDisplay = document.createElement('div');
+            userLoginDisplay.style.position = 'fixed';
+            userLoginDisplay.style.top = '20px';
+            userLoginDisplay.style.right = '20px';
+            userLoginDisplay.style.background = 'var(--secondary-dark)';
+            userLoginDisplay.style.padding = '10px';
+            userLoginDisplay.style.borderRadius = '5px';
+            userLoginDisplay.style.fontSize = '0.8rem';
+            userLoginDisplay.style.color = 'var(--text-secondary)';
+            userLoginDisplay.textContent = `Welcome, ${elnathanwebsite}`;
+            document.body.appendChild(userLoginDisplay);
+
+            // Back to Top Button
+            const backToTopButton = document.createElement('button');
+            backToTopButton.textContent = '↑';
+            backToTopButton.style.position = 'fixed';
+            backToTopButton.style.bottom = '20px';
+            backToTopButton.style.right = '20px';
+            backToTopButton.style.padding = '10px 15px';
+            backToTopButton.style.backgroundColor = 'var(--accent-blue)';
+            backToTopButton.style.color = 'var(--text-primary)';
+            backToTopButton.style.border = 'none';
+            backToTopButton.style.borderRadius = '50%';
+            backToTopButton.style.cursor = 'pointer';
+            backToTopButton.style.display = 'none';
+            backToTopButton.style.transition = 'all var(--transition-speed)';
+
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+
+            document.body.appendChild(backToTopButton);
+        </script>
+    </body>
+</html>

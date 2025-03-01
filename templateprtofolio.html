@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario Bros Dashboard</title>
+    <style>
+        /* Mario Theme Colors */
+        :root {
+            --mario-red: #e52521;
+            --mario-blue: #4a90e2;
+            --mario-yellow: #fbd000;
+            --mario-green: #43b047;
+            --mario-brown: #985f37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #1a1a1a url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36zwjjgzhhYWGMYAEYB8RmROaABAD2Mw9fuXrDogAAAABJRU5ErkJggg==') repeat;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .dashboard {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .card:nth-child(1) { background: var(--mario-red); animation-delay: 0s; }
+        .card:nth-child(2) { background: var(--mario-blue); animation-delay: 0.2s; }
+        .card:nth-child(3) { background: var(--mario-yellow); animation-delay: 0.4s; }
+        .card:nth-child(4) { background: var(--mario-green); animation-delay: 0.6s; }
+        .card:nth-child(5) { background: var(--mario-brown); animation-delay: 0.8s; }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(45deg);
+            pointer-events: none;
+            animation: shine 3s infinite;
+        }
+
+        .card h2 {
+            color: white;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .card p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1em;
+            line-height: 1.4;
+        }
+
+        .mario-btn {
+            background: var(--mario-red);
+            border: none;
+            padding: 12px 25px;
+            color: white;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s;
+            box-shadow: 0 5px 0 #a01c1a;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .mario-btn:hover {
+            transform: translateY(-2px);
+            text-decoration: none;
+            color: white;
+        }
+
+        .mario-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #a01c1a;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateX(-100%); }
+            100% { transform: rotate(45deg) translateX(100%); }
+        }
+
+        .coin {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--mario-yellow);
+            border-radius: 50%;
+            display: none;
+            animation: coinJump 0.5s ease-out;
+        }
+
+        @keyframes coinJump {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100px) scale(0); opacity: 0; }
+        }
+
+        .mario-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .counter-update {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            animation: fadeOut 1s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+
+        .timestamp {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            color: white;
+            font-size: 12px;
+            text-align: right;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="card">
+            <div class="mario-icon">🍄</div>
+            <h2>Template Tema Mario Bros</h2>
+            <p>tema Terbaik</p>
+            <a href="Mario Bros" class="mario-btn" >View Stats</a>
+        </div>
+
+        <div class="card">
+            <div class="mario-icon">⭐</div>
+            <h2>Tempalte Tema geme 90an</h2>
+            <p>Nostalgia Dalam bentuk Portofolio.</p>
+            <a href="pixelgaming.html" class="mario-btn" >Power Up!</a>
+        </div>
+
+        <div class="card">
+            <div class="mario-icon">🪙</div>
+            <h2>Dark Mode</h2>
+            <p>Tema Gelap Tapi Keren</p>
+            <a href="standar.html" class="mario-btn" >Collect</a>
+        </div>
+
+        <div class="card">
+            <div class="mario-icon">🏰</div>
+            <h2>dino</h2>
+            <p>Tema Dino Yang Lucu dan ala ala jungle Dino.</p>
+            <a href="jungledino.html" class="mario-btn" target="_blank">Enter Castle</a>
+        </div>
+
+        <div class="card">
+            <div class="mario-icon">👾</div>
+            <h2>Tema Galaxy</h2>
+            <p>Tema luar angkasa.</p>
+            <a href="galaxy.html" class="mario-btn" target="_blank">Battle Stats</a>
+        </div>
+    </div>
+
+    <div class="timestamp">
+        Last updated: 2025-03-01 09:15:18 UTC<br>
+        by elnathanwebsite
+    </div>
+
+    <script>
+        // Add interactive elements and animations
+        document.querySelectorAll('.mario-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Create coin effect
+                const coin = document.createElement('div');
+                coin.className = 'coin';
+                coin.style.left = `${e.pageX - 15}px`;
+                coin.style.top = `${e.pageY - 15}px`;
+                document.body.appendChild(coin);
+                
+                // Play coin sound
+                const coinSound = new Audio('data:audio/wav;base64,//uQRAAAAWMSLwUIYAAsYkXgoQwAEaYLWfkWgAI0wWs/ItAAAGDgYtAgAyN+QWaAAihwMWm4G8QQRDiMcCBcH3Cc+CDv/7xA4Tvh9Rz/y8QADBwMWgQAZG/ILNAARQ4GLTcDeIIIhxGOBAuD7hOfBB3/94gcJ3w+o5/5eIAIAAAVwWgQAVQ2ORaIQwEMAJiDg95G4nQL7mQVWI6GwRcfsZAcsKkJvxgxEjzFUgfHoSQ9Qq7KNwqHwuB13MA4a1q/DmBrHgPcmjiGoh//EwC5nGPEmS4RcfkVKOhJf+WOgoxJclFz3kgn//dBA+ya1GhurNn8zb//9NNutNuhz31f////9vt///z+IdAEAAAK4LQIAKobHItEIYCGAExBwe8jcToF9zIKrEdDYIuP2MgOWFSE34wYiR5iqQPj0JIeoVdlG4VD4XA67mAcNa1fhzA1jwHuTRxDUQ//iYBczjHiTJcIuPyKlHQkv/LHQUYkuSi57yQT//uQRAAAAWMSLwUIYAAsYkXgoQwAEaYLWfkWgAI0wWs/ItAAAGDgYtAgAyN+QWaAAihwMWm4G8QQRDiMcCBcH3Cc+CDv/7xA4Tvh9Rz/y8QADBwMWgQAZG/ILNAARQ4GLTcDeIIIhxGOBAuD7hOfBB3/94gcJ3w+o5/5eIAIAAAVwWgQAVQ2ORaIQwEMAJiDg95G4nQL7mQVWI6GwRcfsZAcsKkJvxgxEjzFUgfHoSQ9Qq7KNwqHwuB13MA4a1q/DmBrHgPcmjiGoh//EwC5nGPEmS4RcfkVKOhJf+WOgoxJclFz3kgn//dBA+ya1GhurNn8zb//9NNutNuhz31f////9vt///z+IdAEAAAK4LQIAKobHItEIYCGAExBwe8jcToF9zIKrEdDYIuP2MgOWFSE34wYiR5iqQPj0JIeoVdlG4VD4XA67mAcNa1fhzA1jwHuTRxDUQ//iYBczjHiTJcIuPyKlHQkv/LHQUYkuSi57yQT');
+                coinSound.currentTime = 0;
+                coinSound.play();
+
+                // Remove coin after animation
+                setTimeout(() => {
+                    coin.remove();
+                }, 500);
+            });
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+            });
+
+            card.addEventListener('mouseleave', function() {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            });
+        });
+
+        // Add random mushroom spawning
+        setInterval(() => {
+            const mushroom = document.createElement('div');
+            mushroom.style.position = 'absolute';
+            mushroom.style.fontSize = '2em';
+            mushroom.innerHTML = '🍄';
+            mushroom.style.left = Math.random() * window.innerWidth + 'px';
+            mushroom.style.top = window.innerHeight + 'px';
+            document.body.appendChild(mushroom);
+
+            const animation = mushroom.animate([
+                { transform: 'translateY(0)', opacity: 1 },
+                { transform: 'translateY(-' + window.innerHeight + 'px)', opacity: 0 }
+            ], {
+                duration: 5000,
+                easing: 'ease-out'
+            });
+
+            animation.onfinish = () => mushroom.remove();
+        }, 10000);
+
+        // Add real-time counter updates
+        const counters = {
+            coins: 0,
+            stars: 0,
+            enemies: 0,
+            castles: 0,
+            powerups: 0
+        };
+
+        function updateCounters() {
+            document.querySelectorAll('.card').forEach((card, index) => {
+                const key = Object.keys(counters)[index];
+                if (Math.random() < 0.1) {
+                    counters[key]++;
+                    const countDisplay = document.createElement('div');
+                    countDisplay.className = 'counter-update';
+                    countDisplay.textContent = `+1`;
+                    card.appendChild(countDisplay);
+                    
+                    setTimeout(() => {
+                        countDisplay.remove();
+                    }, 1000);
+                }
+            });
+        }
+
+        setInterval(updateCounters, 2000);
+    </script>
+</body>
+</html>

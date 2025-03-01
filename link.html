@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -639,600 +637,724 @@
             }
         }
 
-      /* Popup Container */
-#popupWindow {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%; /* Default width */
-    height: 85vh; /* Default height */
-    min-width: 320px; /* Minimum width */
-    min-height: 480px; /* Minimum height */
-    max-width: 1200px; /* Maximum width */
-    max-height: 90vh; /* Maximum height */
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    z-index: 1000;
-}
-
-/* Popup Header */
-#popupWindow .flex {
-    background: linear-gradient(45deg, #2193b0, #6dd5ed);
-    padding: 0 16px;
-    height: 48px; /* Fixed header height */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Popup Title */
-#popupWindow h3 {
-    color: white;
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Control Buttons */
-#popupWindow .flex .flex {
-    background: transparent;
-    padding: 0;
-    gap: 8px;
-}
-
-#popupWindow button {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    border-radius: 6px;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-#popupWindow button:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-}
-
-/* Content Container */
-#popupContent {
-    width: 100%;
-    height: calc(100% - 48px); /* Full height minus header */
-    position: relative;
-    overflow: hidden;
-}
-
-/* iframe */
-#contentFrame {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-}
-
-/* Loading Indicator */
-#popupWindow.loading::before {
-    content: '';
-    position: absolute;
-    top: 48px;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #2193b0, #6dd5ed);
-    animation: loading 1.5s ease-in-out infinite;
-    z-index: 10;
-}
-
-@keyframes loading {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-/* Overlay */
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    z-index: 999;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    #popupWindow {
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        transform: none;
-        border-radius: 0;
-        max-width: none;
-        max-height: none;
-    }
-    
-    #popupWindow .flex {
-        height: 40px;
-    }
-    
-    #popupContent {
-        height: calc(100% - 40px);
-    }
-}
-
-/* Animation */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-#popupWindow:not(.hidden),
-#overlay:not(.hidden) {
-    animation: fadeIn 0.3s ease;
-}
-
-.hidden {
-    display: none !important;
-}
- @keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-}
-
-@keyframes progressBar {
-    0% { width: 0; }
-    100% { width: 100%; }
-}
-
-.dynamic-ad-container {
-    width: 380px;
-    margin: 20px auto;
-    perspective: 1000px;
-    position: relative;
-    padding: 15px;
-    background: linear-gradient(-45deg, #ff6b6b, #ffd93d, #6c5ce7, #a8e6cf);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    border-radius: 20px;
-}
-
-.ad-progress-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #ffd93d, #ff6b6b);
-    border-radius: 4px;
-    animation: progressBar 2s linear;
-    z-index: 10;
-}
-
-.ad-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    animation: float 6s ease-in-out infinite;
-}
-
-.ad-image-wrapper {
-    width: 100%;
-    height: 220px;
-    overflow: hidden;
-    position: relative;
-}
-
-.ad-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 0.9em;
-    z-index: 2;
-    transform: rotate(3deg);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-.ad-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.ad-card:hover .ad-image {
-    transform: scale(1.1) rotate(2deg);
-}
-
-.ad-content {
-    padding: 25px;
-    text-align: center;
-    position: relative;
-}
-
-.ad-meta {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-.ad-category, .ad-date {
-    font-size: 0.9em;
-    color: #6c5ce7;
-    background: rgba(108, 92, 231, 0.1);
-    padding: 5px 12px;
-    border-radius: 15px;
-    font-weight: 500;
-}
-
-.ad-title {
-    color: #2c3e50;
-    margin-bottom: 15px;
-    font-size: 1.6em;
-    font-weight: 700;
-    background: linear-gradient(45deg, #2c3e50, #3498db);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.ad-description {
-    color: #666;
-    margin-bottom: 25px;
-    line-height: 1.6;
-    font-size: 1.1em;
-}
-
-.ad-button {
-    background: linear-gradient(-45deg, #ff6b6b, #ffd93d);
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 1.1em;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    position: relative;
-    overflow: hidden;
-}
-
-.button-icon {
-    transition: transform 0.3s ease;
-}
-
-.ad-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 7px 20px rgba(255, 107, 107, 0.3);
-}
-
-.ad-button:hover .button-icon {
-    transform: translateX(5px);
-}
-
-/* Animation Classes */
-@keyframes slideIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.fade-out {
-    opacity: 0;
-    transform: scale(0.95) translateY(-10px);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.fade-in {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
-    .dynamic-ad-container {
-        width: 90%;
-        margin: 10px auto;
-    }
-}
-/* Base styles */
-.floating-menu {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-
-/* RGB Gradient Animation for Text */
-@keyframes rgbText {
-    0% { color: #ff0000; }
-    33% { color: #00ff00; }
-    66% { color: #0000ff; }
-    100% { color: #ff0000; }
-}
-
-/* RGB Border Animation */
-@keyframes rgbBorder {
-    0% { border-color: #ff0000; }
-    33% { border-color: #00ff00; }
-    66% { border-color: #0000ff; }
-    100% { border-color: #ff0000; }
-}
-
-/* RGB Shadow Animation */
-@keyframes rgbShadow {
-    0% { box-shadow: 0 0 10px #ff0000; }
-    33% { box-shadow: 0 0 10px #00ff00; }
-    66% { box-shadow: 0 0 10px #0000ff; }
-    100% { box-shadow: 0 0 10px #ff0000; }
-}
-
-/* RGB Background Gradient Animation */
-@keyframes rgbBackground {
-    0% { background: linear-gradient(45deg, #ff0000, #ff00ff); }
-    33% { background: linear-gradient(45deg, #00ff00, #00ffff); }
-    66% { background: linear-gradient(45deg, #0000ff, #ff00ff); }
-    100% { background: linear-gradient(45deg, #ff0000, #ff00ff); }
-}
-
-/* RGB Glow Animation */
-@keyframes rgbGlow {
-    0% { text-shadow: 0 0 10px #ff0000; }
-    33% { text-shadow: 0 0 10px #00ff00; }
-    66% { text-shadow: 0 0 10px #0000ff; }
-    100% { text-shadow: 0 0 10px #ff0000; }
-}
-
-/* Apply RGB text animation to menu button */
-/* Style for the menu button */
-#menuButton {
-    /* Basic shape and size */
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    padding: 0;
-    
-    /* Background and border */
-    background: rgba(255, 255, 255, 0.9);
-    border: 2px solid transparent;
-    
-    /* Centering content */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    /* Shadow effect */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    
-    /* Smooth transitions */
-    transition: all 0.3s ease;
-    
-    /* Position */
-    position: relative;
-    overflow: hidden;
-}
-
-/* Icon inside button */
-#menuButton i {
-    font-size: 1.2rem;
-    color: #333;
-    transition: color 0.3s ease;
-}
-
-/* RGB animation for the border */
-@keyframes rgbBorderGlow {
-    0% { box-shadow: 0 0 10px #ff0000, 0 0 20px rgba(255, 0, 0, 0.5); }
-    33% { box-shadow: 0 0 10px #00ff00, 0 0 20px rgba(0, 255, 0, 0.5); }
-    66% { box-shadow: 0 0 10px #0000ff, 0 0 20px rgba(0, 0, 255, 0.5); }
-    100% { box-shadow: 0 0 10px #ff0000, 0 0 20px rgba(255, 0, 0, 0.5); }
-}
-
-/* Hover effect */
-#menuButton:hover {
-    transform: scale(1.1);
-    background: rgba(255, 255, 255, 1);
-    animation: rgbBorderGlow 3s infinite;
-}
-
-/* Active state */
-#menuButton:active {
-    transform: scale(0.95);
-}
-
-/* Optional: Add ripple effect on click */
-#menuButton::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: radial-gradient(circle, rgba(255,255,255,.7) 0%, rgba(255,255,255,.0) 100%);
-    transform: scale(0);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-#menuButton:active::after {
-    transform: scale(2);
-    opacity: 0;
-    transition: 0s;
-}
-
-/* Apply RGB border and shadow to menu button on hover */
-#menuButton:hover {
-    border: 2px solid;
-    animation: rgbBorder 5s infinite, rgbShadow 5s infinite;
-    transform: scale(1.05);
-}
-
-/* Apply RGB background to popup menu */
-#menuPopup .bg-white {
-    position: relative;
-    overflow: hidden;
-}
-
-#menuPopup .bg-white::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, 
-        rgb(255, 0, 0),
-        rgb(0, 255, 0),
-        rgb(0, 0, 255));
-    animation: rgbBackground 10s infinite;
-    opacity: 0.1;
-    z-index: -1;
-}
-
-/* RGB hover effect for menu items */
-#menuPopup a:hover {
-    animation: rgbText 3s infinite;
-    transform: translateX(10px);
-    transition: transform 0.3s ease;
-}
-
-/* RGB animation for close button */
-#closePopup {
-    animation: rgbGlow 5s infinite;
-}
-
-#closePopup:hover {
-    animation: rgbText 3s infinite;
-    transform: rotate(90deg);
-    transition: transform 0.3s ease;
-}
-
-/* RGB animation for time display */
-.time-display {
-    animation: rgbText 8s infinite;
-}
-
-/* Smooth transitions for all elements */
-* {
-    transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
-}
-
-/* RGB Border Pulse Animation */
-@keyframes rgbPulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
-    }
-    33% {
-        box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
-    }
-    66% {
-        box-shadow: 0 0 0 0 rgba(0, 0, 255, 0.4);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
-    }
-}
-
-/* Add pulse effect to menu button */
-#menuButton {
-    animation: rgbText 5s infinite, rgbPulse 2s infinite;
-}
-
-/* Rainbow gradient text effect */
-@keyframes rainbow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.rainbow-text {
-    background: linear-gradient(
-        to right,
-        #ff0000,
-        #ff8000,
-        #ffff00,
-        #00ff00,
-        #00ffff,
-        #0000ff,
-        #8000ff,
-        #ff0000
-    );
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: rainbow 5s linear infinite;
-}
-
-/* RGB Outline Glow */
-.rgb-outline {
-    position: relative;
-}
-
-.rgb-outline::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border-radius: inherit;
-    background: linear-gradient(45deg,
-        #ff0000,
-        #00ff00,
-        #0000ff,
-        #ff0000);
-    background-size: 400% 400%;
-    animation: rainbow 3s linear infinite;
-    z-index: -1;
-    filter: blur(5px);
-}
-/* Menu item links */
-   </style>
-
-<head>
-   
+        /* Popup Container */
+        #popupWindow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            /* Default width */
+            height: 85vh;
+            /* Default height */
+            min-width: 320px;
+            /* Minimum width */
+            min-height: 480px;
+            /* Minimum height */
+            max-width: 1200px;
+            /* Maximum width */
+            max-height: 90vh;
+            /* Maximum height */
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        /* Popup Header */
+        #popupWindow .flex {
+            background: linear-gradient(45deg, #2193b0, #6dd5ed);
+            padding: 0 16px;
+            height: 48px;
+            /* Fixed header height */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Popup Title */
+        #popupWindow h3 {
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Control Buttons */
+        #popupWindow .flex .flex {
+            background: transparent;
+            padding: 0;
+            gap: 8px;
+        }
+
+        #popupWindow button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 6px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        #popupWindow button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Content Container */
+        #popupContent {
+            width: 100%;
+            height: calc(100% - 48px);
+            /* Full height minus header */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* iframe */
+        #contentFrame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Loading Indicator */
+        #popupWindow.loading::before {
+            content: '';
+            position: absolute;
+            top: 48px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #2193b0, #6dd5ed);
+            animation: loading 1.5s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        @keyframes loading {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Overlay */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 999;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            #popupWindow {
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                transform: none;
+                border-radius: 0;
+                max-width: none;
+                max-height: none;
+            }
+
+            #popupWindow .flex {
+                height: 40px;
+            }
+
+            #popupContent {
+                height: calc(100% - 40px);
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #popupWindow:not(.hidden),
+        #overlay:not(.hidden) {
+            animation: fadeIn 0.3s ease;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes progressBar {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        .dynamic-ad-container {
+            width: 380px;
+            margin: 20px auto;
+            perspective: 1000px;
+            position: relative;
+            padding: 15px;
+            background: linear-gradient(-45deg, #ff6b6b, #ffd93d, #6c5ce7, #a8e6cf);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            border-radius: 20px;
+        }
+
+        .ad-progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd93d, #ff6b6b);
+            border-radius: 4px;
+            animation: progressBar 2s linear;
+            z-index: 10;
+        }
+
+        .ad-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .ad-image-wrapper {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ad-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            z-index: 2;
+            transform: rotate(3deg);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .ad-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ad-card:hover .ad-image {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .ad-content {
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .ad-meta {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .ad-category,
+        .ad-date {
+            font-size: 0.9em;
+            color: #6c5ce7;
+            background: rgba(108, 92, 231, 0.1);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: 500;
+        }
+
+        .ad-title {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+            font-weight: 700;
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ad-description {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+
+        .ad-button {
+            background: linear-gradient(-45deg, #ff6b6b, #ffd93d);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .ad-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .ad-button:hover .button-icon {
+            transform: translateX(5px);
+        }
+
+        /* Animation Classes */
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-out {
+            opacity: 0;
+            transform: scale(0.95) translateY(-10px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .dynamic-ad-container {
+                width: 90%;
+                margin: 10px auto;
+            }
+        }
+
+        /* Base styles */
+        .floating-menu {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        /* RGB Gradient Animation for Text */
+        @keyframes rgbText {
+            0% {
+                color: #ff0000;
+            }
+
+            33% {
+                color: #00ff00;
+            }
+
+            66% {
+                color: #0000ff;
+            }
+
+            100% {
+                color: #ff0000;
+            }
+        }
+
+        /* RGB Border Animation */
+        @keyframes rgbBorder {
+            0% {
+                border-color: #ff0000;
+            }
+
+            33% {
+                border-color: #00ff00;
+            }
+
+            66% {
+                border-color: #0000ff;
+            }
+
+            100% {
+                border-color: #ff0000;
+            }
+        }
+
+        /* RGB Shadow Animation */
+        @keyframes rgbShadow {
+            0% {
+                box-shadow: 0 0 10px #ff0000;
+            }
+
+            33% {
+                box-shadow: 0 0 10px #00ff00;
+            }
+
+            66% {
+                box-shadow: 0 0 10px #0000ff;
+            }
+
+            100% {
+                box-shadow: 0 0 10px #ff0000;
+            }
+        }
+
+        /* RGB Background Gradient Animation */
+        @keyframes rgbBackground {
+            0% {
+                background: linear-gradient(45deg, #ff0000, #ff00ff);
+            }
+
+            33% {
+                background: linear-gradient(45deg, #00ff00, #00ffff);
+            }
+
+            66% {
+                background: linear-gradient(45deg, #0000ff, #ff00ff);
+            }
+
+            100% {
+                background: linear-gradient(45deg, #ff0000, #ff00ff);
+            }
+        }
+
+        /* RGB Glow Animation */
+        @keyframes rgbGlow {
+            0% {
+                text-shadow: 0 0 10px #ff0000;
+            }
+
+            33% {
+                text-shadow: 0 0 10px #00ff00;
+            }
+
+            66% {
+                text-shadow: 0 0 10px #0000ff;
+            }
+
+            100% {
+                text-shadow: 0 0 10px #ff0000;
+            }
+        }
+
+        /* Apply RGB text animation to menu button */
+        /* Style for the menu button */
+        #menuButton {
+            /* Basic shape and size */
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            padding: 0;
+
+            /* Background and border */
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid transparent;
+
+            /* Centering content */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            /* Shadow effect */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+            /* Smooth transitions */
+            transition: all 0.3s ease;
+
+            /* Position */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Icon inside button */
+        #menuButton i {
+            font-size: 1.2rem;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        /* RGB animation for the border */
+        @keyframes rgbBorderGlow {
+            0% {
+                box-shadow: 0 0 10px #ff0000, 0 0 20px rgba(255, 0, 0, 0.5);
+            }
+
+            33% {
+                box-shadow: 0 0 10px #00ff00, 0 0 20px rgba(0, 255, 0, 0.5);
+            }
+
+            66% {
+                box-shadow: 0 0 10px #0000ff, 0 0 20px rgba(0, 0, 255, 0.5);
+            }
+
+            100% {
+                box-shadow: 0 0 10px #ff0000, 0 0 20px rgba(255, 0, 0, 0.5);
+            }
+        }
+
+        /* Hover effect */
+        #menuButton:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 1);
+            animation: rgbBorderGlow 3s infinite;
+        }
+
+        /* Active state */
+        #menuButton:active {
+            transform: scale(0.95);
+        }
+
+        /* Optional: Add ripple effect on click */
+        #menuButton::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, .7) 0%, rgba(255, 255, 255, .0) 100%);
+            transform: scale(0);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        #menuButton:active::after {
+            transform: scale(2);
+            opacity: 0;
+            transition: 0s;
+        }
+
+        /* Apply RGB border and shadow to menu button on hover */
+        #menuButton:hover {
+            border: 2px solid;
+            animation: rgbBorder 5s infinite, rgbShadow 5s infinite;
+            transform: scale(1.05);
+        }
+
+        /* Apply RGB background to popup menu */
+        #menuPopup .bg-white {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #menuPopup .bg-white::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,
+                    rgb(255, 0, 0),
+                    rgb(0, 255, 0),
+                    rgb(0, 0, 255));
+            animation: rgbBackground 10s infinite;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        /* RGB hover effect for menu items */
+        #menuPopup a:hover {
+            animation: rgbText 3s infinite;
+            transform: translateX(10px);
+            transition: transform 0.3s ease;
+        }
+
+        /* RGB animation for close button */
+        #closePopup {
+            animation: rgbGlow 5s infinite;
+        }
+
+        #closePopup:hover {
+            animation: rgbText 3s infinite;
+            transform: rotate(90deg);
+            transition: transform 0.3s ease;
+        }
+
+        /* RGB animation for time display */
+        .time-display {
+            animation: rgbText 8s infinite;
+        }
+
+        /* Smooth transitions for all elements */
+        * {
+            transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* RGB Border Pulse Animation */
+        @keyframes rgbPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+            }
+
+            33% {
+                box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
+            }
+
+            66% {
+                box-shadow: 0 0 0 0 rgba(0, 0, 255, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+            }
+        }
+
+        /* Add pulse effect to menu button */
+        #menuButton {
+            animation: rgbText 5s infinite, rgbPulse 2s infinite;
+        }
+
+        /* Rainbow gradient text effect */
+        @keyframes rainbow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .rainbow-text {
+            background: linear-gradient(to right,
+                    #ff0000,
+                    #ff8000,
+                    #ffff00,
+                    #00ff00,
+                    #00ffff,
+                    #0000ff,
+                    #8000ff,
+                    #ff0000);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbow 5s linear infinite;
+        }
+
+        /* RGB Outline Glow */
+        .rgb-outline {
+            position: relative;
+        }
+
+        .rgb-outline::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: inherit;
+            background: linear-gradient(45deg,
+                    #ff0000,
+                    #00ff00,
+                    #0000ff,
+                    #ff0000);
+            background-size: 400% 400%;
+            animation: rainbow 3s linear infinite;
+            z-index: -1;
+            filter: blur(5px);
+        }
+
+        /* Menu item links */
+    </style>
+
+    <head>
+
 
 </html>
 <!-- Main container for centering -->
@@ -1298,64 +1420,64 @@
             <span>Tutorial JavaScript dari Dasar hingga Advanced!</span>
         </div>
     </div>
-<!-- Header -->
-<header class="w-full bg-white/80 backdrop-blur-md shadow-md py-4 px-6 fixed top-0 z-50">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-        <div class="flex items-center space-x-4">
-            <div class="time-display text-blue-600 font-bold flex items-center">
-                <i class="fas fa-clock mr-2"></i>
-                <span id="jakarta-time"></span>
-                <span class="ml-1">INDONESIA</span>
+    <!-- Header -->
+    <header class="w-full bg-white/80 backdrop-blur-md shadow-md py-4 px-6 fixed top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="time-display text-blue-600 font-bold flex items-center">
+                    <i class="fas fa-clock mr-2"></i>
+                    <span id="jakarta-time"></span>
+                    <span class="ml-1">INDONESIA</span>
+                </div>
+            </div>
+            <!-- Menu Button -->
+            <div class="relative">
+                <button id="menuButton"
+                    class="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+
+                    <span>☃️</span>
+                </button>
             </div>
         </div>
-        <!-- Menu Button -->
-        <div class="relative">
-            <button id="menuButton"
-                class="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-             
-                <span>☃️</span>
-            </button>
-        </div>
-    </div>
-</header>
+    </header>
 
-<!-- Popup Menu -->
-<div id="menuPopup" class="hidden fixed inset-0 bg-black bg-opacity-50 z-[60] flex items-center justify-center">
-    <div class="bg-white rounded-lg p-6 w-[90%] max-w-md transform transition-all shadow-xl">
-        <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-bold text-gray-800">☃️</h2>
-            <button id="closePopup" class="text-gray-500 hover:text-gray-700">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="space-y-4">
-            <a href="#" class="block p-3 rounded-lg hover:bg-gray-100 transition-colors">
-                <div class="flex items-center space-x-3">
-                    <i class="fas fa-home text-blue-600"></i>
-                    <span>Home</span>
-                </div>
-            </a>
-            <a href="#" class="block p-3 rounded-lg hover:bg-gray-100 transition-colors">
-                <div class="flex items-center space-x-3">
-                    <i class="fas fa-user text-blue-600"></i>
-                    <span>Profile</span>
-                </div>
-            </a>
-            <a href="#" class="block p-3 rounded-lg hover:bg-gray-100 transition-colors">
-                <div class="flex items-center space-x-3">
-                    <i class="fas fa-cog text-blue-600"></i>
-                    <span>Settings</span>
-                </div>
-            </a>
-            <a href="#" class="block p-3 rounded-lg hover:bg-gray-100 transition-colors">
-                <div class="flex items-center space-x-3">
-                    <i class="fas fa-sign-out-alt text-blue-600"></i>
-                    <span>Logout</span>
-                </div>
-            </a>
+    <!-- Popup Menu -->
+    <div id="menuPopup" class="hidden fixed inset-0 bg-black bg-opacity-50 z-[60] flex items-center justify-center">
+        <div class="bg-white rounded-lg p-6 w-[90%] max-w-md transform transition-all shadow-xl">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold text-gray-800">☃️</h2>
+                <button id="closePopup" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <a href="#" class="block p-3 rounded-lg hover:bg-gray-100 transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-home text-blue-600"></i>
+                        <span>Home</span>
+                    </div>
+                </a>
+                <a href="#" class="block p-3 rounded-lg hover:bg-gray-100 transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-user text-blue-600"></i>
+                        <span>Profile</span>
+                    </div>
+                </a>
+                <a href="#" class="block p-3 rounded-lg hover:bg-gray-100 transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-cog text-blue-600"></i>
+                        <span>Settings</span>
+                    </div>
+                </a>
+                <a href="#" class="block p-3 rounded-lg hover:bg-gray-100 transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-sign-out-alt text-blue-600"></i>
+                        <span>Logout</span>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
-</div>
 
     <!-- Main Content -->
     <main class="flex-1 mt-24 mb-12">
@@ -1391,28 +1513,28 @@
                     </span>
                 </div>
             </div>
-<!-- Ad Cards Container -->
-<div class="dynamic-ad-container">
-    <div class="ad-progress-bar"></div>
-    <div class="ad-card">
-        <div class="ad-image-wrapper">
-            <div class="ad-badge">New!</div>
-            <img class="ad-image" src="" alt="Advertisement Image">
-        </div>
-        <div class="ad-content">
-            <div class="ad-meta">
-                <span class="ad-category">Featured</span>
-                <span class="ad-date">Limited Time</span>
+            <!-- Ad Cards Container -->
+            <div class="dynamic-ad-container">
+                <div class="ad-progress-bar"></div>
+                <div class="ad-card">
+                    <div class="ad-image-wrapper">
+                        <div class="ad-badge">New!</div>
+                        <img class="ad-image" src="" alt="Advertisement Image">
+                    </div>
+                    <div class="ad-content">
+                        <div class="ad-meta">
+                            <span class="ad-category">Featured</span>
+                            <span class="ad-date">Limited Time</span>
+                        </div>
+                        <h3 class="ad-title">Loading...</h3>
+                        <p class="ad-description">Loading...</p>
+                        <button class="ad-button">
+                            <span class="button-text">Loading...</span>
+                            <span class="button-icon">→</span>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <h3 class="ad-title">Loading...</h3>
-            <p class="ad-description">Loading...</p>
-            <button class="ad-button">
-                <span class="button-text">Loading...</span>
-                <span class="button-icon">→</span>
-            </button>
-        </div>
-    </div>
-</div>
             <div class="flex flex-col space-y-6">
                 <!-- Buttons -->
                 <a href="sigup.html" class="button-hover group relative overflow-hidden rounded-xl"
@@ -1424,8 +1546,7 @@
                     </div>
                 </a>
 
-                <a href="utama.html"
-                    class="button-hover group relative overflow-hidden rounded-xl"
+                <a href="utama.html" class="button-hover group relative overflow-hidden rounded-xl"
                     onclick="showPopup(event, 'utama.html')">
                     <div
                         class="flex items-center justify-center space-x-4 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white px-8 py-5 w-full transition-all duration-500">
@@ -1883,337 +2004,337 @@
 
             ensureNotificationPermission();
         });
-    (function() {
-    let currentUrl = '';
-    let isInitialized = false;
+        (function () {
+            let currentUrl = '';
+            let isInitialized = false;
 
-    function initialize() {
-        if (isInitialized) return;
-        setupDateTime();
-        setupPopupSystem();
-        isInitialized = true;
-    }
-
-    function setupDateTime() {
-        function updateDateTime() {
-            const now = new Date();
-            const formatted = now.toISOString().slice(0, 19).replace('T', ' ');
-            const dateTimeElement = document.getElementById('currentDateTime');
-            if (dateTimeElement) {
-                dateTimeElement.textContent = formatted;
+            function initialize() {
+                if (isInitialized) return;
+                setupDateTime();
+                setupPopupSystem();
+                isInitialized = true;
             }
-        }
-        setInterval(updateDateTime, 1000);
-        updateDateTime();
-    }
 
-    function setupPopupSystem() {
-        interceptAllLinks();
-        setupPopupControls();
-    }
-
-    function interceptAllLinks() {
-        document.addEventListener('click', function(e) {
-            const link = e.target.closest('a');
-            if (link) {
-                e.preventDefault();
-                showPopup(link.href, link.textContent.trim());
-            }
-        });
-    }
-
-    function showPopup(url, title = 'Mini Window') {
-        const popup = document.getElementById('popupWindow');
-        const overlay = document.getElementById('overlay');
-        const iframe = document.getElementById('contentFrame');
-        const titleElement = document.querySelector('#popupWindow h3');
-
-        // Store current URL
-        currentUrl = url;
-
-        // Set title
-        if (titleElement) {
-            titleElement.textContent = title;
-        }
-
-        // Show loading state
-        popup.classList.add('loading');
-
-        // Setup iframe with specific styling
-        iframe.onload = function() {
-            try {
-                const iframeDoc = iframe.contentWindow.document;
-                const iframeBody = iframeDoc.body;
-                
-                // Remove any existing transform
-                iframeBody.style.transform = 'none';
-                
-                // Set iframe size to match content
-                iframe.style.width = '100%';
-                iframe.style.height = '100%';
-                
-                // Adjust popup size based on content
-                adjustPopupSize(iframe);
-                
-                // Remove loading state
-                popup.classList.remove('loading');
-            } catch (err) {
-                console.log('Cannot modify iframe content due to same-origin policy');
-                popup.classList.remove('loading');
-            }
-        };
-
-        iframe.src = url;
-        popup.classList.remove('hidden');
-        overlay.classList.remove('hidden');
-    }
-
-    function adjustPopupSize(iframe) {
-        const popup = document.getElementById('popupWindow');
-        const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
-
-        try {
-            // Get the natural dimensions of the iframe content
-            const iframeDoc = iframe.contentWindow.document;
-            const contentWidth = iframeDoc.documentElement.scrollWidth;
-            const contentHeight = iframeDoc.documentElement.scrollHeight;
-
-            // Calculate dimensions (with margins)
-            const maxWidth = Math.min(contentWidth, viewportWidth * 0.95);
-            const maxHeight = Math.min(contentHeight + 56, viewportHeight * 0.95); // 56px for header
-
-            // Apply dimensions to popup
-            popup.style.width = `${maxWidth}px`;
-            popup.style.height = `${maxHeight}px`;
-
-            // Center the popup
-            popup.style.top = '50%';
-            popup.style.left = '50%';
-            popup.style.transform = 'translate(-50%, -50%)';
-
-        } catch (err) {
-            // Fallback dimensions if we can't access iframe content
-            popup.style.width = '90vw';
-            popup.style.height = '90vh';
-        }
-    }
-
-    function closePopup() {
-        const popup = document.getElementById('popupWindow');
-        const overlay = document.getElementById('overlay');
-        const iframe = document.getElementById('contentFrame');
-
-        popup.classList.add('hidden');
-        overlay.classList.add('hidden');
-        
-        // Clear iframe after animation
-        setTimeout(() => {
-            iframe.src = '';
-            currentUrl = '';
-        }, 300);
-    }
-
-    function setupPopupControls() {
-        // Fullscreen button
-        const fullscreenBtn = document.getElementById('fullscreenButton');
-        if (fullscreenBtn) {
-            fullscreenBtn.addEventListener('click', function() {
-                if (currentUrl) {
-                    window.location.href = currentUrl;
+            function setupDateTime() {
+                function updateDateTime() {
+                    const now = new Date();
+                    const formatted = now.toISOString().slice(0, 19).replace('T', ' ');
+                    const dateTimeElement = document.getElementById('currentDateTime');
+                    if (dateTimeElement) {
+                        dateTimeElement.textContent = formatted;
+                    }
                 }
-            });
-        }
-
-        // Close button and overlay
-        const overlay = document.getElementById('overlay');
-        if (overlay) {
-            overlay.addEventListener('click', closePopup);
-        }
-
-        // Escape key handler
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closePopup();
+                setInterval(updateDateTime, 1000);
+                updateDateTime();
             }
-        });
-    }
 
-    // Initialize when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initialize);
-    } else {
-        initialize();
-    }
+            function setupPopupSystem() {
+                interceptAllLinks();
+                setupPopupControls();
+            }
 
-    // Expose necessary functions globally
-    window.showPopup = showPopup;
-    window.closePopup = closePopup;
-})();
-// Ad content data with enhanced content
-const adContent = [
-    {
-        title: "Summer Fun😍",
-        description: "Bright and colorful summer essentials for your perfect beach day!",
-        buttonText: "Get Summer Ready",
-        buttonColor: "linear-gradient(-45deg, #FF6B6B, #FFA502)",
-        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
-        category: "Summer Specials",
-        date: "New Arrival",
-        badge: "Hot! 🔥"
-    },
-    {
-        title: "Rainbow Tech Deals! 🌈",
-        description: "Colorful gadgets that bring joy to your digital life!",
-        buttonText: "Explore Colors",
-        buttonColor: "linear-gradient(-45deg, #6C5CE7, #00B894)",
-        image: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&q=80",
-        category: "Tech Joy",
-        date: "Trending",
-        badge: "Popular! ⭐"
-    },
-    {
-        title: "Happy Home Decor! 🏠",
-        description: "Transform your space with vibrant and cheerful decorations!",
-        buttonText: "Decorate Now",
-        buttonColor: "linear-gradient(-45deg, #FFA502, #FF6B6B)",
-        image: "https://images.unsplash.com/photo-1558882224-dda166733046?w=800&q=80",
-        category: "Home & Joy",
-        date: "Must Have",
-        badge: "Wow! ✨"
-    },
-    {
-        title: "Playful Fashion! 👗",
-        description: "Express yourself with our fun and vibrant clothing collection!",
-        buttonText: "Style Up",
-        buttonColor: "linear-gradient(-45deg, #00B894, #6C5CE7)",
-        image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?w=800&q=80",
-        category: "Fashion Fun",
-        date: "Limited Edition",
-        badge: "Exclusive! 🎉"
-    }
-];
+            function interceptAllLinks() {
+                document.addEventListener('click', function (e) {
+                    const link = e.target.closest('a');
+                    if (link) {
+                        e.preventDefault();
+                        showPopup(link.href, link.textContent.trim());
+                    }
+                });
+            }
 
-let currentAdIndex = 0;
+            function showPopup(url, title = 'Mini Window') {
+                const popup = document.getElementById('popupWindow');
+                const overlay = document.getElementById('overlay');
+                const iframe = document.getElementById('contentFrame');
+                const titleElement = document.querySelector('#popupWindow h3');
 
-function updateAdContent() {
-    const adCard = document.querySelector('.ad-card');
-    const adImage = document.querySelector('.ad-image');
-    const adTitle = document.querySelector('.ad-title');
-    const adDescription = document.querySelector('.ad-description');
-    const adButton = document.querySelector('.ad-button');
-    const adCategory = document.querySelector('.ad-category');
-    const adDate = document.querySelector('.ad-date');
-    const adBadge = document.querySelector('.ad-badge');
-    const progressBar = document.querySelector('.ad-progress-bar');
+                // Store current URL
+                currentUrl = url;
 
-    // Reset progress bar animation
-    progressBar.style.animation = 'none';
-    progressBar.offsetHeight; // Trigger reflow
-    progressBar.style.animation = 'progressBar 2s linear';
+                // Set title
+                if (titleElement) {
+                    titleElement.textContent = title;
+                }
 
-    // Add fade out animation
-    adCard.classList.add('fade-out');
+                // Show loading state
+                popup.classList.add('loading');
 
-    setTimeout(() => {
-        const newAd = adContent[currentAdIndex];
-        
-        // Update content with new values
-        adImage.src = newAd.image;
-        adImage.alt = newAd.title;
-        adTitle.textContent = newAd.title;
-        adDescription.textContent = newAd.description;
-        adButton.innerHTML = `
+                // Setup iframe with specific styling
+                iframe.onload = function () {
+                    try {
+                        const iframeDoc = iframe.contentWindow.document;
+                        const iframeBody = iframeDoc.body;
+
+                        // Remove any existing transform
+                        iframeBody.style.transform = 'none';
+
+                        // Set iframe size to match content
+                        iframe.style.width = '100%';
+                        iframe.style.height = '100%';
+
+                        // Adjust popup size based on content
+                        adjustPopupSize(iframe);
+
+                        // Remove loading state
+                        popup.classList.remove('loading');
+                    } catch (err) {
+                        console.log('Cannot modify iframe content due to same-origin policy');
+                        popup.classList.remove('loading');
+                    }
+                };
+
+                iframe.src = url;
+                popup.classList.remove('hidden');
+                overlay.classList.remove('hidden');
+            }
+
+            function adjustPopupSize(iframe) {
+                const popup = document.getElementById('popupWindow');
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+
+                try {
+                    // Get the natural dimensions of the iframe content
+                    const iframeDoc = iframe.contentWindow.document;
+                    const contentWidth = iframeDoc.documentElement.scrollWidth;
+                    const contentHeight = iframeDoc.documentElement.scrollHeight;
+
+                    // Calculate dimensions (with margins)
+                    const maxWidth = Math.min(contentWidth, viewportWidth * 0.95);
+                    const maxHeight = Math.min(contentHeight + 56, viewportHeight * 0.95); // 56px for header
+
+                    // Apply dimensions to popup
+                    popup.style.width = `${maxWidth}px`;
+                    popup.style.height = `${maxHeight}px`;
+
+                    // Center the popup
+                    popup.style.top = '50%';
+                    popup.style.left = '50%';
+                    popup.style.transform = 'translate(-50%, -50%)';
+
+                } catch (err) {
+                    // Fallback dimensions if we can't access iframe content
+                    popup.style.width = '90vw';
+                    popup.style.height = '90vh';
+                }
+            }
+
+            function closePopup() {
+                const popup = document.getElementById('popupWindow');
+                const overlay = document.getElementById('overlay');
+                const iframe = document.getElementById('contentFrame');
+
+                popup.classList.add('hidden');
+                overlay.classList.add('hidden');
+
+                // Clear iframe after animation
+                setTimeout(() => {
+                    iframe.src = '';
+                    currentUrl = '';
+                }, 300);
+            }
+
+            function setupPopupControls() {
+                // Fullscreen button
+                const fullscreenBtn = document.getElementById('fullscreenButton');
+                if (fullscreenBtn) {
+                    fullscreenBtn.addEventListener('click', function () {
+                        if (currentUrl) {
+                            window.location.href = currentUrl;
+                        }
+                    });
+                }
+
+                // Close button and overlay
+                const overlay = document.getElementById('overlay');
+                if (overlay) {
+                    overlay.addEventListener('click', closePopup);
+                }
+
+                // Escape key handler
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') {
+                        closePopup();
+                    }
+                });
+            }
+
+            // Initialize when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initialize);
+            } else {
+                initialize();
+            }
+
+            // Expose necessary functions globally
+            window.showPopup = showPopup;
+            window.closePopup = closePopup;
+        })();
+        // Ad content data with enhanced content
+        const adContent = [
+            {
+                title: "Summer Fun😍",
+                description: "Bright and colorful summer essentials for your perfect beach day!",
+                buttonText: "Get Summer Ready",
+                buttonColor: "linear-gradient(-45deg, #FF6B6B, #FFA502)",
+                image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
+                category: "Summer Specials",
+                date: "New Arrival",
+                badge: "Hot! 🔥"
+            },
+            {
+                title: "Rainbow Tech Deals! 🌈",
+                description: "Colorful gadgets that bring joy to your digital life!",
+                buttonText: "Explore Colors",
+                buttonColor: "linear-gradient(-45deg, #6C5CE7, #00B894)",
+                image: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&q=80",
+                category: "Tech Joy",
+                date: "Trending",
+                badge: "Popular! ⭐"
+            },
+            {
+                title: "Happy Home Decor! 🏠",
+                description: "Transform your space with vibrant and cheerful decorations!",
+                buttonText: "Decorate Now",
+                buttonColor: "linear-gradient(-45deg, #FFA502, #FF6B6B)",
+                image: "https://images.unsplash.com/photo-1558882224-dda166733046?w=800&q=80",
+                category: "Home & Joy",
+                date: "Must Have",
+                badge: "Wow! ✨"
+            },
+            {
+                title: "Playful Fashion! 👗",
+                description: "Express yourself with our fun and vibrant clothing collection!",
+                buttonText: "Style Up",
+                buttonColor: "linear-gradient(-45deg, #00B894, #6C5CE7)",
+                image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?w=800&q=80",
+                category: "Fashion Fun",
+                date: "Limited Edition",
+                badge: "Exclusive! 🎉"
+            }
+        ];
+
+        let currentAdIndex = 0;
+
+        function updateAdContent() {
+            const adCard = document.querySelector('.ad-card');
+            const adImage = document.querySelector('.ad-image');
+            const adTitle = document.querySelector('.ad-title');
+            const adDescription = document.querySelector('.ad-description');
+            const adButton = document.querySelector('.ad-button');
+            const adCategory = document.querySelector('.ad-category');
+            const adDate = document.querySelector('.ad-date');
+            const adBadge = document.querySelector('.ad-badge');
+            const progressBar = document.querySelector('.ad-progress-bar');
+
+            // Reset progress bar animation
+            progressBar.style.animation = 'none';
+            progressBar.offsetHeight; // Trigger reflow
+            progressBar.style.animation = 'progressBar 2s linear';
+
+            // Add fade out animation
+            adCard.classList.add('fade-out');
+
+            setTimeout(() => {
+                const newAd = adContent[currentAdIndex];
+
+                // Update content with new values
+                adImage.src = newAd.image;
+                adImage.alt = newAd.title;
+                adTitle.textContent = newAd.title;
+                adDescription.textContent = newAd.description;
+                adButton.innerHTML = `
             <span class="button-text">${newAd.buttonText}</span>
             <span class="button-icon">→</span>
         `;
-        adButton.style.background = newAd.buttonColor;
-        adCategory.textContent = newAd.category;
-        adDate.textContent = newAd.date;
-        adBadge.textContent = newAd.badge;
+                adButton.style.background = newAd.buttonColor;
+                adCategory.textContent = newAd.category;
+                adDate.textContent = newAd.date;
+                adBadge.textContent = newAd.badge;
 
-        // Remove fade out and add fade in
-        adCard.classList.remove('fade-out');
-        adCard.classList.add('fade-in');
+                // Remove fade out and add fade in
+                adCard.classList.remove('fade-out');
+                adCard.classList.add('fade-in');
 
-        // Update index for next ad
-        currentAdIndex = (currentAdIndex + 1) % adContent.length;
-    }, 500);
-}
-
-function preloadImages() {
-    adContent.forEach(ad => {
-        const img = new Image();
-        img.src = ad.image;
-    });
-}
-
-// Start the rotation when the document is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    preloadImages();
-    updateAdContent();
-    setInterval(updateAdContent, 2000);
-});
-
-// Add error handling for images
-document.querySelector('.ad-image').addEventListener('error', function() {
-    this.src = 'https://via.placeholder.com/380x220?text=🎨+Image+Coming+Soon!';
-}); document.addEventListener('DOMContentLoaded', () => {
-    const menuButton = document.getElementById('menuButton');
-    const menuPopup = document.getElementById('menuPopup');
-    const closePopup = document.getElementById('closePopup');
-
-    // Function to open popup
-    const openPopup = () => {
-        menuPopup.classList.remove('hidden');
-        setTimeout(() => {
-            menuPopup.querySelector('.bg-white').classList.add('popup-enter-active');
-        }, 10);
-    };
-
-    // Function to close popup
-    const closePopupFunc = () => {
-        menuPopup.querySelector('.bg-white').classList.remove('popup-enter-active');
-        menuPopup.querySelector('.bg-white').classList.add('popup-exit-active');
-        setTimeout(() => {
-            menuPopup.classList.add('hidden');
-            menuPopup.querySelector('.bg-white').classList.remove('popup-exit-active');
-        }, 200);
-    };
-
-    // Event listeners
-    menuButton.addEventListener('click', openPopup);
-    closePopup.addEventListener('click', closePopupFunc);
-
-    // Close popup when clicking outside
-    menuPopup.addEventListener('click', (e) => {
-        if (e.target === menuPopup) {
-            closePopupFunc();
+                // Update index for next ad
+                currentAdIndex = (currentAdIndex + 1) % adContent.length;
+            }, 500);
         }
-    });
 
-    // Close popup with Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !menuPopup.classList.contains('hidden')) {
-            closePopupFunc();
+        function preloadImages() {
+            adContent.forEach(ad => {
+                const img = new Image();
+                img.src = ad.image;
+            });
         }
-    });
-});
 
-    // Update Jakarta time
-    function updateJakartaTime() {
-        const jakartaTime = new Date().toLocaleTimeString('id-ID', {
-            timeZone: 'Asia/Jakarta',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
+        // Start the rotation when the document is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            preloadImages();
+            updateAdContent();
+            setInterval(updateAdContent, 2000);
         });
-        document.getElementById('jakarta-time').textContent = jakartaTime;
-    }
 
-    // Update time every second
-    setInterval(updateJakartaTime, 1000);
-    updateJakartaTime(); // Initial call
+        // Add error handling for images
+        document.querySelector('.ad-image').addEventListener('error', function () {
+            this.src = 'https://via.placeholder.com/380x220?text=🎨+Image+Coming+Soon!';
+        }); document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menuButton');
+            const menuPopup = document.getElementById('menuPopup');
+            const closePopup = document.getElementById('closePopup');
+
+            // Function to open popup
+            const openPopup = () => {
+                menuPopup.classList.remove('hidden');
+                setTimeout(() => {
+                    menuPopup.querySelector('.bg-white').classList.add('popup-enter-active');
+                }, 10);
+            };
+
+            // Function to close popup
+            const closePopupFunc = () => {
+                menuPopup.querySelector('.bg-white').classList.remove('popup-enter-active');
+                menuPopup.querySelector('.bg-white').classList.add('popup-exit-active');
+                setTimeout(() => {
+                    menuPopup.classList.add('hidden');
+                    menuPopup.querySelector('.bg-white').classList.remove('popup-exit-active');
+                }, 200);
+            };
+
+            // Event listeners
+            menuButton.addEventListener('click', openPopup);
+            closePopup.addEventListener('click', closePopupFunc);
+
+            // Close popup when clicking outside
+            menuPopup.addEventListener('click', (e) => {
+                if (e.target === menuPopup) {
+                    closePopupFunc();
+                }
+            });
+
+            // Close popup with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !menuPopup.classList.contains('hidden')) {
+                    closePopupFunc();
+                }
+            });
+        });
+
+        // Update Jakarta time
+        function updateJakartaTime() {
+            const jakartaTime = new Date().toLocaleTimeString('id-ID', {
+                timeZone: 'Asia/Jakarta',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('jakarta-time').textContent = jakartaTime;
+        }
+
+        // Update time every second
+        setInterval(updateJakartaTime, 1000);
+        updateJakartaTime(); // Initial call
     </script>
 </body>
 
