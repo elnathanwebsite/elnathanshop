@@ -2341,17 +2341,63 @@ document.addEventListener("contextmenu", function(event) {
     event.preventDefault();
 });
 
-// Mencegah kombinasi tombol Developer Tools
+// Mencegah Kombinasi Tombol Developer Tools
 document.addEventListener("keydown", function(event) {
     if (
         event.ctrlKey && (event.key === "u" || event.key === "U") || // CTRL + U
         event.key === "F12" || // Tombol F12
-        (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) // CTRL + SHIFT + I atau CTRL + SHIFT + J
+        (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J" || event.key === "C" || event.key === "K")) // CTRL + SHIFT + I/J/C/K
     ) {
         event.preventDefault();
     }
 });
 
+// Mendeteksi Developer Tools secara otomatis
+(function() {
+    var devtools = false;
+    var element = new Image();
+    Object.defineProperty(element, 'id', {
+        get: function() {
+            devtools = true;
+            throw new Error("Developer Tools Detected!");
+        }
+    });
+
+    setInterval(function() {
+        devtools = false;
+        console.log(element);
+        if (devtools) {
+            alert("Developer Tools terdeteksi! Halaman akan ditutup.");
+            window.location.href = "about:blank"; // Redirect ke halaman kosong
+        }
+    }, 1000);
+})();
+
+// Memuat ulang halaman jika pengguna kembali dari cache
+window.onpageshow = function(event) {
+    if (event.persisted) {
+        location.reload(); // Memuat ulang halaman jika kembali dari cache
+    }
+};
+
+// Memasang ulang proteksi saat halaman kembali aktif
+document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === "visible") {
+        document.addEventListener("contextmenu", function(event) {
+            event.preventDefault();
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (
+                event.ctrlKey && (event.key === "u" || event.key === "U") || 
+                event.key === "F12" || 
+                (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J" || event.key === "C" || event.key === "K"))
+            ) {
+                event.preventDefault();
+            }
+        });
+    }
+});
 
     </script>
 </body>
