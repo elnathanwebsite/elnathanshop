@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Nathan Digital Store | Future of Digital Commerce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        :root {
+            --primary-color: #0ff;
+            --secondary-color: #00ffaa;
+            --accent-color: #ff00ff;
+            --dark-bg: #000810;
+            --glow-intensity: 0.7;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            background-color: var(--dark-bg);
+            color: var(--primary-color);
+        }
+
+        /* Dynamic Background */
+        .dynamic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0,255,255,0.1) 0%, rgba(0,0,0,0.9) 70%);
+            z-index: 2;
+        }
+
+        /* Grid Animation */
+        .grid {
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            background: 
+                linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: translate(-25%, -25%) rotate(45deg);
+            animation: gridMove 20s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(-25%, -25%) rotate(45deg);
+            }
+            100% {
+                transform: translate(-75%, -75%) rotate(45deg);
+            }
+        }
+
+        /* Header Section */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0,255,255,0.5);
+            animation: logoGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            from {
+                text-shadow: 0 0 10px rgba(0,255,255,0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(0,255,255,0.8),
+                             0 0 30px rgba(0,255,255,0.6),
+                             0 0 40px rgba(0,255,255,0.4);
+            }
+        }
+
+        /* Main Content Container */
+        .container {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .title-container {
+            margin-bottom: 50px;
+        }
+
+        .main-title {
+            font-size: 4em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            position: relative;
+            animation: titleGlitch 5s infinite;
+        }
+
+        @keyframes titleGlitch {
+            0%, 100% { transform: none; opacity: 1; }
+            92% { transform: skew(30deg); opacity: 0.8; }
+            94% { transform: skew(-30deg); opacity: 0.9; }
+            96% { transform: skew(0deg); opacity: 1; }
+        }
+
+        .subtitle {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.5em;
+            color: var(--secondary-color);
+            letter-spacing: 4px;
+            opacity: 0.8;
+        }
+
+        /* Button Styles */
+        .cta-button {
+            position: relative;
+            display: inline-block;
+            padding: 25px 50px;
+            margin: 40px 0;
+            font-size: 1.8em;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--primary-color);
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: buttonMorph 8s infinite;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(0,255,255,0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-color);
+            color: var(--dark-bg);
+            box-shadow: 0 0 50px var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        @keyframes buttonMorph {
+            0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            20% { clip-path: polygon(10% 0, 90% 10%, 90% 90%, 10% 100%); }
+            40% { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+            60% { clip-path: polygon(25% 0, 75% 25%, 75% 75%, 25% 100%); }
+            80% { clip-path: polygon(0 0, 100% 25%, 100% 75%, 0 100%); }
+            100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+        }
+
+        /* Particle System */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translate(var(--startX), var(--startY));
+                opacity: 0;
+            }
+            50% {
+                opacity: var(--opacity);
+            }
+            100% {
+                transform: translate(var(--endX), var(--endY));
+                opacity: 0;
+            }
+        }
+
+        /* Digital Clock */
+        .digital-clock {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.2em;
+            color: var(--primary-color);
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(0,255,255,0.5);
+        }
+
+        /* Cyber Lines */
+        .cyber-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .cyber-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            height: 1px;
+            width: 100%;
+            opacity: 0;
+            animation: cyberLineScan 8s linear infinite;
+        }
+
+        @keyframes cyberLineScan {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Loading Progress */
+        .loading-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(0,255,255,0.1);
+            z-index: 10;
+        }
+
+        .loading-progress {
+            width: 0%;
+            height: 100%;
+            background: var(--primary-color);
+            animation: loadProgress 3s ease-in-out infinite;
+        }
+
+        @keyframes loadProgress {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 0%; }
+        }
+
+        /* Glitch Effect */
+        .glitch-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 6;
+            mix-blend-mode: overlay;
+        }
+
+        /* Current Time Display */
+        #current-time {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--primary-color);
+            font-size: 1.2em;
+            z-index: 10;
+        }
+
+        /* User Info */
+        #user-info {
+            position: fixed;
+            top: 50px;
+            right: 20px;
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--secondary-color);
+            font-size: 1em;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <!-- I'll continue with the HTML body and JavaScript in the next message due to length -->
+    <!-- Continuing from previous HTML... -->
+<body>
+    <div class="dynamic-bg">
+        <div class="grid"></div>
+        <div class="bg-overlay"></div>
+    </div>
+
+    <div class="header">
+        <div class="logo">El Nathan Digital</div>
+        <div id="current-time">2025-03-24 15:10:10 UTC</div>
+    </div>
+
+    <div id="user-info">Welcome, elnathanwebsite</div>
+
+    <div class="particles"></div>
+    <div class="cyber-lines"></div>
+    <div class="glitch-effect"></div>
+
+    <div class="container">
+        <div class="title-container">
+            <h1 class="main-title">El Nathan Digital Store</h1>
+            <p class="subtitle">Empowering Your Digital Future</p>
+        </div>
+
+        <a href="https://elnathanwebsite.com" class="cta-button" id="morphButton">
+            OPEN STORE NOW
+            <span class="button-glitch"></span>
+        </a>
+
+        <div class="digital-stats">
+            <div class="stat-item">
+                <span class="stat-value" id="visitors">0</span>
+                <span class="stat-label">Digital Visitors</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading-bar">
+        <div class="loading-progress"></div>
+    </div>
+
+    <script>
+        // Particle System
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 100;
+
+            for(let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size between 1 and 3 pixels
+                const size = Math.random() * 2 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Random start and end positions
+                const startX = Math.random() * window.innerWidth;
+                const startY = Math.random() * window.innerHeight;
+                const endX = startX + (Math.random() - 0.5) * 400;
+                const endY = startY + (Math.random() - 0.5) * 400;
+
+                particle.style.setProperty('--startX', `${startX}px`);
+                particle.style.setProperty('--startY', `${startY}px`);
+                particle.style.setProperty('--endX', `${endX}px`);
+                particle.style.setProperty('--endY', `${endY}px`);
+                particle.style.setProperty('--opacity', Math.random() * 0.5 + 0.2);
+
+                // Random animation duration between 10 and 20 seconds
+                const duration = Math.random() * 10 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${Math.random() * duration}s`;
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Cyber Lines
+        function createCyberLines() {
+            const linesContainer = document.querySelector('.cyber-lines');
+            const lineCount = 20;
+
+            for(let i = 0; i < lineCount; i++) {
+                const line = document.createElement('div');
+                line.className = 'cyber-line';
+                line.style.top = `${Math.random() * 100}%`;
+                line.style.animationDelay = `${Math.random() * 8}s`;
+                linesContainer.appendChild(line);
+            }
+        }
+
+        // Button Morphing Animation
+        function setupButtonMorphing() {
+            const button = document.getElementById('morphButton');
+            const transforms = [
+                'matrix(1, 0.2, 0, 1, 0, 0)',
+                'matrix(1, -0.2, 0.2, 1, 0, 0)',
+                'matrix(0.9, 0, 0, 0.9, 0, 0)',
+                'matrix(1.1, 0, 0, 1.1, 0, 0)',
+                'matrix(1, 0, 0.2, 1, 0, 0)',
+                'matrix(1, 0, -0.2, 1, 0, 0)'
+            ];
+
+            let currentTransform = 0;
+            setInterval(() => {
+                button.style.transform = transforms[currentTransform];
+                currentTransform = (currentTransform + 1) % transforms.length;
+            }, 2000);
+        }
+
+        // Glitch Effect
+        function createGlitchEffect() {
+            const glitchContainer = document.querySelector('.glitch-effect');
+            
+            setInterval(() => {
+                if(Math.random() > 0.95) {
+                    glitchContainer.style.backgroundColor = `rgba(0, 255, 255, ${Math.random() * 0.1})`;
+                    setTimeout(() => {
+                        glitchContainer.style.backgroundColor = 'transparent';
+                    }, 50);
+                }
+            }, 100);
+        }
+
+        // Digital Clock
+        function updateClock() {
+            const clockElement = document.getElementById('current-time');
+            setInterval(() => {
+                const now = new Date();
+                const timeString = now.toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
+                clockElement.textContent = timeString;
+            }, 1000);
+        }
+
+        // Visitor Counter Animation
+        function animateVisitorCount() {
+            const visitorElement = document.getElementById('visitors');
+            let count = 0;
+            const target = Math.floor(Math.random() * 1000) + 500;
+            
+            const interval = setInterval(() => {
+                count += Math.ceil((target - count) / 20);
+                visitorElement.textContent = count.toLocaleString();
+                
+                if(count >= target) {
+                    clearInterval(interval);
+                }
+            }, 50);
+        }
+
+        // Background Image Switch
+        function setupBackgroundSwitch() {
+            const bg = document.querySelector('.dynamic-bg');
+            setInterval(() => {
+                if(Math.random() > 0.8) {
+                    bg.style.backgroundImage = 'url(YOUR_IMAGE_URL)';
+                    setTimeout(() => {
+                        bg.style.backgroundImage = 'none';
+                    }, 200);
+                }
+            }, 3000);
+        }
+
+        // Initialize Everything
+        window.addEventListener('load', () => {
+            createParticles();
+            createCyberLines();
+            setupButtonMorphing();
+            createGlitchEffect();
+            updateClock();
+            animateVisitorCount();
+            setupBackgroundSwitch();
+
+            // Initial user info
+            document.getElementById('user-info').textContent = 'Welcome, elnathanwebsite';
+        });
+
+        // Handle Window Resize
+        window.addEventListener('resize', () => {
+            const particles = document.querySelector('.particles');
+            particles.innerHTML = '';
+            createParticles();
+        });
+    </script>
+</body>
+</html>
