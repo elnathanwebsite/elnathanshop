@@ -1,25 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETHAN EL NATHAN WEBSITE | DASHBORD HYPERLINK</title>
+    <title>ETHAN EL NATHAN WEBSITE | DASHBOARD HYPERLINK</title>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+     <!-- Responsive viewport that prioritizes desktop view -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    
+    <style>
+        /* Preserve responsive layout while optimizing for desktop */
+        :root {
+            --min-viewport: 360px;
+            --max-viewport: 2560px;
+        }
 
+        /* Base responsive rules */
+        html, body {
+            min-width: var(--min-viewport);
+            max-width: var(--max-viewport);
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+
+        /* Better breakpoint handling */
+        @media screen and (max-width: 768px) {
+            .desktop-override {
+                /* Maintain minimum content width on small screens */
+                min-width: min(100%, var(--min-viewport));
+                width: auto;
+                margin: 0 auto;
+            }
+
+            /* Preserve text readability */
+            body {
+                -webkit-text-size-adjust: 100%;
+                text-size-adjust: 100%;
+            }
+        }
+
+        /* Ensure images and media stay responsive */
+        img, video, canvas, picture {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Maintain form element usability */
+        input, select, textarea, button {
+            font-size: 16px; /* Prevent zoom on focus in iOS */
+        }
+
+        /* Flex container improvements */
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        /* Grid improvements */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: 1rem;
+        }
+
+        /* Table responsiveness */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
         /* Main Styles */
         body {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
             min-height: 100vh;
             margin: 0;
             font-family: 'Press Start 2P', cursive;
@@ -29,186 +89,635 @@
             overflow-x: hidden;
         }
 
-        /* Cloud Animation */
-        .cloud {
-            position: absolute;
-            width: 60px;
-            height: 30px;
-            background: white;
-            border-radius: 20px;
-            animation: moveCloud 15s linear infinite;
-            opacity: 0.8;
-        }
-
-        .cloud::before,
-        .cloud::after {
-            content: '';
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-        }
-
-        .cloud::before {
-            width: 25px;
-            height: 25px;
-            top: -10px;
-            left: 10px;
-        }
-
-        .cloud::after {
-            width: 30px;
-            height: 30px;
-            top: -15px;
-            right: 10px;
-        }
-
-        @keyframes moveCloud {
-            from { left: -100px; }
-            to { left: 100%; }
-        }
-
-        .button-container {
-            display: flex;
-            gap: 20px;
-            flex-direction: column;
-            z-index: 1;
-        }
-
-        /* Super Mario Link Button Style */
-        .mario-link {
-            text-decoration: none;
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            position: relative;
-            background: #e52521;
+        /* Header Styles */
+        .game-header {
+            background: rgba(0, 0, 0, 0.8);
             color: white;
-            text-transform: uppercase;
-            box-shadow: 0 5px 0 #8b0000;
-            transition: all 0.2s;
-            overflow: hidden;
-            font-family: 'Press Start 2P', cursive;
+            padding: 20px 0;
             text-align: center;
+            position: relative;
+            width: 100%;
+            z-index: 2;
         }
 
-        .mario-link::before {
+        .game-title {
+            font-size: 24px;
+            margin: 0;
+            animation: rainbow 5s infinite;
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            20% { color: #ffff00; }
+            40% { color: #00ff00; }
+            60% { color: #00ffff; }
+            80% { color: #ff00ff; }
+            100% { color: #ff0000; }
+        }
+
+        .game-nav {
+            margin-top: 15px;
+        }
+
+        .game-nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 12px;
+            position: relative;
+        }
+
+        .game-nav a::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.2),
-                transparent
-            );
-            transition: 0.5s;
-        }
-
-        .mario-link:hover::before {
-            left: 100%;
-        }
-
-        .mario-link:hover {
-            transform: translateY(2px);
-            box-shadow: 0 3px 0 #8b0000;
-        }
-
-        .mario-link:active {
-            transform: translateY(5px);
-            box-shadow: none;
-        }
-
-        /* Link Specific Styles */
-        #lightMode {
-            background: #ffd700;
-            box-shadow: 0 5px 0 #b8860b;
-        }
-
-        #darkMode {
-            background: #4b0082;
-            box-shadow: 0 5px 0 #2a004d;
-        }
-
-        #portfolio {
-            background: #228b22;
-            box-shadow: 0 5px 0 #006400;
-        }
-
-        /* Coin Animation */
-        @keyframes spin {
-            from { transform: rotateY(0deg); }
-            to { transform: rotateY(360deg); }
-        }
-
-        .coin {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ffd700;
-            border-radius: 50%;
-            pointer-events: none;
-            animation: spin 0.5s linear;
-        }
-
-        /* Loading Animation */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
+            bottom: -5px;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: none;
+            height: 2px;
+            background: #ff0000;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .game-nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            padding: 40px 0;
         }
 
-        .loading-sprite {
-            width: 32px;
-            height: 32px;
-            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQ1IDc5LjE2MzQ5OSwgMjAxOC8wOC8xMy0xNjo0MDoyMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjQ5MjhGNzI1RjE4NzExRUE5QjE0QjYyOTM0QkM4OEE1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjQ5MjhGNzI2RjE4NzExRUE5QjE0QjYyOTM0QkM4OEE1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NDkyOEY3MjNGMTg3MTFFQTlCMTRCNjI5MzRCQzg4QTUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NDkyOEY3MjRGMTg3MTFFQTlCMTRCNjI5MzRCQzg4QTUiLz4gPC9yZGY6RERlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Q0PJ8wAABBtJREFUeNq8V21IU2EYPm93dze3zc1N3XR+pOWHmR8FlqaWFWqU/YgsCcGMfoT9KAuKIiyI6F9/oqLC+hFBUL+KiAgqi6CwMM0Py9TSdLqpW3Pb3O7evW/nHJ1u25mbQ7zwsrOz877Pec55nvd5z5tamqYhJeVFxEFEIsIfoYz1PYSM+IYoQTwiSBHJCD2iC/EZ8QnxBvEYUYd4i+hA9Iz1oHEIwBtxFLERUeDEdy3EfUQ1og3hkILy7cQNxEnEDIfxHxCXEE8RDikGs3BPntNszSFkiE2IWsQlxPgxfpuAKEVUIeoRW6QY7ARgJvU+YvcY1zaBuICoQaRJ0QlnEacl2GYTcRpRifCSovLtiCrEOgm2WYoIdkWABYhKRIQE2yxGXEMESrFFFuKiBJ2AxV5E7HgFYK5WKsE2pyPOj0cAZuanEWESbBO3XTFCNdYA7OAHERESbBPPQjEiaSwCsNjfKcE2mQCnRiNAKmKzBNtkR3KXGAHYXbRHgm3yE83mZKx4OOtg7BuISkSgBJ3AI2oQsxFfhlOebVqIWCbBNnlU70Ps5E0vRACW+1+1oXHghFjEZRuRJMFAeXDxd3QVwgiI0ET8GLEhYX6QFs4164wwc6uVx9EtRBebgQHfuIR4h7iFKEA0IqwjEGImYgfiDuIOoomZDVaKGxAJCDOiE5HDSpRaAdtTI3IT81PtFKIdcRXxQOAGWvamI7kZcQNxXEDnNiEeIq4jntnNXtZP5ONutwqhEql8P+IZ4qSDBkURohbRKbKPmBlxGXFSQC/QiWCLdR5h4q2nvxAXEStF7gULEU8QewXMQgfiKGIP4rvQ7phF10XEcgFukUV8QhxG7EU0CP2AlBVYeZA5PCWyKaHm0Yki+KLiObwAcRvRjDgwWgHY2k5E3EP0Ik4gbgjc2LuwstxOROdo8z3rgtjd7VZEIvudxSyrLbUhFE4zSPO737x2EuIK78qN1sEbgLmO0IuXOxDvERsQHxGb+CSiHnGIr3OWNFgKHuKJhXfpB/nrTb7RqHjlbS+z7sn7xYVD1JMrEIcQL23eZ7FzH/FywDO2I+YjViG2IlIQc/n7K7zMr0cY+axVD1gLlg5XI7gzzPAgcJt6JQtci2AhtkxkHeEOAfcQcJtnBTwHeaHJwzdEoNQEkOshAiQjtDx/eETcNlswQysX4AH6B/CE7wB3EDbu8lE+N2cBfHl6YR8hyC4bkKEH1NsZD6EfZiEruKvtF5hYWHiYBQ/Bfjbr4xBgNq+chnGJlQQ000MEmMMPnmiyFQJVJYQArHA4KbD1ZqG7U4QAMQKvSf4zfrZAD0gSKIB+BAIkeogA4QLTECuzQgXwE5iGaH4tgEAgABgFCUDwrVigAAaBHuD4+x8BkgBanl9o9BQB9AIFsDn6a4QIDPEQAZRiivJfAQYA3HPHzTVPwVAAAAAASUVORK5CYII=');
-            animation: jump 0.5s infinite alternate;
+        /* Continue with your existing styles... */
+                /* Continuing previous styles... */
+
+        /* Footer Styles */
+        .game-footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            width: 100%;
+            z-index: 2;
         }
 
-        @keyframes jump {
-            from { transform: translateY(0); }
-            to { transform: translateY(-10px); }
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        #chatBot {
-    background: #ff0000;  /* Bright red */
-    box-shadow: 0 5px 0 #cc0000;  /* Darker red shadow */
+
+        .footer-section {
+            margin: 10px;
+            text-align: left;
+        }
+
+        .footer-title {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #ff0000;
+            text-shadow: 2px 2px #000;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: white;
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+            color: #ff0000;
+        }
+
+        .pixelated-border {
+            border: 4px solid;
+            border-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFF2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNy4yLWMwMDAgNzkuMWI2NWE3OWI0LCAyMDIyLzA2LzEzLTIyOjAxOjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyNC40IChNYWNpbnRvc2gpIiB4bXA6Q3JlYXRlRGF0ZT0iMjAyMy0wMy0yNlQyMTozNzoxNS0wNDowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMy0wMy0yNlQyMTozNzoxNS0wNDowMCIgeG1wOk1vZGlmeURhdGU9IjIwMjMtMDMtMjZUMjE6Mzc6MTUtMDQ6MDAiIGRjOmZvcm1hdD0iaW1hZ2UvcG5nIiBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIj4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0icHJvZHVjZWQiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFmZmluaXR5IFBob3RvIDIgMi4wLjQiIHN0RXZ0OndoZW49IjIwMjMtMDMtMjZUMjE6Mzc6MTUtMDQ6MDAiLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+YjGWWwAAABxJREFUGJVjYGBg+A/FYAqEYQwggREIs4AFBmIBAHiWBAHv8t7sAAAAAElFTkSuQmCC') 2 repeat;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        /* Score Counter */
+        .score-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 16px;
+            color: #ffff00;
+            text-shadow: 2px 2px #000;
+            z-index: 3;
+        }
+
+        /* Power-up Animation */
+        @keyframes powerUp {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .power-up {
+            animation: powerUp 0.5s ease;
+        }
+/* Button Styles for Mario Theme */
+.button-container {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    z-index: 1;
+    margin: 20px;
 }
+
+.mario-link {
+    text-decoration: none;
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    overflow: hidden;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    min-width: 250px;
+    color: white;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Light Mode Button */
+#lightMode {
+    background: linear-gradient(to bottom, #ffd700 0%, #ffa500 100%);
+    box-shadow: 0 5px 0 #b8860b,
+                0 7px 10px rgba(0, 0, 0, 0.3);
+}
+
+#lightMode:hover {
+    background: linear-gradient(to bottom, #ffd700 30%, #ffa500 100%);
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 #b8860b,
+                0 5px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark Mode Button */
+#darkMode {
+    background: linear-gradient(to bottom, #4b0082 0%, #2a004d 100%);
+    box-shadow: 0 5px 0 #1a002d,
+                0 7px 10px rgba(0, 0, 0, 0.3);
+}
+
+#darkMode:hover {
+    background: linear-gradient(to bottom, #4b0082 30%, #2a004d 100%);
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 #1a002d,
+                0 5px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Chat Bot Button */
+#chatBot {
+    background: linear-gradient(to bottom, #ff0000 0%, #cc0000 100%);
+    box-shadow: 0 5px 0 #990000,
+                0 7px 10px rgba(0, 0, 0, 0.3);
+}
+
+#chatBot:hover {
+    background: linear-gradient(to bottom, #ff0000 30%, #cc0000 100%);
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 #990000,
+                0 5px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Portfolio Button */
+#portfolio {
+    background: linear-gradient(to bottom, #228b22 0%, #006400 100%);
+    box-shadow: 0 5px 0 #004d00,
+                0 7px 10px rgba(0, 0, 0, 0.3);
+}
+
+#portfolio:hover {
+    background: linear-gradient(to bottom, #228b22 30%, #006400 100%);
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 #004d00,
+                0 5px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Shine Effect for all buttons */
+.mario-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.mario-link:hover::before {
+    left: 100%;
+}
+
+/* Active state for all buttons */
+.mario-link:active {
+    transform: translateY(5px) !important;
+    box-shadow: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .mario-link {
+        font-size: 14px;
+        padding: 12px 24px;
+        min-width: 200px;
+    }
+    
+    .button-container {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mario-link {
+        font-size: 12px;
+        padding: 10px 20px;
+        min-width: 180px;
+    }
+    
+    .button-container {
+        gap: 12px;
+    }
+}
+
+/* Button Press Animation */
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.mario-link:active {
+    animation: buttonPress 0.2s ease;
+}
+    /* Sky Container */
+.sky-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Day-Night Cycle */
+@keyframes skyColor {
+    0% { background: #2B2B4B; } /* Start with night */
+    25% { background: #8BA0BD; } /* Dawn */
+    35% { background: #87CEEB; } /* Day */
+    65% { background: #87CEEB; }
+    75% { background: #FFDAB9; } /* Sunset */
+    85% { background: #FF6B6B; }
+    90% { background: #4A4969; } /* Dusk */
+    100% { background: #2B2B4B; } /* Back to night */
+}
+
+.sky-container {
+    animation: skyColor 24s linear infinite;
+}
+
+/* Fixed Celestial Body Container */
+.celestial-body {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    width: 100px;
+    height: 100px;
+    transform-origin: center;
+}
+
+/* Sun Animation */
+.sun {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: sunPhase 24s linear infinite;
+    opacity: 0;
+}
+
+@keyframes sunPhase {
+    0% { 
+        background: transparent;
+        box-shadow: none;
+        opacity: 0;
+    }
+    25% { /* Dawn */
+        background: #FF9A3C;
+        box-shadow: 0 0 50px #FF783C;
+        opacity: 0.7;
+    }
+    35% { /* Day */
+        background: #FFD700;
+        box-shadow: 0 0 50px #FFA500;
+        opacity: 1;
+    }
+    75% { /* Sunset */
+        background: #FF6B6B;
+        box-shadow: 0 0 50px #FF4500;
+        opacity: 1;
+    }
+    85% {
+        opacity: 0;
+    }
+    100% {
+        background: transparent;
+        box-shadow: none;
+        opacity: 0;
+    }
+}
+
+/* Moon Animation */
+.moon {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    animation: moonPhase 24s linear infinite;
+    opacity: 0;
+}
+
+.crater {
+    position: absolute;
+    background: #E0E0E0;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.crater-1 {
+    width: 20px;
+    height: 20px;
+    top: 15px;
+    left: 25px;
+}
+
+.crater-2 {
+    width: 15px;
+    height: 15px;
+    top: 45px;
+    left: 40px;
+}
+
+.crater-3 {
+    width: 25px;
+    height: 25px;
+    top: 30px;
+    right: 15px;
+}
+
+@keyframes moonPhase {
+    0% {
+        background: #F5F5F5;
+        box-shadow: 0 0 20px #FFF;
+        opacity: 1;
+    }
+    25% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0;
+    }
+    85% {
+        background: #F5F5F5;
+        box-shadow: 0 0 20px #FFF;
+        opacity: 1;
+    }
+    100% {
+        background: #F5F5F5;
+        box-shadow: 0 0 20px #FFF;
+        opacity: 1;
+    }
+}
+
+/* Stars Animation */
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: starsVisibility 24s linear infinite;
+}
+
+@keyframes starsVisibility {
+    0% { opacity: 1; }
+    25% { opacity: 0; }
+    75% { opacity: 0; }
+    85% { opacity: 1; }
+    100% { opacity: 1; }
+}
+
+/* Cloud Styles and Animations */
+.clouds {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.cloud {
+    position: absolute;
+    background: #FFF;
+    border-radius: 100px;
+    opacity: 0.8;
+    animation: cloudFloat linear infinite;
+}
+
+.cloud::before,
+.cloud::after {
+    content: '';
+    position: absolute;
+    background: #FFF;
+    border-radius: 50%;
+}
+
+.cloud-1 {
+    width: 120px;
+    height: 40px;
+    top: 20%;
+    animation-duration: 35s;
+}
+
+.cloud-2 {
+    width: 80px;
+    height: 30px;
+    top: 40%;
+    animation-duration: 28s;
+    animation-delay: -5s;
+}
+
+.cloud-3 {
+    width: 100px;
+    height: 35px;
+    top: 60%;
+    animation-duration: 32s;
+    animation-delay: -10s;
+}
+
+.cloud-4 {
+    width: 90px;
+    height: 32px;
+    top: 30%;
+    animation-duration: 30s;
+    animation-delay: -15s;
+}
+
+.cloud-5 {
+    width: 110px;
+    height: 38px;
+    top: 50%;
+    animation-duration: 34s;
+    animation-delay: -20s;
+}
+
+@keyframes cloudFloat {
+    from {
+        transform: translateX(-150px);
+    }
+    to {
+        transform: translateX(calc(100vw + 150px));
+    }
+}
+
+/* Cloud details */
+.cloud::before {
+    width: 50%;
+    height: 100%;
+    top: -50%;
+    left: 25%;
+}
+
+.cloud::after {
+    width: 30%;
+    height: 60%;
+    top: -30%;
+    left: 10%;
+}    
     </style>
 </head>
 <body>
-    <!-- Cloud Elements -->
-    <div class="cloud" style="top: 20%"></div>
-    <div class="cloud" style="top: 40%; animation-delay: -5s"></div>
-    <div class="cloud" style="top: 60%; animation-delay: -10s"></div>
-
-    <div class="button-container">
-        
-        <a href="modeterang.html" id="lightMode" class="mario-link" target="_blank">Light Mode</a>
-        <a href="modegelap.html" id="darkMode" class="mario-link" target="_blank">Dark Mode</a>
-        <a href="https://aiforelnathaners.vercel.app/" id="chatBot" class="mario-link" target="_blank">Chat Bot</a>
-        <a href="templateprtofolio.html" id="portfolio" class="mario-link" target="_blank">Template Portofolio</a>
-        
+    <!-- Header -->
+    <header class="game-header">
+        <h1 class="game-title">ETHAN EL NATHAN DASHBOARD</h1>
+        <nav class="game-nav">
+            <a href="#" class="power-up">HOME</a>
+            <a href="#" class="power-up">ABOUT</a>
+            <a href="#" class="power-up">SERVICES</a>
+            <a href="#" class="power-up">CONTACT</a>
+        </nav>
+    </header>
+<!-- Replace your existing sky-container div with this -->
+<div class="sky-container">
+    <div class="celestial-body">
+        <div class="sun"></div>
+        <div class="moon">
+            <div class="crater crater-1"></div>
+            <div class="crater crater-2"></div>
+            <div class="crater crater-3"></div>
+        </div>
     </div>
+    <div class="stars"></div>
+    <div class="clouds">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <div class="cloud cloud-4"></div>
+        <div class="cloud cloud-5"></div>
+    </div>
+</div>
+    <!-- Score Counter -->
+ 
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Cloud Elements -->
+        <div class="cloud" style="top: 20%"></div>
+        <div class="cloud" style="top: 40%; animation-delay: -5s"></div>
+        <div class="cloud" style="top: 60%; animation-delay: -10s"></div>
+
+        <div class="button-container">
+            <a href="modeterang.html" id="lightMode" class="mario-link" target="_blank">Light Mode</a>
+            <a href="modegelap.html" id="darkMode" class="mario-link" target="_blank">Dark Mode</a>
+            <a href="https://aiforelnathaners.vercel.app/" id="chatBot" class="mario-link" target="_blank">Chat Bot</a>
+            <a href="templateprtofolio.html" id="portfolio" class="mario-link" target="_blank">Template Portofolio</a>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="game-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">PLAYER INFO</h3>
+                <div class="pixelated-border">
+                    <p>User: elnathanwebsite</p>
+                    <p>Last Login: 2025-04-12 10:02:13</p>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">CONTROLS</h3>
+                <div class="pixelated-border">
+                    <p>⬆️ Navigate</p>
+                    <p>🔘 Select</p>
+                    <p>⬅️ Back</p>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="footer-title">CONNECT</h3>
+                <div class="social-links">
+                    <a href="#" class="power-up"><i class="fab fa-github"></i></a>
+                    <a href="#" class="power-up"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="power-up"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="power-up"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Loading Overlay -->
     <div class="loading-overlay">
         <div class="loading-sprite"></div>
     </div>
 
-   <!-- Continue from previous code... -->
     <script>
+        // Score System
+        let score = 0;
+        const scoreDisplay = document.getElementById('score');
+
+        function updateScore(points) {
+            score += points;
+            scoreDisplay.textContent = score.toString().padStart(4, '0');
+            scoreDisplay.classList.add('power-up');
+            setTimeout(() => {
+                scoreDisplay.classList.remove('power-up');
+            }, 500);
+        }
+
         // Sound Effects
         const createAudio = (frequency, duration) => {
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -228,7 +737,7 @@
             oscillator.stop(audioContext.currentTime + duration);
         };
 
-        // Coin Animation
+        // Coin Animation with Score Update
         const createCoin = (x, y) => {
             const coin = document.createElement('div');
             coin.className = 'coin';
@@ -236,6 +745,7 @@
             coin.style.top = `${y}px`;
             document.body.appendChild(coin);
             
+            updateScore(100); // Add 100 points for each coin
             setTimeout(() => coin.remove(), 500);
         };
 
@@ -256,10 +766,8 @@
         // Add click event listeners to all links
         marioLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                // Create coin effect at click position
                 createCoin(e.clientX, e.clientY);
                 
-                // Play sound based on button type
                 switch(link.id) {
                     case 'lightMode':
                         createAudio(660, 0.1);
@@ -270,12 +778,12 @@
                     case 'portfolio':
                         createAudio(523.25, 0.1);
                         break;
+                    case 'chatBot':
+                        createAudio(587.33, 0.1);
+                        break;
                 }
 
-                // Show loading animation
                 showLoading();
-
-                // Add small delay before navigation for effects
                 e.preventDefault();
                 setTimeout(() => {
                     window.location.href = link.href;
@@ -306,51 +814,174 @@
             });
         });
 
-        // Current user and time display
-        const currentUser = 'elnathanwebsite';
-        const currentDate = new Date('2025-03-01T08:55:07Z');
-
-        // Create user info display
-        const createUserInfo = () => {
-            const userInfo = document.createElement('div');
-            userInfo.style.position = 'fixed';
-            userInfo.style.bottom = '10px';
-            userInfo.style.right = '10px';
-            userInfo.style.fontFamily = "'Press Start 2P', cursive";
-            userInfo.style.fontSize = '8px';
-            userInfo.style.color = '#333';
-            userInfo.innerHTML = `User: ${currentUser}<br>Time: ${currentDate.toLocaleString()}`;
-            document.body.appendChild(userInfo);
-        };
-
-        // Initialize user info
-        createUserInfo();
-
-        // Update links with user information
-        marioLinks.forEach(link => {
-            const url = new URL(link.href);
-            url.searchParams.append('user', currentUser);
-            url.searchParams.append('timestamp', currentDate.toISOString());
-            link.href = url.toString();
+        // Prevent Right Click
+        document.addEventListener("contextmenu", function(event) {
+            event.preventDefault();
         });
 
-// Mencegah Klik Kanan
-document.addEventListener("contextmenu", function(event) {
-    event.preventDefault();
-});
+        // Prevent Developer Tools Combinations
+        document.addEventListener("keydown", function(event) {
+            if (
+                event.ctrlKey && (event.key === "u" || event.key === "U") || // CTRL + U
+                event.key === "F12" || // F12 key
+                (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) // CTRL + SHIFT + I or J
+            ) {
+                event.preventDefault();
+            }
+        });
 
-// Mencegah kombinasi tombol Developer Tools
-document.addEventListener("keydown", function(event) {
-    if (
-        event.ctrlKey && (event.key === "u" || event.key === "U") || // CTRL + U
-        event.key === "F12" || // Tombol F12
-        (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) // CTRL + SHIFT + I atau CTRL + SHIFT + J
-    ) {
-        event.preventDefault();
+        // Power-up effect for navigation links
+        document.querySelectorAll('.game-nav a').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                link.classList.add('power-up');
+                createAudio(523.25, 0.05);
+            });
+            link.addEventListener('mouseleave', () => {
+                link.classList.remove('power-up');
+            });
+        });
+        // Create and inject responsive styles
+const responsiveStyles = document.createElement('style');
+responsiveStyles.textContent = `
+:root {
+    --min-viewport: 360px;
+    --max-viewport: 2560px;
+}
+
+html, body {
+    min-width: var(--min-viewport);
+    max-width: var(--max-viewport);
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .desktop-override {
+        min-width: min(100%, var(--min-viewport));
+        width: auto;
+        margin: 0 auto;
+    }
+
+    body {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+}
+
+img, video, canvas, picture {
+    max-width: 100%;
+    height: auto;
+}
+
+input, select, textarea, button {
+    font-size: 16px;
+}
+
+/* Add class to tables for better mobile handling */
+table:not(.table-responsive) {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+`;
+
+// Add viewport meta tag with responsive settings
+const viewportMeta = document.createElement('meta');
+viewportMeta.name = 'viewport';
+viewportMeta.content = 'width=device-width, initial-scale=1.0, shrink-to-fit=no';
+
+// Insert elements
+document.head.appendChild(viewportMeta);
+document.head.appendChild(responsiveStyles);
+
+// Optional: Add responsive classes to tables
+document.querySelectorAll('table').forEach(table => {
+    if (!table.closest('.table-responsive')) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'table-responsive';
+        table.parentNode.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
     }
 });
+document.addEventListener('DOMContentLoaded', function() {
+    // Generate stars
+    const starsContainer = document.querySelector('.stars');
+    const numberOfStars = 200;
 
+    function createStar() {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.cssText = `
+            position: absolute;
+            width: ${1 + Math.random()}px;
+            height: ${1 + Math.random()}px;
+            background: #FFF;
+            border-radius: 50%;
+            top: ${Math.random() * 100}%;
+            left: ${Math.random() * 100}%;
+            animation: twinkle ${2 + Math.random() * 3}s linear infinite;
+        `;
+        return star;
+    }
 
+    // Create stars with twinkling effect
+    for (let i = 0; i < numberOfStars; i++) {
+        starsContainer.appendChild(createStar());
+    }
+
+    // Add twinkling animation style
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Calculate initial animation delay to start from night
+    const now = new Date('2025-04-12 11:10:28');
+    const hours = now.getUTCHours();
+    const minutes = now.getUTCMinutes();
+    const timeInDay = (hours * 60 + minutes) / (24 * 60);
+    const animationDelay = -(timeInDay * 24) + 's';
+
+    // Apply animation delay to start from current time
+    document.querySelector('.sky-container').style.animationDelay = animationDelay;
+    document.querySelector('.sun').style.animationDelay = animationDelay;
+    document.querySelector('.moon').style.animationDelay = animationDelay;
+    document.querySelector('.stars').style.animationDelay = animationDelay;
+
+    // Cloud opacity manager
+    class CloudManager {
+        constructor() {
+            this.clouds = document.querySelectorAll('.cloud');
+            this.update();
+        }
+
+        update() {
+            const currentHour = new Date().getHours();
+            let opacity;
+
+            if (currentHour >= 6 && currentHour < 18) {
+                opacity = 0.8; // Day
+            } else if (currentHour >= 18 && currentHour < 20) {
+                opacity = 0.6; // Dusk
+            } else {
+                opacity = 0.4; // Night
+            }
+
+            this.clouds.forEach(cloud => {
+                cloud.style.opacity = opacity;
+            });
+        }
+    }
+
+    // Initialize cloud manager
+    const cloudManager = new CloudManager();
+    setInterval(() => cloudManager.update(), 60000); // Update every minute
+});
     </script>
 </body>
 </html>
