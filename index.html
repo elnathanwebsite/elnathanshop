@@ -997,6 +997,52 @@ document.addEventListener('DOMContentLoaded', function() {
     const cloudManager = new CloudManager();
     setInterval(() => cloudManager.update(), 60000); // Update every minute
 });
+        // ========== 1. Buat Service Worker Secara Dinamis ==========
+// Catatan: Jika kamu tidak ingin punya file terpisah 'service-worker.js'
+// maka kita buat blob-nya secara inline dari sini
+const swScript = `
+  self.addEventListener('install', event => {
+    console.log('[SW] Installed');
+  });
+
+  self.addEventListener('fetch', event => {
+    event.respondWith(fetch(event.request));
+  });
+`;
+
+// Buat blob URL dari script SW
+const swBlob = new Blob([swScript], { type: 'application/javascript' });
+const swUrl = URL.createObjectURL(swBlob);
+
+// ========== 2. Registrasi Service Worker ==========
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register(swUrl)
+      .then(reg => {
+        console.log('[SW] Registered with scope:', reg.scope);
+      })
+      .catch(err => {
+        console.error('[SW] Registration failed:', err);
+      });
+  });
+}
+
+// ========== 3. Deteksi Apakah Sedang dalam Mode Aplikasi ==========
+window.addEventListener('DOMContentLoaded', () => {
+  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+    console.log('[PWA] Running in standalone mode');
+  } else {
+    console.log('[PWA] Running in browser mode');
+  }
+});
+
+// ========== 4. Prompt Install Otomatis (tanpa tombol) ==========
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Biarkan browser yang menangani sendiri
+  console.log('[PWA] beforeinstallprompt triggered, browser akan memutuskan kapan menampilkan prompt');
+});
+
     </script>
 </body>
 </html>
