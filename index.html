@@ -675,8 +675,9 @@
         <div class="button-container">
             <a href="modeterang.html" id="lightMode" class="mario-link" target="_blank">Open Web Light Mode</a>
             <a href="modegelap.html" id="darkMode" class="mario-link" target="_blank">Open Web Dark Mode</a>
+              <a href="https://www.elnathanwebsite.my.id/utama.html" id="portfolio" class="mario-link" target="_blank">EL NATHAN SHOP</a>
             <a href="https://aiforelnathaners.vercel.app/" id="chatBot" class="mario-link" target="_blank">Chat Bot</a>
-            <a href="templateprtofolio.html" id="portfolio" class="mario-link" target="_blank">Template Portofolio</a>
+          
         </div>
     </div>
     <!-- Footer -->
@@ -1042,6 +1043,76 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize cloud manager
     const cloudManager = new CloudManager();
     setInterval(() => cloudManager.update(), 60000); // Update every minute
+});
+// Variabel untuk menyimpan event beforeinstallprompt
+let deferredPrompt;
+
+// Fungsi untuk menampilkan prompt instalasi aplikasi
+function showInstallPrompt() {
+    if (deferredPrompt) {
+        // Memicu prompt instalasi
+        deferredPrompt.prompt();
+
+        // Menangani hasil dari pemilihan pengguna
+        deferredPrompt.userChoice
+            .then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('Pengguna memilih untuk menginstal aplikasi.');
+                } else {
+                    console.log('Pengguna menolak instalasi aplikasi.');
+                }
+                // Reset deferredPrompt setelah pengguna memilih
+                deferredPrompt = null;
+            });
+    } else {
+        console.log('Aplikasi tidak dapat dipasang, prompt belum tersedia.');
+    }
+}
+
+// Menangani event beforeinstallprompt yang memberi tahu browser jika aplikasi bisa diinstal
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Mencegah browser menampilkan prompt instalasi otomatis
+    e.preventDefault();
+    // Menyimpan referensi ke event untuk digunakan nanti
+    deferredPrompt = e;
+
+    // Menampilkan notifikasi kepada pengguna
+    alert('Aplikasi ini dapat diinstal pada perangkat Anda! Klik "Install" untuk melanjutkan.');
+    
+    // Memanggil fungsi untuk menampilkan prompt instalasi setelah notifikasi
+    showInstallPrompt();
+});
+
+// Memastikan bahwa Service Worker didaftarkan dengan benar
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then((registration) => {
+                console.log('Service Worker berhasil didaftarkan:', registration);
+            })
+            .catch((error) => {
+                console.log('Pendaftaran Service Worker gagal:', error);
+            });
+    });
+}
+
+// Memastikan PWA bisa dipasang dengan baik (untuk perangkat yang mendukung)
+if (window.matchMedia('(display-mode: standalone)').matches) {
+    console.log('Aplikasi sudah dipasang sebagai PWA.');
+} else {
+    console.log('Aplikasi belum dipasang sebagai PWA.');
+}
+
+// Fungsi untuk memeriksa apakah aplikasi memenuhi kriteria PWA (misalnya menggunakan HTTPS)
+function checkPWARequirements() {
+    if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost') {
+        console.warn('PWA hanya dapat berfungsi pada situs yang menggunakan HTTPS.');
+    }
+}
+
+// Panggil fungsi pengecekan syarat PWA saat halaman dimuat
+window.addEventListener('load', () => {
+    checkPWARequirements();
 });
 
     </script>
