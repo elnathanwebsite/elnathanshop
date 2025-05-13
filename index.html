@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -1925,6 +1926,276 @@ function checkPWARequirements() {
 window.addEventListener('load', () => {
     checkPWARequirements();
 });
+/**
+ * Unified PWA Force Installer
+ * Version: 1.0.0
+ * Created: 2025-05-13 08:16:16 UTC
+ * Author: elnathanwebsite
+ * License: MIT
+ * Description: Aggressive PWA installation handler with forced browser notifications
+ */
+
+(function() {
+    'use strict';
+
+    // Metadata dan Konfigurasi
+    const METADATA = {
+        version: '1.0.0',
+        created: '2025-05-13 08:16:16 UTC',
+        author: 'elnathanwebsite',
+        lastModified: '2025-05-13 08:16:16 UTC'
+    };
+
+    const CONFIG = {
+        MAX_PROMPTS: 3,                     // Maksimum percobaan prompt
+        PROMPT_INTERVAL: 15000,             // Interval antar prompt (15 detik)
+        FORCE_PROMPT_DELAY: 5000,           // Delay sebelum prompt pertama (5 detik)
+        DEBUG: true,                        // Mode debug
+        STORAGE_KEY: 'pwa_install_state',   // Key untuk local storage
+        AGGRESSIVE_MODE: true,              // Mode agresif
+        AUTO_PROMPT: true                   // Prompt otomatis saat load
+    };
+
+    // State Management
+    let state = {
+        deferredPrompt: null,
+        promptCount: 0,
+        lastPromptTime: 0,
+        isInstalled: false,
+        installationTried: false,
+        userInteracted: false
+    };
+
+    // Logger Utility
+    const logger = {
+        log: (...args) => CONFIG.DEBUG && console.log(`[PWA Installer ${METADATA.version}]`, ...args),
+        error: (...args) => CONFIG.DEBUG && console.error(`[PWA Installer Error]`, ...args),
+        warn: (...args) => CONFIG.DEBUG && console.warn(`[PWA Installer Warning]`, ...args),
+        info: (...args) => CONFIG.DEBUG && console.info(`[PWA Installer Info]`, ...args)
+    };
+
+    // Utility Functions
+    const utils = {
+        isStandalone: () => {
+            return window.matchMedia('(display-mode: standalone)').matches ||
+                   window.navigator.standalone ||
+                   document.referrer.includes('android-app://');
+        },
+
+        isPWASupported: () => {
+            return 'serviceWorker' in navigator && 
+                   'BeforeInstallPromptEvent' in window;
+        },
+
+        checkInstallSupport: () => {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.platform);
+            return !isIOS && !utils.isStandalone() && utils.isPWASupported();
+        },
+
+        delay: (ms) => new Promise(resolve => setTimeout(resolve, ms)),
+
+        saveState: () => {
+            try {
+                const saveData = {
+                    promptCount: state.promptCount,
+                    lastPromptTime: state.lastPromptTime,
+                    isInstalled: state.isInstalled,
+                    installationTried: state.installationTried,
+                    userInteracted: state.userInteracted
+                };
+                localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(saveData));
+            } catch (e) {
+                logger.error('Failed to save state:', e);
+            }
+        },
+
+        loadState: () => {
+            try {
+                const saved = localStorage.getItem(CONFIG.STORAGE_KEY);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    state = { ...state, ...parsed };
+                }
+            } catch (e) {
+                logger.error('Failed to load state:', e);
+            }
+        },
+
+        clearState: () => {
+            try {
+                localStorage.removeItem(CONFIG.STORAGE_KEY);
+                state = {
+                    deferredPrompt: null,
+                    promptCount: 0,
+                    lastPromptTime: 0,
+                    isInstalled: false,
+                    installationTried: false,
+                    userInteracted: false
+                };
+            } catch (e) {
+                logger.error('Failed to clear state:', e);
+            }
+        }
+    };
+
+    // Installation Handler
+    const installHandler = {
+        init: () => {
+            utils.loadState();
+            
+            // Remove existing listeners
+            window.removeEventListener('beforeinstallprompt', installHandler.beforeInstallPromptHandler);
+            window.removeEventListener('appinstalled', installHandler.appInstalledHandler);
+            
+            // Add new listeners
+            window.addEventListener('beforeinstallprompt', installHandler.beforeInstallPromptHandler, { capture: true });
+            window.addEventListener('appinstalled', installHandler.appInstalledHandler, { capture: true });
+            
+            // User interaction handlers
+            document.addEventListener('click', installHandler.userInteractionHandler, { capture: true });
+            document.addEventListener('touchstart', installHandler.userInteractionHandler, { capture: true });
+            
+            // Start auto prompt if enabled
+            if (CONFIG.AUTO_PROMPT) {
+                setTimeout(() => installHandler.tryPrompt(), CONFIG.FORCE_PROMPT_DELAY);
+            }
+
+            logger.info('Installation handler initialized', METADATA);
+        },
+
+        beforeInstallPromptHandler: (e) => {
+            e.preventDefault();
+            state.deferredPrompt = e;
+            logger.log('Install prompt captured');
+            
+            if (CONFIG.AGGRESSIVE_MODE && !state.installationTried) {
+                installHandler.tryPrompt();
+            }
+        },
+
+        appInstalledHandler: (evt) => {
+            state.isInstalled = true;
+            state.deferredPrompt = null;
+            state.installationTried = true;
+            utils.saveState();
+            
+            logger.log('PWA successfully installed');
+            window.dispatchEvent(new CustomEvent('pwaInstallSuccess', {
+                detail: { timestamp: new Date().toISOString() }
+            }));
+        },
+
+        userInteractionHandler: async (event) => {
+            state.userInteracted = true;
+            
+            if (CONFIG.AGGRESSIVE_MODE && 
+                !state.isInstalled && 
+                state.promptCount < CONFIG.MAX_PROMPTS) {
+                await installHandler.tryPrompt();
+            }
+        },
+
+        tryPrompt: async () => {
+            if (!state.deferredPrompt || 
+                state.isInstalled || 
+                state.promptCount >= CONFIG.MAX_PROMPTS) {
+                return false;
+            }
+
+            const now = Date.now();
+            if (now - state.lastPromptTime < CONFIG.PROMPT_INTERVAL) {
+                return false;
+            }
+
+            try {
+                state.lastPromptTime = now;
+                state.promptCount++;
+                state.installationTried = true;
+                utils.saveState();
+
+                logger.log(`Showing prompt attempt ${state.promptCount} of ${CONFIG.MAX_PROMPTS}`);
+                
+                await state.deferredPrompt.prompt();
+                const result = await state.deferredPrompt.userChoice;
+
+                if (result.outcome === 'accepted') {
+                    state.isInstalled = true;
+                    logger.log('Installation accepted');
+                    window.dispatchEvent(new CustomEvent('pwaInstallSuccess'));
+                } else {
+                    logger.log('Installation rejected');
+                    window.dispatchEvent(new CustomEvent('pwaInstallRejected'));
+                    
+                    if (CONFIG.AGGRESSIVE_MODE && state.promptCount < CONFIG.MAX_PROMPTS) {
+                        setTimeout(() => installHandler.tryPrompt(), CONFIG.PROMPT_INTERVAL);
+                    }
+                }
+
+                return true;
+            } catch (error) {
+                logger.error('Prompt error:', error);
+                window.dispatchEvent(new CustomEvent('pwaInstallError', { 
+                    detail: { 
+                        error: error.message,
+                        timestamp: new Date().toISOString()
+                    }
+                }));
+                return false;
+            } finally {
+                utils.saveState();
+            }
+        },
+
+        reset: () => {
+            utils.clearState();
+            logger.log('Installation state reset');
+        }
+    };
+
+    // Public API
+    window.PWAInstaller = {
+        // Core methods
+        promptInstall: () => installHandler.tryPrompt(),
+        reset: () => installHandler.reset(),
+        
+        // State and info methods
+        getState: () => ({
+            ...state,
+            canPrompt: !!state.deferredPrompt && state.promptCount < CONFIG.MAX_PROMPTS,
+            maxPrompts: CONFIG.MAX_PROMPTS
+        }),
+        
+        getMetadata: () => ({ ...METADATA }),
+        checkSupport: () => utils.checkInstallSupport(),
+        
+        // Configuration methods
+        configure: (newConfig) => {
+            Object.assign(CONFIG, newConfig);
+            logger.log('Configuration updated:', CONFIG);
+        },
+        
+        // Advanced methods
+        forcePrompt: async () => {
+            CONFIG.AGGRESSIVE_MODE = true;
+            await installHandler.tryPrompt();
+        },
+        
+        disablePrompts: () => {
+            CONFIG.AGGRESSIVE_MODE = false;
+            CONFIG.AUTO_PROMPT = false;
+        }
+    };
+
+    // Initialize on load
+    if (document.readyState === 'complete') {
+        installHandler.init();
+    } else {
+        window.addEventListener('load', installHandler.init);
+    }
+
+    // Expose version info to console
+    logger.info(`PWA Installer ${METADATA.version} initialized`);
+})();
 
     </script>
 </body>
