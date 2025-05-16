@@ -727,7 +727,18 @@
         <div class="loading-sprite"></div>
     </div>
 
-    <script>
+<script src="https://cdn.brevo.com/js/sdk-loader.js" async></script>
+<script>
+    // Version: 2.0
+    window.Brevo = window.Brevo || [];
+    Brevo.push([
+        "init",
+        {
+            client_key: "4zjqvmienr6ufwjb0uy71adp",
+            // Optional: Add other initialization options, see documentation
+        }
+    ]);
+
                 // ========== 1. Buat Service Worker Secara Dinamis ==========
 // Catatan: Jika kamu tidak ingin punya file terpisah 'service-worker.js'
 // maka kita buat blob-nya secara inline dari sini
