@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://elnathanwebsite.vercel.app/sitemap.xml
