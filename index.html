@@ -1077,6 +1077,283 @@
     transform: scale(1.05);
     transition: transform 0.3s ease;
 }
+/* Navigation and Section Styles */
+.game-nav {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.nav-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+/* Footer Title Styling */
+.footer-title {
+    color: #ffffff;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Press Start 2P', cursive;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+}
+
+/* Power-up Button Styles */
+.power-up {
+    text-decoration: none;
+    padding: 20px 25px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    border: 3px solid #000;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+/* Button Colors and Gradients */
+.power-up:nth-child(2) {
+    background: linear-gradient(to bottom, #ff6b6b 0%, #ff5252 100%);
+    box-shadow: 
+        inset -4px -4px 0px 0px #d14848,
+        4px 4px 0px 0px #000;
+}
+
+.power-up:nth-child(3) {
+    background: linear-gradient(to bottom, #4ecdc4 0%, #45b7af 100%);
+    box-shadow: 
+        inset -4px -4px 0px 0px #338f89,
+        4px 4px 0px 0px #000;
+}
+
+.power-up:nth-child(4) {
+    background: linear-gradient(to bottom, #a537fd 0%, #8910eb 100%);
+    box-shadow: 
+        inset -4px -4px 0px 0px #6b0db6,
+        4px 4px 0px 0px #000;
+}
+
+.power-up:nth-child(5) {
+    background: linear-gradient(to bottom, #2ecc71 0%, #27ae60 100%);
+    box-shadow: 
+        inset -4px -4px 0px 0px #1e8449,
+        4px 4px 0px 0px #000;
+}
+
+.power-up:nth-child(6) {
+    background: linear-gradient(to bottom, #f1c40f 0%, #f39c12 100%);
+    box-shadow: 
+        inset -4px -4px 0px 0px #b8960b,
+        4px 4px 0px 0px #000;
+}
+
+.power-up:nth-child(7) {
+    background: linear-gradient(to bottom, #3498db 0%, #2980b9 100%);
+    box-shadow: 
+        inset -4px -4px 0px 0px #1f618d,
+        4px 4px 0px 0px #000;
+}
+
+.power-up:nth-child(8) {
+    background: linear-gradient(to bottom, #e74c3c 0%, #c0392b 100%);
+    box-shadow: 
+        inset -4px -4px 0px 0px #922b21,
+        4px 4px 0px 0px #000;
+}
+
+.power-up:nth-child(9) {
+    background: linear-gradient(to bottom, #9b59b6 0%, #8e44ad 100%);
+    box-shadow: 
+        inset -4px -4px 0px 0px #6c3483,
+        4px 4px 0px 0px #000;
+}
+
+/* Hover Effects */
+.power-up:hover {
+    transform: translateY(4px);
+}
+
+.power-up:nth-child(2):hover {
+    box-shadow: 
+        inset -4px -4px 0px 0px #d14848,
+        0px 0px 0px 0px #000;
+}
+
+.power-up:nth-child(3):hover {
+    box-shadow: 
+        inset -4px -4px 0px 0px #338f89,
+        0px 0px 0px 0px #000;
+}
+
+.power-up:nth-child(4):hover {
+    box-shadow: 
+        inset -4px -4px 0px 0px #6b0db6,
+        0px 0px 0px 0px #000;
+}
+
+.power-up:nth-child(5):hover {
+    box-shadow: 
+        inset -4px -4px 0px 0px #1e8449,
+        0px 0px 0px 0px #000;
+}
+
+.power-up:nth-child(6):hover {
+    box-shadow: 
+        inset -4px -4px 0px 0px #b8960b,
+        0px 0px 0px 0px #000;
+}
+
+.power-up:nth-child(7):hover {
+    box-shadow: 
+        inset -4px -4px 0px 0px #1f618d,
+        0px 0px 0px 0px #000;
+}
+
+.power-up:nth-child(8):hover {
+    box-shadow: 
+        inset -4px -4px 0px 0px #922b21,
+        0px 0px 0px 0px #000;
+}
+
+.power-up:nth-child(9):hover {
+    box-shadow: 
+        inset -4px -4px 0px 0px #6c3483,
+        0px 0px 0px 0px #000;
+}
+
+/* Text Styles */
+.power-up h2 {
+    margin: 0;
+    font-size: 1.2em;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px #000;
+}
+
+.power-up p {
+    margin: 8px 0 0;
+    font-size: 0.8em;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-shadow: 1px 1px #000;
+}
+
+.power-up:hover p {
+    opacity: 1;
+}
+
+/* Shine Effect */
+.power-up::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.power-up:hover::after {
+    opacity: 1;
+    transform: rotate(45deg) translateY(-100%);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .nav-section {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .power-up {
+        padding: 15px 20px;
+    }
+
+    .power-up h2 {
+        font-size: 1em;
+    }
+
+    .power-up p {
+        font-size: 0.7em;
+    }
+
+    .footer-title {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .nav-section {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .power-up {
+        padding: 12px 15px;
+    }
+
+    .power-up h2 {
+        font-size: 0.9em;
+    }
+
+    .power-up p {
+        font-size: 0.6em;
+    }
+
+    .footer-title {
+        font-size: 18px;
+    }
+}
+
+/* Animation for new buttons */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.power-up:nth-child(8),
+.power-up:nth-child(9) {
+    animation: pulse 2s infinite;
+}
+
+/* Active state for all buttons */
+.power-up:active {
+    transform: translateY(8px);
+    box-shadow: none !important;
+    transition: all 0.1s ease;
+}
 </style>
 </head>
 <body>
@@ -1108,8 +1385,17 @@
        
     <nav class="game-nav">
       
-        <div class="nav-section">
+       <div class="nav-section">
            <h3 class="footer-title">Koleksi Webite👇</h3>
+ 
+<a href="https://imagetoqrcode.vercel.app/" class="power-up">
+    <h2>image Qr Generator</h2>
+    <p>Upload Gambar & QR Generator</p>
+</a>
+            <a href="https://aturduit.vercel.app/" class="power-up">
+                <h2>Many Management</h2>
+                <p>Smart Receipt Analyzer | elnathanwebsite</p>
+            </a>
             <a href="https://navigopro.vercel.app/" class="power-up">
                 <h2>NaviGoPro</h2>
                 <p>Solusi Navigasi Professional untuk Bisnis Anda</p>
