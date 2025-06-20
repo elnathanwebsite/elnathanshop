@@ -29,7 +29,6 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            animation: colorFlash 8s infinite;
         }
 
         /* Desktop Background */
@@ -46,12 +45,7 @@
             }
         }
 
-        /* Color Flash Animation */
-        @keyframes colorFlash {
-            0%, 70%, 100% { filter: hue-rotate(0deg) brightness(1) contrast(1.2); }
-            15% { filter: hue-rotate(180deg) brightness(1.3) contrast(1.5); }
-            30% { filter: hue-rotate(240deg) brightness(1.2) contrast(1.3); }
-        }
+
 
         /* Overlay */
         .overlay {
@@ -60,10 +54,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, 
-                rgba(138, 43, 226, 0.3), 
-                rgba(0, 0, 0, 0.6), 
-                rgba(75, 0, 130, 0.4));
+            background: rgba(0, 0, 0, 0.3);
             z-index: 1;
         }
 
@@ -125,8 +116,8 @@
         .cyber-button {
             position: relative;
             padding: 20px 50px;
-            background: linear-gradient(45deg, #8a2be2, #4b0082);
-            border: none;
+            background: transparent;
+            border: 2px solid #00ffff;
             color: #fff;
             font-size: 18px;
             font-weight: bold;
@@ -135,46 +126,71 @@
             cursor: pointer;
             overflow: hidden;
             transition: all 0.3s ease;
-            box-shadow: 
-                0 0 20px rgba(138, 43, 226, 0.5),
-                inset 0 0 20px rgba(255, 255, 255, 0.1);
+            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
         }
 
-        /* Button Border Animation */
+        /* Button Corner Lines */
         .cyber-button::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, #00ffff, transparent);
-            animation: borderScan 2s infinite;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
         }
 
+        /* Animated Border Lines */
         .cyber-button::after {
             content: '';
             position: absolute;
-            top: -100%;
+            top: 0;
+            left: 0;
             right: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, transparent, #ff00ff, transparent);
-            animation: borderScan 2s infinite 1s;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, transparent 0%, #00ffff 50%, transparent 100%),
+                linear-gradient(0deg, transparent 0%, #ff00ff 50%, transparent 100%);
+            background-size: 200% 2px, 2px 200%;
+            background-position: -100% 0, 0 -100%;
+            background-repeat: no-repeat;
+            animation: borderMove 2s infinite linear;
+            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
         }
 
-        @keyframes borderScan {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        @keyframes borderMove {
+            0% {
+                background-position: -200% 0, 0 -200%;
+            }
+            25% {
+                background-position: 100% 0, 0 -200%;
+            }
+            50% {
+                background-position: 100% 0, 0 100%;
+            }
+            75% {
+                background-position: -200% 0, 0 100%;
+            }
+            100% {
+                background-position: -200% 0, 0 -200%;
+            }
         }
 
         /* Button Hover Effect */
         .cyber-button:hover {
-            transform: scale(1.05);
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
             box-shadow: 
-                0 0 30px rgba(138, 43, 226, 0.8),
-                0 0 50px rgba(0, 255, 255, 0.3),
-                inset 0 0 30px rgba(255, 255, 255, 0.2);
+                0 0 20px rgba(0, 255, 255, 0.5),
+                inset 0 0 20px rgba(0, 255, 255, 0.1);
+        }
+
+        .cyber-button:hover::before {
+            opacity: 1;
         }
 
         /* Glitch Effect */
@@ -325,16 +341,9 @@
             // Contoh: window.location.href = 'https://example.com';
         }
 
-        // Tambahan efek interaktif
+        // Tambahan efek interaktif - mouse movement disabled
         document.addEventListener('mousemove', function(e) {
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-            
-            const overlay = document.querySelector('.overlay');
-            overlay.style.background = `linear-gradient(${mouseX * 360}deg, 
-                rgba(138, 43, 226, ${0.3 + mouseY * 0.2}), 
-                rgba(0, 0, 0, 0.6), 
-                rgba(75, 0, 130, ${0.4 + mouseX * 0.2}))`;
+            // Keeping background clean from mouse effects
         });
     </script>
 </body>
