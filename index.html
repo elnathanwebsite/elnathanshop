@@ -1353,6 +1353,85 @@
     box-shadow: none !important;
     transition: all 0.1s ease;
 }
+   /* 1. Kontainer Utama Carousel */
+   #ad-carousel-container {
+        /* Rasio aspek menjaga bentuk carousel agar tidak gepeng/terlalu tinggi */
+        /* Rasio 16:6 cocok untuk desktop, bisa diubah sesuai selera */
+        aspect-ratio: 16 / 6;
+
+        /* Position relative diperlukan agar tombol navigasi bisa diposisikan di dalamnya */
+        position: relative; 
+        
+        /* TailwindCSS classes yang sudah ada di HTML Anda juga membantu (shadow, rounded, dll) */
+    }
+
+    /* 2. Tombol Navigasi (Kiri & Kanan) */
+    #ad-carousel-prev, 
+    #ad-carousel-next {
+        /* Ukuran tombol */
+        width: 40px;
+        height: 40px;
+
+        /* Tampilan (flex untuk memusatkan ikon) */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        /* Warna & Desain */
+        background-color: rgba(255, 255, 255, 0.7); /* Putih semi-transparan */
+        color: #1F2937; /* abu-abu gelap */
+        border-radius: 9999px; /* Membuatnya bulat sempurna */
+        
+        /* Efek saat mouse diarahkan */
+        transition: background-color 0.2s;
+        cursor: pointer;
+    }
+
+    #ad-carousel-prev:hover,
+    #ad-carousel-next:hover {
+        background-color: white; /* Jadi putih solid saat di-hover */
+    }
+
+    /* 3. Indikator Titik (di bawah) */
+    .indicator-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%; /* Bulat */
+        background-color: rgba(255, 255, 255, 0.5); /* Putih transparan */
+        cursor: pointer;
+        border: none; /* Hilangkan border default tombol */
+        padding: 0;
+        transition: background-color 0.3s;
+    }
+
+    /* Gaya untuk titik yang sedang aktif (menandakan slide saat ini) */
+    .indicator-dot.active {
+        background-color: white; /* Warna putih solid */
+    }
+
+    /* 4. Trek/Jalur Iklan (yang bergerak) */
+    /* Sebagian besar styling sudah diatur oleh class Tailwind ('flex'),  */
+    /* tapi kita tambahkan transisi untuk efek pergerakan yang halus. */
+    #ad-carousel-track {
+        transition-property: transform;
+        transition-timing-function: ease-in-out;
+        transition-duration: 500ms; /* Durasi animasi geser: 0.5 detik */
+    }
+
+    /* 5. Pengaturan Responsif untuk Layar Kecil (Mobile) */
+    @media (max-width: 768px) {
+        /* Di layar mobile, buat carousel sedikit lebih tinggi agar gambar lebih jelas */
+        #ad-carousel-container {
+            aspect-ratio: 16 / 8;
+        }
+
+        /* Kecilkan sedikit tombol navigasi di mobile */
+        #ad-carousel-prev, 
+        #ad-carousel-next {
+            width: 32px;
+            height: 32px;
+        }
+    }
 </style>
 </head>
 <body>
@@ -1370,6 +1449,34 @@
                     <p>Hai, saya Arifan. Saya adalah seorang pengembang website (website developer) sekaligus desainer grafis yang berfokus pada menciptakan tampilan digital yang fungsional dan menarik. Saya memiliki keahlian dalam membangun situs web responsif serta merancang elemen visual yang kreatif untuk memperkuat identitas merek dan meningkatkan pengalaman pengguna secara keseluruhan.</p>
                 </div>
             </div>
+            
+            <section aria-label="Iklan Sponsor" class="my-6 no-print">
+                <h3 class="footer-title">Project Serius (Aplikasi)</h3>
+                <div id="ad-carousel-container" class="relative w-full max-w-5xl mx-auto rounded-xl shadow-lg overflow-hidden">
+            
+                    <div id="ad-carousel-track" class="flex">
+            
+                        <a href="#link-tujuan-iklan-1" class="ad-slide block w-full flex-shrink-0">
+                            <img src="https://i.pinimg.com/736x/e2/45/0b/e2450b2317cb9a071ecc1f33e4e126ee.jpg" alt="Iklan Promosi 1"
+                                class="w-full h-full object-cover">
+                        </a>
+            
+            
+                    </div>
+            
+                    <button id="ad-carousel-prev" aria-label="Iklan Sebelumnya"
+                        class="absolute top-1/2 left-4 transform -translate-y-1/2">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="ad-carousel-next" aria-label="Iklan Berikutnya"
+                        class="absolute top-1/2 right-4 transform -translate-y-1/2">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+            
+                    <div id="ad-carousel-indicators" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    </div>
+            
+                </div>  </section>
               <div class="footer-section">
                 <h3 class="footer-title">SOSMED</h3>
                 <div class="social-links">
@@ -1538,6 +1645,126 @@
 
 <script src="https://cdn.brevo.com/js/sdk-loader.js" async></script>
 <script>
+    // Menjalankan script setelah seluruh dokumen HTML selesai dimuat
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // 1. Mengambil semua elemen HTML yang kita butuhkan
+            const container = document.getElementById('ad-carousel-container');
+            const track = document.getElementById('ad-carousel-track');
+            const slides = document.querySelectorAll('.ad-slide');
+            const prevButton = document.getElementById('ad-carousel-prev');
+            const nextButton = document.getElementById('ad-carousel-next');
+            const indicatorsContainer = document.getElementById('ad-carousel-indicators');
+
+            // Jika tidak ada gambar sama sekali, sembunyikan seluruh area iklan
+            if (slides.length === 0) {
+                if (container) container.style.display = 'none';
+                return; // Hentikan eksekusi script
+            }
+
+            // Jika hanya ada satu gambar, tidak perlu navigasi dan geser otomatis
+            if (slides.length <= 1) {
+                if (prevButton) prevButton.style.display = 'none';
+                if (nextButton) nextButton.style.display = 'none';
+                if (indicatorsContainer) indicatorsContainer.style.display = 'none';
+                return; // Hentikan eksekusi script
+            }
+
+            let currentIndex = 0; // Variabel untuk melacak slide yang sedang aktif
+            let autoSlideInterval; // Variabel untuk menyimpan timer otomatis
+
+            // 2. Membuat indikator titik secara dinamis berdasarkan jumlah slide
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.classList.add('indicator-dot');
+                dot.setAttribute('aria-label', `Pindah ke iklan ${index + 1}`);
+
+                // Tambahkan event saat titik di-klik
+                dot.addEventListener('click', () => {
+                    goToSlide(index);
+                    resetAutoSlideTimer(); // Reset timer saat user berinteraksi
+                });
+                indicatorsContainer.appendChild(dot);
+            });
+
+            // Ambil semua titik yang baru dibuat
+            const indicators = document.querySelectorAll('.indicator-dot');
+
+            // 3. Fungsi utama untuk memindahkan slide
+            function goToSlide(index) {
+                // Logika agar slide berputar (looping)
+                if (index < 0) {
+                    index = slides.length - 1; // Jika di awal dan klik 'prev', pergi ke akhir
+                } else if (index >= slides.length) {
+                    index = 0; // Jika di akhir dan klik 'next', kembali ke awal
+                }
+
+                // Geser track menggunakan CSS transform
+                track.style.transform = `translateX(-${index * 100}%)`;
+                currentIndex = index;
+
+                // Perbarui tampilan titik indikator
+                updateIndicators();
+            }
+
+            // 4. Fungsi untuk memperbarui titik mana yang aktif
+            function updateIndicators() {
+                indicators.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.add('active'); // Tambahkan class 'active' ke titik yang sesuai
+                    } else {
+                        dot.classList.remove('active'); // Hapus dari yang lain
+                    }
+                });
+            }
+
+            // 5. Fungsi bantuan untuk navigasi
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+
+            function prevSlide() {
+                goToSlide(currentIndex - 1);
+            }
+
+            // 6. Logika untuk slide otomatis
+            function startAutoSlide() {
+                // Hapus interval lama untuk mencegah beberapa timer berjalan bersamaan
+                clearInterval(autoSlideInterval);
+                // Atur interval baru untuk memanggil 'nextSlide' setiap 5 detik
+                autoSlideInterval = setInterval(nextSlide, 3000); // 5000ms = 5 detik
+            }
+
+            function stopAutoSlide() {
+                clearInterval(autoSlideInterval);
+            }
+
+            function resetAutoSlideTimer() {
+                stopAutoSlide();
+                startAutoSlide();
+            }
+
+            // 7. Menambahkan semua event listener
+            nextButton.addEventListener('click', () => {
+                nextSlide();
+                resetAutoSlideTimer();
+            });
+
+            prevButton.addEventListener('click', () => {
+                prevSlide();
+                resetAutoSlideTimer();
+            });
+
+            // Saat mouse berada di atas carousel, hentikan pergerakan otomatis
+            container.addEventListener('mouseenter', stopAutoSlide);
+            // Saat mouse meninggalkan carousel, mulai lagi pergerakan otomatis
+            container.addEventListener('mouseleave', startAutoSlide);
+
+            // 8. Inisialisasi Carousel
+            // Panggil fungsi ini saat pertama kali halaman dimuat
+            updateIndicators(); // Set titik pertama sebagai aktif
+            startAutoSlide();   // Mulai pergerakan otomatis
+        });
     
 // Mencegah Klik Kanan
 document.addEventListener("contextmenu", function(event) {
