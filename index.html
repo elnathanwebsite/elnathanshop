@@ -3,31 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETHAN EL NATHAN | Professional Portfolio</title>
-    <meta name="description" content="Professional portfolio of Ethan El Nathan - Web Developer & Designer">
+    <title>ETHAN EL NATHAN | Professional Portfolio & Dashboard</title>
+    <meta name="description" content="Professional portfolio and dashboard of Ethan El Nathan - Web Developer, Designer, and Digital Creator">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="ETH">
+    <link rel="manifest" href="/site.webmanifest">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="Ethan El Nathan - Professional Portfolio">
-    <meta property="og:description" content="Web Developer & Designer portfolio showcasing professional projects and skills">
+    <meta property="og:title" content="Ethan El Nathan - Professional Portfolio & Dashboard">
+    <meta property="og:description" content="Website showcasing my professional projects, skills, and digital creations">
     <meta property="og:image" content="https://i.pinimg.com/736x/22/ce/99/22ce990742ddfb4a7eb85d99a86a2d34.jpg">
     <meta property="og:url" content="https://yourwebsite.com">
     <meta property="og:type" content="website">
     
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ethan El Nathan - Professional Portfolio">
-    <meta name="twitter:description" content="Web Developer & Designer portfolio showcasing professional projects and skills">
+    <meta name="twitter:title" content="Ethan El Nathan - Professional Portfolio & Dashboard">
+    <meta name="twitter:description" content="Website showcasing my professional projects, skills, and digital creations">
     <meta name="twitter:image" content="https://i.pinimg.com/736x/22/ce/99/22ce990742ddfb4a7eb85d99a86a2d34.jpg">
     
     <style>
@@ -41,6 +44,8 @@
             --danger-color: #ef4444;
             --warning-color: #f59e0b;
             --success-color: #10b981;
+            --purple-color: #8b5cf6;
+            --pink-color: #ec4899;
             
             --border-radius: 8px;
             --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -65,6 +70,10 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             line-height: 1.2;
+        }
+        
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
         }
         
         a {
@@ -607,6 +616,8 @@
             border-radius: var(--border-radius);
             background-color: #f8fafc;
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
         
         .panel-link:hover {
@@ -614,6 +625,82 @@
             color: white;
         }
         
+        .panel-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Power-up Button Styles */
+        .power-up {
+            display: block;
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            text-align: center;
+            color: white;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .power-up::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .power-up:hover::before {
+            left: 100%;
+        }
+        
+        .power-up:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .power-up:nth-child(1) {
+            background: linear-gradient(to right, #ef4444, #f87171);
+        }
+        
+        .power-up:nth-child(2) {
+            background: linear-gradient(to right, #10b981, #34d399);
+        }
+        
+        .power-up:nth-child(3) {
+            background: linear-gradient(to right, #8b5cf6, #a78bfa);
+        }
+        
+        .power-up:nth-child(4) {
+            background: linear-gradient(to right, #3b82f6, #60a5fa);
+        }
+        
+        .power-up:nth-child(5) {
+            background: linear-gradient(to right, #f59e0b, #fbbf24);
+        }
+        
+        .power-up:nth-child(6) {
+            background: linear-gradient(to right, #ec4899, #f472b6);
+        }
+        
+        .power-up:nth-child(7) {
+            background: linear-gradient(to right, #14b8a6, #2dd4bf);
+        }
+        
+        .power-up:nth-child(8) {
+            background: linear-gradient(to right, #64748b, #94a3b8);
+        }
+        
+        /* Dashboard Toggle */
         .dashboard-toggle {
             position: fixed;
             right: 30px;
@@ -638,6 +725,343 @@
             background-color: var(--primary-dark);
         }
         
+        /* Sky Container Animation */
+        .sky-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            animation: skyColor 24s linear infinite;
+        }
+        
+        @keyframes skyColor {
+            0% { background: #2B2B4B; }
+            25% { background: #8BA0BD; }
+            35% { background: #87CEEB; }
+            65% { background: #87CEEB; }
+            75% { background: #FFDAB9; }
+            85% { background: #FF6B6B; }
+            90% { background: #4A4969; }
+            100% { background: #2B2B4B; }
+        }
+        
+        /* Celestial Bodies */
+        .celestial-body {
+            position: fixed;
+            top: 50px;
+            right: 50px;
+            width: 100px;
+            height: 100px;
+            transform-origin: center;
+        }
+        
+        .sun {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            animation: sunPhase 24s linear infinite;
+            opacity: 0;
+            background: #FFD700;
+            box-shadow: 0 0 50px #FFA500;
+        }
+        
+        @keyframes sunPhase {
+            0% { opacity: 0; }
+            25% { opacity: 0.7; background: #FF9A3C; box-shadow: 0 0 50px #FF783C; }
+            35% { opacity: 1; background: #FFD700; box-shadow: 0 0 50px #FFA500; }
+            75% { opacity: 1; background: #FF6B6B; box-shadow: 0 0 50px #FF4500; }
+            85% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+        
+        .moon {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            animation: moonPhase 24s linear infinite;
+            opacity: 0;
+            background: #F5F5F5;
+            box-shadow: 0 0 20px #FFF;
+        }
+        
+        .crater {
+            position: absolute;
+            background: #E0E0E0;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+        
+        .crater-1 { width: 20px; height: 20px; top: 15px; left: 25px; }
+        .crater-2 { width: 15px; height: 15px; top: 45px; left: 40px; }
+        .crater-3 { width: 25px; height: 25px; top: 30px; right: 15px; }
+        
+        @keyframes moonPhase {
+            0% { opacity: 1; }
+            25% { opacity: 0; }
+            75% { opacity: 0; }
+            85% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+        
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            animation: starsVisibility 24s linear infinite;
+        }
+        
+        @keyframes starsVisibility {
+            0% { opacity: 1; }
+            25% { opacity: 0; }
+            75% { opacity: 0; }
+            85% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+        
+        /* Clouds */
+        .clouds {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .cloud {
+            position: absolute;
+            background: #FFF;
+            border-radius: 100px;
+            opacity: 0.8;
+            animation: cloudFloat linear infinite;
+        }
+        
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: #FFF;
+            border-radius: 50%;
+        }
+        
+        .cloud-1 { width: 120px; height: 40px; top: 20%; animation-duration: 35s; }
+        .cloud-2 { width: 80px; height: 30px; top: 40%; animation-duration: 28s; animation-delay: -5s; }
+        .cloud-3 { width: 100px; height: 35px; top: 60%; animation-duration: 32s; animation-delay: -10s; }
+        .cloud-4 { width: 90px; height: 32px; top: 30%; animation-duration: 30s; animation-delay: -15s; }
+        .cloud-5 { width: 110px; height: 38px; top: 50%; animation-duration: 34s; animation-delay: -20s; }
+        
+        @keyframes cloudFloat {
+            from { transform: translateX(-150px); }
+            to { transform: translateX(calc(100vw + 150px)); }
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90vh;
+            margin: auto;
+            display: block;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+        
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .close-lightbox:hover {
+            opacity: 1;
+        }
+        
+        .lightbox-trigger {
+            cursor: pointer;
+        }
+        
+        .lightbox-trigger:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+        
+        /* Player Info Card */
+        .player-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+        
+        .player-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 15px;
+            display: block;
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+        
+        .profile-images {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .profile-gallery {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 2px solid white;
+            border-radius: 8px;
+            transition: var(--transition);
+            filter: brightness(0.8);
+            cursor: pointer;
+        }
+        
+        .profile-gallery:hover {
+            transform: scale(1.05);
+            filter: brightness(1);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.648);
+        }
+        
+        .player-info {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .player-info span {
+            display: block;
+            margin: 5px 0;
+            color: var(--dark-color);
+        }
+        
+        .username {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .carousel-prev, .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+        }
+        
+        .carousel-prev:hover, .carousel-next:hover {
+            background-color: white;
+        }
+        
+        .carousel-prev {
+            left: 20px;
+        }
+        
+        .carousel-next {
+            right: 20px;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .carousel-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .carousel-indicator.active {
+            background-color: white;
+        }
+        
         /* Responsive Styles */
         @media (max-width: 992px) {
             .hero-content, .about-content {
@@ -659,6 +1083,10 @@
             
             .portfolio-grid {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .dashboard-panel {
+                width: 280px;
             }
         }
         
@@ -701,6 +1129,10 @@
                 padding: 6px 15px;
                 font-size: 0.875rem;
             }
+            
+            .dashboard-panel {
+                width: 250px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -728,10 +1160,38 @@
             .dashboard-panel.active {
                 right: 0;
             }
+            
+            .dashboard-toggle {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+                right: 20px;
+                bottom: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Sky Animation -->
+    <div class="sky-container">
+        <div class="celestial-body">
+            <div class="sun"></div>
+            <div class="moon">
+                <div class="crater crater-1"></div>
+                <div class="crater crater-2"></div>
+                <div class="crater crater-3"></div>
+            </div>
+        </div>
+        <div class="stars"></div>
+        <div class="clouds">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+            <div class="cloud cloud-4"></div>
+            <div class="cloud cloud-5"></div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container">
@@ -766,7 +1226,7 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="https://i.pinimg.com/1200x/d5/db/ca/d5dbca067f5868f800f2f7483a308080.jpg" alt="Ethan El Nathan">
+                    <img src="https://i.pinimg.com/1200x/d5/db/ca/d5dbca067f5868f800f2f7483a308080.jpg" alt="Ethan El Nathan" class="lightbox-trigger" onclick="openLightbox(this)">
                 </div>
             </div>
         </div>
@@ -779,10 +1239,28 @@
             
             <div class="about-content">
                 <div class="about-image">
-                    <img src="https://i.pinimg.com/736x/c8/a7/69/c8a769881dbc6abc2d80d34c3454d160.jpg" alt="About Ethan">
+                    <img src="https://i.pinimg.com/736x/c8/a7/69/c8a769881dbc6abc2d80d34c3454d160.jpg" alt="About Ethan" class="lightbox-trigger" onclick="openLightbox(this)">
                 </div>
                 <div class="about-text">
                     <p>Hello, I'm Arifan. I'm a website developer and graphic designer focused on creating functional and attractive digital displays. I specialize in building responsive websites and designing creative visual elements to strengthen brand identity and enhance overall user experience.</p>
+                    
+                    <div class="player-card">
+                        <img src="https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxhfRM_njI7Pu32CmBLMdmnnzF6MdNHw4MJwlr.tSWLA2EJBQdZh0p3nNDzGvX2F6NoIc9ZSQ9xJqsGEg5bouOnA-&format=source&h=210" alt="Player Avatar" class="player-avatar lightbox-trigger" onclick="openLightbox(this)">
+                        
+                        <div class="profile-images">
+                            <img src="https://i.pinimg.com/1200x/c1/d6/cc/c1d6cc2ce5d2e3e57768fc04e15c49d1.jpg" alt="Design Work" class="profile-gallery lightbox-trigger" onclick="openLightbox(this)">
+                            <img src="https://i.pinimg.com/736x/91/3d/ad/913dadf509a38f3db54ee00fe659ae3d.jpg" alt="Design Work" class="profile-gallery lightbox-trigger" onclick="openLightbox(this)">
+                            <img src="https://i.pinimg.com/736x/63/70/e9/6370e9ec8364ab02ee184a658c2e859d.jpg" alt="Design Work" class="profile-gallery lightbox-trigger" onclick="openLightbox(this)">
+                            <img src="https://i.pinimg.com/736x/4a/e7/60/4ae760b32af11ff48fb30fd48dd31499.jpg" alt="Design Work" class="profile-gallery lightbox-trigger" onclick="openLightbox(this)">
+                        </div>
+                        
+                        <div class="player-info">
+                            <span class="username">Ethan El Nathan</span>
+                            <span>Web Developer & Designer</span>
+                            <span>JavaScript | Python | React | Node.js</span>
+                            <span>Photoshop | VS Code | Firebase</span>
+                        </div>
+                    </div>
                     
                     <div class="skills">
                         <div class="skill-item">
@@ -845,7 +1323,7 @@
             <div class="portfolio-grid">
                 <div class="portfolio-item" data-category="web">
                     <div class="portfolio-image">
-                        <img src="https://i.pinimg.com/1200x/95/22/6b/95226bca485e811e5567b02d957b8d47.jpg" alt="Global Chat Message">
+                        <img src="https://i.pinimg.com/736x/e2/45/0b/e2450b2317cb9a071ecc1f33e4e126ee.jpg" alt="Global Chat Message">
                     </div>
                     <div class="portfolio-info">
                         <h3 class="portfolio-title">Global Chat Message</h3>
@@ -856,7 +1334,7 @@
                 
                 <div class="portfolio-item" data-category="web">
                     <div class="portfolio-image">
-                        <img src="https://i.pinimg.com/736x/e2/45/0b/e2450b2317cb9a071ecc1f33e4e126ee.jpg" alt="TiketKita App">
+                        <img src="https://i.pinimg.com/1200x/95/22/6b/95226bca485e811e5567b02d957b8d47.jpg" alt="TiketKita App">
                     </div>
                     <div class="portfolio-info">
                         <h3 class="portfolio-title">TiketKita App</h3>
@@ -909,9 +1387,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
+            
+   
     <!-- Services Section -->
     <section id="services" class="services section">
         <div class="container">
@@ -1065,7 +1542,7 @@
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/elnathaners/" class="social-link"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
@@ -1148,11 +1625,41 @@
                 <i class="fas fa-wallet"></i> Money Management
             </a>
         </div>
+        
+        <div style="margin-top: 30px;">
+            <h4 style="margin-bottom: 15px; color: var(--dark-color);">Power-Up Links</h4>
+            
+            <a href="https://navigopro.vercel.app/" class="power-up" target="_blank">
+                <i class="fas fa-map-marked-alt"></i> NaviGoPro
+            </a>
+            
+            <a href="https://navigomaps.vercel.app/" class="power-up" target="_blank">
+                <i class="fas fa-map"></i> NaviGo Maps
+            </a>
+            
+            <a href="https://myanalitic.vercel.app/" class="power-up" target="_blank">
+                <i class="fas fa-chart-bar"></i> My Analitic
+            </a>
+            
+            <a href="https://qrprogenerator.vercel.app/" class="power-up" target="_blank">
+                <i class="fas fa-qrcode"></i> QR Pro Generator
+            </a>
+            
+            <a href="https://cekcuacahariini.vercel.app/" class="power-up" target="_blank">
+                <i class="fas fa-cloud-sun"></i> Cek Cuaca
+            </a>
+        </div>
     </div>
     
     <!-- Dashboard Toggle -->
     <div class="dashboard-toggle">
         <i class="fas fa-th"></i>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="imageLightbox" class="lightbox">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <img id="lightboxImage" class="lightbox-content" src="" alt="Enlarged Image">
     </div>
 
     <script>
@@ -1279,6 +1786,191 @@
         
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', animateOnScroll);
+        
+        // Lightbox functionality
+        function openLightbox(imgElement) {
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImg = document.getElementById('lightboxImage');
+            lightboxImg.src = imgElement.src;
+            lightbox.style.display = 'flex';
+            setTimeout(() => {
+                lightbox.classList.add('active');
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('imageLightbox');
+            lightbox.classList.remove('active');
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+            }, 300);
+        }
+
+        // Close on click outside image
+        document.getElementById('imageLightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+        
+        // Carousel functionality
+        const carouselTrack = document.querySelector('.carousel-track');
+        const carouselSlides = document.querySelectorAll('.carousel-slide');
+        const prevBtn = document.querySelector('.carousel-prev');
+        const nextBtn = document.querySelector('.carousel-next');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        
+        let currentIndex = 0;
+        const slideCount = carouselSlides.length;
+        const slideWidth = carouselSlides[0].clientWidth;
+        
+        function goToSlide(index) {
+            if (index < 0) {
+                index = slideCount - 1;
+            } else if (index >= slideCount) {
+                index = 0;
+            }
+            
+            carouselTrack.style.transform = `translateX(-${index * slideWidth}px)`;
+            currentIndex = index;
+            updateIndicators();
+        }
+        
+        function updateIndicators() {
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentIndex);
+            });
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            goToSlide(currentIndex - 1);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            goToSlide(currentIndex + 1);
+        });
+        
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                goToSlide(index);
+            });
+        });
+        
+        // Auto-advance carousel
+        setInterval(() => {
+            goToSlide(currentIndex + 1);
+        }, 5000);
+        
+        // Initialize carousel
+        function initCarousel() {
+            carouselTrack.style.width = `${slideCount * 100}%`;
+            carouselSlides.forEach(slide => {
+                slide.style.width = `${100 / slideCount}%`;
+            });
+            
+            updateIndicators();
+        }
+        
+        window.addEventListener('load', initCarousel);
+        window.addEventListener('resize', initCarousel);
+        
+        // Initialize sky animation based on current time
+        function initSkyAnimation() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const timeInDay = (hours * 60 + minutes) / (24 * 60);
+            const animationDelay = -(timeInDay * 24) + 's';
+            
+            document.querySelector('.sky-container').style.animationDelay = animationDelay;
+            document.querySelector('.sun').style.animationDelay = animationDelay;
+            document.querySelector('.moon').style.animationDelay = animationDelay;
+            document.querySelector('.stars').style.animationDelay = animationDelay;
+        }
+        
+        window.addEventListener('load', initSkyAnimation);
+        
+        // Cloud opacity manager
+        class CloudManager {
+            constructor() {
+                this.clouds = document.querySelectorAll('.cloud');
+                this.update();
+            }
+            
+            update() {
+                const currentHour = new Date().getHours();
+                let opacity;
+                
+                if (currentHour >= 6 && currentHour < 18) {
+                    opacity = 0.8; // Day
+                } else if (currentHour >= 18 && currentHour < 20) {
+                    opacity = 0.6; // Dusk
+                } else {
+                    opacity = 0.4; // Night
+                }
+                
+                this.clouds.forEach(cloud => {
+                    cloud.style.opacity = opacity;
+                });
+            }
+        }
+        
+        // Initialize cloud manager
+        const cloudManager = new CloudManager();
+        setInterval(() => cloudManager.update(), 60000); // Update every minute
+        
+        // Prevent right click and developer tools
+        document.addEventListener("contextmenu", function(event) {
+            event.preventDefault();
+        });
+        
+        document.addEventListener("keydown", function(event) {
+            if (event.ctrlKey && (event.key === "u" || event.key === "U") || 
+                event.key === "F12" || 
+                (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J" || event.key === "C" || event.key === "K"))) {
+                event.preventDefault();
+            }
+        });
+        
+        // OneSignal initialization
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(function(OneSignal) {
+            OneSignal.init({
+                appId: "eb7f1406-ad34-47eb-8ec2-d751a945cc69",
+                autoResubscribe: true,
+                notifyButton: { enable: true },
+                welcomeNotification: {
+                    title: "Selamat Datang!",
+                    message: "Aktifkan notifikasi untuk mendapatkan update terbaru dari EL NATHAN.",
+                }
+            });
+            
+            function ensureNotificationPermission() {
+                let permission = localStorage.getItem("notificationPermission") || "default";
+                
+                while (permission === "default") {
+                    console.log("Menunggu izin notifikasi...");
+                    OneSignal.Notifications.requestPermission();
+                    OneSignal.Notifications.showSlidedownPrompt();
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
+                    // Update status setelah pengguna mengambil tindakan
+                    permission = await OneSignal.Notifications.getPermission();
+                    localStorage.setItem("notificationPermission", permission);
+                }
+                
+                console.log(`User memilih: ${permission}`);
+            }
+            
+            ensureNotificationPermission();
+        });
     </script>
 </body>
 </html>
