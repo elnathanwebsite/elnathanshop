@@ -151,13 +151,56 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 15px 0;
+            position: relative;
         }
         
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
+        .nav-center-logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 50px;
+        }
+        
+        .nav-center-logo img {
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+        
+        .theme-toggle:hover {
             color: var(--primary-color);
+        }
+        
+        .instagram-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 15px;
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            color: white;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .instagram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(225, 48, 108, 0.3);
         }
         
         .nav-links {
@@ -558,7 +601,8 @@
             top: 0;
             width: 300px;
             height: 100vh;
-            background-color: white;
+            background-color: var(--light-color);
+            color: var(--dark-color);
             box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
             z-index: 1001;
@@ -576,12 +620,12 @@
             align-items: center;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
         
         .panel-title {
             font-size: 1.25rem;
-            color: var(--dark-color);
+            color: inherit;
         }
         
         .close-panel {
@@ -602,16 +646,24 @@
         }
         
         .panel-link {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             padding: 12px 15px;
             border-radius: var(--border-radius);
-            background-color: #f8fafc;
+            background-color: rgba(0, 0, 0, 0.05);
+            color: var(--dark-color);
             transition: var(--transition);
         }
         
         .panel-link:hover {
             background-color: var(--primary-color);
             color: white;
+        }
+        
+        .panel-link i {
+            width: 20px;
+            text-align: center;
         }
         
         .dashboard-toggle {
@@ -636,6 +688,64 @@
         .dashboard-toggle:hover {
             transform: scale(1.1);
             background-color: var(--primary-dark);
+        }
+        
+        /* Dark Theme Styles */
+        .dark-theme {
+            --dark-color: #f8fafc;
+            --light-color: #1e293b;
+            --gray-color: #94a3b8;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        
+        .dark-theme header {
+            background-color: #1e293b;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+        
+        .dark-theme .service-card,
+        .dark-theme .portfolio-item,
+        .dark-theme .contact-form {
+            background-color: #1e293b;
+            color: #f8fafc;
+        }
+        
+        .dark-theme .btn-outline {
+            color: #f8fafc;
+            border-color: #f8fafc;
+        }
+        
+        .dark-theme .btn-outline:hover {
+            color: var(--dark-color);
+            background-color: #f8fafc;
+        }
+        
+        .dark-theme .about,
+        .dark-theme .services {
+            background-color: #1e293b;
+        }
+        
+        .dark-theme .portfolio {
+            background-color: #0f172a;
+        }
+        
+        .dark-theme .skill-bar {
+            background-color: #334155;
+        }
+        
+        .dark-theme .dashboard-panel {
+            background-color: #1e293b;
+            color: #f8fafc;
+        }
+        
+        .dark-theme .panel-header {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .dark-theme .panel-link {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #f8fafc;
         }
         
         /* Responsive Styles */
@@ -681,6 +791,28 @@
                 left: 0;
             }
             
+            .nav-center-logo {
+                position: static;
+                transform: none;
+                order: 1;
+                height: 40px;
+            }
+            
+            .nav-actions {
+                order: 2;
+            }
+            
+            .navbar {
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            
+            .nav-links {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
             .hamburger {
                 display: block;
             }
@@ -700,6 +832,10 @@
             .filter-btn {
                 padding: 6px 15px;
                 font-size: 0.875rem;
+            }
+            
+            .dark-theme .nav-links {
+                background-color: #1e293b;
             }
         }
         
@@ -736,8 +872,12 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="#" class="logo">Ethan El Nathan</a>
+                <!-- Logo di tengah -->
+                <div class="nav-center-logo">
+                    <img src="https://via.placeholder.com/150x50?text=DANA+10K" alt="Logo">
+                </div>
                 
+                <!-- Menu navigasi -->
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -746,8 +886,18 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 
-                <div class="hamburger">
-                    <i class="fas fa-bars"></i>
+                <!-- Tombol aksi -->
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="https://www.instagram.com/elnathaners/" target="_blank" class="instagram-btn">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <div class="hamburger">
+                        <i class="fas fa-bars"></i>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -886,8 +1036,7 @@
                         <a href="https://aturduit.vercel.app/" target="_blank" class="btn btn-outline">View Project</a>
                     </div>
                 </div>
-                
-  
+            </div>
         </div>
     </section>
 
@@ -1232,6 +1381,31 @@
                 alert('Thank you for subscribing to our newsletter!');
                 this.reset();
             });
+        }
+        
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Check for saved theme preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+            updateThemeIcon();
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark-theme' : '');
+            updateThemeIcon();
+        });
+        
+        function updateThemeIcon() {
+            if (body.classList.contains('dark-theme')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
         }
         
         // Animation on scroll
